@@ -1,0 +1,20 @@
+package net.redstoneparadox.nicetohave.entity
+
+import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder
+import net.minecraft.entity.EntityCategory
+import net.minecraft.entity.EntitySize
+import net.minecraft.entity.EntityType
+import net.minecraft.util.registry.Registry
+
+/**
+ * Created by RedstoneParadox on 5/23/2019.
+ */
+object EntityTypes {
+
+    val THROWN_DYNAMITE: EntityType<ThrownDynamiteEntity> = FabricEntityTypeBuilder.create<ThrownDynamiteEntity>(EntityCategory.MISC) { entityType, world ->  ThrownDynamiteEntity(entityType, world)}.size(EntitySize.constant(0.25f, 0.25f)).trackable(4, 20).build()
+
+    fun registerEntityTypes() {
+        Registry.register(Registry.ENTITY_TYPE, "nicetohave:thrown_dynamite", THROWN_DYNAMITE)
+    }
+
+}

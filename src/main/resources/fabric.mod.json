@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "nicetohave",
+  "version": "${version}",
+
+  "name": "Nice to Have",
+  "description": "This is a mod containing some small things that I though would be nice to have.",
+  "authors": [
+    "RedstoneParadox"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "All Rights Reserved",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "net.redstoneparadox.nicetohave.NiceToHave"
+      },
+      {
+        "adapter": "kotlin",
+        "value": "net.redstoneparadox.nicetohave.client.NiceToHaveClient"
+      }
+    ]
+  },
+  "mixins": [
+    "nicetohave.mixins.json"
+  ],
+
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*",
+    "fabric-language-kotlin": ">=1.3.30"
+  }
+}
