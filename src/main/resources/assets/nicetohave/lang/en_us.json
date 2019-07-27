@@ -1,4 +1,8 @@
 {
+  "block.nicetohave.gold_button": "Gold Button",
+
   "item.nicetohave.chain_link": "Chain Link",
-  "item.nicetohave.dynamite": "Dynamite"
+  "item.nicetohave.dynamite": "Dynamite",
+
+  "enchantment.nicetohave.flurry": "Flurry"
 }
