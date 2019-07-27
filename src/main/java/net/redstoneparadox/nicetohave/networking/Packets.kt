@@ -54,7 +54,7 @@ object Packets {
             ctx.taskQueue.execute {
                 val world = MinecraftClient.getInstance().world
                 Optional.ofNullable(pkt.entityTypeId.create(world)).ifPresent { entity ->
-                    entity.method_18003(pkt.x, pkt.y, pkt.z)
+                    entity.updateTrackedPosition(pkt.x, pkt.y, pkt.z)
                     entity.setVelocity(pkt.velocityX, pkt.velocityY, pkt.velocityz)
                     entity.pitch = (pkt.pitch * 360).toFloat() / 256.0f
                     entity.yaw = (pkt.yaw * 360).toFloat() / 256.0f

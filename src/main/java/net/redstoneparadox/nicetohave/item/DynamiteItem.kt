@@ -18,6 +18,7 @@ import net.minecraft.util.math.Position
 import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import net.redstoneparadox.nicetohave.networking.Packets
+import java.util.*
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -28,10 +29,10 @@ class DynamiteItem(itemSettings: Settings?) : Item(itemSettings) {
         val stack : ItemStack = playerEntity.getStackInHand(hand)
         if (!playerEntity.isCreative)
         {
-            stack.subtractAmount(1)
+            stack.decrement(1)
         }
 
-        world.playSound(null, playerEntity.x, playerEntity.y, playerEntity.z, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (Item.random.nextFloat() * 0.4f + 0.8f))
+        world.playSound(null, playerEntity.x, playerEntity.y, playerEntity.z, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, 0.5f, 0.4f / (Random().nextFloat() * 0.4f + 0.8f))
         if (!world.isClient) {
             val dynamite = ThrownDynamiteEntity(world, playerEntity)
             dynamite.setItem(stack)
@@ -43,27 +44,4 @@ class DynamiteItem(itemSettings: Settings?) : Item(itemSettings) {
         return TypedActionResult(ActionResult.SUCCESS, stack)
     }
 
-    companion object {
-        fun registerDispenserBehavior() {
-            DispenserBlock.registerBehavior(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
-                var entity : ThrownDynamiteEntity? = null
-
-                override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
-                    entity = SystemUtil.consume(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
-                    return entity as Projectile
-                }
-
-                override fun dispenseStack(blockPointer_1: BlockPointer?, itemStack_1: ItemStack?): ItemStack {
-                    val stack = super.dispenseStack(blockPointer_1, itemStack_1)
-
-                    if (entity != null)  {
-                        Packets.dispatchToAllWatching(entity!!, ::EntityPositionS2CPacket)
-                        entity = null
-                    }
-
-                    return stack
-                }
-            })
-        }
-    }
 }

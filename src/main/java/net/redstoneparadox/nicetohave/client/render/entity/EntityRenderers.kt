@@ -11,7 +11,7 @@ object EntityRenderers {
 
 
     fun registerRenderers() {
-        var factory = EntityRendererRegistry.Factory { manager, context ->  FlyingItemEntityRenderer<ThrownDynamiteEntity>(manager, context.itemRenderer)}
+        val factory = EntityRendererRegistry.Factory { manager, context ->  FlyingItemEntityRenderer<ThrownDynamiteEntity>(manager, context.itemRenderer)}
         EntityRendererRegistry.INSTANCE.register(ThrownDynamiteEntity::class.javaObjectType, factory)
     }
 }
