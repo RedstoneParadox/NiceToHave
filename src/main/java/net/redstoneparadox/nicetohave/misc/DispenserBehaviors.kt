@@ -1,9 +1,6 @@
 package net.redstoneparadox.nicetohave.misc
 
-import net.minecraft.block.Block
-import net.minecraft.block.BlockState
-import net.minecraft.block.Blocks
-import net.minecraft.block.DispenserBlock
+import net.minecraft.block.*
 import net.minecraft.block.dispenser.DispenserBehavior
 import net.minecraft.block.dispenser.ItemDispenserBehavior
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior
@@ -13,6 +10,8 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.SystemUtil
 import net.minecraft.util.math.BlockPointer
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Position
 import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
@@ -56,8 +55,51 @@ object DispenserBehaviors {
         register(net.minecraft.item.Items.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
         register(net.minecraft.item.Items.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
         register(net.minecraft.item.Items.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
-        register(net.minecraft.item.Items.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING)) 
+        register(net.minecraft.item.Items.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
         register(net.minecraft.item.Items.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
+
+        register(net.minecraft.item.Items.LADDER, object : ItemDispenserBehavior() {
+            override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
+                val direction : Direction = pointer!!.blockState.get(DispenserBlock.FACING)
+                val world = pointer.world
+
+                if (direction == Direction.DOWN || direction == Direction.UP) {
+                    var nextPosition = pointer.blockPos.offset(direction)
+                    var stackCount = 0
+                    while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count) {
+                        val ladderState = getLadderState(nextPosition, world) ?: break
+
+                        world.setBlockState(nextPosition, ladderState)
+                        stackCount++
+                        nextPosition = nextPosition.offset(direction)
+                    }
+
+                    if (stackCount > 0) {
+                        itemStack!!.decrement(stackCount)
+                        return itemStack
+                    }
+                }
+
+                return super.dispenseSilently(pointer, itemStack)
+            }
+
+            fun getLadderState(position : BlockPos, world : World): BlockState? {
+
+                for (direction in Direction.values()) {
+                    if (direction == Direction.UP || direction == Direction.DOWN) {
+                        continue
+                    }
+
+                    val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
+
+                    if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
+                        return ladderState
+                    }
+                }
+
+                return null
+            }
+        })
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
@@ -69,10 +111,10 @@ object DispenserBehaviors {
         constructor(farmland: Block, plant: Block) : this(arrayOf(farmland), plant)
 
         override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
-            var stack = itemStack!!
-            var world = pointer!!.world
-            var direction = pointer.blockState.get(DispenserBlock.FACING)
-            var farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
+            val stack = itemStack!!
+            val world = pointer!!.world
+            val direction = pointer.blockState.get(DispenserBlock.FACING)
+            val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
 
             for (block in farmlandBlocks) {
                 if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == Blocks.AIR) {
