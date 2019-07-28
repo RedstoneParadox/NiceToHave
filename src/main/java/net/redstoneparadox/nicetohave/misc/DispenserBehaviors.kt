@@ -8,6 +8,8 @@ import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.projectile.Projectile
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.util.SystemUtil
 import net.minecraft.util.math.BlockPointer
 import net.minecraft.util.math.BlockPos
@@ -66,8 +68,10 @@ object DispenserBehaviors {
                 if (direction == Direction.DOWN || direction == Direction.UP) {
                     var nextPosition = pointer.blockPos.offset(direction)
                     var stackCount = 0
-                    while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count) {
-                        val ladderState = getLadderState(nextPosition, world) ?: break
+                    val ladderDirection = getLadderState(nextPosition, world);
+
+                    while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count && ladderDirection != null) {
+                        val ladderState = nextLadderState(nextPosition, world, ladderDirection) ?: break
 
                         world.setBlockState(nextPosition, ladderState)
                         stackCount++
@@ -83,7 +87,7 @@ object DispenserBehaviors {
                 return super.dispenseSilently(pointer, itemStack)
             }
 
-            fun getLadderState(position : BlockPos, world : World): BlockState? {
+            fun getLadderState(position : BlockPos, world : World): Direction? {
 
                 for (direction in Direction.values()) {
                     if (direction == Direction.UP || direction == Direction.DOWN) {
@@ -93,8 +97,18 @@ object DispenserBehaviors {
                     val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
 
                     if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
-                        return ladderState
+                        return direction
                     }
+                }
+
+                return null
+            }
+
+            fun nextLadderState(position : BlockPos, world : World, direction: Direction): BlockState? {
+                val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
+
+                if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
+                    return ladderState
                 }
 
                 return null
