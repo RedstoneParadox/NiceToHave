@@ -1,5 +1,7 @@
 # Nice To Have
 
+Nice To Have is about adding small features that are...well...nice to have without disrupting the vanilla experience.
+
 Features:
 
 - Gold Button: Emits a 1-tick Redstone signal when pressed.
