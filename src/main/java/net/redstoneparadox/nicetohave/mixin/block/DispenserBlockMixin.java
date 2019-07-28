@@ -1,7 +1,9 @@
 package net.redstoneparadox.nicetohave.mixin.block;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.LadderBlock;
 import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -25,9 +27,10 @@ public class DispenserBlockMixin {
 
         if (dispenserBlockEntity_1.isInvEmpty() && world_1.getBlockState(blockPos_1.offset(direction)).getBlock() == Blocks.LADDER && (direction == Direction.UP || direction == Direction.DOWN)) {
             BlockPos lastPos = blockPos_1.offset(direction);
+            BlockState initialState = world_1.getBlockState(lastPos);
             int ladderCount = 0;
 
-            while (world_1.getBlockState(lastPos).getBlock() == Blocks.LADDER) {
+            while (world_1.getBlockState(lastPos).getBlock() == Blocks.LADDER && world_1.getBlockState(lastPos) == initialState) {
                 ladderCount++;
                 lastPos = lastPos.offset(direction);
             }

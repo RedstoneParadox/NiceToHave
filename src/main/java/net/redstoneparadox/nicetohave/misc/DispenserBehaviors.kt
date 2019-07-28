@@ -68,7 +68,7 @@ object DispenserBehaviors {
                 if (direction == Direction.DOWN || direction == Direction.UP) {
                     var nextPosition = pointer.blockPos.offset(direction)
                     var stackCount = 0
-                    val ladderDirection = getLadderState(nextPosition, world);
+                    val ladderDirection = getLadderState(nextPosition, world)
 
                     while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count && ladderDirection != null) {
                         val ladderState = nextLadderState(nextPosition, world, ladderDirection) ?: break
