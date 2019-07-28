@@ -41,7 +41,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
 
         fun registerForEach(blocks : Array<Block>, interaction: WrenchInteraction) {
             for (block in blocks) {
-                interactions.put(block, interaction)
+                interactions[block] = interaction
             }
         }
 
