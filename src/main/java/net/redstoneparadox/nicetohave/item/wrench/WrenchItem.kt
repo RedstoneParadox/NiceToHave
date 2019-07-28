@@ -45,6 +45,12 @@ class WrenchItem(settings: Settings?) : Item(settings) {
             }
         }
 
+        fun registerForEachClass(classes : Array<Class<Block>>, interaction: WrenchInteraction) {
+            for (klass in classes) {
+                classInteractions[klass] = interaction;
+            }
+        }
+
         fun init() {
             registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
@@ -74,6 +80,15 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw NullPointerException()
                 }
             }
+            registerForEach(arrayOf(Blocks.CARVED_PUMPKIN, Blocks.JACK_O_LANTERN, Blocks.REPEATER, Blocks.COMPARATOR)) { world, blockState, blockPos ->
+                return@registerForEach when(blockState.get(HorizontalFacingBlock.FACING)) {
+                    Direction.NORTH -> blockState.with(CarvedPumpkinBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(CarvedPumpkinBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(CarvedPumpkinBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(CarvedPumpkinBlock.FACING, Direction.NORTH)
+                    else -> throw Exception("Invalid BlockState $blockState")
+                }
+            }
             registerClassInteraction(Blocks.ACACIA_STAIRS.javaClass) {world, blockState, blockPos ->
 
                 val nextHalf = when(blockState.get(StairsBlock.HALF)) {
@@ -96,6 +111,14 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     SlabType.TOP -> blockState.with(SlabBlock.TYPE, SlabType.BOTTOM)
                     SlabType.DOUBLE -> blockState
                     else -> throw Exception("Invalid BlockState ${blockState}")
+                }
+            }
+            registerForEachClass(arrayOf(Blocks.OAK_WOOD.javaClass, Blocks.OAK_LOG.javaClass)) { world, blockState, blockPos ->
+                return@registerForEachClass when(blockState.get(PillarBlock.AXIS)) {
+                    Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
+                    Direction.Axis.field_11052 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11051)
+                    Direction.Axis.field_11051 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11048)
+                    else -> throw Exception("Invalid BlockState $blockState")
                 }
             }
         }
