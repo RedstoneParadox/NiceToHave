@@ -5,6 +5,7 @@ import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.enchantment.Enchantments
 import net.redstoneparadox.nicetohave.entity.EntityTypes
 import net.redstoneparadox.nicetohave.item.Items
+import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.misc.DispenserBehaviors
 import net.redstoneparadox.nicetohave.networking.Packets
 
@@ -21,5 +22,6 @@ class NiceToHave : ModInitializer {
         Packets.registerPackets()
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
+        WrenchItem.init()
     }
 }
