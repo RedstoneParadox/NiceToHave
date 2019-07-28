@@ -37,7 +37,7 @@ public class DispenserBlockMixin {
             for (int i = ladderCount; i > 0; i--) {
                 for (int j = 0; j < 9; j++) {
                     ItemStack invStack = dispenserBlockEntity_1.getInvStack(j);
-                    if (invStack == ItemStack.EMPTY) {
+                    if (invStack.isEmpty()) {
                         dispenserBlockEntity_1.setInvStack(j, new ItemStack(Items.LADDER, 1));
                         break;
                     }
