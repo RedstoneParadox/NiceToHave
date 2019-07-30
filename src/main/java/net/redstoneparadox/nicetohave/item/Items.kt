@@ -1,6 +1,5 @@
 package net.redstoneparadox.nicetohave.item
 
-import jdk.nashorn.internal.ir.Block
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
@@ -19,6 +18,7 @@ object Items {
 
     //BlockItems.
     val GOLD_BUTTON : BlockItem = BlockItem(Blocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
+    val VARIABLE_REDSTONE_EMITTER = BlockItem(Blocks.VARIABLE_REDSTONE_EMITTER, Item.Settings().group(ItemGroup.REDSTONE))
 
     fun registerItems() {
         register(CHAIN_LINK, "chain_link")
@@ -26,6 +26,7 @@ object Items {
         register(WRENCH, "wrench")
 
         register(GOLD_BUTTON, "gold_button")
+        register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
     }
 
     private fun register(item : Item, id : String) {
