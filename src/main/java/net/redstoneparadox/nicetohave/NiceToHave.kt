@@ -7,6 +7,7 @@ import net.redstoneparadox.nicetohave.entity.EntityTypes
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.misc.DispenserBehaviors
+import net.redstoneparadox.nicetohave.misc.Listeners
 import net.redstoneparadox.nicetohave.networking.Packets
 import net.redstoneparadox.nicetohave.world.biome.Biomes
 
@@ -24,6 +25,7 @@ class NiceToHave : ModInitializer {
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
         Biomes.registerBiomes()
+        Listeners.registerListeners()
         WrenchItem.init()
     }
 }
