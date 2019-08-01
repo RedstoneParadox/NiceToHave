@@ -33,10 +33,9 @@ class ThrownDynamiteEntity : ThrownItemEntity {
         val hitY = hitResult.pos.y
         val hitZ = hitResult.pos.z
 
-        world.createExplosion(this, x, y + (this.height / 16.0f).toDouble(), z, 2.0f, Explosion.DestructionType.BREAK)
-
         if (!this.world.isClient) {
             this.world.sendEntityStatus(this, 3.toByte())
+            world.createExplosion(this, x, y + (this.height / 16.0f).toDouble(), z, 2.0f, Explosion.DestructionType.BREAK)
             this.remove()
         }
     }
