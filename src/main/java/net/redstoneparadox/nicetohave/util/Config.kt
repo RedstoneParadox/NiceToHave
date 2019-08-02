@@ -1,7 +1,6 @@
 package net.redstoneparadox.nicetohave.util
 
 import blue.endless.jankson.Jankson
-import blue.endless.jankson.JsonElement
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
@@ -34,6 +33,9 @@ object Config {
     }
 
     fun setValues() {
+        //Main
+        configObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
+
         configObject.putDefault("items", JsonObject(), null)
         configObject.putDefault("blocks", JsonObject(), null)
         configObject.putDefault("misc", JsonObject(), null)
@@ -73,9 +75,9 @@ object Config {
         return getOption(key, type, default, "misc")
     }
 
-    private fun <T> getOption(key : String, type : Class<T>, default : T, category : String): T {
-        val category = configObject.get(JsonObject::class.java, category)
-        val option = (category!![key] as JsonPrimitive)
+    private fun <T> getOption(key : String, type : Class<T>, default : T, category : String = "main"): T {
+        val categoryObject = if (category == "main") configObject else configObject.get(JsonObject::class.java, category)
+        val option = (categoryObject!![key] as JsonPrimitive)
 
         val value = option.value
         if (type.isInstance(value)) {
