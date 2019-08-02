@@ -22,7 +22,9 @@
       {
         "adapter": "kotlin",
         "value": "net.redstoneparadox.nicetohave.NiceToHave"
-      },
+      }
+    ],
+    "client": [
       {
         "adapter": "kotlin",
         "value": "net.redstoneparadox.nicetohave.client.NiceToHaveClient"
