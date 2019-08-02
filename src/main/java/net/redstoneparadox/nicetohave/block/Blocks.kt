@@ -5,6 +5,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.block.Material
 import net.minecraft.util.registry.Registry
+import net.redstoneparadox.nicetohave.util.Config
 
 object Blocks {
 
@@ -17,6 +18,8 @@ object Blocks {
     }
 
     fun register(block : Block, id : String) {
-        Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
+        if (Config.getBlockOption(id, Config.boolType, true)) {
+            Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
+        }
     }
 }

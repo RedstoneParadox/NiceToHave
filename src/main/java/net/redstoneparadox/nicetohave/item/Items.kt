@@ -6,6 +6,7 @@ import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
 import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
+import net.redstoneparadox.nicetohave.util.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -25,12 +26,19 @@ object Items {
         register(DYNAMITE, "dynamite")
         register(WRENCH, "wrench")
 
-        register(GOLD_BUTTON, "gold_button")
-        register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
+        registerBlockItem(GOLD_BUTTON, "gold_button")
+        registerBlockItem(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
     }
 
     private fun register(item : Item, id : String) {
-        Registry.register(Registry.ITEM, "nicetohave:${id}", item)
+        if (Config.getItemOption(id, Config.boolType, true)) {
+            Registry.register(Registry.ITEM, "nicetohave:${id}", item)
+        }
     }
 
+    private fun registerBlockItem(item: BlockItem, id: String) {
+        if (Config.getBlockOption(id, Config.boolType, true)) {
+            Registry.register(Registry.ITEM, "nicetohave:${id}", item)
+        }
+    }
 }

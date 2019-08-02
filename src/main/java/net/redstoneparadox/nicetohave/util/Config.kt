@@ -1,6 +1,7 @@
 package net.redstoneparadox.nicetohave.util
 
 import blue.endless.jankson.Jankson
+import blue.endless.jankson.JsonElement
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
@@ -12,6 +13,9 @@ import java.io.IOException
 object Config {
 
     lateinit var configObject : JsonObject
+
+    //Types
+    val boolType = Boolean::class.javaObjectType
 
     fun load() {
         try {
@@ -55,5 +59,32 @@ object Config {
     fun save() {
         val configString = configObject.toJson(true, true)
         File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson").bufferedWriter().use { it.write(configString) }
+    }
+
+    fun <T> getItemOption(key : String, type : Class<T>, default : T): T {
+        return getOption(key, type, default, "items")
+    }
+
+    fun <T> getBlockOption(key : String, type : Class<T>, default: T): T {
+        return getOption(key, type, default, "blocks")
+    }
+
+    fun <T> getMiscOption(key : String, type : Class<T>, default: T): T {
+        return getOption(key, type, default, "misc")
+    }
+
+    private fun <T> getOption(key : String, type : Class<T>, default : T, category : String): T {
+        val category = configObject.get(JsonObject::class.java, category)
+        val option = (category!![key] as JsonPrimitive)
+
+        val value = option.value
+        if (type.isInstance(value)) {
+            return type.cast(value)
+        }
+        else {
+            NiceToHave.error("Error when reading config option '$key', Expected $type, found ${value.javaClass}. Option will use default value of $default.")
+        }
+
+        return default
     }
 }
