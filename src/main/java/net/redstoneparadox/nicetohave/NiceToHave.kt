@@ -14,6 +14,7 @@ import net.redstoneparadox.nicetohave.util.Config
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import net.redstoneparadox.nicetohave.world.biome.Biomes
+import net.redstoneparadox.nicetohave.world.gen.surfacebuilder.SurfaceBuilders
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -33,6 +34,7 @@ class NiceToHave : ModInitializer {
         Packets.registerPackets()
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
+        SurfaceBuilders.registerSurfaceBuilders()
         Biomes.registerBiomes()
         Listeners.registerListeners()
         WrenchItem.init()
