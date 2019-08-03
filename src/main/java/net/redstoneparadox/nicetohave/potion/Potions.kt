@@ -4,6 +4,7 @@ import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.potion.Potion
 import net.minecraft.util.registry.Registry
 import net.redstoneparadox.nicetohave.entity.effect.StatusEffects
+import net.redstoneparadox.nicetohave.util.Config
 import net.redstoneparadox.nicetohave.util.minutesToTicks
 
 object Potions {
@@ -17,6 +18,17 @@ object Potions {
     }
 
     private fun register(id: String, potion: Potion) {
-        Registry.register(Registry.POTION, "nicetohave:$id", potion)
+        var configKey = id;
+
+        if (configKey.startsWith("long_")) {
+            configKey = configKey.removePrefix("long_")
+        }
+        else if (configKey.startsWith("strong_")) {
+            configKey = configKey.removePrefix("strong_")
+        }
+
+        if (Config.getPotionOption(configKey, Config.boolType, true)) {
+            Registry.register(Registry.POTION, "nicetohave:$id", potion)
+        }
     }
 }
