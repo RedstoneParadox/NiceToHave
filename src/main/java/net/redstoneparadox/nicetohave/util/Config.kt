@@ -15,6 +15,7 @@ object Config {
 
     //Types
     val boolType = Boolean::class.javaObjectType
+    val floatType = Float::class.javaObjectType
 
     fun load() {
         try {
@@ -57,6 +58,7 @@ object Config {
 
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
+        worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
