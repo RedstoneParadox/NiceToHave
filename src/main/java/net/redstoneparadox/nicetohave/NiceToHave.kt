@@ -6,11 +6,13 @@ import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.enchantment.Enchantments
 import net.redstoneparadox.nicetohave.entity.EntityTypes
+import net.redstoneparadox.nicetohave.entity.effect.StatusEffects
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.misc.DispenserBehaviors
 import net.redstoneparadox.nicetohave.misc.Listeners
 import net.redstoneparadox.nicetohave.networking.Packets
+import net.redstoneparadox.nicetohave.potion.Potions
 import net.redstoneparadox.nicetohave.util.Config
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -31,6 +33,8 @@ class NiceToHave : ModInitializer {
         Config.save()
 
         EntityTypes.registerEntityTypes()
+        StatusEffects.registerEffects()
+        Potions.registerPotions()
         Blocks.registerBlocks()
         Items.registerItems()
         Packets.registerPackets()
