@@ -15,6 +15,8 @@ object Potions {
     fun registerPotions() {
         register("insight", INSIGHT)
         register("long_insight", LONG_INSIGHT)
+
+        PotionRecipes.registerRecipes()
     }
 
     private fun register(id: String, potion: Potion) {
