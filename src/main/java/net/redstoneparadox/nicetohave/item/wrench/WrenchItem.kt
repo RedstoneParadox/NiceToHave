@@ -113,6 +113,21 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
+            registerClassInteraction(Blocks.OAK_TRAPDOOR.javaClass) { world, blockState, blockPos ->
+                val nextHalf = when(blockState.get(TrapdoorBlock.HALF)) {
+                    BlockHalf.TOP -> BlockHalf.BOTTOM
+                    BlockHalf.BOTTOM -> BlockHalf.TOP
+                    else -> throw Exception("Invalid BlockState ${blockState}")
+                }
+
+                return@registerClassInteraction when(blockState.get(TrapdoorBlock.FACING)) {
+                    Direction.NORTH -> blockState.with(TrapdoorBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(TrapdoorBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(TrapdoorBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(TrapdoorBlock.FACING, Direction.NORTH).with(StairsBlock.HALF, nextHalf)
+                    else -> throw Exception("Invalid BlockState ${blockState}")
+                }
+            }
             registerForEachClass(arrayOf(Blocks.OAK_WOOD.javaClass, Blocks.OAK_LOG.javaClass)) { world, blockState, blockPos ->
                 return@registerForEachClass when(blockState.get(PillarBlock.AXIS)) {
                     Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
