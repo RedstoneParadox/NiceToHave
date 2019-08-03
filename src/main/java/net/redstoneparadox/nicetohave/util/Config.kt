@@ -38,10 +38,12 @@ object Config {
 
         configObject.putDefault("items", JsonObject(), null)
         configObject.putDefault("blocks", JsonObject(), null)
+        configObject.putDefault("world", JsonObject(), null)
         configObject.putDefault("misc", JsonObject(), null)
 
         val itemsCategory = configObject.get(JsonObject::class.java, "items")
         val blocksCategory = configObject.get(JsonObject::class.java, "blocks")
+        val worldCategory = configObject.get(JsonObject::class.java, "world")
         val miscCategory = configObject.get(JsonObject::class.java, "misc")
 
         //Items
@@ -52,6 +54,9 @@ object Config {
         //Blocks
         blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
         blocksCategory.putDefault("variable_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Variable Redstone Emitter.")
+
+        //World
+        worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(false), "Set to false to disable gold deposits in rivers.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
@@ -69,6 +74,10 @@ object Config {
 
     fun <T> getBlockOption(key : String, type : Class<T>, default: T): T {
         return getOption(key, type, default, "blocks")
+    }
+
+    fun <T> getWorldOption(key: String, type : Class<T>, default : T): T {
+        return getOption(key, type, default, "world")
     }
 
     fun <T> getMiscOption(key : String, type : Class<T>, default: T): T {
