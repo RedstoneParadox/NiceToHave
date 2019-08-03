@@ -2,6 +2,7 @@ package net.redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.loader.FabricLoader
+import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.enchantment.Enchantments
 import net.redstoneparadox.nicetohave.entity.EntityTypes

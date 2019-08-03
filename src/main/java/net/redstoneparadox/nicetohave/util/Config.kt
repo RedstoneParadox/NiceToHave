@@ -56,7 +56,7 @@ object Config {
         blocksCategory.putDefault("variable_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Variable Redstone Emitter.")
 
         //World
-        worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(false), "Set to false to disable gold deposits in rivers.")
+        worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
