@@ -8,10 +8,10 @@ import java.util.function.Function
 
 object Features {
 
-    val GOLD_RIVER : Feature<DefaultFeatureConfig> = GoldRiverFeature (Function { DefaultFeatureConfig.deserialize(it) })
+    val GOLD_RIVER_ORE : Feature<DefaultFeatureConfig> = GoldRiverOreFeature (Function { DefaultFeatureConfig.deserialize(it) })
 
     fun registerFeatures() {
-        register("gold_river", GOLD_RIVER)
+        register("gold_river_ore", GOLD_RIVER_ORE)
     }
 
     private fun <C : FeatureConfig, F : Feature<C>> register(id: String, feature: F) {

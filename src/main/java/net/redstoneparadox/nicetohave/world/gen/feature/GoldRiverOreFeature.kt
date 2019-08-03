@@ -14,7 +14,7 @@ import net.redstoneparadox.nicetohave.util.Config
 import java.util.*
 import java.util.function.Function
 
-class GoldRiverFeature(function_1: Function<Dynamic<*>, DefaultFeatureConfig>) : Feature<DefaultFeatureConfig>(function_1) {
+class GoldRiverOreFeature(function_1: Function<Dynamic<*>, DefaultFeatureConfig>) : Feature<DefaultFeatureConfig>(function_1) {
     override fun generate(world: IWorld, chunkGenerator: ChunkGenerator<out ChunkGeneratorConfig>, rand: Random, pos: BlockPos, config: DefaultFeatureConfig): Boolean {
         val chance = rand.nextInt(100) + 1
         val oreState = getGoldOre(pos, world)

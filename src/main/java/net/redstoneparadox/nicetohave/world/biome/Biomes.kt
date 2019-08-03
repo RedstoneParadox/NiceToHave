@@ -19,7 +19,7 @@ object Biomes {
     
     fun registerBiomes() {
         if (Config.getWorldOption("gold_in_rivers", Config.boolType, true)) {
-            BAD_LANDS_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
+            BAD_LANDS_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
             register("badlands_river", BAD_LANDS_RIVER)
             OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS_PLATEAU, BAD_LANDS_RIVER)
             OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS, BAD_LANDS_RIVER)
@@ -28,7 +28,7 @@ object Biomes {
             OverworldBiomes.setRiverBiome(VanillaBiomes.MODIFIED_WOODED_BADLANDS_PLATEAU, BAD_LANDS_RIVER)
             OverworldBiomes.setRiverBiome(VanillaBiomes.WOODED_BADLANDS_PLATEAU, BAD_LANDS_RIVER)
 
-            VanillaBiomes.FROZEN_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
+            VanillaBiomes.FROZEN_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
         }
     }
 
