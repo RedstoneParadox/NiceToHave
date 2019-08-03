@@ -1,0 +1,25 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "nicetohave:block/chain_link_fence_side_face",
+		"1": "nicetohave:block/chain_link_fence_side_front",
+		"2": "nicetohave:block/chain_link_fence_side_top",
+		"3": "nicetohave:block/chain_link_fence_side_bottom",
+		"particle": "block/hopper_inside"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 0],
+			"to": [9, 16, 6],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 2, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 2, 6], "texture": "#2"},
+				"down": {"uv": [0, 0, 2, 6], "texture": "#3"}
+			}
+		}
+	],
+	"display": {}
+}

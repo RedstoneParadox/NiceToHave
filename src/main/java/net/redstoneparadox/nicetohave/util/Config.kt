@@ -44,13 +44,14 @@ object Config {
         val miscCategory = addCategory("misc")
 
         //Items
-        itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-link crafting.")
+        itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-links.")
         itemsCategory.putDefault("dynamite", JsonPrimitive(true), "Set to false to disable dynamite.")
         itemsCategory.putDefault("wrench", JsonPrimitive(true), "Set to false to disable the wrench.")
 
         //Blocks
         blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
         blocksCategory.putDefault("variable_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Variable Redstone Emitter.")
+        blocksCategory.putDefault("chain_link_fence", JsonPrimitive(true), "Set to false to disable chain-link fences.")
 
         //Potions
         potionsCategory!!.putDefault("insight", JsonPrimitive(true), "Set to false to disable the Potion of Insight")
