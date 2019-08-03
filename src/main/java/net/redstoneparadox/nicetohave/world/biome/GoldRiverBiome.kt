@@ -14,8 +14,6 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig
 import net.redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import net.redstoneparadox.nicetohave.world.gen.feature.Features
-import net.redstoneparadox.nicetohave.world.gen.surfacebuilder.SurfaceBuilders
-
 
 class GoldRiverBiome : Biome {
 
