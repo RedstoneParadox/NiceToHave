@@ -37,17 +37,11 @@ object Config {
         //Main
         configObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
 
-        configObject.putDefault("items", JsonObject(), null)
-        configObject.putDefault("blocks", JsonObject(), null)
-        configObject.putDefault("potions", JsonObject(), null)
-        configObject.putDefault("world", JsonObject(), null)
-        configObject.putDefault("misc", JsonObject(), null)
-
-        val itemsCategory = configObject.get(JsonObject::class.java, "items")
-        val blocksCategory = configObject.get(JsonObject::class.java, "blocks")
-        val potionsCategory = configObject.get(JsonObject::class.java, "potions")
-        val worldCategory = configObject.get(JsonObject::class.java, "world")
-        val miscCategory = configObject.get(JsonObject::class.java, "misc")
+        val itemsCategory = addCategory("items")
+        val blocksCategory = addCategory("blocks")
+        val potionsCategory = addCategory("potions")
+        val worldCategory = addCategory("world")
+        val miscCategory = addCategory("misc")
 
         //Items
         itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-link crafting.")
@@ -73,6 +67,11 @@ object Config {
     fun save() {
         val configString = configObject.toJson(true, true)
         File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson").bufferedWriter().use { it.write(configString) }
+    }
+
+    private fun addCategory(name : String): JsonObject {
+        configObject.putDefault(name, JsonObject(), null)
+        return configObject.get(JsonObject::class.java, name)!!
     }
 
     fun <T> getItemOption(key : String, type : Class<T>, default : T): T {
