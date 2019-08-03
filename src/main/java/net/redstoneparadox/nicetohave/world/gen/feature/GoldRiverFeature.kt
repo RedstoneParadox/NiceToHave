@@ -13,13 +13,12 @@ import net.minecraft.world.gen.feature.Feature
 import net.redstoneparadox.nicetohave.util.Config
 import java.util.*
 import java.util.function.Function
-import kotlin.reflect.KFunction1
 
 class GoldRiverFeature(function_1: Function<Dynamic<*>, DefaultFeatureConfig>) : Feature<DefaultFeatureConfig>(function_1) {
     override fun generate(world: IWorld, chunkGenerator: ChunkGenerator<out ChunkGeneratorConfig>, rand: Random, pos: BlockPos, config: DefaultFeatureConfig): Boolean {
         val chance = rand.nextInt(100) + 1
         val oreState = getGoldOre(pos, world)
-        if (oreState != null && chance < Config.getWorldOption("river_gold_percent", Config.floatType, 10.0f)) world.setBlockState(pos, oreState, 0)
+        if (oreState != null && chance < Config.getWorldOption("river_gold_percent", Config.doubleType, 10.0)) world.setBlockState(pos, oreState, 0)
         return true
     }
 

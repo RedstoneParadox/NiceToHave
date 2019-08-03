@@ -15,7 +15,7 @@ object Config {
 
     //Types
     val boolType = Boolean::class.javaObjectType
-    val floatType = Float::class.javaObjectType
+    val doubleType = Double::class.javaObjectType
 
     fun load() {
         try {
