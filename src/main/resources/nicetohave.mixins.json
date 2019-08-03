@@ -3,7 +3,8 @@
   "package": "net.redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "block.DispenserBlockMixin"
+    "block.DispenserBlockMixin",
+    "entity.ExperienceOrbEntityMixin"
   ],
   "client": [
   ],
