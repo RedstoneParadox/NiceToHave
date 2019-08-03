@@ -1,5 +1,10 @@
 {
   "block.nicetohave.gold_button": "Gold Button",
+  "block.nicetohave.dirt_gold_ore": "Dirt Gold Deposit",
+  "block.nicetohave.sand_gold_ore": "Sand Gold Deposit",
+  "block.nicetohave.gravel_gold_ore": "Gravel Gold Deposit",
+
+
 
   "item.nicetohave.chain_link": "Chain Link",
   "item.nicetohave.dynamite": "Dynamite",
