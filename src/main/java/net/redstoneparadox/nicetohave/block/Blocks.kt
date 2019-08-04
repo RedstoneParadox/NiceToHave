@@ -11,6 +11,7 @@ object Blocks {
     val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).build())
     val VARIABLE_REDSTONE_EMITTER = VariableRedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
     val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).build())
+    val TRIMMED_VINE_BLOCK : Block = TrimmedVineBlock(FabricBlockSettings.copy(Blocks.VINE).build())
 
     //Ore Blocks
     val DIRT_GOLD_ORE : Block = Block(FabricBlockSettings.copy(Blocks.DIRT).build())
@@ -21,6 +22,7 @@ object Blocks {
         register(GOLD_BUTTON, "gold_button")
         register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
         register(CHAIN_LINK_FENCE, "chain_link_fence")
+        register(TRIMMED_VINE_BLOCK, "trimmed_vine")
 
         register(DIRT_GOLD_ORE, "dirt_gold_ore", false)
         register(SAND_GOLD_ORE, "sand_gold_ore", false)

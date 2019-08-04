@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.DispenserBlockMixin",
-    "entity.ExperienceOrbEntityMixin"
+    "entity.ExperienceOrbEntityMixin",
+    "item.ShearsItemMixin"
   ],
   "client": [
   ],
