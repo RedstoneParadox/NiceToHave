@@ -40,6 +40,9 @@ public class PotionRecipes {
     public static void registerRecipes() {
         register("insight", net.minecraft.potion.Potions.THICK, Items.EXPERIENCE_BOTTLE, Potions.INSTANCE.getINSIGHT());
         register("insight", Potions.INSTANCE.getINSIGHT(), Items.REDSTONE, Potions.INSTANCE.getLONG_INSIGHT());
+        register("insight", Potions.INSTANCE.getINSIGHT(), Items.GLOWSTONE_DUST, Potions.INSTANCE.getSTRONG_INSIGHT());
+        register("insight", Potions.INSTANCE.getSTRONG_INSIGHT(), Items.REDSTONE, Potions.INSTANCE.getLONG_INSIGHT());
+        register("insight", Potions.INSTANCE.getLONG_INSIGHT(), Items.GLOWSTONE_DUST, Potions.INSTANCE.getSTRONG_INSIGHT());
     }
 
     private static void register(String configKey, Potion base, Item ingredient, Potion result) {

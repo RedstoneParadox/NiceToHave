@@ -11,10 +11,12 @@ object Potions {
 
     val INSIGHT : Potion = Potion(StatusEffectInstance(StatusEffects.INSIGHT, minutesToTicks(5, 30)))
     val LONG_INSIGHT : Potion = Potion(StatusEffectInstance(StatusEffects.INSIGHT, minutesToTicks(11, 0)))
+    val STRONG_INSIGHT : Potion = Potion(StatusEffectInstance(StatusEffects.INSIGHT, minutesToTicks(2, 30), 2))
 
     fun registerPotions() {
         register("insight", INSIGHT)
         register("long_insight", LONG_INSIGHT)
+        register("strong_insight", STRONG_INSIGHT)
 
         PotionRecipes.registerRecipes()
     }
