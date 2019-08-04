@@ -8,8 +8,6 @@ import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.projectile.Projectile
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.sound.SoundCategory
-import net.minecraft.sound.SoundEvents
 import net.minecraft.util.SystemUtil
 import net.minecraft.util.math.BlockPointer
 import net.minecraft.util.math.BlockPos
@@ -118,6 +116,30 @@ object DispenserBehaviors {
                     return null
                 }
             })
+            register(net.minecraft.item.Items.SCAFFOLDING, object : ItemDispenserBehavior() {
+                override fun dispenseSilently(pointer: BlockPointer, stack: ItemStack): ItemStack {
+                    val direction = pointer.blockState.get(DispenserBlock.FACING)
+                    val world = pointer.world
+
+                    if (direction == Direction.UP) {
+                        var nextPosition = pointer.blockPos.offset(direction)
+                        var stackCount = 0
+
+                        while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != stack.count) {
+                            world.setBlockState(nextPosition, Blocks.SCAFFOLDING.defaultState)
+                            stackCount++
+                            nextPosition = nextPosition.up()
+                        }
+
+                        if (stackCount > 0) {
+                            stack.decrement(stackCount)
+                            return stack
+                        }
+                    }
+
+                    return super.dispenseSilently(pointer, stack)
+                }
+            })
         }
     }
 
@@ -125,7 +147,7 @@ object DispenserBehaviors {
         DispenserBlock.registerBehavior(item, behavior)
     }
 
-    class PlantingDispenserBehavior(val farmlandBlocks : Array<Block>, val plant : Block) : ItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block) : ItemDispenserBehavior() {
 
         constructor(farmland: Block, plant: Block) : this(arrayOf(farmland), plant)
 
