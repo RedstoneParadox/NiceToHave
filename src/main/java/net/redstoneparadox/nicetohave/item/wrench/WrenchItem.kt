@@ -82,15 +82,17 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw NullPointerException()
                 }
             }
-            registerForEach(arrayOf(Blocks.CARVED_PUMPKIN, Blocks.JACK_O_LANTERN, Blocks.REPEATER, Blocks.COMPARATOR)) { world, blockState, blockPos ->
-                return@registerForEach when(blockState.get(HorizontalFacingBlock.FACING)) {
-                    Direction.NORTH -> blockState.with(CarvedPumpkinBlock.FACING, Direction.SOUTH)
-                    Direction.SOUTH -> blockState.with(CarvedPumpkinBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(CarvedPumpkinBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(CarvedPumpkinBlock.FACING, Direction.NORTH)
+            val horizontalInteraction : WrenchInteraction = { world, blockState, blockPos ->
+                when(blockState.get(HorizontalFacingBlock.FACING)) {
+                    Direction.NORTH -> blockState.with(HorizontalFacingBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(HorizontalFacingBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(HorizontalFacingBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(HorizontalFacingBlock.FACING, Direction.NORTH)
                     else -> throw Exception("Invalid BlockState $blockState")
                 }
             }
+            registerForEach(arrayOf(Blocks.CARVED_PUMPKIN, Blocks.JACK_O_LANTERN, Blocks.REPEATER, Blocks.COMPARATOR), horizontalInteraction)
+            registerClassInteraction(Blocks.BLACK_GLAZED_TERRACOTTA.javaClass, horizontalInteraction)
             registerClassInteraction(Blocks.ACACIA_STAIRS.javaClass) {world, blockState, blockPos ->
 
                 val nextHalf = when(blockState.get(StairsBlock.HALF)) {
