@@ -1,13 +1,26 @@
 {
   "block.nicetohave.gold_button": "Gold Button",
   "block.nicetohave.variable_redstone_emitter": "Variable Redstone Emitter",
-  "block.nicetohave.dirt_gold_ore": "Dirt Gold Deposit",
-  "block.nicetohave.sand_gold_ore": "Sand Gold Deposit",
-  "block.nicetohave.gravel_gold_ore": "Gravel Gold Deposit",
+  "block.nicetohave.chain_link_fence": "Chain Link Fence",
+  "block.nicetohave.dirt_gold_ore": "Gold Sediment",
+  "block.nicetohave.sand_gold_ore": "Gold Sediment",
+  "block.nicetohave.gravel_gold_ore": "Gold Sediment",
 
   "item.nicetohave.chain_link": "Chain Link",
   "item.nicetohave.dynamite": "Dynamite",
   "item.nicetohave.wrench": "Wrench",
 
-  "enchantment.nicetohave.flurry": "Flurry"
+  "item.minecraft.potion.effect.insight": "Potion of Insight",
+  "item.minecraft.potion.effect.long_insight": "Potion of Insight",
+  "item.minecraft.potion.effect.strong_insight": "Potion of Insight",
+  "item.minecraft.splash_potion.effect.insight": "Splash Potion of Insight",
+  "item.minecraft.splash_potion.effect.long_insight": "Splash Potion of Insight",
+  "item.minecraft.splash_potion.effect.strong_insight": "Splash Potion of Insight",
+  "item.minecraft.lingering_potion.effect.insight": "Splash Potion of Insight",
+  "item.minecraft.lingering_potion.effect.long_insight": "Splash Potion of Insight",
+  "item.minecraft.lingering_potion.effect.strong_insight": "Splash Potion of Insight",
+
+  "enchantment.nicetohave.flurry": "Flurry",
+
+  "effect.nicetohave.insight": "Insight"
 }
