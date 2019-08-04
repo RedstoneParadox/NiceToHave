@@ -15,16 +15,18 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         val interaction = interactions[blockState.block]
         if (interaction != null) {
            context.world.setBlockState(context.blockPos, interaction(context.world, blockState, context.blockPos))
+            return ActionResult.SUCCESS
         }
         else {
             val classInteraction = classInteractions[blockState.block.javaClass]
 
             if (classInteraction != null) {
                 context.world.setBlockState(context.blockPos, classInteraction(context.world, blockState, context.blockPos))
+                return ActionResult.SUCCESS
             }
         }
 
-        return super.useOnBlock(context)
+        return ActionResult.PASS
     }
 
     companion object {
