@@ -16,9 +16,9 @@
   "item.minecraft.splash_potion.effect.insight": "Splash Potion of Insight",
   "item.minecraft.splash_potion.effect.long_insight": "Splash Potion of Insight",
   "item.minecraft.splash_potion.effect.strong_insight": "Splash Potion of Insight",
-  "item.minecraft.lingering_potion.effect.insight": "Splash Potion of Insight",
-  "item.minecraft.lingering_potion.effect.long_insight": "Splash Potion of Insight",
-  "item.minecraft.lingering_potion.effect.strong_insight": "Splash Potion of Insight",
+  "item.minecraft.lingering_potion.effect.insight": "Lingering Potion of Insight",
+  "item.minecraft.lingering_potion.effect.long_insight": "Lingering Potion of Insight",
+  "item.minecraft.lingering_potion.effect.strong_insight": "Lingering Potion of Insight",
 
   "enchantment.nicetohave.flurry": "Flurry",
 
