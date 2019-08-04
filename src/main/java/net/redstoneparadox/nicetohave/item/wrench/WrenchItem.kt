@@ -7,6 +7,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.util.ActionResult
 import net.minecraft.util.math.Direction
+import net.redstoneparadox.nicetohave.block.ChainLinkFenceBlock
 
 class WrenchItem(settings: Settings?) : Item(settings) {
 
@@ -54,10 +55,13 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
+            registerInteraction(net.redstoneparadox.nicetohave.block.Blocks.CHAIN_LINK_FENCE) {world, blockState, blockPos ->
+                val current : Boolean = blockState.get(ChainLinkFenceBlock.IS_POST)
+                return@registerInteraction blockState.with(ChainLinkFenceBlock.IS_POST, !current)
+            }
             registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
                 if (blockState.get(PistonBlock.EXTENDED) == true) {
-                    println("Hey!")
                     return@registerForEach blockState
                 }
 
