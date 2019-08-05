@@ -55,10 +55,12 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
+            /*
             registerInteraction(net.redstoneparadox.nicetohave.block.Blocks.CHAIN_LINK_FENCE) {world, blockState, blockPos ->
                 val current : Boolean = blockState.get(ChainLinkFenceBlock.IS_POST)
                 return@registerInteraction blockState.with(ChainLinkFenceBlock.IS_POST, !current)
             }
+             */
             registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
                 if (blockState.get(PistonBlock.EXTENDED) == true) {
