@@ -63,6 +63,17 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
+            registerInteraction(Blocks.OBSERVER) { world, blockState, blockPos ->
+                return@registerInteraction when (blockState.get(ObserverBlock.FACING)) {
+                    Direction.UP -> blockState.with(ObserverBlock.FACING, Direction.NORTH)
+                    Direction.NORTH -> blockState.with(ObserverBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(ObserverBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(ObserverBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(ObserverBlock.FACING, Direction.DOWN)
+                    Direction.DOWN -> blockState.with(ObserverBlock.FACING, Direction.UP)
+                    else -> throw NullPointerException()
+                }
+            }
             registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
                 if (blockState.get(PistonBlock.EXTENDED) == true) {
