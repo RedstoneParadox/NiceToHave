@@ -1,27 +1,19 @@
 {
     "multipart": [
-        {   "when": { "is_post": "true" },
+        {
             "apply": { "model": "nicetohave:block/chain_link_fence_post" }
         },
-        {   "when": { "is_post": "true", "north": "true" },
+        {   "when": { "north": "true" },
             "apply": { "model": "nicetohave:block/chain_link_fence_side", "uvlock": true }
         },
-        {   "when": { "is_post": "true", "east": "true" },
+        {   "when": { "east": "true" },
             "apply": { "model": "nicetohave:block/chain_link_fence_side", "y": 90, "uvlock": true }
         },
-        {   "when": { "is_post": "true", "south": "true" },
+        {   "when": { "south": "true" },
             "apply": { "model": "nicetohave:block/chain_link_fence_side", "y": 180, "uvlock": true }
         },
-        {   "when": { "is_post": "true", "west": "true" },
+        {   "when": { "west": "true" },
             "apply": { "model": "nicetohave:block/chain_link_fence_side", "y": 270, "uvlock": true }
-        },
-        {
-            "when": { "is_post": "false", "north": "true", "south": "true", "east": "false", "west": "false" },
-            "apply": { "model":  "nicetohave:block/chain_link_fence_side_full", "uvlock": true }
-        },
-        {
-            "when": { "is_post": "false", "north": "false", "south": "false", "east": "true", "west": "true" },
-            "apply": { "model":  "nicetohave:block/chain_link_fence_side_full", "y":  90, "uvlock": true }
         }
     ]
 }

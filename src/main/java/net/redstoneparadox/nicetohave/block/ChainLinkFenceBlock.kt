@@ -9,6 +9,7 @@ import net.minecraft.state.property.BooleanProperty
 
 class ChainLinkFenceBlock(settings: Settings) : FenceBlock(settings) {
 
+    /*
     init {
         defaultState = getStateFactory().defaultState.with(IS_POST, true)
     }
@@ -17,12 +18,13 @@ class ChainLinkFenceBlock(settings: Settings) : FenceBlock(settings) {
         factory.add(IS_POST)
         super.appendProperties(factory)
     }
+     */
 
     override fun getRenderLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT
     }
 
     companion object {
-        val IS_POST : BooleanProperty = BooleanProperty.of("is_post")
+        //val IS_POST : BooleanProperty = BooleanProperty.of("is_post")
     }
 }
