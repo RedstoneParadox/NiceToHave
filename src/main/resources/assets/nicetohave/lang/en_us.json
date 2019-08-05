@@ -19,6 +19,9 @@
   "item.minecraft.lingering_potion.effect.insight": "Lingering Potion of Insight",
   "item.minecraft.lingering_potion.effect.long_insight": "Lingering Potion of Insight",
   "item.minecraft.lingering_potion.effect.strong_insight": "Lingering Potion of Insight",
+  "item.minecraft.potion.effect.nectar": "Nectar",
+  "item.minecraft.splash_potion.effect.nectar": "Splashy Nectar",
+  "item.minecraft.lingering_potion.effect.nectar": "Breath of Nectar",
 
   "enchantment.nicetohave.flurry": "Flurry",
 

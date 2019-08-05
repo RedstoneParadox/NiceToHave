@@ -55,7 +55,8 @@ object Config {
         blocksCategory.putDefault("trimmed_vine", JsonPrimitive(true), "Set to false to disable trimmed-vine blocks.")
 
         //Potions
-        potionsCategory!!.putDefault("insight", JsonPrimitive(true), "Set to false to disable the Potion of Insight")
+        potionsCategory!!.putDefault("insight", JsonPrimitive(true), "Set to false to disable the Potion of Insight.")
+        potionsCategory.putDefault("nectar", JsonPrimitive(true), "Set to false to disable Nectar.")
 
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")

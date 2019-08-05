@@ -43,6 +43,8 @@ public class PotionRecipes {
         register("insight", Potions.INSTANCE.getINSIGHT(), Items.GLOWSTONE_DUST, Potions.INSTANCE.getSTRONG_INSIGHT());
         register("insight", Potions.INSTANCE.getSTRONG_INSIGHT(), Items.REDSTONE, Potions.INSTANCE.getLONG_INSIGHT());
         register("insight", Potions.INSTANCE.getLONG_INSIGHT(), Items.GLOWSTONE_DUST, Potions.INSTANCE.getSTRONG_INSIGHT());
+
+        register("nectar", net.minecraft.potion.Potions.STRONG_HEALING, Items.ENCHANTED_GOLDEN_APPLE, Potions.INSTANCE.getNECTAR());
     }
 
     private static void register(String configKey, Potion base, Item ingredient, Potion result) {
