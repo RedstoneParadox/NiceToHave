@@ -6,6 +6,7 @@ import net.minecraft.block.enums.SlabType
 import net.minecraft.item.Item
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.util.ActionResult
+import net.minecraft.util.BlockRotation
 import net.minecraft.util.math.Direction
 import net.redstoneparadox.nicetohave.block.ChainLinkFenceBlock
 
@@ -24,6 +25,13 @@ class WrenchItem(settings: Settings?) : Item(settings) {
             if (classInteraction != null) {
                 context.world.setBlockState(context.blockPos, classInteraction(context.world, blockState, context.blockPos))
                 return ActionResult.SUCCESS
+            }
+            else {
+                val rotatedState = blockState.block.rotate(blockState, BlockRotation.CLOCKWISE_90)
+                if (rotatedState != blockState) {
+                    context.world.setBlockState(context.blockPos, rotatedState)
+                    return ActionResult.SUCCESS
+                }
             }
         }
 
@@ -55,12 +63,6 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
-            /*
-            registerInteraction(net.redstoneparadox.nicetohave.block.Blocks.CHAIN_LINK_FENCE) {world, blockState, blockPos ->
-                val current : Boolean = blockState.get(ChainLinkFenceBlock.IS_POST)
-                return@registerInteraction blockState.with(ChainLinkFenceBlock.IS_POST, !current)
-            }
-             */
             registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
                 if (blockState.get(PistonBlock.EXTENDED) == true) {
@@ -68,37 +70,26 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 }
 
                 return@registerForEach when (blockState.get(PistonBlock.FACING)) {
-                    Direction.DOWN -> blockState.with(PistonBlock.FACING, Direction.UP)
                     Direction.UP -> blockState.with(PistonBlock.FACING, Direction.NORTH)
-                    Direction.NORTH -> blockState.with(PistonBlock.FACING, Direction.SOUTH)
+                    Direction.NORTH -> blockState.with(PistonBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(PistonBlock.FACING, Direction.SOUTH)
                     Direction.SOUTH -> blockState.with(PistonBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(PistonBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(PistonBlock.FACING, Direction.DOWN)
+                    Direction.WEST -> blockState.with(PistonBlock.FACING, Direction.DOWN)
+                    Direction.DOWN -> blockState.with(PistonBlock.FACING, Direction.UP)
                     else -> throw NullPointerException()
                 }
             }
             registerForEach(arrayOf(Blocks.DISPENSER, Blocks.DROPPER)) {world, blockState, blockPos ->
                 return@registerForEach when (blockState.get(DispenserBlock.FACING)) {
-                    Direction.DOWN -> blockState.with(PistonBlock.FACING, Direction.UP)
-                    Direction.UP -> blockState.with(PistonBlock.FACING, Direction.NORTH)
-                    Direction.NORTH -> blockState.with(PistonBlock.FACING, Direction.SOUTH)
-                    Direction.SOUTH -> blockState.with(PistonBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(PistonBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(PistonBlock.FACING, Direction.DOWN)
+                    Direction.UP -> blockState.with(DispenserBlock.FACING, Direction.NORTH)
+                    Direction.NORTH -> blockState.with(DispenserBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(DispenserBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(DispenserBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(DispenserBlock.FACING, Direction.DOWN)
+                    Direction.DOWN -> blockState.with(DispenserBlock.FACING, Direction.UP)
                     else -> throw NullPointerException()
                 }
             }
-            val horizontalInteraction : WrenchInteraction = { world, blockState, blockPos ->
-                when(blockState.get(HorizontalFacingBlock.FACING)) {
-                    Direction.NORTH -> blockState.with(HorizontalFacingBlock.FACING, Direction.SOUTH)
-                    Direction.SOUTH -> blockState.with(HorizontalFacingBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(HorizontalFacingBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(HorizontalFacingBlock.FACING, Direction.NORTH)
-                    else -> throw Exception("Invalid BlockState $blockState")
-                }
-            }
-            registerForEach(arrayOf(Blocks.CARVED_PUMPKIN, Blocks.JACK_O_LANTERN, Blocks.REPEATER, Blocks.COMPARATOR), horizontalInteraction)
-            registerClassInteraction(Blocks.BLACK_GLAZED_TERRACOTTA.javaClass, horizontalInteraction)
             registerClassInteraction(Blocks.ACACIA_STAIRS.javaClass) {world, blockState, blockPos ->
 
                 val nextHalf = when(blockState.get(StairsBlock.HALF)) {
@@ -131,10 +122,10 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 }
 
                 return@registerClassInteraction when(blockState.get(TrapdoorBlock.FACING)) {
-                    Direction.NORTH -> blockState.with(TrapdoorBlock.FACING, Direction.SOUTH)
+                    Direction.NORTH -> blockState.with(TrapdoorBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(TrapdoorBlock.FACING, Direction.SOUTH)
                     Direction.SOUTH -> blockState.with(TrapdoorBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(TrapdoorBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(TrapdoorBlock.FACING, Direction.NORTH).with(StairsBlock.HALF, nextHalf)
+                    Direction.WEST -> blockState.with(TrapdoorBlock.FACING, Direction.NORTH).with(StairsBlock.HALF, nextHalf)
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
