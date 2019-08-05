@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:iron_nugget"
+      "item": "minecraft:iron_ingot"
     }
   },
   "result": {
     "item": "nicetohave:chain_link",
-    "count": 1
+    "count": 8
   }
 }

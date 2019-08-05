@@ -8,8 +8,6 @@ import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.projectile.Projectile
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.sound.SoundCategory
-import net.minecraft.sound.SoundEvents
 import net.minecraft.util.SystemUtil
 import net.minecraft.util.math.BlockPointer
 import net.minecraft.util.math.BlockPos
@@ -19,6 +17,7 @@ import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.networking.Packets
+import net.redstoneparadox.nicetohave.util.Config
 
 object DispenserBehaviors {
 
@@ -43,84 +42,112 @@ object DispenserBehaviors {
             }
         })
 
-        register(net.minecraft.item.Items.WHEAT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.WHEAT))
-        register(net.minecraft.item.Items.BEETROOT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.BEETROOTS))
-        register(net.minecraft.item.Items.MELON_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.MELON_STEM))
-        register(net.minecraft.item.Items.PUMPKIN_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.PUMPKIN_STEM))
-        register(net.minecraft.item.Items.CHORUS_FLOWER, PlantingDispenserBehavior(Blocks.END_STONE, Blocks.CHORUS_FLOWER))
-        register(net.minecraft.item.Items.SUGAR_CANE, PlantingDispenserBehavior(arrayOf(Blocks.SAND, Blocks.DIRT), Blocks.SUGAR_CANE))
-        val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
-        register(net.minecraft.item.Items.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
-        val saplingFarmBlocks = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
-        val saplingFarmBlocks2 = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
-        register(net.minecraft.item.Items.OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.OAK_SAPLING))
-        register(net.minecraft.item.Items.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
-        register(net.minecraft.item.Items.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
-        register(net.minecraft.item.Items.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
-        register(net.minecraft.item.Items.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
-        register(net.minecraft.item.Items.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
+        if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
+            register(net.minecraft.item.Items.WHEAT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.WHEAT))
+            register(net.minecraft.item.Items.BEETROOT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.BEETROOTS))
+            register(net.minecraft.item.Items.MELON_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.MELON_STEM))
+            register(net.minecraft.item.Items.PUMPKIN_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.PUMPKIN_STEM))
+            register(net.minecraft.item.Items.CHORUS_FLOWER, PlantingDispenserBehavior(Blocks.END_STONE, Blocks.CHORUS_FLOWER))
+            register(net.minecraft.item.Items.SUGAR_CANE, PlantingDispenserBehavior(arrayOf(Blocks.SAND, Blocks.DIRT), Blocks.SUGAR_CANE))
+            val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
+            register(net.minecraft.item.Items.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+            val saplingFarmBlocks = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
+            val saplingFarmBlocks2 = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
+            register(net.minecraft.item.Items.OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.OAK_SAPLING))
+            register(net.minecraft.item.Items.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
+            register(net.minecraft.item.Items.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
+            register(net.minecraft.item.Items.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
+            register(net.minecraft.item.Items.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
+            register(net.minecraft.item.Items.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
+        }
 
-        register(net.minecraft.item.Items.LADDER, object : ItemDispenserBehavior() {
-            override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
-                val direction : Direction = pointer!!.blockState.get(DispenserBlock.FACING)
-                val world = pointer.world
+        if (Config.getMiscOption("dispenser_ladder_placement", Config.boolType, true)) {
+            register(net.minecraft.item.Items.LADDER, object : ItemDispenserBehavior() {
+                override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
+                    val direction: Direction = pointer!!.blockState.get(DispenserBlock.FACING)
+                    val world = pointer.world
 
-                if (direction == Direction.DOWN || direction == Direction.UP) {
-                    var nextPosition = pointer.blockPos.offset(direction)
-                    var stackCount = 0
-                    val ladderDirection = getLadderState(nextPosition, world)
+                    if (direction == Direction.DOWN || direction == Direction.UP) {
+                        var nextPosition = pointer.blockPos.offset(direction)
+                        var stackCount = 0
+                        val ladderDirection = getLadderState(nextPosition, world)
 
-                    while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count && ladderDirection != null) {
-                        val ladderState = nextLadderState(nextPosition, world, ladderDirection) ?: break
+                        while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count && ladderDirection != null) {
+                            val ladderState = nextLadderState(nextPosition, world, ladderDirection) ?: break
 
-                        world.setBlockState(nextPosition, ladderState)
-                        stackCount++
-                        nextPosition = nextPosition.offset(direction)
+                            world.setBlockState(nextPosition, ladderState)
+                            stackCount++
+                            nextPosition = nextPosition.offset(direction)
+                        }
+
+                        if (stackCount > 0) {
+                            itemStack!!.decrement(stackCount)
+                            return itemStack
+                        }
                     }
 
-                    if (stackCount > 0) {
-                        itemStack!!.decrement(stackCount)
-                        return itemStack
-                    }
+                    return super.dispenseSilently(pointer, itemStack)
                 }
 
-                return super.dispenseSilently(pointer, itemStack)
-            }
+                fun getLadderState(position: BlockPos, world: World): Direction? {
 
-            fun getLadderState(position : BlockPos, world : World): Direction? {
+                    for (direction in Direction.values()) {
+                        if (direction == Direction.UP || direction == Direction.DOWN) {
+                            continue
+                        }
 
-                for (direction in Direction.values()) {
-                    if (direction == Direction.UP || direction == Direction.DOWN) {
-                        continue
+                        val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
+
+                        if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
+                            return direction
+                        }
                     }
 
+                    return null
+                }
+
+                fun nextLadderState(position: BlockPos, world: World, direction: Direction): BlockState? {
                     val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
 
                     if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
-                        return direction
+                        return ladderState
                     }
+
+                    return null
                 }
+            })
+            register(net.minecraft.item.Items.SCAFFOLDING, object : ItemDispenserBehavior() {
+                override fun dispenseSilently(pointer: BlockPointer, stack: ItemStack): ItemStack {
+                    val direction = pointer.blockState.get(DispenserBlock.FACING)
+                    val world = pointer.world
 
-                return null
-            }
+                    if (direction == Direction.UP) {
+                        var nextPosition = pointer.blockPos.offset(direction)
+                        var stackCount = 0
 
-            fun nextLadderState(position : BlockPos, world : World, direction: Direction): BlockState? {
-                val ladderState = Blocks.LADDER.defaultState.with(LadderBlock.FACING, direction)
+                        while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != stack.count) {
+                            world.setBlockState(nextPosition, Blocks.SCAFFOLDING.defaultState)
+                            stackCount++
+                            nextPosition = nextPosition.up()
+                        }
 
-                if (Blocks.LADDER.canPlaceAt(ladderState, world, position)) {
-                    return ladderState
+                        if (stackCount > 0) {
+                            stack.decrement(stackCount)
+                            return stack
+                        }
+                    }
+
+                    return super.dispenseSilently(pointer, stack)
                 }
-
-                return null
-            }
-        })
+            })
+        }
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
         DispenserBlock.registerBehavior(item, behavior)
     }
 
-    class PlantingDispenserBehavior(val farmlandBlocks : Array<Block>, val plant : Block) : ItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block) : ItemDispenserBehavior() {
 
         constructor(farmland: Block, plant: Block) : this(arrayOf(farmland), plant)
 

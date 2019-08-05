@@ -3,17 +3,33 @@ package net.redstoneparadox.nicetohave.world.biome
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.RiverBiome
+import net.minecraft.world.gen.GenerationStep
+import net.minecraft.world.gen.decorator.DecoratorConfig
+import net.minecraft.world.gen.feature.FeatureConfig
+import net.redstoneparadox.nicetohave.util.Config
+import net.redstoneparadox.nicetohave.world.gen.decorator.Decorators
+import net.redstoneparadox.nicetohave.world.gen.feature.Features
 import net.minecraft.world.biome.Biomes as VanillaBiomes
-import net.redstoneparadox.nicetohave.world.biome.Biomes
 
 
 object Biomes {
 
-    val BADLANDS_RIVER = BadlandsRiverBiome()
+    val BAD_LANDS_RIVER = RiverBiome()
     
     fun registerBiomes() {
-        register("badlands_river", BADLANDS_RIVER)
-        OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS_PLATEAU, BADLANDS_RIVER)
+        if (Config.getWorldOption("gold_in_rivers", Config.boolType, true)) {
+            BAD_LANDS_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
+            register("badlands_river", BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS_PLATEAU, BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS, BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.ERODED_BADLANDS, BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.MODIFIED_BADLANDS_PLATEAU, BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.MODIFIED_WOODED_BADLANDS_PLATEAU, BAD_LANDS_RIVER)
+            OverworldBiomes.setRiverBiome(VanillaBiomes.WOODED_BADLANDS_PLATEAU, BAD_LANDS_RIVER)
+
+            VanillaBiomes.FROZEN_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
+        }
     }
 
     private fun register(id : String, biome : Biome) {

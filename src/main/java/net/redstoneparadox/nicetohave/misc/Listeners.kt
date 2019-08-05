@@ -6,6 +6,7 @@ import net.minecraft.world.loot.UniformLootTableRange
 import net.minecraft.world.loot.entry.ItemEntry
 import net.minecraft.world.loot.function.SetCountLootFunction
 import net.redstoneparadox.nicetohave.item.Items
+import net.redstoneparadox.nicetohave.util.Config
 
 /**
  * Created by RedstoneParadox on 7/30/2019.
@@ -14,7 +15,7 @@ object Listeners {
 
     fun registerListeners() {
         LootTableLoadingCallback.EVENT.register(LootTableLoadingCallback { resourceManager, manager, id, supplier, setter ->
-            if ("minecraft:chests/abandoned_mineshaft" == id.toString()) {
+            if ("minecraft:chests/abandoned_mineshaft" == id.toString() && Config.getItemOption("dynamite", Config.boolType, true)) {
                 val poolBuider = FabricLootPoolBuilder.builder()
                         .withFunction(SetCountLootFunction.builder(UniformLootTableRange.between(1.0f, 5.0f)))
                         .withEntry(ItemEntry.builder(Items.DYNAMITE).setWeight(8))

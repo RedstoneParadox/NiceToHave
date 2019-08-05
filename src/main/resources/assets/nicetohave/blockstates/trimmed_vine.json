@@ -1,0 +1,28 @@
+{
+  "multipart": [
+    {
+      "when": { "up": "true" },
+      "apply": { "model": "block/vine_u" }
+    },
+    {
+      "when": { "south":  "true" },
+      "apply": { "model": "nicetohave:block/trimmed_vine"}
+    },
+    {
+      "when": { "west":  "true" },
+      "apply": { "model": "nicetohave:block/trimmed_vine", "y": 90}
+    },
+    {
+      "when": { "north":  "true" },
+      "apply": { "model": "nicetohave:block/trimmed_vine", "y": 180}
+    },
+    {
+      "when": { "east":  "true" },
+      "apply": { "model": "nicetohave:block/trimmed_vine", "y": 270}
+    },
+    {
+      "when": { "north": "false", "south": "false", "east": "false", "west": "false", "up": "false"},
+      "apply": { "model": "block/vine_u" }
+    }
+  ]
+}

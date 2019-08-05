@@ -22,8 +22,8 @@ class VariableRedstoneBlock(settings: Settings) : RedstoneBlock(settings) {
         defaultState = getStateFactory().defaultState.with(POWER_LEVEL, 0)
     }
 
-    override fun appendProperties(stateFactory: StateFactory.Builder<Block, BlockState>) {
-        stateFactory.add(POWER_LEVEL)
+    override fun appendProperties(factory: StateFactory.Builder<Block, BlockState>) {
+        factory.add(POWER_LEVEL)
     }
 
     override fun activate(blockState: BlockState, world: World, blockPos: BlockPos, playerEntity: PlayerEntity, hand: Hand, blockHitResult: BlockHitResult): Boolean {

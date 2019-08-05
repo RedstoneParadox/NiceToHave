@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iIi",
+    "iIi"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "I": {
+      "item": "nicetohave:chain_link"
+    }
+  },
+  "result": {
+    "item": "nicetohave:chain_link_fence",
+    "count": 6
+  }
+}
