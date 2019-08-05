@@ -8,8 +8,7 @@ assignees: ''
 ---
 
 <!---
-Thank you for submitting a bug report to the "Nice to Have" issue tracker. Please fill out the template below as completely and with as much information as possible or we might not be able to fix your issue.
-Attaching crash reports and/or screenshots can also be helpful.
+Thank you for submitting a bug report to the "Nice to Have" issue tracker. Please fill out the template below with as much information as possible or we might not be able to fix your issue. Please attach crash reports, log outputs, or screenshots if applicable.
 --->
 
 **Nice to Have version:**
@@ -17,6 +16,8 @@ Attaching crash reports and/or screenshots can also be helpful.
 **Fabric Loader Version:**
 
 **Fabric API Version:**
+
+**Mappings version:**
 
 **Fabric Language Kotlin Version:**
 
