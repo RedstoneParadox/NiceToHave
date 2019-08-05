@@ -138,6 +138,15 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
+            registerClassInteraction(Blocks.OAK_SIGN.javaClass) {world, blockState, blockPos ->
+                val currentRot = blockState.get(SignBlock.ROTATION)
+
+                if (currentRot < 15) {
+                    return@registerClassInteraction blockState.with(SignBlock.ROTATION, currentRot + 1)
+                }
+
+                return@registerClassInteraction blockState.with(SignBlock.ROTATION, 0)
+            }
             registerForEachClass(arrayOf(Blocks.OAK_WOOD.javaClass, Blocks.OAK_LOG.javaClass)) { world, blockState, blockPos ->
                 return@registerForEachClass when(blockState.get(PillarBlock.AXIS)) {
                     Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
