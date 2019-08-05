@@ -19,6 +19,7 @@ object Items {
 
     //BlockItems.
     val GOLD_BUTTON : BlockItem = BlockItem(Blocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
+
     val VARIABLE_REDSTONE_EMITTER = BlockItem(Blocks.VARIABLE_REDSTONE_EMITTER, Item.Settings().group(ItemGroup.REDSTONE))
     val DIRT_GOLD_ORE = BlockItem(Blocks.DIRT_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     val SAND_GOLD_ORE = BlockItem(Blocks.SAND_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
@@ -29,13 +30,14 @@ object Items {
         register(CHAIN_LINK, "chain_link")
         register(DYNAMITE, "dynamite")
         register(WRENCH, "wrench")
-
+      
         registerBlockItem(GOLD_BUTTON, "gold_button")
         registerBlockItem(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
         registerBlockItem(DIRT_GOLD_ORE, "dirt_gold_ore", false)
         registerBlockItem(SAND_GOLD_ORE, "sand_gold_ore", false)
         registerBlockItem(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
         registerBlockItem(CHAIN_LINK_FENCE, "chain_link_fence")
+
     }
 
     private fun register(item : Item, id : String) {

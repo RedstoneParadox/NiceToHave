@@ -37,7 +37,7 @@ class DynamiteItem(itemSettings: Settings?) : Item(itemSettings) {
         if (!world.isClient) {
             val dynamite = ThrownDynamiteEntity(world, playerEntity)
             dynamite.setItem(stack)
-            dynamite.method_19207(playerEntity, playerEntity.pitch, playerEntity.yaw, -5.0f, 0.5f, 1.0f)
+            dynamite.setProperties(playerEntity, playerEntity.pitch, playerEntity.yaw, -5.0f, 0.5f, 1.0f)
             world.spawnEntity(dynamite)
             Packets.dispatchToAllWatching(dynamite, ::EntityPositionS2CPacket)
         }

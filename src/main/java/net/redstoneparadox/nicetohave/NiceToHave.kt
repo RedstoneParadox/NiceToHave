@@ -38,7 +38,7 @@ class NiceToHave : ModInitializer {
         Blocks.registerBlocks()
         Items.registerItems()
         Packets.registerPackets()
-        Enchantments.registerEnchantments()
+        //Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
         Decorators.registerDecorators()
         Features.registerFeatures()
