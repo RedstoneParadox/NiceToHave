@@ -9,11 +9,11 @@ import net.minecraft.util.registry.Registry
 object Blocks {
 
     val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).build())
-    val VARIABLE_REDSTONE_EMITTER = VariableRedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
+    //val VARIABLE_REDSTONE_EMITTER = VariableRedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
 
     fun registerBlocks() {
         register(GOLD_BUTTON, "gold_button")
-        register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
+        //register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
     }
 
     fun register(block : Block, id : String) {
