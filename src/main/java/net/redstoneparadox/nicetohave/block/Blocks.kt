@@ -3,12 +3,14 @@ package net.redstoneparadox.nicetohave.block
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
+import net.minecraft.tag.Tag
+import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import net.redstoneparadox.nicetohave.util.Config
 
 object Blocks {
 
-    val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).build())
+    val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByHand(true).build())
     val VARIABLE_REDSTONE_EMITTER = VariableRedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
     val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).build())
     val TRIMMED_VINE_BLOCK : Block = TrimmedVineBlock(FabricBlockSettings.copy(Blocks.VINE).build())
