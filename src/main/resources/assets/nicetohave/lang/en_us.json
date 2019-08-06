@@ -5,6 +5,12 @@
   "block.nicetohave.dirt_gold_ore": "Gold Sediment",
   "block.nicetohave.sand_gold_ore": "Gold Sediment",
   "block.nicetohave.gravel_gold_ore": "Gold Sediment",
+  "block.nicetohave.oak_pole": "Oak Wood Pole",
+  "block.nicetohave.spruce_pole": "Spruce Wood Pole",
+  "block.nicetohave.birch_pole": "Birch Wood Pole",
+  "block.nicetohave.jungle_pole": "Jungle Wood Pole",
+  "block.nicetohave.acacia_pole": "Acacia Wood Pole",
+  "block.nicetohave.dark_oak_pole": "Dark Oak Wood Pole",
 
   "item.nicetohave.chain_link": "Chain Link",
   "item.nicetohave.dynamite": "Dynamite",
