@@ -66,7 +66,7 @@ object Config {
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
         worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.")
-        worldCategory.putDefault("disable_ponds", JsonPrimitive(false), "Disables small water and lava ponds.")
+        worldCategory.putDefault("disable_ponds", JsonPrimitive(true), "Disables small water and lava ponds.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")

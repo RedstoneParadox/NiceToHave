@@ -5,7 +5,8 @@
   "mixins": [
     "block.DispenserBlockMixin",
     "entity.ExperienceOrbEntityMixin",
-    "item.ShearsItemMixin"
+    "item.ShearsItemMixin",
+    "world.biome.DefaultBiomeFeaturesMixin"
   ],
   "client": [
   ],
