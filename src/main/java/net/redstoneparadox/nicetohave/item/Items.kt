@@ -44,12 +44,14 @@ object Items {
         registerBlockItem(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
         //registerBlockItem(CHAIN_LINK_FENCE, "chain_link_fence")
 
-        registerBlockItem(OAK_POLE, "oak_pole", false)
-        registerBlockItem(SPRUCE_POLE, "spruce_pole", false)
-        registerBlockItem(BIRCH_POLE, "birch_pole", false)
-        registerBlockItem(JUNGLE_POLE, "jungle_pole", false)
-        registerBlockItem(ACACIA_POLE, "acacia_pole", false)
-        registerBlockItem(DARK_OAK_POLE, "dark_oak_pole", false)
+        if (Config.getBlockOption("poles", Config.boolType, true)) {
+            registerBlockItem(OAK_POLE, "oak_pole", false)
+            registerBlockItem(SPRUCE_POLE, "spruce_pole", false)
+            registerBlockItem(BIRCH_POLE, "birch_pole", false)
+            registerBlockItem(JUNGLE_POLE, "jungle_pole", false)
+            registerBlockItem(ACACIA_POLE, "acacia_pole", false)
+            registerBlockItem(DARK_OAK_POLE, "dark_oak_pole", false)
+        }
     }
 
     private fun register(item : Item, id : String) {

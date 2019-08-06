@@ -38,12 +38,14 @@ object Blocks {
         register(SAND_GOLD_ORE, "sand_gold_ore", false)
         register(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
 
-        register(OAK_POLE, "oak_pole", false)
-        register(SPRUCE_POLE, "spruce_pole", false)
-        register(BIRCH_POLE, "birch_pole", false)
-        register(JUNGLE_POLE, "jungle_pole", false)
-        register(ACACIA_POLE, "acacia_pole", false)
-        register(DARK_OAK_POLE, "dark_oak_pole", false)
+        if (Config.getBlockOption("poles", Config.boolType, true)) {
+            register(OAK_POLE, "oak_pole", false)
+            register(SPRUCE_POLE, "spruce_pole", false)
+            register(BIRCH_POLE, "birch_pole", false)
+            register(JUNGLE_POLE, "jungle_pole", false)
+            register(ACACIA_POLE, "acacia_pole", false)
+            register(DARK_OAK_POLE, "dark_oak_pole", false)
+        }
     }
 
     fun register(block : Block, id : String, respectConfig : Boolean = true) {
