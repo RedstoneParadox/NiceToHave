@@ -44,11 +44,11 @@ object Config {
         //Main
         configObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
 
-        val itemsCategory = addCategory("items")
-        val blocksCategory = addCategory("blocks")
-        val potionsCategory = addCategory("potions")
-        val worldCategory = addCategory("world")
-        val miscCategory = addCategory("misc")
+        val itemsCategory = addCategory("items", "Enable/Disable items.")
+        val blocksCategory = addCategory("blocks", "Enable/Disable blocks.")
+        val potionsCategory = addCategory("potions", "Enable/disable potions.")
+        val worldCategory = addCategory("world", "Enable, disable, and configure various world gen features.")
+        val miscCategory = addCategory("misc", "Miscellaneous settings")
 
         //Items
         itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-links.")
@@ -68,11 +68,11 @@ object Config {
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
         worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.")
-        worldCategory.putDefault("disable_ponds", JsonPrimitive(true), "Disables small water and lava ponds.")
+        worldCategory.putDefault("disable_ponds", JsonPrimitive(true), "Disables small water and lava ponds. Set to false to re-enabled them.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
-        miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders.")
+        miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
     }
 
     private fun save() {
@@ -82,8 +82,8 @@ object Config {
         }
     }
 
-    private fun addCategory(name : String): JsonObject {
-        configObject.putDefault(name, JsonObject(), null)
+    private fun addCategory(name : String, comment : String): JsonObject {
+        configObject.putDefault(name, JsonObject(), comment)
         return configObject.get(JsonObject::class.java, name)!!
     }
 
