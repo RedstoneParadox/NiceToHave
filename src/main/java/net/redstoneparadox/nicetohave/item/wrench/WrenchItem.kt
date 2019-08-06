@@ -8,7 +8,9 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.util.ActionResult
 import net.minecraft.util.BlockRotation
 import net.minecraft.util.math.Direction
+import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.block.ChainLinkFenceBlock
+import net.minecraft.block.Blocks as VanillaBlocks
 
 class WrenchItem(settings: Settings?) : Item(settings) {
 
@@ -63,7 +65,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
-            registerInteraction(Blocks.OBSERVER) { world, blockState, blockPos ->
+            registerInteraction(VanillaBlocks.OBSERVER) { world, blockState, blockPos ->
                 return@registerInteraction when (blockState.get(ObserverBlock.FACING)) {
                     Direction.UP -> blockState.with(ObserverBlock.FACING, Direction.NORTH)
                     Direction.NORTH -> blockState.with(ObserverBlock.FACING, Direction.EAST)
@@ -74,7 +76,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw NullPointerException()
                 }
             }
-            registerForEach(arrayOf(Blocks.PISTON, Blocks.STICKY_PISTON)) { world, blockState, blockPos ->
+            registerForEach(arrayOf(VanillaBlocks.PISTON, VanillaBlocks.STICKY_PISTON)) { world, blockState, blockPos ->
                 println(blockState)
                 if (blockState.get(PistonBlock.EXTENDED) == true) {
                     return@registerForEach blockState
@@ -90,7 +92,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw NullPointerException()
                 }
             }
-            registerForEach(arrayOf(Blocks.DISPENSER, Blocks.DROPPER)) {world, blockState, blockPos ->
+            registerForEach(arrayOf(VanillaBlocks.DISPENSER, VanillaBlocks.DROPPER)) { world, blockState, blockPos ->
                 return@registerForEach when (blockState.get(DispenserBlock.FACING)) {
                     Direction.UP -> blockState.with(DispenserBlock.FACING, Direction.NORTH)
                     Direction.NORTH -> blockState.with(DispenserBlock.FACING, Direction.EAST)
@@ -101,7 +103,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw NullPointerException()
                 }
             }
-            registerClassInteraction(Blocks.ACACIA_STAIRS.javaClass) {world, blockState, blockPos ->
+            registerClassInteraction(VanillaBlocks.ACACIA_STAIRS.javaClass) { world, blockState, blockPos ->
 
                 val nextHalf = when(blockState.get(StairsBlock.HALF)) {
                     BlockHalf.TOP -> BlockHalf.BOTTOM
@@ -117,7 +119,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
-            registerClassInteraction(Blocks.ACACIA_SLAB.javaClass) {world, blockState, blockPos ->
+            registerClassInteraction(VanillaBlocks.ACACIA_SLAB.javaClass) { world, blockState, blockPos ->
                 return@registerClassInteraction when(blockState.get(SlabBlock.TYPE)) {
                     SlabType.BOTTOM -> blockState.with(SlabBlock.TYPE, SlabType.TOP)
                     SlabType.TOP -> blockState.with(SlabBlock.TYPE, SlabType.BOTTOM)
@@ -125,7 +127,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
-            registerClassInteraction(Blocks.OAK_TRAPDOOR.javaClass) { world, blockState, blockPos ->
+            registerClassInteraction(VanillaBlocks.OAK_TRAPDOOR.javaClass) { world, blockState, blockPos ->
                 val nextHalf = when(blockState.get(TrapdoorBlock.HALF)) {
                     BlockHalf.TOP -> BlockHalf.BOTTOM
                     BlockHalf.BOTTOM -> BlockHalf.TOP
@@ -140,7 +142,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                     else -> throw Exception("Invalid BlockState ${blockState}")
                 }
             }
-            registerClassInteraction(Blocks.OAK_SIGN.javaClass) {world, blockState, blockPos ->
+            registerClassInteraction(VanillaBlocks.OAK_SIGN.javaClass) { world, blockState, blockPos ->
                 val currentRot = blockState.get(SignBlock.ROTATION)
 
                 if (currentRot < 15) {
@@ -149,7 +151,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
 
                 return@registerClassInteraction blockState.with(SignBlock.ROTATION, 0)
             }
-            registerForEachClass(arrayOf(Blocks.OAK_WOOD.javaClass, Blocks.OAK_LOG.javaClass)) { world, blockState, blockPos ->
+            registerForEachClass(arrayOf(VanillaBlocks.OAK_WOOD.javaClass, VanillaBlocks.OAK_LOG.javaClass, Blocks.OAK_POLE.javaClass)) { world, blockState, blockPos ->
                 return@registerForEachClass when(blockState.get(PillarBlock.AXIS)) {
                     Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
                     Direction.Axis.field_11052 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11051)
