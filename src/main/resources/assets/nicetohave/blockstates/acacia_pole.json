@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "nicetohave:block/acacia_pole" },
+    "axis=z": { "model": "nicetohave:block/acacia_pole", "x": 90 },
+    "axis=x": { "model": "nicetohave:block/acacia_pole", "x": 90, "y": 90 }
+  }
+}

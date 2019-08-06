@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "nicetohave:block/jungle_pole" },
+    "axis=z": { "model": "nicetohave:block/jungle_pole", "x": 90 },
+    "axis=x": { "model": "nicetohave:block/jungle_pole", "x": 90, "y": 90 }
+  }
+}

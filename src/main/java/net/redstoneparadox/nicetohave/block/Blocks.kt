@@ -20,6 +20,14 @@ object Blocks {
     val SAND_GOLD_ORE : Block = SandBlock(14406560, FabricBlockSettings.copy(Blocks.SAND).build())
     val GRAVEL_GOLD_ORE : Block = GravelBlock(FabricBlockSettings.copy(Blocks.GRAVEL).build())
 
+    //Poles
+    val OAK_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD).build())
+    val SPRUCE_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.SPRUCE_WOOD).build())
+    val BIRCH_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.BIRCH_WOOD).build())
+    val JUNGLE_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.JUNGLE_WOOD).build())
+    val ACACIA_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.ACACIA_WOOD).build())
+    val DARK_OAK_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_WOOD).build())
+
     fun registerBlocks() {
         register(GOLD_BUTTON, "gold_button")
         register(VARIABLE_REDSTONE_EMITTER, "variable_redstone_emitter")
@@ -29,6 +37,13 @@ object Blocks {
         register(DIRT_GOLD_ORE, "dirt_gold_ore", false)
         register(SAND_GOLD_ORE, "sand_gold_ore", false)
         register(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
+
+        register(OAK_POLE, "oak_pole", false)
+        register(SPRUCE_POLE, "spruce_pole", false)
+        register(BIRCH_POLE, "birch_pole", false)
+        register(JUNGLE_POLE, "jungle_pole", false)
+        register(ACACIA_POLE, "acacia_pole", false)
+        register(DARK_OAK_POLE, "dark_oak_pole", false)
     }
 
     fun register(block : Block, id : String, respectConfig : Boolean = true) {
