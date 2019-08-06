@@ -12,6 +12,7 @@ import java.io.IOException
 object Config {
 
     private var configObject : JsonObject = JsonObject()
+    private var hadError : Boolean = false
 
     //Types
     val boolType = Boolean::class.javaObjectType
@@ -23,7 +24,7 @@ object Config {
         save()
     }
 
-    fun load() {
+    private fun load() {
         try {
             configObject = Jankson
                     .builder()
@@ -32,13 +33,14 @@ object Config {
         } catch (e : IOException) {
             NiceToHave.warn("Couldn't find config file; all config values will be set to default and a new file will be created.")
         } catch (e : SyntaxError) {
-            NiceToHave.error("There was an error when reading the config file.")
+            NiceToHave.error("Couldn't read the config file due to an hjson syntax error. Please fix the file or delete it to generate a new one. (Default config values will be used in the meantime).")
             e.message?.let { NiceToHave.error(it) }
             NiceToHave.error(e.lineMessage)
+            hadError = true
         }
     }
 
-    fun setValues() {
+    private fun setValues() {
         //Main
         configObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
 
@@ -73,9 +75,11 @@ object Config {
         miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders.")
     }
 
-    fun save() {
-        val configString = configObject.toJson(true, true)
-        File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson").bufferedWriter().use { it.write(configString) }
+    private fun save() {
+        if (!hadError) {
+            val configString = configObject.toJson(true, true)
+            File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson").bufferedWriter().use { it.write(configString) }
+        }
     }
 
     private fun addCategory(name : String): JsonObject {
