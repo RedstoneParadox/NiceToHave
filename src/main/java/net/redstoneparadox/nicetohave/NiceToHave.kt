@@ -28,6 +28,7 @@ class NiceToHave : ModInitializer {
     override fun onInitialize() {
         out("It's Nice To Have you!")
 
+        Listeners.initListeners()
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()

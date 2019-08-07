@@ -18,6 +18,7 @@ import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.networking.Packets
 import net.redstoneparadox.nicetohave.util.Config
+import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
 
@@ -46,18 +47,24 @@ object DispenserBehaviors {
         })
 
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
-            register(net.minecraft.item.Items.WHEAT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.WHEAT))
-            register(net.minecraft.item.Items.BEETROOT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.BEETROOTS))
-            register(net.minecraft.item.Items.MELON_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.MELON_STEM))
-            register(net.minecraft.item.Items.PUMPKIN_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.PUMPKIN_STEM))
-            register(net.minecraft.item.Items.CHORUS_FLOWER, PlantingDispenserBehavior(Blocks.END_STONE, Blocks.CHORUS_FLOWER))
-            register(net.minecraft.item.Items.SUGAR_CANE, PlantingDispenserBehavior(arrayOf(Blocks.SAND, Blocks.DIRT), Blocks.SUGAR_CANE))
+            register(VanillaItems.WHEAT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.WHEAT))
+            register(VanillaItems.BEETROOT_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.BEETROOTS))
+            register(VanillaItems.MELON_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.MELON_STEM))
+            register(VanillaItems.PUMPKIN_SEEDS, PlantingDispenserBehavior(Blocks.FARMLAND, Blocks.PUMPKIN_STEM))
+            register(VanillaItems.CHORUS_FLOWER, PlantingDispenserBehavior(Blocks.END_STONE, Blocks.CHORUS_FLOWER))
+            register(VanillaItems.SUGAR_CANE, PlantingDispenserBehavior(arrayOf(Blocks.SAND, Blocks.DIRT), Blocks.SUGAR_CANE))
             val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
-            register(net.minecraft.item.Items.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+            register(VanillaItems.OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.OAK_SAPLING))
+            register(VanillaItems.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
+            register(VanillaItems.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
+            register(VanillaItems.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
+            register(VanillaItems.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
+            register(VanillaItems.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
         }
 
         if (Config.getMiscOption("dispenser_ladder_placement", Config.boolType, true)) {
-            register(net.minecraft.item.Items.LADDER, object : ItemDispenserBehavior() {
+            register(VanillaItems.LADDER, object : ItemDispenserBehavior() {
                 override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
                     val direction: Direction = pointer!!.blockState.get(DispenserBlock.FACING)
                     val world = pointer.world
@@ -111,7 +118,7 @@ object DispenserBehaviors {
                     return null
                 }
             })
-            register(net.minecraft.item.Items.SCAFFOLDING, object : ItemDispenserBehavior() {
+            register(VanillaItems.SCAFFOLDING, object : ItemDispenserBehavior() {
                 override fun dispenseSilently(pointer: BlockPointer, stack: ItemStack): ItemStack {
                     val direction = pointer.blockState.get(DispenserBlock.FACING)
                     val world = pointer.world
