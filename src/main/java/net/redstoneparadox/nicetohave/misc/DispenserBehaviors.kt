@@ -58,7 +58,7 @@ object DispenserBehaviors {
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
             when (block) {
                 is SaplingBlock -> register(Registry.ITEM.get(id), PlantingDispenserBehavior(saplingFarmBlocks, block))
-                is BambooBlock -> register(Registry.ITEM.get(id), PlantingDispenserBehavior(bambooFarmBlocks, block))
+                is BambooSaplingBlock -> register(block.getPickStack(null, null, null).item, PlantingDispenserBehavior(bambooFarmBlocks, block))
                 is CropBlock, is StemBlock -> {
                     val seed = (block as SeedGetter).seed
                     if (seed != null) {

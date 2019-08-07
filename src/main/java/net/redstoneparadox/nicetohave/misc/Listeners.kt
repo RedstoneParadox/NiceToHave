@@ -30,13 +30,6 @@ object Listeners {
                 supplier.withPool(poolBuider)
             }
         })
-        RegistryEntryAddedCallback.event(Registry.ITEM).register(RegistryEntryAddedCallback<Item> { rawId, id, item ->
-            val sapling = Registry.BLOCK.get(id)
-            if (sapling is SaplingBlock && Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
-                val saplingFarmBlocks: Array<Block> = DispenserBehaviors.saplingFarmBlocks
-                DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
-            }
-        })
         RegistryEntryAddedCallback.event(Registry.BLOCK).register(RegistryEntryAddedCallback {rawId, id, block ->
             WrenchItem.blockToInteraction(block)
             DispenserBehaviors.blockToDispenserBehavior(block, id)
