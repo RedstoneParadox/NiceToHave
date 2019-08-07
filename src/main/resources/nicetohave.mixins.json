@@ -8,6 +8,8 @@
     "block.StemBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "item.ShearsItemMixin",
+    "world.biome.BambooJungleBiomeMixin",
+    "world.biome.BambooJungleHillsBiomeMixin",
     "world.biome.DefaultBiomeFeaturesMixin"
   ],
   "client": [

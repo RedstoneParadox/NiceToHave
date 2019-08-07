@@ -74,6 +74,7 @@ object Config {
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
         miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
+        miscCategory.putDefault("peaceful_bamboo_jungle", JsonPrimitive(true), "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes. Set to false to re-enable.")
     }
 
     private fun save() {
