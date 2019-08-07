@@ -1,19 +1,12 @@
 package net.redstoneparadox.nicetohave.client.networking
 
-import io.netty.buffer.Unpooled
 import net.fabricmc.fabric.api.network.PacketContext
-import net.fabricmc.fabric.api.server.PlayerStream
 import net.fabricmc.fabric.impl.network.ClientSidePacketRegistryImpl
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.network.packet.CustomPayloadS2CPacket
 import net.minecraft.client.network.packet.EntitySpawnS2CPacket
-import net.minecraft.entity.Entity
 import net.minecraft.network.Packet
-import net.minecraft.server.network.ServerPlayNetworkHandler
-import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 import net.minecraft.util.PacketByteBuf
-import net.redstoneparadox.nicetohave.networking.Packets
 import java.io.IOException
 import java.util.*
 import java.util.function.Supplier
