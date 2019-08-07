@@ -36,7 +36,7 @@ object Listeners {
             println("Hey!")
             if (sapling is SaplingBlock && Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
                 println("Item: $item, Block: $sapling")
-                val saplingFarmBlocks: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
+                val saplingFarmBlocks: Array<Block> = DispenserBehaviors.saplingFarmBlocks
                 DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
             }
         })

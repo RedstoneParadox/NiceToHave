@@ -23,7 +23,6 @@ import net.minecraft.item.Items as VanillaItems
 object DispenserBehaviors {
 
     val saplingFarmBlocks: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
-    val saplingFarmBlocks2: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
 
     fun registerBehaviors() {
         register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
