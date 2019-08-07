@@ -142,7 +142,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 is StairsBlock -> registerInteraction(block, STAIR_INTERACTION)
                 is SignBlock -> registerInteraction(block, SIGN_INTERACTION)
                 is PistonBlock -> registerInteraction(block, PISTON_INTERACTION)
-                is PistonHeadBlock -> return
+                is PistonHeadBlock, is BedBlock -> return
                 is FacingBlock -> registerInteraction(block, FACING_INTERACTION)
                 is DispenserBlock -> registerInteraction(block, DISPENSER_INTERACTION)
             }
