@@ -39,12 +39,7 @@ object Listeners {
         })
         RegistryEntryAddedCallback.event(Registry.BLOCK).register(RegistryEntryAddedCallback {rawId, id, block ->
             WrenchItem.blockToInteraction(block)
-            if (block is CropBlock) {
-                val seed = (block as SeedGetter).seed
-                if (seed != null) {
-
-                }
-            }
+            DispenserBehaviors.blockToDispenserBehavior(block, id)
         })
     }
 }
