@@ -39,7 +39,6 @@ class NiceToHave : ModInitializer {
         Decorators.registerDecorators()
         Features.registerFeatures()
         Biomes.registerBiomes()
-        Listeners.registerListeners()
         WrenchItem.init()
     }
 

@@ -13,7 +13,7 @@ import net.redstoneparadox.nicetohave.util.Config
  */
 object Listeners {
 
-    fun registerListeners() {
+    init {
         LootTableLoadingCallback.EVENT.register(LootTableLoadingCallback { resourceManager, manager, id, supplier, setter ->
             if ("minecraft:chests/abandoned_mineshaft" == id.toString() && Config.getItemOption("dynamite", Config.boolType, true)) {
                 val poolBuider = FabricLootPoolBuilder.builder()
