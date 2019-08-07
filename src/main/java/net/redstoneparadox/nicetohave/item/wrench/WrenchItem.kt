@@ -131,9 +131,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
         }
 
         fun init() {
-            for (block in Registry.BLOCK.stream()) {
-                blockToInteraction(block)
-            }
+
         }
         
         fun blockToInteraction(block: Block) {

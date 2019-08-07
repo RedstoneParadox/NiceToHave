@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.loot.UniformLootTableRange
 import net.minecraft.world.loot.entry.ItemEntry
 import net.minecraft.world.loot.function.SetCountLootFunction
+import net.redstoneparadox.nicetohave.hooks.SeedGetter
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.util.Config
@@ -40,6 +41,12 @@ object Listeners {
         })
         RegistryEntryAddedCallback.event(Registry.BLOCK).register(RegistryEntryAddedCallback {rawId, id, block ->
             WrenchItem.blockToInteraction(block)
+            if (block is CropBlock) {
+                val seed = (block as SeedGetter).seed
+                if (seed != null) {
+
+                }
+            }
         })
     }
 }

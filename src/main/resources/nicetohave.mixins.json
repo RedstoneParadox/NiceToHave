@@ -3,7 +3,9 @@
   "package": "net.redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "block.CropBlockMixin",
     "block.DispenserBlockMixin",
+    "block.StemBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "item.ShearsItemMixin",
     "world.biome.DefaultBiomeFeaturesMixin"

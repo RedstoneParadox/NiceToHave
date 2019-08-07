@@ -2,6 +2,7 @@ package net.redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.loader.FabricLoader
+import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.block.Blocks
 import net.redstoneparadox.nicetohave.enchantment.Enchantments
@@ -28,6 +29,11 @@ class NiceToHave : ModInitializer {
     override fun onInitialize() {
         out("It's Nice To Have you!")
 
+        for (block in Registry.BLOCK.stream()) {
+            WrenchItem.blockToInteraction(block)
+            DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
+        }
+
         Listeners.initListeners()
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
@@ -40,7 +46,6 @@ class NiceToHave : ModInitializer {
         Decorators.registerDecorators()
         Features.registerFeatures()
         Biomes.registerBiomes()
-        WrenchItem.init()
     }
 
     companion object {
