@@ -21,7 +21,7 @@ import net.minecraft.item.Items as VanillaItems
  */
 object Listeners {
 
-    init {
+    fun initListeners() {
         LootTableLoadingCallback.EVENT.register(LootTableLoadingCallback { resourceManager, manager, id, supplier, setter ->
             if ("minecraft:chests/abandoned_mineshaft" == id.toString() && Config.getItemOption("dynamite", Config.boolType, true)) {
                 val poolBuider = FabricLootPoolBuilder.builder()
@@ -32,8 +32,10 @@ object Listeners {
             }
         })
         RegistryEntryAddedCallback.event(Registry.ITEM).register(RegistryEntryAddedCallback<Item> { rawId, id, item ->
-            val sapling : Block = Registry.BLOCK.get(id)
+            val sapling = Registry.BLOCK.get(id)
+            println("Hey!")
             if (sapling is SaplingBlock && Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
+                println("Item: $item, Block: $sapling")
                 val saplingFarmBlocks: Array<Block> = if (farmlandPlantable(item)) arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND) else arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
                 DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
             }
