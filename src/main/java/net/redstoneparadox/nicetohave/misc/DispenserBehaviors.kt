@@ -21,6 +21,9 @@ import net.redstoneparadox.nicetohave.util.Config
 
 object DispenserBehaviors {
 
+    val saplingFarmBlocks: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
+    val saplingFarmBlocks2: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
+
     fun registerBehaviors() {
         register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
             var entity : ThrownDynamiteEntity? = null
@@ -51,14 +54,6 @@ object DispenserBehaviors {
             register(net.minecraft.item.Items.SUGAR_CANE, PlantingDispenserBehavior(arrayOf(Blocks.SAND, Blocks.DIRT), Blocks.SUGAR_CANE))
             val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
             register(net.minecraft.item.Items.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
-            val saplingFarmBlocks = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
-            val saplingFarmBlocks2 = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
-            register(net.minecraft.item.Items.OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.OAK_SAPLING))
-            register(net.minecraft.item.Items.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
-            register(net.minecraft.item.Items.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
-            register(net.minecraft.item.Items.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
-            register(net.minecraft.item.Items.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
-            register(net.minecraft.item.Items.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
         }
 
         if (Config.getMiscOption("dispenser_ladder_placement", Config.boolType, true)) {
