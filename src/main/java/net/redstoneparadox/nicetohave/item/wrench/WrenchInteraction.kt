@@ -5,3 +5,4 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 typealias WrenchInteraction = (World, BlockState, BlockPos) -> BlockState
+

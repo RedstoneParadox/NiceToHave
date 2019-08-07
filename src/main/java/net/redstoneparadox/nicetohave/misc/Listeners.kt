@@ -3,16 +3,14 @@ package net.redstoneparadox.nicetohave.misc
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
-import net.minecraft.block.Block
-import net.minecraft.block.Blocks
-import net.minecraft.block.DispenserBlock
-import net.minecraft.block.SaplingBlock
+import net.minecraft.block.*
 import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.loot.UniformLootTableRange
 import net.minecraft.world.loot.entry.ItemEntry
 import net.minecraft.world.loot.function.SetCountLootFunction
 import net.redstoneparadox.nicetohave.item.Items
+import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.util.Config
 import net.minecraft.item.Items as VanillaItems
 
@@ -39,6 +37,9 @@ object Listeners {
                 val saplingFarmBlocks: Array<Block> = DispenserBehaviors.saplingFarmBlocks
                 DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
             }
+        })
+        RegistryEntryAddedCallback.event(Registry.BLOCK).register(RegistryEntryAddedCallback {rawId, id, block ->
+            WrenchItem.blockToInteraction(block)
         })
     }
 }
