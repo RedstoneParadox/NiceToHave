@@ -32,9 +32,7 @@ object Listeners {
         })
         RegistryEntryAddedCallback.event(Registry.ITEM).register(RegistryEntryAddedCallback<Item> { rawId, id, item ->
             val sapling = Registry.BLOCK.get(id)
-            println("Hey!")
             if (sapling is SaplingBlock && Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
-                println("Item: $item, Block: $sapling")
                 val saplingFarmBlocks: Array<Block> = DispenserBehaviors.saplingFarmBlocks
                 DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
             }
