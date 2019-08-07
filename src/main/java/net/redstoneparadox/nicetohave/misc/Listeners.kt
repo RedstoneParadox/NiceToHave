@@ -36,13 +36,9 @@ object Listeners {
             println("Hey!")
             if (sapling is SaplingBlock && Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
                 println("Item: $item, Block: $sapling")
-                val saplingFarmBlocks: Array<Block> = if (farmlandPlantable(item)) arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND) else arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK)
+                val saplingFarmBlocks: Array<Block> = arrayOf(Blocks.DIRT, Blocks.PODZOL, Blocks.GRASS_BLOCK, Blocks.FARMLAND)
                 DispenserBlock.registerBehavior(item, DispenserBehaviors.PlantingDispenserBehavior(saplingFarmBlocks, sapling))
             }
         })
-    }
-
-    private fun farmlandPlantable(saplingItem : Item): Boolean {
-        return (saplingItem == VanillaItems.OAK_SAPLING) || (saplingItem == VanillaItems.BIRCH_SAPLING) || (saplingItem == VanillaItems.SPRUCE_SAPLING) || (saplingItem == VanillaItems.JUNGLE_SAPLING)
     }
 }

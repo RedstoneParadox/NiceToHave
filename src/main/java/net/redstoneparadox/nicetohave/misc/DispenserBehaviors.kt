@@ -59,8 +59,8 @@ object DispenserBehaviors {
             register(VanillaItems.SPRUCE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.SPRUCE_SAPLING))
             register(VanillaItems.BIRCH_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.BIRCH_SAPLING))
             register(VanillaItems.JUNGLE_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.JUNGLE_SAPLING))
-            register(VanillaItems.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.ACACIA_SAPLING))
-            register(VanillaItems.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks2, Blocks.DARK_OAK_SAPLING))
+            register(VanillaItems.ACACIA_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.ACACIA_SAPLING))
+            register(VanillaItems.DARK_OAK_SAPLING, PlantingDispenserBehavior(saplingFarmBlocks, Blocks.DARK_OAK_SAPLING))
         }
 
         if (Config.getMiscOption("dispenser_ladder_placement", Config.boolType, true)) {
