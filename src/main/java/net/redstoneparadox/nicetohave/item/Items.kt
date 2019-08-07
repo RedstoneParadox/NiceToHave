@@ -15,7 +15,7 @@ object Items {
 
     val CHAIN_LINK : Item = Item(Item.Settings().group(ItemGroup.MATERIALS))
     val DYNAMITE : Item = DynamiteItem(Item.Settings().group(ItemGroup.TOOLS))
-    val WRENCH : Item = WrenchItem(Item.Settings().group(ItemGroup.TOOLS))
+    val WRENCH : Item = WrenchItem(Item.Settings().group(ItemGroup.TOOLS).maxCount(1))
 
     //BlockItems.
     val GOLD_BUTTON : BlockItem = BlockItem(Blocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
