@@ -79,7 +79,34 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 blockState.with(SignBlock.ROTATION, 0)
             }
         }
+        private val PISTON_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
+            if (blockState.get(PistonBlock.EXTENDED) == true) {
+                blockState
+            }
+            else {
+                when (blockState.get(PistonBlock.FACING)) {
+                    Direction.UP -> blockState.with(PistonBlock.FACING, Direction.NORTH)
+                    Direction.NORTH -> blockState.with(PistonBlock.FACING, Direction.EAST)
+                    Direction.EAST -> blockState.with(PistonBlock.FACING, Direction.SOUTH)
+                    Direction.SOUTH -> blockState.with(PistonBlock.FACING, Direction.WEST)
+                    Direction.WEST -> blockState.with(PistonBlock.FACING, Direction.DOWN)
+                    Direction.DOWN -> blockState.with(PistonBlock.FACING, Direction.UP)
+                    else -> throw NullPointerException()
+                }
+            }
+        }
         private val FACING_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
+            when (blockState.get(DispenserBlock.FACING)) {
+                Direction.UP -> blockState.with(DispenserBlock.FACING, Direction.NORTH)
+                Direction.NORTH -> blockState.with(DispenserBlock.FACING, Direction.EAST)
+                Direction.EAST -> blockState.with(DispenserBlock.FACING, Direction.SOUTH)
+                Direction.SOUTH -> blockState.with(DispenserBlock.FACING, Direction.WEST)
+                Direction.WEST -> blockState.with(DispenserBlock.FACING, Direction.DOWN)
+                Direction.DOWN -> blockState.with(DispenserBlock.FACING, Direction.UP)
+                else -> throw NullPointerException()
+            }
+        }
+        private val DISPENSER_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
             when (blockState.get(DispenserBlock.FACING)) {
                 Direction.UP -> blockState.with(DispenserBlock.FACING, Direction.NORTH)
                 Direction.NORTH -> blockState.with(DispenserBlock.FACING, Direction.EAST)
@@ -103,46 +130,10 @@ class WrenchItem(settings: Settings?) : Item(settings) {
             interactions[block] = interaction
         }
 
-        @Deprecated("Should not need this in the future.")
-        private fun registerForEach(blocks : Array<Block>, interaction: WrenchInteraction) {
-            for (block in blocks) {
-                interactions[block] = interaction
-            }
-        }
-
         fun init() {
             for (block in Registry.BLOCK.stream()) {
                 blockToInteraction(block)
             }
-
-            registerForEach(arrayOf(VanillaBlocks.PISTON, VanillaBlocks.STICKY_PISTON)) { world, blockState, blockPos ->
-                println(blockState)
-                if (blockState.get(PistonBlock.EXTENDED) == true) {
-                    return@registerForEach blockState
-                }
-
-                return@registerForEach when (blockState.get(PistonBlock.FACING)) {
-                    Direction.UP -> blockState.with(PistonBlock.FACING, Direction.NORTH)
-                    Direction.NORTH -> blockState.with(PistonBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(PistonBlock.FACING, Direction.SOUTH)
-                    Direction.SOUTH -> blockState.with(PistonBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(PistonBlock.FACING, Direction.DOWN)
-                    Direction.DOWN -> blockState.with(PistonBlock.FACING, Direction.UP)
-                    else -> throw NullPointerException()
-                }
-            }
-            registerForEach(arrayOf(VanillaBlocks.DISPENSER, VanillaBlocks.DROPPER)) { world, blockState, blockPos ->
-                return@registerForEach when (blockState.get(DispenserBlock.FACING)) {
-                    Direction.UP -> blockState.with(DispenserBlock.FACING, Direction.NORTH)
-                    Direction.NORTH -> blockState.with(DispenserBlock.FACING, Direction.EAST)
-                    Direction.EAST -> blockState.with(DispenserBlock.FACING, Direction.SOUTH)
-                    Direction.SOUTH -> blockState.with(DispenserBlock.FACING, Direction.WEST)
-                    Direction.WEST -> blockState.with(DispenserBlock.FACING, Direction.DOWN)
-                    Direction.DOWN -> blockState.with(DispenserBlock.FACING, Direction.UP)
-                    else -> throw NullPointerException()
-                }
-            }
-
         }
         
         fun blockToInteraction(block: Block) {
@@ -152,7 +143,10 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 is SlabBlock -> registerInteraction(block, SLAB_INTERACTION)
                 is StairsBlock -> registerInteraction(block, STAIR_INTERACTION)
                 is SignBlock -> registerInteraction(block, SIGN_INTERACTION)
+                is PistonBlock -> registerInteraction(block, PISTON_INTERACTION)
+                is PistonHeadBlock -> return
                 is FacingBlock -> registerInteraction(block, FACING_INTERACTION)
+                is DispenserBlock -> registerInteraction(block, DISPENSER_INTERACTION)
             }
         }
     }
