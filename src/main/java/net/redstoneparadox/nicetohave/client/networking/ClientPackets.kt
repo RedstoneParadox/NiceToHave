@@ -1,0 +1,58 @@
+package net.redstoneparadox.nicetohave.client.networking
+
+import io.netty.buffer.Unpooled
+import net.fabricmc.fabric.api.network.PacketContext
+import net.fabricmc.fabric.api.server.PlayerStream
+import net.fabricmc.fabric.impl.network.ClientSidePacketRegistryImpl
+import net.minecraft.client.MinecraftClient
+import net.minecraft.client.network.packet.CustomPayloadS2CPacket
+import net.minecraft.client.network.packet.EntitySpawnS2CPacket
+import net.minecraft.entity.Entity
+import net.minecraft.network.Packet
+import net.minecraft.server.network.ServerPlayNetworkHandler
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.Identifier
+import net.minecraft.util.PacketByteBuf
+import net.redstoneparadox.nicetohave.networking.Packets
+import java.io.IOException
+import java.util.*
+import java.util.function.Supplier
+
+object ClientPackets {
+
+    fun registerPackets() {
+        ClientSidePacketRegistryImpl.INSTANCE.register(Identifier("nicetohave", "spawn_dynamite")) { packetContext, packetByteBuff ->
+            spawnFrom(packetContext, packetByteBuff)
+        }
+    }
+
+    private fun <T : Packet<*>> readFrom(bytes: PacketByteBuf, packet: Supplier<T>): Optional<T> {
+        val deserializePacket: T
+        try {
+            deserializePacket = packet.get()
+            deserializePacket.read(bytes)
+        } catch (e: IOException) {
+            return Optional.empty()
+        }
+
+        return Optional.of(deserializePacket)
+    }
+
+    private fun spawnFrom(ctx: PacketContext, bytes: PacketByteBuf) {
+        readFrom(bytes, Supplier { EntitySpawnS2CPacket() }).ifPresent { pkt ->
+            ctx.taskQueue.execute {
+                val world = MinecraftClient.getInstance().world
+                Optional.ofNullable(pkt.entityTypeId.create(world)).ifPresent { entity ->
+                    entity.updateTrackedPosition(pkt.x, pkt.y, pkt.z)
+                    entity.setVelocity(pkt.velocityX, pkt.velocityY, pkt.velocityz)
+                    entity.pitch = (pkt.pitch * 360).toFloat() / 256.0f
+                    entity.yaw = (pkt.yaw * 360).toFloat() / 256.0f
+                    entity.entityId = pkt.id
+                    entity.uuid = pkt.uuid
+                    world.addEntity(pkt.id, entity)
+                }
+            }
+        }
+    }
+
+}

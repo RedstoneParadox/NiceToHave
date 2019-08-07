@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.ExtendedBlockView
 import net.redstoneparadox.nicetohave.NiceToHave
 import net.redstoneparadox.nicetohave.block.Blocks
+import net.redstoneparadox.nicetohave.client.networking.ClientPackets
 import net.redstoneparadox.nicetohave.client.render.entity.EntityRenderers
 
 /**
@@ -19,6 +20,7 @@ class NiceToHaveClient : ClientModInitializer {
     override fun onInitializeClient() {
         NiceToHave.clientOut("It's Nice To Have you on the client!")
         EntityRenderers.registerRenderers()
+        ClientPackets.registerPackets()
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
             val provider = ColorProviderRegistry.BLOCK.get(net.minecraft.block.Blocks.VINE)
             return@BlockColorProvider provider.getColor(block, pos, world, layer)
