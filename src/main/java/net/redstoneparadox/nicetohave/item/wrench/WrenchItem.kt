@@ -61,7 +61,7 @@ class WrenchItem(settings: Settings?) : Item(settings) {
                 else -> throw Exception("Invalid BlockState ${blockState}")
             }
         }
-        val PILLAR_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
+        private val PILLAR_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
             when(blockState.get(PillarBlock.AXIS)) {
                 Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
                 Direction.Axis.field_11052 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11051)
