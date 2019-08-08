@@ -27,15 +27,7 @@ class VariableRedstoneBlock(settings: Settings) : RedstoneBlock(settings) {
     }
 
     override fun activate(blockState: BlockState, world: World, blockPos: BlockPos, playerEntity: PlayerEntity, hand: Hand, blockHitResult: BlockHitResult): Boolean {
-
-        val currentPower : Int = blockState.get(POWER_LEVEL)
-
-        if (currentPower < 15) {
-            world.setBlockState(blockPos, defaultState.with(POWER_LEVEL, currentPower + 1))
-        } else {
-            world.setBlockState(blockPos, defaultState)
-        }
-
+        world.setBlockState(blockPos, blockState.cycle(POWER_LEVEL))
         return true
     }
 
