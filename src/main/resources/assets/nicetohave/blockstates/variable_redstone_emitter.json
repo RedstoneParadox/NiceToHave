@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "power_level=0" : { "model":  "nicetohave:block/variable_redstone_emitter_0" },
+    "power_level=1" : { "model":  "nicetohave:block/variable_redstone_emitter_1" },
+    "power_level=2" : { "model":  "nicetohave:block/variable_redstone_emitter_2" },
+    "power_level=3" : { "model":  "nicetohave:block/variable_redstone_emitter_3" },
+    "power_level=4" : { "model":  "nicetohave:block/variable_redstone_emitter_4" },
+    "power_level=5" : { "model":  "nicetohave:block/variable_redstone_emitter_5" },
+    "power_level=6" : { "model":  "nicetohave:block/variable_redstone_emitter_6" },
+    "power_level=7" : { "model":  "nicetohave:block/variable_redstone_emitter_7" },
+    "power_level=8" : { "model":  "nicetohave:block/variable_redstone_emitter_8" },
+    "power_level=9" : { "model":  "nicetohave:block/variable_redstone_emitter_9" },
+    "power_level=10" : { "model":  "nicetohave:block/variable_redstone_emitter_10" },
+    "power_level=11" : { "model":  "nicetohave:block/variable_redstone_emitter_11" },
+    "power_level=12" : { "model":  "nicetohave:block/variable_redstone_emitter_12" },
+    "power_level=13" : { "model":  "nicetohave:block/variable_redstone_emitter_13" },
+    "power_level=14" : { "model":  "nicetohave:block/variable_redstone_emitter_14" },
+    "power_level=15" : { "model":  "nicetohave:block/variable_redstone_emitter_15" }
+  }
+}
