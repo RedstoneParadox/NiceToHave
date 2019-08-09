@@ -20,9 +20,7 @@ class ThrownDynamiteEntity : ThrownItemEntity {
 
     constructor(world: World, livingEntity: LivingEntity) : super(EntityTypes.THROWN_DYNAMITE, livingEntity, world)
 
-    constructor(world: World, x : Double, y : Double, z : Double) : super(EntityTypes.THROWN_DYNAMITE, x, y, z, world) {
-
-    }
+    constructor(world: World, x : Double, y : Double, z : Double) : super(EntityTypes.THROWN_DYNAMITE, x, y, z, world)
 
     override fun getDefaultItem(): Item {
         return Items.DYNAMITE
@@ -44,7 +42,4 @@ class ThrownDynamiteEntity : ThrownItemEntity {
         return Packets.newSpawnPacket(this)
     }
 
-    companion object {
-
-    }
 }
