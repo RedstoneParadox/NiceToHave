@@ -64,7 +64,7 @@ object Config {
 
         //Potions
         potionsCategory!!.putDefault("insight", JsonPrimitive(true), "Set to false to disable the Potion of Insight.")
-        potionsCategory.putDefault("nectar", JsonPrimitive(true), "Set to false to disable Nectar.")
+        //potionsCategory.putDefault("nectar", JsonPrimitive(true), "Set to false to disable Nectar.")
 
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
