@@ -1,0 +1,36 @@
+{
+  "block.nicetohave.gold_button": "Botón de oro",
+  "block.nicetohave.analog_redstone_emitter": "Emisor análogico de redstone",
+  "block.nicetohave.chain_link_fence": "Chain Link Fence",
+  "block.nicetohave.dirt_gold_ore": "Sedimento de oro",
+  "block.nicetohave.sand_gold_ore": "Sedimento de oro",
+  "block.nicetohave.gravel_gold_ore": "Sedimento de oro",
+  "block.nicetohave.oak_pole": "Post de tronco de roble",
+  "block.nicetohave.spruce_pole": "Poste de tronco de abeto",
+  "block.nicetohave.birch_pole": "Poste de tronco de abedul",
+  "block.nicetohave.jungle_pole": "Poste de tronco de jungla",
+  "block.nicetohave.acacia_pole": "Poste de tronco de acacia",
+  "block.nicetohave.dark_oak_pole": "Poste de tronco de roble oscuro",
+
+  "item.nicetohave.chain_link": "Eslabón",
+  "item.nicetohave.dynamite": "Dinamita",
+  "item.nicetohave.wrench": "Llave inglesa",
+  "item.nicetohave.fertilizer": "Fertilizante",
+
+  "item.minecraft.potion.effect.insight": "Poción de Perspicacia",
+  "item.minecraft.potion.effect.long_insight": "Poción de Perspicacia",
+  "item.minecraft.potion.effect.strong_insight": "Poción de Perspicacia",
+  "item.minecraft.splash_potion.effect.insight": "Poción arrojodiza de Perspicacia",
+  "item.minecraft.splash_potion.effect.long_insight": "Poción arrojodiza de Perspicacia",
+  "item.minecraft.splash_potion.effect.strong_insight": "Poción arrojodiza de Perspicacia",
+  "item.minecraft.lingering_potion.effect.insight": "Poción persistente de Perspicacia",
+  "item.minecraft.lingering_potion.effect.long_insight": "Poción persistente de Perspicacia",
+  "item.minecraft.lingering_potion.effect.strong_insight": "Poción persistente de Perspicacia",
+  "item.minecraft.potion.effect.nectar": "Nectar",
+  "item.minecraft.splash_potion.effect.nectar": "Splashy Nectar",
+  "item.minecraft.lingering_potion.effect.nectar": "Breath of Nectar",
+
+  "enchantment.nicetohave.flurry": "Flurry",
+
+  "effect.nicetohave.insight": "Perspicacia"
+}
