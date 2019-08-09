@@ -69,13 +69,13 @@ object Config {
 
         //World
         worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
-        worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.")
+        worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves. [Range 0 to 100]")
         worldCategory.putDefault("disable_ponds", JsonPrimitive(true), "Disables small water and lava ponds. Set to false to re-enabled them.")
 
         //Misc
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
         miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
-        miscCategory.putDefault("peaceful_bamboo_jungle", JsonPrimitive(true), "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes. Set to false to re-enable.")
+        miscCategory.putDefault("peaceful_bamboo_jungle", JsonPrimitive(true), "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes (Just like Mushroom Islands). Set to false to re-enable.")
     }
 
     private fun save() {
