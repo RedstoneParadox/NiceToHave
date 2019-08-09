@@ -38,6 +38,7 @@ object Items {
         register(CHAIN_LINK, "chain_link")
         register(DYNAMITE, "dynamite")
         register(WRENCH, "wrench")
+        register(FERTILIZER, "fertilizer", false)
       
         registerBlockItem(GOLD_BUTTON, "gold_button")
         registerBlockItem(ANALOG_REDSTONE_EMITTER, "analog_redstone_emitter")
@@ -56,7 +57,7 @@ object Items {
         }
     }
 
-    private fun register(item : Item, id : String) {
+    private fun register(item : Item, id : String, respectsConfig: Boolean = true) {
         if (!respectsConfig || Config.getItemOption(id, Config.boolType, true)) {
             Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
