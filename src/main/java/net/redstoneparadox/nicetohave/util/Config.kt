@@ -31,7 +31,7 @@ object Config {
                     .build()
                     .load(File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson"))
         } catch (e : IOException) {
-            NiceToHave.warn("Couldn't find config file; all config values will be set to default and a new file will be created.")
+            NiceToHave.out("Couldn't find config file; all config values will be set to default and a new file will be created.")
         } catch (e : SyntaxError) {
             NiceToHave.error("Couldn't read the config file due to an hjson syntax error. Please fix the file or delete it to generate a new one. (Default config values will be used in the meantime).")
             e.message?.let { NiceToHave.error(it) }
@@ -124,7 +124,7 @@ object Config {
                     return clazz.cast(value)
                 }
                 else {
-                    NiceToHave.error("Found value of `$value` for config option `$trueOptionName` but expected value of type `${classToType(clazz)}`. ${defaultMsg(trueOptionName, default)}")
+                    NiceToHave.error("Found value of `$value` for config option `$trueOptionName` but expected value of type `${classToType(trueOptionName, clazz)}`. ${defaultMsg(trueOptionName, default)}")
                 }
             }
             else {
@@ -142,12 +142,12 @@ object Config {
         return "Option '$option' will use default value of `$default`."
     }
 
-    private fun classToType(clazz : Class<*>): String {
+    private fun classToType(option : String, clazz : Class<*>): String {
         when (clazz) {
             boolType -> return "boolean"
             doubleType -> return "double"
             else -> {
-                NiceToHave.error("Unsupported type `$clazz` found as config option!")
+                NiceToHave.error("Unsupported type `$clazz` found as value of config option `$option`!")
                 return clazz.toString()
             }
         }
