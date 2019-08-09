@@ -38,7 +38,7 @@ object Items {
         register(CHAIN_LINK, "chain_link")
         register(DYNAMITE, "dynamite")
         register(WRENCH, "wrench")
-        register(FERTILIZER, "fertilizer", false)
+        register(FERTILIZER, "fertilizer")
       
         registerBlockItem(GOLD_BUTTON, "gold_button")
         registerBlockItem(ANALOG_REDSTONE_EMITTER, "analog_redstone_emitter")

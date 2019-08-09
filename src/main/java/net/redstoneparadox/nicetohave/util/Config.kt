@@ -54,6 +54,7 @@ object Config {
         itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-links.")
         itemsCategory.putDefault("dynamite", JsonPrimitive(true), "Set to false to disable dynamite.")
         itemsCategory.putDefault("wrench", JsonPrimitive(true), "Set to false to disable the wrench.")
+        itemsCategory.putDefault("fertilizer", JsonPrimitive(true), "Set to false to disable fertilizer")
 
         //Blocks
         blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
