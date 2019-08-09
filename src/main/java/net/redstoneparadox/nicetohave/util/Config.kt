@@ -90,38 +90,66 @@ object Config {
         return configObject.get(JsonObject::class.java, name)!!
     }
 
-    fun <T> getItemOption(key : String, type : Class<T>, default : T): T {
-        return getOption(key, type, default, "items")
+    fun <T> getItemOption(key : String, clazz : Class<T>, default : T): T {
+        return getOption(key, clazz, default, "items")
     }
 
-    fun <T> getBlockOption(key : String, type : Class<T>, default: T): T {
-        return getOption(key, type, default, "blocks")
+    fun <T> getBlockOption(key : String, clazz : Class<T>, default: T): T {
+        return getOption(key, clazz, default, "blocks")
     }
 
-    fun <T> getPotionOption(key : String, type : Class<T>, default: T): T {
-        return getOption(key, type, default, "potions")
+    fun <T> getPotionOption(key : String, clazz : Class<T>, default: T): T {
+        return getOption(key, clazz, default, "potions")
     }
 
-    fun <T> getWorldOption(key: String, type : Class<T>, default : T): T {
-        return getOption(key, type, default, "world")
+    fun <T> getWorldOption(key: String, clazz : Class<T>, default : T): T {
+        return getOption(key, clazz, default, "world")
     }
 
-    fun <T> getMiscOption(key : String, type : Class<T>, default: T): T {
-        return getOption(key, type, default, "misc")
+    fun <T> getMiscOption(key : String, clazz : Class<T>, default: T): T {
+        return getOption(key, clazz, default, "misc")
     }
 
-    private fun <T> getOption(key : String, type : Class<T>, default : T, category : String = "main"): T {
-        val categoryObject = if (category == "main") configObject else configObject.get(JsonObject::class.java, category)
-        val option = (categoryObject!![key] as JsonPrimitive)
+    private fun <T> getOption(key : String, clazz : Class<T>, default : T, category : String = ""): T {
+        val categoryObject = if (category.isBlank()) configObject else configObject.get(JsonObject::class.java, category)
+        val trueOptionName = if (category.isBlank()) key else "$category.$key"
 
-        val value = option.value
-        if (type.isInstance(value)) {
-            return type.cast(value)
+
+        if (categoryObject != null) {
+            val option : JsonPrimitive? = (categoryObject[key] as JsonPrimitive)
+
+            if (option != null) {
+                val value = option.value
+                if (clazz.isInstance(value)) {
+                    return clazz.cast(value)
+                }
+                else {
+                    NiceToHave.error("Found value of `$value` for config option `$trueOptionName` but expected value of type `${classToType(clazz)}`. ${defaultMsg(trueOptionName, default)}")
+                }
+            }
+            else {
+                NiceToHave.error("Could not find config option `$trueOptionName`. ${defaultMsg(trueOptionName, default)}")
+            }
         }
         else {
-            NiceToHave.error("Error when reading config option '$key', Expected $type, found ${value.javaClass}. Option will use default value of $default.")
+            NiceToHave.error("Could not find config category `$key`. ${defaultMsg(trueOptionName, default)}")
         }
 
         return default
+    }
+
+    private fun <T> defaultMsg(option : String, default : T): String {
+        return "Option '$option' will use default value of `$default`."
+    }
+
+    private fun classToType(clazz : Class<*>): String {
+        when (clazz) {
+            boolType -> return "boolean"
+            doubleType -> return "double"
+            else -> {
+                NiceToHave.error("Unsupported type `$clazz` found as config option!")
+                return clazz.toString()
+            }
+        }
     }
 }
