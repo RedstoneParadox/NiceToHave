@@ -16,7 +16,7 @@ import net.minecraft.world.World
 /**
  * Created by RedstoneParadox on 7/30/2019.
  */
-class VariableRedstoneBlock(settings: Settings) : RedstoneBlock(settings) {
+class AnalogRedstoneEmitterBlock(settings: Settings) : RedstoneBlock(settings) {
 
     init {
         defaultState = getStateFactory().defaultState.with(POWER_LEVEL, 0)

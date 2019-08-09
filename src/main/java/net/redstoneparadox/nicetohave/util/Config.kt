@@ -57,7 +57,7 @@ object Config {
 
         //Blocks
         blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
-        blocksCategory.putDefault("variable_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Variable Redstone Emitter.")
+        blocksCategory.putDefault("analog_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Analog Redstone Emitter.")
         //blocksCategory.putDefault("chain_link_fence", JsonPrimitive(true), "Set to false to disable chain-link fences.")
         blocksCategory.putDefault("trimmed_vine", JsonPrimitive(true), "Set to false to disable trimmed-vine blocks.")
         blocksCategory.putDefault("poles", JsonPrimitive(true), "Set to false to disable pole blocks.")
