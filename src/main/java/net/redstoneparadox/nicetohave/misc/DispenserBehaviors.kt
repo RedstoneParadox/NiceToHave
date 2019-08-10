@@ -2,10 +2,12 @@ package net.redstoneparadox.nicetohave.misc
 
 import net.minecraft.block.*
 import net.minecraft.block.dispenser.DispenserBehavior
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior
 import net.minecraft.block.dispenser.ItemDispenserBehavior
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior
 import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.projectile.Projectile
+import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
@@ -48,6 +50,20 @@ object DispenserBehaviors {
             }
         })
         register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+        DispenserBlock.registerBehavior(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
+            override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
+                this.success = true
+                val world = blockPointer_1.world
+                val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
+                if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
+                    this.success = false
+                } else if (!world.isClient) {
+                    world.playLevelEvent(2005, blockPos, 0)
+                }
+
+                return itemStack
+            }
+        })
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
