@@ -20,6 +20,7 @@ import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.networking.Packets
 import net.redstoneparadox.nicetohave.util.Config
+import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
 
@@ -46,6 +47,7 @@ object DispenserBehaviors {
                 return stack
             }
         })
+        register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
@@ -55,8 +57,7 @@ object DispenserBehaviors {
     fun blockToDispenserBehavior(block : Block, id : Identifier) {
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
             when (block) {
-                is SaplingBlock -> register(Registry.ITEM.get(id), PlantingDispenserBehavior(saplingFarmBlocks, block))
-                is BambooSaplingBlock -> register(block.getPickStack(null, null, null).item, PlantingDispenserBehavior(bambooFarmBlocks, block))
+                is SaplingBlock -> register(Item.fromBlock(block), PlantingDispenserBehavior(saplingFarmBlocks, block))
                 is CropBlock, is StemBlock -> {
                     val seed = Item.fromBlock(block)
                     if (seed != Blocks.AIR) {
