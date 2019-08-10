@@ -30,40 +30,46 @@ object DispenserBehaviors {
     val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
 
     fun registerBehaviors() {
-        register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
-            var entity : ThrownDynamiteEntity? = null
+        if (Config.getItemOption("dynamite", Config.boolType, true)) {
+            register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
+                var entity : ThrownDynamiteEntity? = null
 
-            override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
-                entity = SystemUtil.consume(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
-                return entity as Projectile
-            }
-
-            override fun dispenseSilently(blockPointer_1: BlockPointer?, itemStack_1: ItemStack?): ItemStack {
-                val stack = super.dispenseSilently(blockPointer_1, itemStack_1)
-
-                if (entity != null)  {
-                    Packets.dispatchToAllWatching(entity!!, ::EntityPositionS2CPacket)
-                    entity = null
+                override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
+                    entity = SystemUtil.consume(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
+                    return entity as Projectile
                 }
 
-                return stack
-            }
-        })
-        register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
-        DispenserBlock.registerBehavior(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
-            override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
-                this.success = true
-                val world = blockPointer_1.world
-                val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
-                if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
-                    this.success = false
-                } else if (!world.isClient) {
-                    world.playLevelEvent(2005, blockPos, 0)
-                }
+                override fun dispenseSilently(blockPointer_1: BlockPointer?, itemStack_1: ItemStack?): ItemStack {
+                    val stack = super.dispenseSilently(blockPointer_1, itemStack_1)
 
-                return itemStack
-            }
-        })
+                    if (entity != null)  {
+                        Packets.dispatchToAllWatching(entity!!, ::EntityPositionS2CPacket)
+                        entity = null
+                    }
+
+                    return stack
+                }
+            })
+        }
+        if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
+            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+        }
+        if (Config.getItemOption("fertilizer", Config.boolType, true)) {
+            register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
+                override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
+                    this.success = true
+                    val world = blockPointer_1.world
+                    val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
+                    if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
+                        this.success = false
+                    } else if (!world.isClient) {
+                        world.playLevelEvent(2005, blockPos, 0)
+                    }
+
+                    return itemStack
+                }
+            })
+        }
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
