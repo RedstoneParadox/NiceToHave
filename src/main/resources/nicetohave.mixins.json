@@ -4,9 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.ComposterBlockMixin",
-    "block.CropBlockMixin",
     "block.DispenserBlockMixin",
-    "block.StemBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
