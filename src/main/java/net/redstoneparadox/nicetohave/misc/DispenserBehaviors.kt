@@ -17,11 +17,9 @@ import net.minecraft.util.math.Position
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
-import net.redstoneparadox.nicetohave.hooks.SeedGetter
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.networking.Packets
 import net.redstoneparadox.nicetohave.util.Config
-import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
 
@@ -60,8 +58,8 @@ object DispenserBehaviors {
                 is SaplingBlock -> register(Registry.ITEM.get(id), PlantingDispenserBehavior(saplingFarmBlocks, block))
                 is BambooSaplingBlock -> register(block.getPickStack(null, null, null).item, PlantingDispenserBehavior(bambooFarmBlocks, block))
                 is CropBlock, is StemBlock -> {
-                    val seed = (block as SeedGetter).seed
-                    if (seed != null) {
+                    val seed = Item.fromBlock(block)
+                    if (seed != Blocks.AIR) {
                         register(seed, PlantingDispenserBehavior(arrayOf(Blocks.FARMLAND), block))
                     }
                 }

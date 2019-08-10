@@ -3,17 +3,13 @@ package net.redstoneparadox.nicetohave.misc
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
-import net.minecraft.block.*
-import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.loot.UniformLootTableRange
 import net.minecraft.world.loot.entry.ItemEntry
 import net.minecraft.world.loot.function.SetCountLootFunction
-import net.redstoneparadox.nicetohave.hooks.SeedGetter
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import net.redstoneparadox.nicetohave.util.Config
-import net.minecraft.item.Items as VanillaItems
 
 /**
  * Created by RedstoneParadox on 7/30/2019.
