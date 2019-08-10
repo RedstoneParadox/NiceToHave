@@ -48,13 +48,13 @@ object Config {
         val blocksCategory = addCategory("blocks", "Enable/Disable blocks.")
         val potionsCategory = addCategory("potions", "Enable/disable potions.")
         val worldCategory = addCategory("world", "Enable, disable, and configure various world gen features.")
-        val miscCategory = addCategory("misc", "Miscellaneous settings")
+        val miscCategory = addCategory("misc", "Miscellaneous settings.")
 
         //Items
         itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-links.")
         itemsCategory.putDefault("dynamite", JsonPrimitive(true), "Set to false to disable dynamite.")
         itemsCategory.putDefault("wrench", JsonPrimitive(true), "Set to false to disable the wrench.")
-        itemsCategory.putDefault("fertilizer", JsonPrimitive(true), "Set to false to disable fertilizer")
+        itemsCategory.putDefault("fertilizer", JsonPrimitive(true), "Set to false to disable fertilizer.")
 
         //Blocks
         blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
