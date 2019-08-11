@@ -3,8 +3,10 @@
   "package": "net.redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "block.CactusBlockMixin",
     "block.ComposterBlockMixin",
     "block.DispenserBlockMixin",
+    "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
