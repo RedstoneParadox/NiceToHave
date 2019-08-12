@@ -12,6 +12,7 @@ import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import redstoneparadox.nicetohave.misc.Fuels
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -35,6 +36,7 @@ class NiceToHave : ModInitializer {
         Potions.registerPotions()
         Blocks.registerBlocks()
         Items.registerItems()
+        Fuels.registerFuels()
         //Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
         Decorators.registerDecorators()
