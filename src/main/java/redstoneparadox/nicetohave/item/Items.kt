@@ -5,9 +5,9 @@ import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.block.Blocks
-import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
-import net.redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.block.Blocks
+import redstoneparadox.nicetohave.item.wrench.WrenchItem
+import redstoneparadox.nicetohave.util.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.

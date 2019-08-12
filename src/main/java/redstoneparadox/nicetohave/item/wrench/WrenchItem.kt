@@ -8,9 +8,6 @@ import net.minecraft.item.ItemUsageContext
 import net.minecraft.util.ActionResult
 import net.minecraft.util.BlockRotation
 import net.minecraft.util.math.Direction
-import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.block.Blocks
-import net.minecraft.block.Blocks as VanillaBlocks
 
 class WrenchItem(settings: Settings?) : Item(settings) {
 

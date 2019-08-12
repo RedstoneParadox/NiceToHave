@@ -10,13 +10,12 @@ import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.redstoneparadox.nicetohave.util.Config;
+import redstoneparadox.nicetohave.util.Config;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import redstoneparadox.nicetohave.util.Config;
 
 @Mixin(DispenserBlock.class)
 public abstract class DispenserBlockMixin {

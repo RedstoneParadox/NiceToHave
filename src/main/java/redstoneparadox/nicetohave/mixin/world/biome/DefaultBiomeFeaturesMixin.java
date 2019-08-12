@@ -1,9 +1,8 @@
 package redstoneparadox.nicetohave.mixin.world.biome;
 
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.redstoneparadox.nicetohave.util.Config;
+import redstoneparadox.nicetohave.util.Config;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

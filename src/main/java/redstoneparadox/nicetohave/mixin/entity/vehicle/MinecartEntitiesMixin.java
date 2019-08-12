@@ -8,13 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.redstoneparadox.nicetohave.item.Items;
-import net.redstoneparadox.nicetohave.util.MinecartTracker;
+import redstoneparadox.nicetohave.item.Items;
+import redstoneparadox.nicetohave.util.MinecartTracker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import redstoneparadox.nicetohave.item.Items;
 
 import java.util.Optional;
 

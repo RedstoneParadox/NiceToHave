@@ -7,9 +7,9 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.loot.UniformLootTableRange
 import net.minecraft.world.loot.entry.ItemEntry
 import net.minecraft.world.loot.function.SetCountLootFunction
-import net.redstoneparadox.nicetohave.item.Items
-import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
-import net.redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.wrench.WrenchItem
+import redstoneparadox.nicetohave.util.Config
 
 /**
  * Created by RedstoneParadox on 7/30/2019.

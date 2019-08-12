@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BambooJungleHillsBiome;
 import net.minecraft.world.biome.Biome;
-import net.redstoneparadox.nicetohave.util.Config;
+import redstoneparadox.nicetohave.util.Config;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BambooJungleHillsBiome.class)

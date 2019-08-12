@@ -2,19 +2,19 @@ package redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
 import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.block.Blocks
-import net.redstoneparadox.nicetohave.entity.EntityTypes
-import net.redstoneparadox.nicetohave.entity.effect.StatusEffects
-import net.redstoneparadox.nicetohave.item.Items
-import net.redstoneparadox.nicetohave.item.wrench.WrenchItem
-import net.redstoneparadox.nicetohave.misc.DispenserBehaviors
-import net.redstoneparadox.nicetohave.misc.Listeners
-import net.redstoneparadox.nicetohave.potion.Potions
+import redstoneparadox.nicetohave.block.Blocks
+import redstoneparadox.nicetohave.entity.EntityTypes
+import redstoneparadox.nicetohave.entity.effect.StatusEffects
+import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.wrench.WrenchItem
+import redstoneparadox.nicetohave.misc.DispenserBehaviors
+import redstoneparadox.nicetohave.misc.Listeners
+import redstoneparadox.nicetohave.potion.Potions
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import net.redstoneparadox.nicetohave.world.biome.Biomes
-import net.redstoneparadox.nicetohave.world.gen.decorator.Decorators
-import net.redstoneparadox.nicetohave.world.gen.feature.Features
+import redstoneparadox.nicetohave.world.biome.Biomes
+import redstoneparadox.nicetohave.world.gen.decorator.Decorators
+import redstoneparadox.nicetohave.world.gen.feature.Features
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -22,7 +22,7 @@ import net.redstoneparadox.nicetohave.world.gen.feature.Features
 class NiceToHave : ModInitializer {
 
     override fun onInitialize() {
-        redstoneparadox.nicetohave.NiceToHave.Companion.out("It's Nice To Have you!")
+        out("It's Nice To Have you!")
 
         for (block in Registry.BLOCK.stream()) {
             WrenchItem.blockToInteraction(block)
@@ -46,19 +46,19 @@ class NiceToHave : ModInitializer {
         private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
         fun out(msg : Any) {
-            redstoneparadox.nicetohave.NiceToHave.Companion.logger.info("[Nice to Have] $msg")
+            logger.info("[Nice to Have] $msg")
         }
 
         fun warn(msg: Any) {
-            redstoneparadox.nicetohave.NiceToHave.Companion.logger.warn("[Nice to Have] $msg")
+            logger.warn("[Nice to Have] $msg")
         }
 
         fun error(msg: Any) {
-            redstoneparadox.nicetohave.NiceToHave.Companion.logger.error("[Nice to Have] $msg")
+            logger.error("[Nice to Have] $msg")
         }
 
         fun clientOut(msg : Any) {
-            redstoneparadox.nicetohave.NiceToHave.Companion.logger.info("[Nice to Have (client)] $msg")
+            logger.info("[Nice to Have (client)] $msg")
         }
     }
 }

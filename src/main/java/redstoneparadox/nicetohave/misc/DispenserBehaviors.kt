@@ -18,10 +18,10 @@ import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Position
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
-import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
-import net.redstoneparadox.nicetohave.item.Items
-import net.redstoneparadox.nicetohave.networking.Packets
-import net.redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
+import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.networking.Packets
+import redstoneparadox.nicetohave.util.Config
 import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {

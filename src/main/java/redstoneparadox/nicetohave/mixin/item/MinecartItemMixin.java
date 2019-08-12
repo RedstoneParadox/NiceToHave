@@ -4,7 +4,7 @@ import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.MinecartItem;
 import net.minecraft.util.ActionResult;
-import net.redstoneparadox.nicetohave.util.MinecartTracker;
+import redstoneparadox.nicetohave.util.MinecartTracker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

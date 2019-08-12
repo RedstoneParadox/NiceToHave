@@ -3,7 +3,7 @@ package redstoneparadox.nicetohave.entity.effect
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.entity.effect.StatusEffectType
 import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.util.rgbToInt
+import redstoneparadox.nicetohave.util.rgbToInt
 
 object StatusEffects {
 

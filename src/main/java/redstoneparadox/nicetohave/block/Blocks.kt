@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.util.Config
 
 object Blocks {
 

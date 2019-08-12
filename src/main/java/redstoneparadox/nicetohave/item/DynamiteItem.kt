@@ -1,24 +1,17 @@
 package redstoneparadox.nicetohave.item
 
-import net.minecraft.block.DispenserBlock
-import net.minecraft.block.dispenser.ProjectileDispenserBehavior
 import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.projectile.Projectile
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import net.minecraft.item.ItemUsageContext
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
-import net.minecraft.util.SystemUtil
 import net.minecraft.util.TypedActionResult
-import net.minecraft.util.math.BlockPointer
-import net.minecraft.util.math.Position
 import net.minecraft.world.World
-import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
-import net.redstoneparadox.nicetohave.networking.Packets
+import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
+import redstoneparadox.nicetohave.networking.Packets
 import java.util.*
 
 /**

@@ -7,9 +7,9 @@ import net.minecraft.world.biome.RiverBiome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.FeatureConfig
-import net.redstoneparadox.nicetohave.util.Config
-import net.redstoneparadox.nicetohave.world.gen.decorator.Decorators
-import net.redstoneparadox.nicetohave.world.gen.feature.Features
+import redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.world.gen.decorator.Decorators
+import redstoneparadox.nicetohave.world.gen.feature.Features
 import net.minecraft.world.biome.Biomes as VanillaBiomes
 
 

@@ -5,7 +5,7 @@ import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
 import net.fabricmc.loader.FabricLoader
-import net.redstoneparadox.nicetohave.NiceToHave
+import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 import java.io.IOException
 

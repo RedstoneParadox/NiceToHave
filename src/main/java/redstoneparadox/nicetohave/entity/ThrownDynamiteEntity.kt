@@ -8,8 +8,8 @@ import net.minecraft.network.Packet
 import net.minecraft.util.hit.HitResult
 import net.minecraft.world.World
 import net.minecraft.world.explosion.Explosion
-import net.redstoneparadox.nicetohave.item.Items
-import net.redstoneparadox.nicetohave.networking.Packets
+import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.networking.Packets
 
 /**
  * Created by RedstoneParadox on 5/23/2019.

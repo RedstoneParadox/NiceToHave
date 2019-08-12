@@ -2,8 +2,8 @@ package redstoneparadox.nicetohave.mixin.entity;
 
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.redstoneparadox.nicetohave.NiceToHave;
-import net.redstoneparadox.nicetohave.entity.effect.StatusEffects;
+import redstoneparadox.nicetohave.NiceToHave;
+import redstoneparadox.nicetohave.entity.effect.StatusEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

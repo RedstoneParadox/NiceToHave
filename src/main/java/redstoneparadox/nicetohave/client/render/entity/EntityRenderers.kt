@@ -2,7 +2,7 @@ package redstoneparadox.nicetohave.client.render.entity
 
 import net.fabricmc.fabric.api.client.render.EntityRendererRegistry
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer
-import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
+import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 
 /**
  * Created by RedstoneParadox on 5/24/2019.

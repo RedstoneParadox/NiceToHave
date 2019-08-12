@@ -4,9 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.PillarBlock
 import net.minecraft.block.Waterloggable
-import net.minecraft.block.enums.SlabType
 import net.minecraft.entity.EntityContext
-import net.minecraft.fluid.Fluid
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.state.StateFactory

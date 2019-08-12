@@ -3,16 +3,8 @@ package redstoneparadox.nicetohave.potion;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
-import net.minecraft.recipe.BrewingRecipeRegistry;
-import net.minecraft.recipe.Ingredient;
 import redstoneparadox.nicetohave.mixin.recipe.BrewingRecipeRegistryAccessor;
-import net.redstoneparadox.nicetohave.util.Config;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
+import redstoneparadox.nicetohave.util.Config;
 
 public class PotionRecipes {
 

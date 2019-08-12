@@ -3,11 +3,9 @@ package redstoneparadox.nicetohave.potion
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.potion.Potion
 import net.minecraft.util.registry.Registry
-import net.redstoneparadox.nicetohave.entity.effect.StatusEffects
-import net.redstoneparadox.nicetohave.util.Config
-import net.redstoneparadox.nicetohave.util.minutesToTicks
-import net.redstoneparadox.nicetohave.util.secondsToTicks
-import net.minecraft.entity.effect.StatusEffects as VanillaStatusEffects
+import redstoneparadox.nicetohave.entity.effect.StatusEffects
+import redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.util.minutesToTicks
 
 object Potions {
 
@@ -22,7 +20,7 @@ object Potions {
         register("strong_insight", STRONG_INSIGHT)
         //register("nectar", NECTAR)
 
-        redstoneparadox.nicetohave.potion.PotionRecipes.registerRecipes()
+        PotionRecipes.registerRecipes()
     }
 
     private fun register(id: String, potion: Potion) {

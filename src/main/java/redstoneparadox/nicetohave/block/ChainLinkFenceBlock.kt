@@ -1,11 +1,7 @@
 package redstoneparadox.nicetohave.block
 
-import net.minecraft.block.Block
 import net.minecraft.block.BlockRenderLayer
-import net.minecraft.block.BlockState
 import net.minecraft.block.FenceBlock
-import net.minecraft.state.StateFactory
-import net.minecraft.state.property.BooleanProperty
 
 class ChainLinkFenceBlock(settings: Settings) : FenceBlock(settings) {
 
