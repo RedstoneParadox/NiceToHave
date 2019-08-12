@@ -21,13 +21,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "net.redstoneparadox.nicetohave.NiceToHave"
+        "value": "redstoneparadox.nicetohave.NiceToHave"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "net.redstoneparadox.nicetohave.client.NiceToHaveClient"
+        "value": "redstoneparadox.nicetohave.client.NiceToHaveClient"
       }
     ]
   },

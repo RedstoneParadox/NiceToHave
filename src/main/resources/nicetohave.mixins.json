@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.redstoneparadox.nicetohave.mixin",
+  "package": "redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.CactusBlockMixin",
