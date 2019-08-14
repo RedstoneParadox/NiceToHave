@@ -45,24 +45,6 @@ class NiceToHave : ModInitializer {
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
 
-        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(object : SimpleSynchronousResourceReloadListener {
-            override fun getFabricId(): Identifier {
-                return Identifier("nicetohave", "reload_check")
-            }
-
-            override fun getFabricDependencies(): MutableCollection<Identifier> {
-                return mutableListOf(ResourceReloadListenerKeys.RECIPES)
-            }
-
-            override fun apply(manager: ResourceManager) {
-                val resources = manager.getAllResources(Identifier("minecraft", "recipes/powered_rail.json"))
-                for (resource in resources) {
-                    println("Found resource: ${resource.id} in pack ${resource.resourcePackName}")
-                }
-
-            }
-        })
-
         Listeners.initListeners()
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
