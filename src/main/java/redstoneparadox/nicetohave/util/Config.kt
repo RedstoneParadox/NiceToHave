@@ -1,6 +1,7 @@
 package redstoneparadox.nicetohave.util
 
 import blue.endless.jankson.Jankson
+import blue.endless.jankson.JsonElement
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
@@ -116,9 +117,9 @@ object Config {
 
 
         if (categoryObject != null) {
-            val option : JsonPrimitive? = (categoryObject[key] as JsonPrimitive)
+            val option : JsonElement? = categoryObject[key]
 
-            if (option != null) {
+            if (option is JsonPrimitive) {
                 val value = option.value
                 if (clazz.isInstance(value)) {
                     return clazz.cast(value)
