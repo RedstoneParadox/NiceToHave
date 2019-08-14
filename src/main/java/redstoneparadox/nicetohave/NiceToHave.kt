@@ -10,6 +10,7 @@ import net.minecraft.resource.ResourceReloadListener
 import net.minecraft.resource.ResourceType
 import net.minecraft.resource.SynchronousResourceReloadListener
 import net.minecraft.util.Identifier
+import net.minecraft.util.TagHelper
 import net.minecraft.util.profiler.Profiler
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.Blocks
@@ -58,6 +59,7 @@ class NiceToHave : ModInitializer {
                 for (resource in resources) {
                     println("Found resource: ${resource.id} in pack ${resource.resourcePackName}")
                 }
+
             }
         })
 

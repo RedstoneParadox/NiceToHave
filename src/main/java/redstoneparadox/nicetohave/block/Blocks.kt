@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
+import net.minecraft.nbt.Tag
+import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.util.Config
 
@@ -11,7 +13,7 @@ object Blocks {
 
     val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByHand(true).build())
     val ANALOG_REDSTONE_EMITTER = AnalogRedstoneEmitterBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
-    //val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByTool(Tag(Identifier("fabric:pickaxes"))).build())
+    val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByTool(net.minecraft.tag.Tag(Identifier("fabric:pickaxes"))).build())
     val TRIMMED_VINE_BLOCK : Block = TrimmedVineBlock(FabricBlockSettings.copy(Blocks.VINE).build())
 
     //Ore Blocks
@@ -30,7 +32,7 @@ object Blocks {
     fun registerBlocks() {
         register(GOLD_BUTTON, "gold_button")
         register(ANALOG_REDSTONE_EMITTER, "analog_redstone_emitter")
-        //register(CHAIN_LINK_FENCE, "chain_link_fence")
+        register(CHAIN_LINK_FENCE, "chain_link_fence")
         register(TRIMMED_VINE_BLOCK, "trimmed_vine")
 
         register(DIRT_GOLD_ORE, "dirt_gold_ore", false)

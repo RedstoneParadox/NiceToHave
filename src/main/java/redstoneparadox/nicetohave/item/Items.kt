@@ -25,7 +25,7 @@ object Items {
     val DIRT_GOLD_ORE = BlockItem(Blocks.DIRT_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     val SAND_GOLD_ORE = BlockItem(Blocks.SAND_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     val GRAVEL_GOLD_ORE = BlockItem(Blocks.GRAVEL_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
-    //val CHAIN_LINK_FENCE = BlockItem(Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS))
+    val CHAIN_LINK_FENCE = BlockItem(Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS))
 
     val OAK_POLE : BlockItem = BlockItem(Blocks.OAK_POLE, Item.Settings().group(ItemGroup.DECORATIONS))
     val SPRUCE_POLE : BlockItem = BlockItem(Blocks.SPRUCE_POLE, Item.Settings().group(ItemGroup.DECORATIONS))
@@ -45,7 +45,7 @@ object Items {
         registerBlockItem(DIRT_GOLD_ORE, "dirt_gold_ore", false)
         registerBlockItem(SAND_GOLD_ORE, "sand_gold_ore", false)
         registerBlockItem(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
-        //registerBlockItem(CHAIN_LINK_FENCE, "chain_link_fence")
+        registerBlockItem(CHAIN_LINK_FENCE, "chain_link_fence")
 
         if (Config.getBlockOption("poles", Config.boolType, true)) {
             registerBlockItem(OAK_POLE, "oak_pole", false)
