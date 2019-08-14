@@ -1,5 +1,6 @@
 package redstoneparadox.nicetohave.item
 
+import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.BlockItem
 import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
@@ -55,6 +56,8 @@ object Items {
             registerBlockItem(ACACIA_POLE, "acacia_pole", false)
             registerBlockItem(DARK_OAK_POLE, "dark_oak_pole", false)
         }
+
+        registerFuels()
     }
 
     private fun register(item : Item, id : String, respectsConfig: Boolean = true) {
@@ -67,5 +70,19 @@ object Items {
         if (!respectsConfig || Config.getBlockOption(id, Config.boolType, true)) {
             Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
+    }
+
+    fun registerFuels() {
+        registerFuelForEach(arrayOf(Items.OAK_POLE, Items.SPRUCE_POLE, Items.BIRCH_POLE, Items.JUNGLE_POLE, Items.ACACIA_POLE, Items.DARK_OAK_POLE), 300)
+    }
+
+    private fun registerFuelForEach(fuels : Array<Item>, time : Int) {
+        for (fuel in fuels) {
+            registerFuel(fuel, time)
+        }
+    }
+
+    private fun registerFuel(fuel : Item, time : Int) {
+        FuelRegistry.INSTANCE.add(fuel, time)
     }
 }
