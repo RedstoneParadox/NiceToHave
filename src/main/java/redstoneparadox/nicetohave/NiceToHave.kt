@@ -1,6 +1,16 @@
 package redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper
+import net.fabricmc.fabric.api.resource.ResourceReloadListenerKeys
+import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener
+import net.minecraft.resource.ResourceManager
+import net.minecraft.resource.ResourceReloadListener
+import net.minecraft.resource.ResourceType
+import net.minecraft.resource.SynchronousResourceReloadListener
+import net.minecraft.util.Identifier
+import net.minecraft.util.profiler.Profiler
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.entity.EntityTypes
@@ -16,6 +26,10 @@ import redstoneparadox.nicetohave.misc.Fuels
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
+import java.lang.Exception
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
+import kotlin.reflect.jvm.internal.impl.utils.CollectionsKt
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -29,6 +43,23 @@ class NiceToHave : ModInitializer {
             WrenchItem.blockToInteraction(block)
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
+
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(object : SimpleSynchronousResourceReloadListener {
+            override fun getFabricId(): Identifier {
+                return Identifier("nicetohave", "reload_check")
+            }
+
+            override fun getFabricDependencies(): MutableCollection<Identifier> {
+                return mutableListOf(ResourceReloadListenerKeys.RECIPES)
+            }
+
+            override fun apply(manager: ResourceManager) {
+                val resources = manager.getAllResources(Identifier("minecraft", "recipes/powered_rail.json"))
+                for (resource in resources) {
+                    println("Found resource: ${resource.id} in pack ${resource.resourcePackName}")
+                }
+            }
+        })
 
         Listeners.initListeners()
         EntityTypes.registerEntityTypes()
