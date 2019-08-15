@@ -8,6 +8,7 @@
     "block.DispenserBlockMixin",
     "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
+    "entity.vehicle.BoatEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
     "resource.NamespaceResourceManagerMixin",
