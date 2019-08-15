@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MinecartItem;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -43,7 +44,7 @@ public abstract class LivingEntityMixin extends Entity implements AttackTicksGet
     @Inject(method = "onEquipStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V", shift = At.Shift.BEFORE), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onEquipStack(ItemStack itemStack_1, CallbackInfo ci, SoundEvent soundEvent_1) {
         Item item = itemStack_1.getItem();
-        if (item instanceof BoatItem) {
+        if (item instanceof BoatItem || item instanceof MinecartItem) {
             ci.cancel();
         }
     }

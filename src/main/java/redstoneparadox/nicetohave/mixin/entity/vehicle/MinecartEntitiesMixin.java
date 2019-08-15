@@ -1,14 +1,17 @@
 package redstoneparadox.nicetohave.mixin.entity.vehicle;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.AbstractMinecartEntity;
-import net.minecraft.entity.vehicle.MinecartEntity;
+import net.minecraft.entity.vehicle.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import redstoneparadox.nicetohave.item.Items;
+import redstoneparadox.nicetohave.util.Config;
 import redstoneparadox.nicetohave.util.MinecartTracker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,15 +23,18 @@ import java.util.Optional;
 /**
  * Created by RedstoneParadox on 5/25/2019.
  */
-@Mixin({MinecartEntity.class})
+@Mixin({MinecartEntity.class, CommandBlockMinecartEntity.class, StorageMinecartEntity.class, FurnaceMinecartEntity.class})
 public abstract class MinecartEntitiesMixin extends AbstractMinecartEntity {
 
+    /*
     private AbstractMinecartEntity link = null;
+     */
 
-    public MinecartEntitiesMixin(EntityType<?> entityType_1, World world_1) {
+    private MinecartEntitiesMixin(EntityType<?> entityType_1, World world_1) {
         super(entityType_1, world_1);
     }
 
+    /*
     @Override
     public void setVelocity(Vec3d vec3d_1) {
         super.setVelocity(vec3d_1);
@@ -37,12 +43,44 @@ public abstract class MinecartEntitiesMixin extends AbstractMinecartEntity {
             link.setVelocity(vec3d_1);
         }
     }
+     */
 
 
 
-    @Inject(method = "interact", at = @At("HEAD"))
+    @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
     private void interact(PlayerEntity playerEntity_1, Hand hand_1, CallbackInfoReturnable<Boolean> cir) {
+        AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
 
+        if (Config.INSTANCE.getMiscOption("vehicle_pickup", Boolean.class, true) && playerEntity_1.isSneaking()) {
+            Item minecartItem = net.minecraft.item.Items.AIR;
+
+            switch (self.getMinecartType()) {
+                case RIDEABLE:
+                    minecartItem = net.minecraft.item.Items.MINECART;
+                    break;
+                case CHEST:
+                    minecartItem = net.minecraft.item.Items.CHEST_MINECART;
+                    break;
+                case FURNACE:
+                    minecartItem = net.minecraft.item.Items.FURNACE_MINECART;
+                    break;
+                case HOPPER:
+                    minecartItem = net.minecraft.item.Items.HOPPER_MINECART;
+                    break;
+                case COMMAND_BLOCK:
+                    if (playerEntity_1.isCreative()) minecartItem = net.minecraft.item.Items.COMMAND_BLOCK_MINECART;
+                    break;
+            }
+
+            if (minecartItem != net.minecraft.item.Items.AIR && (playerEntity_1.isCreative() || playerEntity_1.giveItemStack(new ItemStack(minecartItem)))) {
+                playerEntity_1.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
+                remove();
+                cir.setReturnValue(true);
+                cir.cancel();
+            }
+        }
+
+        /*
         ItemStack handStack = null;
 
         if (playerEntity_1.isSneaking() && playerEntity_1.getMainHandStack().getItem() == Items.INSTANCE.getCHAIN_LINK()) {
@@ -62,5 +100,6 @@ public abstract class MinecartEntitiesMixin extends AbstractMinecartEntity {
             Optional<AbstractMinecartEntity> newLink = MinecartTracker.INSTANCE.connectCarts(this);
             newLink.ifPresent(abstractMinecartEntity -> link = abstractMinecartEntity);
         }
+         */
     }
 }

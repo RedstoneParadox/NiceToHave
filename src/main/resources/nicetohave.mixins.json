@@ -9,6 +9,8 @@
     "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",
+    "entity.vehicle.AbstractMinecartEntityMixin",
+    "entity.vehicle.MinecartEntitiesMixin",
     "entity.vehicle.BoatEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
