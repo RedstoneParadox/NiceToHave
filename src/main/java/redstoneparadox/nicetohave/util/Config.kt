@@ -77,6 +77,7 @@ object Config {
         miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
         miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
         miscCategory.putDefault("peaceful_bamboo_jungle", JsonPrimitive(true), "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes (Just like Mushroom Islands). Set to false to re-enable.")
+        miscCategory.putDefault("vehicle_pickup", JsonPrimitive(true), "Allows you to pickup boats and minecarts by shift-clicking.")
     }
 
     private fun save() {
