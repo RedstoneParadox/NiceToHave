@@ -46,7 +46,7 @@ public abstract class BoatEntityMixin {
 
             if (boatItem != Items.AIR && (playerEntity_1.isCreative() || playerEntity_1.giveItemStack(new ItemStack(boatItem)))) {
                 BoatEntity self = ((BoatEntity)(Object)this);
-                //self.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
+                playerEntity_1.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
                 self.remove();
                 cir.setReturnValue(true);
             }
