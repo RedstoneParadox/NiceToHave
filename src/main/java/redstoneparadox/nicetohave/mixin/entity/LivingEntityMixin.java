@@ -24,15 +24,18 @@ import redstoneparadox.nicetohave.item.DrinkItem;
  * Created by RedstoneParadox on 5/26/2019.
  */
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements AttackTicksGetSet {
+public abstract class LivingEntityMixin extends Entity /*implements AttackTicksGetSet*/ {
 
+    /*
     @Shadow
     protected int lastAttackedTicks;
+     */
 
     public LivingEntityMixin(EntityType<?> entityType_1, World world_1) {
         super(entityType_1, world_1);
     }
 
+    /*
     @Override
     public void setLastAttackTicks(int ticks) {
         lastAttackedTicks = ticks;
@@ -42,6 +45,7 @@ public abstract class LivingEntityMixin extends Entity implements AttackTicksGet
     public int getLastAttackTicks() {
         return lastAttackedTicks;
     }
+     */
 
     @Inject(method = "onEquipStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V", shift = At.Shift.BEFORE), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
     private void onEquipStack(ItemStack itemStack_1, CallbackInfo ci, SoundEvent soundEvent_1) {
