@@ -13,10 +13,12 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import redstoneparadox.nicetohave.hooks.AttackTicksGetSet;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import redstoneparadox.nicetohave.item.DrinkItem;
 
 /**
  * Created by RedstoneParadox on 5/26/2019.
@@ -46,6 +48,14 @@ public abstract class LivingEntityMixin extends Entity implements AttackTicksGet
         Item item = itemStack_1.getItem();
         if (item instanceof BoatItem || item instanceof MinecartItem) {
             ci.cancel();
+        }
+    }
+
+    @Inject(method = "getEatSound", at = @At("HEAD"), cancellable = true)
+    private void getEatSound(ItemStack itemStack_1, CallbackInfoReturnable<SoundEvent> cir) {
+        if (itemStack_1.getItem() instanceof DrinkItem) {
+            cir.setReturnValue(SoundEvents.ENTITY_GENERIC_DRINK);
+            cir.cancel();
         }
     }
 }

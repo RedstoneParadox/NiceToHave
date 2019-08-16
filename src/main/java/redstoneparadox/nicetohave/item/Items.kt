@@ -20,6 +20,10 @@ object Items {
     val WRENCH : Item = WrenchItem(Item.Settings().group(ItemGroup.TOOLS).maxCount(1))
     val FERTILIZER : Item = BoneMealItem(Item.Settings().group(ItemGroup.MATERIALS))
 
+    //Food
+    val SWEET_BERRY_JUICE : Item = DrinkItem(Item.Settings().group(ItemGroup.FOOD).food(FoodComponents.JUICE))
+    val APPLE_JUICE : Item = DrinkItem(Item.Settings().group(ItemGroup.FOOD).food(FoodComponents.JUICE))
+
     //BlockItems.
     val GOLD_BUTTON : BlockItem = BlockItem(Blocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
     val ANALOG_REDSTONE_EMITTER = BlockItem(Blocks.ANALOG_REDSTONE_EMITTER, Item.Settings().group(ItemGroup.REDSTONE))
@@ -40,6 +44,9 @@ object Items {
         register(DYNAMITE, "dynamite")
         register(WRENCH, "wrench")
         register(FERTILIZER, "fertilizer")
+
+        register(SWEET_BERRY_JUICE, "sweet_berry_juice")
+        register(APPLE_JUICE, "apple_juice")
       
         registerBlockItem(GOLD_BUTTON, "gold_button")
         registerBlockItem(ANALOG_REDSTONE_EMITTER, "analog_redstone_emitter")
