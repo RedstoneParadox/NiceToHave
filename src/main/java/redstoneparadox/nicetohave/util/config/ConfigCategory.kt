@@ -47,7 +47,7 @@ class ConfigCategory(val key : String? = null, val comment : String? = null, val
             else if (entry.value is JsonObject) {
                 if (subCategoriesMap.containsKey(entry.key)) {
                     val subCategory = subCategoriesMap[entry.key]!!
-                    subCategory.deserialize(json)
+                    subCategory.deserialize(entry.value as JsonObject)
                 }
                 else {
                     NiceToHave.error("Attempted to load non-category `${entry.key}`.")
