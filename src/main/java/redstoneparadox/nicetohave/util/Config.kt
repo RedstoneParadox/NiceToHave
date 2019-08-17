@@ -42,44 +42,39 @@ object Config {
     }
 
     private fun setValues() {
-        //Main
-        configObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
+        configObject = Builder(configObject)
+                //Items
+                .addCategory("items", "Enable/Disable items.")
+                .addTrueBool("chain_link", "Set to false to disable chain-links.")
+                .addTrueBool("dynamite", "Set to false to disable dynamite.")
+                .addTrueBool("wrench", "Set to false to disable the wrench.")
+                .addTrueBool("fertilizer", "Set to false to disable fertilizer.")
+                .addTrueBool("sweet_berry_juice", "Set to false to disable sweet berry juice")
+                .addTrueBool("apple_juice", "Set to false to disable apple juice")
+                //Blocks
+                .addCategory("blocks", "Enable/Disable blocks.")
+                .addTrueBool("gold_button", "Set to false to disable gold buttons.")
+                .addTrueBool("analog_redstone_emitter", "Set to false to disable analog redstone emitters.")
+                //.addTrueBool("chain_link_fence", "Set to false to disable chain-link fences.")
+                .addTrueBool("trimmed_vine", "Set to false to disable trimmed-vines.")
+                .addTrueBool("poles", "Set to false to disable pole blocks.")
+                //Potions
+                .addCategory("potions", "Enable/Disable potions.")
+                .addTrueBool("insight", "Set to false to disable the Potion of Insight.")
+                //.addTrueBool("nectar", "Set to false to disable Nectar.")
+                //World
+                .addCategory("world", "Various world features.")
+                .addTrueBool("gold_in_rivers", "Set to false to disable gold deposits in rivers.")
+                .addFloatRange("river_gold_percent", "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.", 10.0f, 0.0f, 100.0f)
+                .addTrueBool("disable_ponds", "Set to false to re-enable water and lava ponds.")
+                //Misc
+                .addCategory("misc", "Miscellaneous settings.")
+                .addTrueBool("dispenser_crop_planting", "Set to false to disable dispensers planting crops.")
+                .addTrueBool("dispenser_ladder_placement", "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
+                .addTrueBool("peaceful_bamboo_jungle", "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes (Just like Mushroom Islands). Set to false to re-enable.")
+                .addTrueBool("vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
 
-        val itemsCategory = addCategory("items", "Enable/Disable items.")
-        val blocksCategory = addCategory("blocks", "Enable/Disable blocks.")
-        val potionsCategory = addCategory("potions", "Enable/disable potions.")
-        val worldCategory = addCategory("world", "Enable, disable, and configure various world gen features.")
-        val miscCategory = addCategory("misc", "Miscellaneous settings.")
-
-        //Items
-        itemsCategory!!.putDefault("chain_link", JsonPrimitive(true), "Set to false to disable chain-links.")
-        itemsCategory.putDefault("dynamite", JsonPrimitive(true), "Set to false to disable dynamite.")
-        itemsCategory.putDefault("wrench", JsonPrimitive(true), "Set to false to disable the wrench.")
-        itemsCategory.putDefault("fertilizer", JsonPrimitive(true), "Set to false to disable fertilizer.")
-        itemsCategory.putDefault("sweet_berry_juice", JsonPrimitive.TRUE, "Set to false to disable sweet berry juice")
-        itemsCategory.putDefault("apple_juice", JsonPrimitive.TRUE, "Set to false to disable apple juice")
-
-        //Blocks
-        blocksCategory!!.putDefault("gold_button", JsonPrimitive(true), "Set to false to disable gold buttons.")
-        blocksCategory.putDefault("analog_redstone_emitter", JsonPrimitive(true), "Set to false to disable the Analog Redstone Emitter.")
-        //blocksCategory.putDefault("chain_link_fence", JsonPrimitive(true), "Set to false to disable chain-link fences.")
-        blocksCategory.putDefault("trimmed_vine", JsonPrimitive(true), "Set to false to disable trimmed-vine blocks.")
-        blocksCategory.putDefault("poles", JsonPrimitive(true), "Set to false to disable pole blocks.")
-
-        //Potions
-        potionsCategory!!.putDefault("insight", JsonPrimitive(true), "Set to false to disable the Potion of Insight.")
-        //potionsCategory.putDefault("nectar", JsonPrimitive(true), "Set to false to disable Nectar.")
-
-        //World
-        worldCategory!!.putDefault("gold_in_rivers", JsonPrimitive(true), "Set to false to disable gold deposits in rivers.")
-        worldCategory.putDefault("river_gold_percent", JsonPrimitive(10.0f), "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves. [Range 0 to 100]")
-        worldCategory.putDefault("disable_ponds", JsonPrimitive(true), "Disables small water and lava ponds. Set to false to re-enabled them.")
-
-        //Misc
-        miscCategory!!.putDefault("dispenser_crop_planting", JsonPrimitive(true), "Set to false to disable dispensers planting crops.")
-        miscCategory.putDefault("dispenser_ladder_placement", JsonPrimitive(true), "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
-        miscCategory.putDefault("peaceful_bamboo_jungle", JsonPrimitive(true), "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes (Just like Mushroom Islands). Set to false to re-enable.")
-        miscCategory.putDefault("vehicle_pickup", JsonPrimitive(true), "Allows you to pickup boats and minecarts by shift-clicking.")
+                .build()
     }
 
     private fun save() {
@@ -154,6 +149,42 @@ object Config {
                 NiceToHave.error("Unsupported type `$clazz` found as value of config option `$option`!")
                 return clazz.toString()
             }
+        }
+    }
+
+    private class Builder(val baseObject: JsonObject) {
+
+        var currentCategory : JsonObject = baseObject
+
+        fun addCategory(key : String, comment: String): Builder {
+            baseObject.putDefault(key, JsonObject(), comment)
+            currentCategory = baseObject.get(JsonObject::class.java, key)!!
+            return this
+        }
+
+        fun addTrueBool(key : String, comment: String): Builder {
+            currentCategory.putDefault(key, JsonPrimitive.TRUE, "${comment} [Values: true/false]")
+            return this
+        }
+
+        fun addFalseBool(key : String, comment: String): Builder {
+            currentCategory.putDefault(key, JsonPrimitive.FALSE, "${comment} [Values: true/false]")
+            return this
+        }
+
+        fun addFloat(key: String, comment: String, value : Float): Builder {
+            currentCategory.putDefault(key, JsonPrimitive(value), "${comment} [Values: any number]")
+            return this
+        }
+
+        fun addFloatRange(key: String, comment: String, value: Float, min : Float, max : Float): Builder {
+            currentCategory.putDefault(key, JsonPrimitive(value), "${comment} [Values: $min to $max]")
+            return this
+        }
+
+        fun build(): JsonObject {
+            baseObject.putDefault("config_version", JsonPrimitive(1), "Stores the version of the config; used if the config format changes so that old values can be transferred to the new format. DO NOT EDIT.")
+            return baseObject
         }
     }
 }
