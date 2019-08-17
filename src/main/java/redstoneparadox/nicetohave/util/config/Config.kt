@@ -1,10 +1,18 @@
 package redstoneparadox.nicetohave.util.config
 
+import blue.endless.jankson.Jankson
 import blue.endless.jankson.JsonObject
+import blue.endless.jankson.impl.SyntaxError
+import net.fabricmc.loader.FabricLoader
+import redstoneparadox.nicetohave.NiceToHave
+import java.io.File
+import java.io.IOException
 
 object Config {
 
     private val mainCategory : ConfigCategory
+
+    private var hadError = false
 
     //Types
     val boolType = Boolean::class.javaObjectType
@@ -12,8 +20,30 @@ object Config {
     val intType = Int::class.javaObjectType
 
     init {
-        val placeholder = JsonObject()
-        mainCategory = Builder(placeholder)
+        val hjsonFile = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson")
+        val json5File = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5")
+
+        var configObject = JsonObject()
+
+        try {
+            configObject = Jankson
+                    .builder()
+                    .build()
+                    .load(if (json5File.exists()) json5File else hjsonFile)
+        } catch (e : IOException) {
+            NiceToHave.out("Couldn't find config file; all config values will be set to default and a new file will be created.")
+        } catch (e : SyntaxError) {
+            NiceToHave.error("Couldn't read the config file due to an hjson syntax error. Please fix the file or delete it to generate a new one. (Default config values will be used in the meantime).")
+            e.message?.let { NiceToHave.error(it) }
+            NiceToHave.error(e.lineMessage)
+            hadError = true
+        }
+
+        if (hjsonFile.exists()) {
+            NiceToHave.out("Nice to Have now uses JSON5 as the config format for better editor support. Please delete the hjson file as all files will now be written to the json5 file.")
+        }
+
+        mainCategory = Builder(configObject)
                 .addMetaInt("config_version", "Config format version.", 1)
                 .newCategory("items", "Enable/Disable items.")
                 .addBool("chain_link", "Set to false to disable chain-links.")
@@ -46,6 +76,8 @@ object Config {
                 .addBool("vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
                 .endCategory()
                 .build()
+
+        save()
     }
 
     fun getBool(key : String, default : Boolean = true): Boolean {
@@ -69,20 +101,25 @@ object Config {
         return mainCategory.getOption(keySequence, default, key, optionType)
     }
 
+    private fun save() {
+        if (!hadError) {
+            val configString = mainCategory.serialize(JsonObject()).toJson(true, true)
+            File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5").bufferedWriter().use { it.write(configString) }
+        }
+    }
+
     class Builder(val json : JsonObject) {
         private val mainCategory : ConfigCategory = ConfigCategory(isMain = true)
         private var currentCategory : ConfigCategory = mainCategory
 
         fun newCategory(key: String, comment : String): Builder {
             currentCategory = ConfigCategory(key, comment)
+            mainCategory.addSubCategory(key, currentCategory)
             return this
         }
 
         fun endCategory(): Builder {
-            if (mainCategory != currentCategory) {
-                mainCategory.addSubCategory(currentCategory.key!!, currentCategory)
-                currentCategory = mainCategory
-            }
+            currentCategory = mainCategory
             return this
         }
 
@@ -102,7 +139,7 @@ object Config {
         }
 
         fun addMetaInt(key: String, comment: String, value : Int): Builder {
-            mainCategory.addOption(key, ConfigMetaData(intType, value, trueKey(key), "$comment [Meta Data]"))
+            mainCategory.addOption(key, ConfigMetaData(intType, value, key, "$comment [Meta Data]"))
             return this
         }
 
