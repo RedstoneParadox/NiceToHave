@@ -7,7 +7,7 @@ import redstoneparadox.nicetohave.NiceToHave
 open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, val comment : String) {
 
     fun serialize(json : JsonObject): JsonObject {
-        json.put(key, JsonPrimitive(value), comment)
+        json.put(trueKey(), JsonPrimitive(value), comment)
         return json
     }
 
@@ -23,4 +23,7 @@ open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : S
         return any as T
     }
 
+    private fun trueKey(): String {
+        return key.split(".").last()
+    }
 }

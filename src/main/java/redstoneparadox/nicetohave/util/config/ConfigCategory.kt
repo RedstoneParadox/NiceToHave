@@ -60,8 +60,8 @@ class ConfigCategory(val key : String? = null, val comment : String? = null, val
         optionsMap[optionKey] = option
     }
 
-    fun addSubCategory(optionKey : String, category: ConfigCategory) {
-        subCategoriesMap[optionKey] = category
+    fun addSubCategory(categoryKey : String, category: ConfigCategory) {
+        subCategoriesMap[categoryKey] = category
     }
 
     fun <T : Any> getOption(keySequence: Sequence<String>, default : T, originalKey : String, optionType : Class<T>): T {
