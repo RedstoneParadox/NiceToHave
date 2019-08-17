@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import redstoneparadox.nicetohave.util.Config;
+import redstoneparadox.nicetohave.util.config.Config;
 
 @Mixin(BoatEntity.class)
 public abstract class BoatEntityMixin {
@@ -21,7 +21,7 @@ public abstract class BoatEntityMixin {
 
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
     private void interact(PlayerEntity playerEntity_1, Hand hand_1, CallbackInfoReturnable<Boolean> cir) {
-        if (Config.INSTANCE.getMiscOption("vehicle_pickup", Boolean.class, true) && playerEntity_1.isSneaking()) {
+        if (Config.INSTANCE.getBool("misc.vehicle_pickup", true) && playerEntity_1.isSneaking()) {
             Item boatItem = Items.AIR;
 
             switch (getBoatType()) {

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
-import redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.util.config.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -55,7 +55,7 @@ object Items {
         registerBlockItem(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
         registerBlockItem(CHAIN_LINK_FENCE, "chain_link_fence")
 
-        if (Config.getBlockOption("poles", Config.boolType, true)) {
+        if (Config.getBool("blocks.poles")) {
             registerBlockItem(OAK_POLE, "oak_pole", false)
             registerBlockItem(SPRUCE_POLE, "spruce_pole", false)
             registerBlockItem(BIRCH_POLE, "birch_pole", false)
@@ -68,16 +68,18 @@ object Items {
     }
 
     private fun register(item : Item, id : String, respectsConfig: Boolean = true) {
-        if (!respectsConfig || Config.getItemOption(id, Config.boolType, true)) {
+        if (!respectsConfig || Config.getBool("items.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
     }
 
     private fun registerBlockItem(item: BlockItem, id: String, respectsConfig : Boolean = true) {
-        if (!respectsConfig || Config.getBlockOption(id, Config.boolType, true)) {
+        if (!respectsConfig || Config.getBool("blocks.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
     }
+
+    //Config.getBlockOption(id, Config.boolType, true)
 
     fun registerFuels() {
         registerFuelForEach(arrayOf(Items.OAK_POLE, Items.SPRUCE_POLE, Items.BIRCH_POLE, Items.JUNGLE_POLE, Items.ACACIA_POLE, Items.DARK_OAK_POLE), 300)

@@ -12,12 +12,12 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import redstoneparadox.nicetohave.util.Config;
 import redstoneparadox.nicetohave.util.MinecartTracker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import redstoneparadox.nicetohave.util.config.Config;
 
 import static net.minecraft.entity.vehicle.AbstractMinecartEntity.Type.*;
 
@@ -40,7 +40,7 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
 
     @Override
     public boolean interact(PlayerEntity playerEntity_1, Hand hand_1) {
-        if (Config.INSTANCE.getMiscOption("vehicle_pickup", Boolean.class, true) && playerEntity_1.isSneaking()) {
+        if (Config.INSTANCE.getBool("misc.vehicle_pickup", true) && playerEntity_1.isSneaking()) {
             AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
             Item minecartItem = net.minecraft.item.Items.AIR;
 

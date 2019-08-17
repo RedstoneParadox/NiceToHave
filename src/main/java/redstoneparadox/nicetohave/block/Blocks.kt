@@ -4,10 +4,9 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
-import net.minecraft.nbt.Tag
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
-import redstoneparadox.nicetohave.util.Config
+import redstoneparadox.nicetohave.util.config.Config
 
 object Blocks {
 
@@ -39,7 +38,7 @@ object Blocks {
         register(SAND_GOLD_ORE, "sand_gold_ore", false)
         register(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
 
-        if (Config.getBlockOption("poles", Config.boolType, true)) {
+        if (Config.getBool("blocks.poles")) {
             register(OAK_POLE, "oak_pole", false)
             register(SPRUCE_POLE, "spruce_pole", false)
             register(BIRCH_POLE, "birch_pole", false)
@@ -52,7 +51,7 @@ object Blocks {
     }
 
     fun register(block : Block, id : String, respectConfig : Boolean = true) {
-        if (!respectConfig || Config.getBlockOption(id, Config.boolType, true)) {
+        if (!respectConfig || Config.getBool("blocks.$id")) {
             Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
         }
     }

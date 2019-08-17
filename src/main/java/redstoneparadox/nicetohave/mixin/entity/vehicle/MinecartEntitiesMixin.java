@@ -1,24 +1,18 @@
 package redstoneparadox.nicetohave.mixin.entity.vehicle;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import redstoneparadox.nicetohave.item.Items;
-import redstoneparadox.nicetohave.util.Config;
-import redstoneparadox.nicetohave.util.MinecartTracker;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Optional;
+import redstoneparadox.nicetohave.util.config.Config;
 
 /**
  * Created by RedstoneParadox on 5/25/2019.
@@ -51,7 +45,7 @@ public abstract class MinecartEntitiesMixin extends AbstractMinecartEntity {
     private void interact(PlayerEntity playerEntity_1, Hand hand_1, CallbackInfoReturnable<Boolean> cir) {
         AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
 
-        if (Config.INSTANCE.getMiscOption("vehicle_pickup", Boolean.class, true) && playerEntity_1.isSneaking()) {
+        if (Config.INSTANCE.getBool("misc.vehicle_pickup", true) && playerEntity_1.isSneaking()) {
             Item minecartItem = net.minecraft.item.Items.AIR;
 
             switch (self.getMinecartType()) {
