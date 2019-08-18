@@ -1,9 +1,13 @@
 package redstoneparadox.nicetohave.util.config
 
 import blue.endless.jankson.Jankson
+import blue.endless.jankson.JsonElement
 import blue.endless.jankson.JsonObject
+import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
+import io.github.cottonmc.libcd.condition.ConditionalData
 import net.fabricmc.loader.FabricLoader
+import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 import java.io.IOException
@@ -50,8 +54,8 @@ object Config {
                 .addBool("dynamite", "Set to false to disable dynamite.")
                 .addBool("wrench", "Set to false to disable the wrench.")
                 .addBool("fertilizer", "Set to false to disable fertilizer.")
-                .addBool("sweet_berry_juice", "Set to false to disable sweet berry juice")
-                .addBool("apple_juice", "Set to false to disable apple juice")
+                .addBool("sweet_berry_juice", "Set to false to disable sweet berry juice.")
+                .addBool("apple_juice", "Set to false to disable apple juice.")
                 .endCategory()
                 .newCategory("blocks", "Enable/Disable blocks.")
                 .addBool("gold_button", "Set to false to disable gold buttons.")
@@ -78,6 +82,20 @@ object Config {
                 .build()
 
         save()
+
+        ConditionalData.registerCondition(Identifier("nicetohave", "config_true")) {
+            if (it is String) {
+                return@registerCondition getBool(it)
+            }
+            else if (it is List<*>) {
+                for (element in (it as List<JsonElement>)) {
+                    if (element !is JsonPrimitive) return@registerCondition false
+                    val key : String = element.value as? String ?: return@registerCondition false
+                    return@registerCondition getBool(key)
+                }
+            }
+            return@registerCondition false
+        }
     }
 
     fun getBool(key : String, default : Boolean = true): Boolean {

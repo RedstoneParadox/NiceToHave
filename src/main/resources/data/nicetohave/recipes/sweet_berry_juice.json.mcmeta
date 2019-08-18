@@ -1,0 +1,5 @@
+{
+  "when": [
+    { "nicetohave:config_true": "items.sweet_berry_juice" }
+  ]
+}
