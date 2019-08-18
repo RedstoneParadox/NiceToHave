@@ -1,6 +1,7 @@
 package net.redstoneparadox.nicetohave.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
@@ -44,11 +45,27 @@ object Blocks {
             register(ACACIA_POLE, "acacia_pole", false)
             register(DARK_OAK_POLE, "dark_oak_pole", false)
         }
+
+        registerFlammables()
     }
 
     fun register(block : Block, id : String, respectConfig : Boolean = true) {
         if (!respectConfig || Config.getBlockOption(id, Config.boolType, true)) {
             Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
         }
+    }
+
+    private fun registerFlammables() {
+        registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
+    }
+
+    private fun registerFlammableBlocks(blocks : Array<Block>, entry : FlammableBlockRegistry.Entry) {
+        for (block in blocks) {
+            registerFlammableBlock(block, entry)
+        }
+    }
+
+    private fun registerFlammableBlock(block: Block, entry : FlammableBlockRegistry.Entry) {
+        FlammableBlockRegistry.getDefaultInstance().add(block, entry)
     }
 }
