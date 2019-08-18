@@ -64,6 +64,9 @@ object DispenserBehaviors {
                 return itemStack
             }
         })
+        if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
+            register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
+        }
     }
 
     fun register(item : Item, behavior : DispenserBehavior) {
