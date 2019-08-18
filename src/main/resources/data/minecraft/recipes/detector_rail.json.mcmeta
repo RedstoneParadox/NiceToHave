@@ -1,5 +1,0 @@
-{
-  "when": [
-    { "nicetohave:config_true": "recipes.rails" }
-  ]
-}

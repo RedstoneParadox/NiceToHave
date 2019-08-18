@@ -14,6 +14,7 @@
     "entity.vehicle.BoatEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
+    "resource.AbstractFileResourcePackMixin",
     "resource.NamespaceResourceManagerMixin",
     "world.biome.BambooJungleBiomeMixin",
     "world.biome.BambooJungleHillsBiomeMixin",

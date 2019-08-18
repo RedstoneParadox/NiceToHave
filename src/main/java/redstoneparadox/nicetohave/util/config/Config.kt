@@ -65,7 +65,7 @@ object Config {
                 .addBool("poles", "Set to false to disable pole blocks.")
                 .endCategory()
                 .newCategory("recipes", "Adding recipes and tweaking them.")
-                //.addBool("rails", "Activator, detector, and powered rail recipes give 16 rails instead of 6.")
+                .addBool("increased_rail_output", "Activator, detector, and powered rail recipes give 16 rails instead of 6.")
                 .endCategory()
                 .newCategory("potions", "Enable/Disable potions.")
                 .addBool("insight", "Set to false to disable the Potion of Insight.")
@@ -94,7 +94,7 @@ object Config {
                 for (element in (it as List<JsonElement>)) {
                     if (element !is JsonPrimitive) return@registerCondition false
                     val key : String = element.value as? String ?: return@registerCondition false
-                    if (getBool(key) == false) return@registerCondition false
+                    if (!getBool(key)) return@registerCondition false
                 }
                 return@registerCondition true
             }
