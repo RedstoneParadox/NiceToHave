@@ -1,0 +1,5 @@
+{
+  "when": {
+    "nicetohave:config_true": ["items.chain_link", "blocks.chain_link_fence"]
+  }
+}
