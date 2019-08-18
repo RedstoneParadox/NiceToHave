@@ -94,7 +94,7 @@ object Config {
                 for (element in (it as List<JsonElement>)) {
                     if (element !is JsonPrimitive) return@registerCondition false
                     val key : String = element.value as? String ?: return@registerCondition false
-                    if (!getBool(key)) return@registerCondition false
+                    if (getBool(key) == false) return@registerCondition false
                 }
                 return@registerCondition true
             }
