@@ -22,6 +22,7 @@ import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import redstoneparadox.nicetohave.item.Items
 import redstoneparadox.nicetohave.networking.Packets
 import redstoneparadox.nicetohave.util.config.Config
+import net.redstoneparadox.nicetohave.util.getBlock
 import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
@@ -66,9 +67,27 @@ object DispenserBehaviors {
                         world.playLevelEvent(2005, blockPos, 0)
                     }
 
-                    return itemStack
+                return stack
+            }
+        })
+        register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
+            override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
+                this.success = true
+                val world = blockPointer_1.world
+                val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
+                if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
+                    this.success = false
+                } else if (!world.isClient) {
+                    world.playLevelEvent(2005, blockPos, 0)
                 }
-            })
+
+                return itemStack
+            }
+        })
+        if (Config.getBool("misc.dispenser_crop_planting")) {
+            register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
+            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+            register(VanillaItems.KELP, PlantingDispenserBehavior(null, Blocks.KELP_PLANT, true))
         }
     }
 
@@ -96,29 +115,49 @@ object DispenserBehaviors {
         }
     }
 
-    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block) : ItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>?, private val plant : Block, private val requiresWater : Boolean = false) : FallibleItemDispenserBehavior() {
 
-        override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
-            val stack = itemStack!!
-            val world = pointer!!.world
+        override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
+            success = false
+            val world = pointer.world
             val direction = pointer.blockState.get(DispenserBlock.FACING)
             val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
 
-            for (block in farmlandBlocks) {
-                if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == Blocks.AIR) {
-                    world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
-                    stack.decrement(1)
-                    return stack
+            if (farmlandBlocks == null) {
+                if (checkWaterReq(world, pointer.blockPos.offset(direction))) {
+                    if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down()), world, pointer.blockPos.offset(direction))) {
+                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                        itemStack.decrement(1)
+                        success = true
+                    }
+                }
+            }
+            else {
+                for (block in farmlandBlocks) {
+                    val targetBlock = if (requiresWater) Blocks.WATER else Blocks.AIR
+                    if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
+                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                        itemStack.decrement(1)
+                        success = true
+                    }
                 }
             }
 
-            return super.dispenseSilently(pointer, stack)
+            return itemStack
+        }
+
+        private fun checkWaterReq(world: World, targetPos : BlockPos): Boolean {
+            if (!requiresWater) return true
+            else if (world.getBlock(targetPos) == Blocks.WATER) return true
+            return false
         }
     }
-    class LadderBehavior(val ladder : Block, private val upwardsOnly : Boolean = false) : ItemDispenserBehavior() {
-        override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
-            val direction: Direction = pointer!!.blockState.get(DispenserBlock.FACING)
+    class LadderBehavior(val ladder : Block, private val upwardsOnly : Boolean = false) : FallibleItemDispenserBehavior() {
+        override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
+            val direction: Direction = pointer.blockState.get(DispenserBlock.FACING)
             val world = pointer.world
+
+            success = false
 
             if (upwardsOnly && direction == Direction.DOWN) {
                 return super.dispenseSilently(pointer, itemStack)
@@ -129,7 +168,7 @@ object DispenserBehaviors {
                 var stackCount = 0
                 val ladderDirection = getLadderState(nextPosition, world)
 
-                while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack!!.count && ladderDirection != null) {
+                while (world.getBlockState(nextPosition).block == Blocks.AIR && stackCount != itemStack.count && ladderDirection != null) {
                     val ladderState = nextLadderState(nextPosition, world, ladderDirection) ?: break
 
                     world.setBlockState(nextPosition, ladderState)
@@ -138,12 +177,12 @@ object DispenserBehaviors {
                 }
 
                 if (stackCount > 0) {
-                    itemStack!!.decrement(stackCount)
-                    return itemStack
+                    itemStack.decrement(stackCount)
+                    success = true
                 }
             }
 
-            return super.dispenseSilently(pointer, itemStack)
+            return itemStack
         }
 
         private fun getLadderState(position: BlockPos, world: World): Direction? {

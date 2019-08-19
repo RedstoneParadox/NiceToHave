@@ -10,7 +10,7 @@ import redstoneparadox.nicetohave.util.config.Config
 
 object Blocks {
 
-    val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByHand(true).build())
+    val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.PART).noCollision().strength(0.5f, 0.1f).breakByHand(true).build())
     val ANALOG_REDSTONE_EMITTER = AnalogRedstoneEmitterBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
     val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByTool(net.minecraft.tag.Tag(Identifier("fabric:pickaxes"))).build())
     val TRIMMED_VINE_BLOCK : Block = TrimmedVineBlock(FabricBlockSettings.copy(Blocks.VINE).build())

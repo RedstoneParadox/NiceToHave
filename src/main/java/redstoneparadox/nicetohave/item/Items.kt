@@ -79,8 +79,6 @@ object Items {
         }
     }
 
-    //Config.getBlockOption(id, Config.boolType, true)
-
     fun registerFuels() {
         registerFuelForEach(arrayOf(Items.OAK_POLE, Items.SPRUCE_POLE, Items.BIRCH_POLE, Items.JUNGLE_POLE, Items.ACACIA_POLE, Items.DARK_OAK_POLE), 300)
     }
