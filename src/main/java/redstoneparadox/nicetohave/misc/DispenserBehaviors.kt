@@ -22,7 +22,7 @@ import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import redstoneparadox.nicetohave.item.Items
 import redstoneparadox.nicetohave.networking.Packets
 import redstoneparadox.nicetohave.util.config.Config
-import redstoneparadox.nicetohave.util.getBlock
+import net.redstoneparadox.nicetohave.util.getBlock
 import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
@@ -33,7 +33,7 @@ object DispenserBehaviors {
     fun registerBehaviors() {
         if (Config.getBool("items.dynamite")) {
             register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
-                var entity: ThrownDynamiteEntity? = null
+                var entity : ThrownDynamiteEntity? = null
 
                 override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
                     entity = SystemUtil.consume(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
@@ -43,7 +43,7 @@ object DispenserBehaviors {
                 override fun dispenseSilently(blockPointer_1: BlockPointer?, itemStack_1: ItemStack?): ItemStack {
                     val stack = super.dispenseSilently(blockPointer_1, itemStack_1)
 
-                    if (entity != null) {
+                    if (entity != null)  {
                         Packets.dispatchToAllWatching(entity!!, ::EntityPositionS2CPacket)
                         entity = null
                     }
@@ -51,6 +51,9 @@ object DispenserBehaviors {
                     return stack
                 }
             })
+        }
+        if (Config.getBool("misc.dispenser_crop_planting")) {
+            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         }
         if (Config.getBool("items.fertilizer")) {
             register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
@@ -64,10 +67,23 @@ object DispenserBehaviors {
                         world.playLevelEvent(2005, blockPos, 0)
                     }
 
-                    return itemStack
+                return stack
+            }
+        })
+        register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
+            override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
+                this.success = true
+                val world = blockPointer_1.world
+                val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
+                if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
+                    this.success = false
+                } else if (!world.isClient) {
+                    world.playLevelEvent(2005, blockPos, 0)
                 }
-            })
-        }
+
+                return itemStack
+            }
+        })
         if (Config.getBool("misc.dispenser_crop_planting")) {
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
@@ -75,11 +91,11 @@ object DispenserBehaviors {
         }
     }
 
-    fun register(item: Item, behavior: DispenserBehavior) {
+    fun register(item : Item, behavior : DispenserBehavior) {
         DispenserBlock.registerBehavior(item, behavior)
     }
 
-    fun blockToDispenserBehavior(block: Block, id: Identifier) {
+    fun blockToDispenserBehavior(block : Block, id : Identifier) {
         if (Config.getBool("misc.dispenser_crop_planting")) {
             when (block) {
                 is SaplingBlock -> register(Item.fromBlock(block), PlantingDispenserBehavior(saplingFarmBlocks, block))
@@ -99,7 +115,7 @@ object DispenserBehaviors {
         }
     }
 
-    class PlantingDispenserBehavior(private val farmlandBlocks: Array<Block>?, private val plant: Block, private val requiresWater: Boolean = false) : FallibleItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>?, private val plant : Block, private val requiresWater : Boolean = false) : FallibleItemDispenserBehavior() {
 
         override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
             success = false
@@ -115,7 +131,8 @@ object DispenserBehaviors {
                         success = true
                     }
                 }
-            } else {
+            }
+            else {
                 for (block in farmlandBlocks) {
                     val targetBlock = if (requiresWater) Blocks.WATER else Blocks.AIR
                     if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
@@ -129,14 +146,13 @@ object DispenserBehaviors {
             return itemStack
         }
 
-        private fun checkWaterReq(world: World, targetPos: BlockPos): Boolean {
+        private fun checkWaterReq(world: World, targetPos : BlockPos): Boolean {
             if (!requiresWater) return true
             else if (world.getBlock(targetPos) == Blocks.WATER) return true
             return false
         }
     }
-
-    class LadderBehavior(val ladder: Block, private val upwardsOnly: Boolean = false) : FallibleItemDispenserBehavior() {
+    class LadderBehavior(val ladder : Block, private val upwardsOnly : Boolean = false) : FallibleItemDispenserBehavior() {
         override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
             val direction: Direction = pointer.blockState.get(DispenserBlock.FACING)
             val world = pointer.world
