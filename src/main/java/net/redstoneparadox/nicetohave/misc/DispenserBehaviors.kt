@@ -22,6 +22,7 @@ import net.redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import net.redstoneparadox.nicetohave.item.Items
 import net.redstoneparadox.nicetohave.networking.Packets
 import net.redstoneparadox.nicetohave.util.Config
+import net.redstoneparadox.nicetohave.util.getBlock
 import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {
@@ -66,6 +67,7 @@ object DispenserBehaviors {
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
+            register(VanillaItems.KELP, PlantingDispenserBehavior(null, Blocks.KELP_PLANT, true))
         }
     }
 
@@ -93,7 +95,7 @@ object DispenserBehaviors {
         }
     }
 
-    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block) : FallibleItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>?, private val plant : Block, private val requiresWater : Boolean = false) : FallibleItemDispenserBehavior() {
 
         override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
             success = false
@@ -101,15 +103,33 @@ object DispenserBehaviors {
             val direction = pointer.blockState.get(DispenserBlock.FACING)
             val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
 
-            for (block in farmlandBlocks) {
-                if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == Blocks.AIR) {
-                    world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
-                    itemStack.decrement(1)
-                    success = true
+            if (farmlandBlocks == null) {
+                if (checkWaterReq(world, pointer.blockPos.offset(direction))) {
+                    if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down()), world, pointer.blockPos.offset(direction))) {
+                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                        itemStack.decrement(1)
+                        success = true
+                    }
+                }
+            }
+            else {
+                for (block in farmlandBlocks) {
+                    val targetBlock = if (requiresWater) Blocks.WATER else Blocks.AIR
+                    if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
+                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                        itemStack.decrement(1)
+                        success = true
+                    }
                 }
             }
 
             return itemStack
+        }
+
+        private fun checkWaterReq(world: World, targetPos : BlockPos): Boolean {
+            if (!requiresWater) return true
+            else if (world.getBlock(targetPos) == Blocks.WATER) return true
+            return false
         }
     }
     class LadderBehavior(val ladder : Block, private val upwardsOnly : Boolean = false) : FallibleItemDispenserBehavior() {
