@@ -49,6 +49,7 @@ object DispenserBehaviors {
                 return stack
             }
         })
+        register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
             override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                 this.success = true
@@ -65,7 +66,6 @@ object DispenserBehaviors {
         })
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
-            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         }
     }
 
@@ -93,7 +93,7 @@ object DispenserBehaviors {
         }
     }
 
-    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block, private val waterPlant : Boolean = false) : ItemDispenserBehavior() {
+    class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>, private val plant : Block) : ItemDispenserBehavior() {
 
         override fun dispenseSilently(pointer: BlockPointer?, itemStack: ItemStack?): ItemStack {
             val stack = itemStack!!
@@ -102,8 +102,7 @@ object DispenserBehaviors {
             val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
 
             for (block in farmlandBlocks) {
-                val targetBlock = if (waterPlant) Blocks.WATER else Blocks.AIR
-                if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
+                if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == Blocks.AIR) {
                     world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
                     stack.decrement(1)
                     return stack
