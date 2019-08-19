@@ -49,6 +49,7 @@ object Config {
 
         mainCategory = Builder(configObject)
                 .addMetaInt("config_version", "Config format version.", 1)
+                //Items
                 .newCategory("items", "Enable/Disable items.")
                 .addBool("chain_link", "Set to false to disable chain-links.")
                 .addBool("dynamite", "Set to false to disable dynamite.")
@@ -57,6 +58,7 @@ object Config {
                 .addBool("sweet_berry_juice", "Set to false to disable sweet berry juice.")
                 .addBool("apple_juice", "Set to false to disable apple juice.")
                 .endCategory()
+                //Blocks
                 .newCategory("blocks", "Enable/Disable blocks.")
                 .addBool("gold_button", "Set to false to disable gold buttons.")
                 .addBool("analog_redstone_emitter", "Set to false to disable analog redstone emitters.")
@@ -64,18 +66,23 @@ object Config {
                 .addBool("trimmed_vine", "Set to false to disable trimmed-vines.")
                 .addBool("poles", "Set to false to disable pole blocks.")
                 .endCategory()
+                // Recipes
                 .newCategory("recipes", "Adding recipes and tweaking them.")
                 .addBool("increased_rail_output", "Activator, detector, and powered rail recipes give 16 rails instead of 6.")
+                .addBool("uncraft_netherwart_block", "Allows for crafting Netherwart Blocks back into Netherwart.")
                 .endCategory()
+                // Potions
                 .newCategory("potions", "Enable/Disable potions.")
                 .addBool("insight", "Set to false to disable the Potion of Insight.")
                 //.addBool("nectar", "Set to false to disable Nectar.")
                 .endCategory()
+                // World
                 .newCategory("world", "Various world features.")
                 .addBool("gold_in_rivers", "Set to false to disable gold deposits in rivers.")
                 .addRange("river_gold_percent", "Sets the spawn rate of river gold ore in a single river gold deposit. Does not set the spawn rate of the deposits themselves.", 10.0, 0.0, 100.0)
                 .addBool("disable_ponds", "Set to false to re-enable water and lava ponds.")
                 .endCategory()
+                // Misc
                 .newCategory("misc", "Miscellaneous settings.")
                 .addBool("dispenser_crop_planting", "Set to false to disable dispensers planting crops.")
                 .addBool("dispenser_ladder_placement", "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
