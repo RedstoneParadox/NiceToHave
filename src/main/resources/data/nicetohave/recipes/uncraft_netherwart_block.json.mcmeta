@@ -1,0 +1,7 @@
+{
+  "when": [
+    {
+      "nicetohave:config_true": "recipes.uncraft_netherwart_block"
+    }
+  ]
+}
