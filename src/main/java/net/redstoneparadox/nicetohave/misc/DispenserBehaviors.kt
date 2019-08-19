@@ -49,7 +49,6 @@ object DispenserBehaviors {
                 return stack
             }
         })
-        register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
             override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                 this.success = true
@@ -66,7 +65,7 @@ object DispenserBehaviors {
         })
         if (Config.getMiscOption("dispenser_crop_planting", Config.boolType, true)) {
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
-            register(VanillaItems.KELP, PlantingDispenserBehavior())
+            register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         }
     }
 
