@@ -1,0 +1,7 @@
+{
+  "when": [
+    {
+      "nicetohave:config_true": "blocks.analog_redstone_emitter"
+    }
+  ]
+}
