@@ -5,9 +5,10 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
+import redstoneparadox.nicetohave.util.BlocksInitializer
 import redstoneparadox.nicetohave.util.config.Config
 
-object Blocks {
+object Blocks : BlocksInitializer() {
 
     var GOLD_BUTTON : Block? = null
     var ANALOG_REDSTONE_EMITTER : Block? = null
@@ -49,30 +50,9 @@ object Blocks {
         registerFlammables()
     }
 
-    fun register(block : Block, id : String, respectConfig : Boolean = true): Block? {
-        if (!respectConfig || Config.getBool("blocks.$id")) {
-            Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
-        }
-        return null
-    }
-
     private fun registerFlammables() {
         if (Config.getBool("blocks.poles")) {
             registerFlammableBlocks(arrayOf(OAK_POLE!!, SPRUCE_POLE!!, BIRCH_POLE!!, JUNGLE_POLE!!, ACACIA_POLE!!, DARK_OAK_POLE!!), FlammableBlockRegistry.Entry(5, 20))
         }
-    }
-
-    private fun registerFlammableBlocks(blocks : Array<Block>, entry : FlammableBlockRegistry.Entry) {
-        for (block in blocks) {
-            registerFlammableBlock(block, entry)
-        }
-    }
-
-    private fun registerFlammableBlock(block: Block, entry : FlammableBlockRegistry.Entry) {
-        FlammableBlockRegistry.getDefaultInstance().add(block, entry)
-    }
-
-    private fun copySettings(block: Block): Block.Settings {
-        return FabricBlockSettings.copy(block).build()
     }
 }
