@@ -3,9 +3,11 @@
   "package": "redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "block.AbstractButtonBlockMixin",
     "block.CactusBlockMixin",
     "block.ComposterBlockMixin",
     "block.DispenserBlockMixin",
+    "block.LeverBlockMixin",
     "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",
