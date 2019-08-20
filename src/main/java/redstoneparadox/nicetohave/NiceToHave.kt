@@ -35,7 +35,7 @@ object NiceToHave : ModInitializer {
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()
-        Blocks.registerBlocks()
+        Blocks.init()
         Items.registerItems()
         //Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()

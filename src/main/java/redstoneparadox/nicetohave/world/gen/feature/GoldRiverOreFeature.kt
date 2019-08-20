@@ -29,9 +29,9 @@ class GoldRiverOreFeature(function_1: Function<Dynamic<*>, DefaultFeatureConfig>
         val block = world.getBlockState(pos).block
         if (world.getFluidState(pos.up()).fluid == Fluids.WATER) {
             return when(block) {
-                Blocks.DIRT -> redstoneparadox.nicetohave.block.Blocks.DIRT_GOLD_ORE.defaultState
-                Blocks.GRAVEL -> redstoneparadox.nicetohave.block.Blocks.GRAVEL_GOLD_ORE.defaultState
-                Blocks.SAND -> redstoneparadox.nicetohave.block.Blocks.SAND_GOLD_ORE.defaultState
+                Blocks.DIRT -> redstoneparadox.nicetohave.block.Blocks.DIRT_GOLD_ORE?.defaultState
+                Blocks.GRAVEL -> redstoneparadox.nicetohave.block.Blocks.GRAVEL_GOLD_ORE?.defaultState
+                Blocks.SAND -> redstoneparadox.nicetohave.block.Blocks.SAND_GOLD_ORE?.defaultState
                 else -> null
             }
         }

@@ -11,7 +11,14 @@ abstract class BlocksInitializer {
 
     protected fun register(block : Block, id : String, respectConfig : Boolean = true): Block? {
         if (!respectConfig || Config.getBool("blocks.$id")) {
-            Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
+            Registry.register(Registry.BLOCK, "nicetohave:$id", block)
+        }
+        return null
+    }
+
+    protected fun register(block: Block, id: String, configOption: String? = null): Block? {
+        if (Config.getBool(configOption ?: "blocks.$id")) {
+            Registry.register(Registry.BLOCK, "nicetohave:$id", block)
         }
         return null
     }
