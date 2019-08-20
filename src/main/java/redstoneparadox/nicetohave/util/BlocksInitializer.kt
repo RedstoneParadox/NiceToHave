@@ -23,14 +23,16 @@ abstract class BlocksInitializer {
         return null
     }
 
-    protected fun registerFlammableBlocks(blocks : Array<Block>, entry : FlammableBlockRegistry.Entry) {
+    protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {
         for (block in blocks) {
             registerFlammableBlock(block, entry)
         }
     }
 
-    protected fun registerFlammableBlock(block: Block, entry : FlammableBlockRegistry.Entry) {
-        FlammableBlockRegistry.getDefaultInstance().add(block, entry)
+    protected fun registerFlammableBlock(block: Block?, entry : FlammableBlockRegistry.Entry) {
+        if (block != null) {
+            FlammableBlockRegistry.getDefaultInstance().add(block, entry)
+        }
     }
 
     protected fun copySettings(block: Block): Block.Settings {
