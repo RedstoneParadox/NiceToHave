@@ -83,6 +83,7 @@ object Config {
                 .addBool("dispenser_ladder_placement", "Set to false to disable dispensers breaking and placing ladders and scaffolding.")
                 .addBool("peaceful_bamboo_jungle", "Disables hostile mob spawning in Bamboo Jungle and Bamboo Jungle hills biomes (Just like Mushroom Islands). Set to false to re-enable.")
                 .addBool("vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
+                .addBool("underwater_levers_buttons", "Allows for the placement of levers and buttons underwater.")
                 .endCategory()
                 .build()
 

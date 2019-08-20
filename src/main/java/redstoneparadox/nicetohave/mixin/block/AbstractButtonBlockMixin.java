@@ -17,9 +17,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import redstoneparadox.nicetohave.util.config.Config;
 
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
+
+    private boolean canPlaceUnderwater = Config.INSTANCE.getBool("misc.underwater_levers_buttons", true);
 
     protected AbstractButtonBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);
@@ -37,7 +40,7 @@ public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
 
     @Override
     public FluidState getFluidState(BlockState blockState_1) {
-        if (blockState_1.get(Properties.WATERLOGGED)) {
+        if (canPlaceUnderwater && blockState_1.get(Properties.WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(blockState_1);
@@ -47,12 +50,15 @@ public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
     public BlockState getPlacementState(ItemPlacementContext itemPlacementContext_1) {
         FluidState fluidState_1 = itemPlacementContext_1.getWorld().getFluidState(itemPlacementContext_1.getBlockPos());
         BlockState normalState = super.getPlacementState(itemPlacementContext_1);
-        return normalState.with(Properties.WATERLOGGED, fluidState_1.getFluid() == Fluids.WATER);
+        if (canPlaceUnderwater) {
+            return normalState.with(Properties.WATERLOGGED, fluidState_1.getFluid() == Fluids.WATER);
+        }
+        return normalState;
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState blockState_1, Direction direction_1, BlockState blockState_2, IWorld iWorld_1, BlockPos blockPos_1, BlockPos blockPos_2) {
-        if (blockState_1.get(Properties.WATERLOGGED)) {
+        if (canPlaceUnderwater && blockState_1.get(Properties.WATERLOGGED)) {
             iWorld_1.getFluidTickScheduler().schedule(blockPos_1, Fluids.WATER, Fluids.WATER.getTickRate(iWorld_1));
         }
         return super.getStateForNeighborUpdate(blockState_1, direction_1, blockState_2, iWorld_1, blockPos_1, blockPos_2);
