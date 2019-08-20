@@ -7,6 +7,7 @@ import net.minecraft.block.Waterloggable
 import net.minecraft.entity.EntityContext
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
+import net.minecraft.item.ItemPlacementContext
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.Properties
@@ -63,6 +64,12 @@ class PoleBlock(settings: Settings?) : PillarBlock(settings), Waterloggable {
         }
 
         return super.getStateForNeighborUpdate(blockState_1, direction_1, blockState_2, iWorld_1, blockPos_1, blockPos_2)
+    }
+
+    override fun getPlacementState(itemPlacementContext_1: ItemPlacementContext): BlockState? {
+        val fluidState_1 = itemPlacementContext_1.world.getFluidState(itemPlacementContext_1.blockPos)
+        val normalState = super.getPlacementState(itemPlacementContext_1)
+        return normalState!!.with(WATERLOGGED, fluidState_1.fluid === Fluids.WATER)
     }
 
     companion object {
