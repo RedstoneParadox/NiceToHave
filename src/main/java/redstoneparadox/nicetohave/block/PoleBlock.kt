@@ -1,5 +1,6 @@
 package redstoneparadox.nicetohave.block
 
+import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.PillarBlock
@@ -19,6 +20,8 @@ import net.minecraft.world.IWorld
 import java.lang.NullPointerException
 
 class PoleBlock(settings: Settings?) : PillarBlock(settings), Waterloggable {
+
+    constructor(block : Block): this(FabricBlockSettings.copy(block).build())
 
     private val shapes : Array<VoxelShape>
 
