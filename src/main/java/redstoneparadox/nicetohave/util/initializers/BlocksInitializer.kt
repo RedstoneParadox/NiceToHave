@@ -1,4 +1,4 @@
-package redstoneparadox.nicetohave.util
+package redstoneparadox.nicetohave.util.initializers
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
