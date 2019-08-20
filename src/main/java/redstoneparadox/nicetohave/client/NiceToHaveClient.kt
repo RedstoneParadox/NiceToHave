@@ -20,7 +20,7 @@ class NiceToHaveClient : ClientModInitializer {
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
             val provider = ColorProviderRegistry.BLOCK.get(net.minecraft.block.Blocks.VINE)
             return@BlockColorProvider provider.getColor(block, pos, world, layer)
-            }, Blocks.TRIMMED_VINE_BLOCK)
+            }, Blocks.TRIMMED_VINE)
     }
 
 }

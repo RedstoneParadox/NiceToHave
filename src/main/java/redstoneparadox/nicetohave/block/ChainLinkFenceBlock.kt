@@ -1,9 +1,12 @@
 package redstoneparadox.nicetohave.block
 
+import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.minecraft.block.BlockRenderLayer
 import net.minecraft.block.FenceBlock
+import net.minecraft.block.Material
+import net.minecraft.util.Identifier
 
-class ChainLinkFenceBlock(settings: Settings) : FenceBlock(settings) {
+class ChainLinkFenceBlock() : FenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByTool(net.minecraft.tag.Tag(Identifier("fabric:pickaxes"))).build()) {
 
     /*
     init {

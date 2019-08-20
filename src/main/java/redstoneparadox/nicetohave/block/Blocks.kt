@@ -4,56 +4,57 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
-import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.util.config.Config
 
 object Blocks {
 
-    val GOLD_BUTTON : Block = CustomButtonBlock(1, FabricBlockSettings.of(Material.PART).noCollision().strength(0.5f, 0.1f).breakByHand(true).build())
-    val ANALOG_REDSTONE_EMITTER = AnalogRedstoneEmitterBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build())
-    val CHAIN_LINK_FENCE : Block = ChainLinkFenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).breakByTool(net.minecraft.tag.Tag(Identifier("fabric:pickaxes"))).build())
-    val TRIMMED_VINE_BLOCK : Block = TrimmedVineBlock(FabricBlockSettings.copy(Blocks.VINE).build())
+    var GOLD_BUTTON : Block? = null
+    var ANALOG_REDSTONE_EMITTER : Block? = null
+    var CHAIN_LINK_FENCE : Block? = null
+    var TRIMMED_VINE : Block? = null
 
     //Ore Blocks
-    val DIRT_GOLD_ORE : Block = Block(FabricBlockSettings.copy(Blocks.DIRT).build())
-    val SAND_GOLD_ORE : Block = SandBlock(14406560, FabricBlockSettings.copy(Blocks.SAND).build())
-    val GRAVEL_GOLD_ORE : Block = GravelBlock(FabricBlockSettings.copy(Blocks.GRAVEL).build())
+    var DIRT_GOLD_ORE : Block? = null
+    var SAND_GOLD_ORE : Block? = null
+    var GRAVEL_GOLD_ORE : Block? = null
 
     //Poles
-    val OAK_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD).build())
-    val SPRUCE_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.SPRUCE_WOOD).build())
-    val BIRCH_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.BIRCH_WOOD).build())
-    val JUNGLE_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.JUNGLE_WOOD).build())
-    val ACACIA_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.ACACIA_WOOD).build())
-    val DARK_OAK_POLE : Block = PoleBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_WOOD).build())
+    var OAK_POLE : Block? = null
+    var SPRUCE_POLE : Block? = null
+    var BIRCH_POLE : Block? = null
+    var JUNGLE_POLE : Block? = null
+    var ACACIA_POLE : Block? = null
+    var DARK_OAK_POLE : Block? = null
 
     fun registerBlocks() {
-        register(GOLD_BUTTON, "gold_button")
-        register(ANALOG_REDSTONE_EMITTER, "analog_redstone_emitter")
-        register(CHAIN_LINK_FENCE, "chain_link_fence")
-        register(TRIMMED_VINE_BLOCK, "trimmed_vine")
+        GOLD_BUTTON = register(CustomButtonBlock(1), "gold_button")
+        ANALOG_REDSTONE_EMITTER = register(AnalogRedstoneEmitterBlock(), "analog_redstone_emitter")
+        CHAIN_LINK_FENCE = register(ChainLinkFenceBlock(), "chain_link_fence")
+        TRIMMED_VINE = register(TrimmedVineBlock(), "trimmed_vine")
 
-        register(DIRT_GOLD_ORE, "dirt_gold_ore", false)
-        register(SAND_GOLD_ORE, "sand_gold_ore", false)
-        register(GRAVEL_GOLD_ORE, "gravel_gold_ore", false)
+        DIRT_GOLD_ORE = register(Block(copySettings(Blocks.DIRT)), "dirt_gold_ore", false)
+        SAND_GOLD_ORE = register(SandBlock(14406560, copySettings(Blocks.SAND)), "sand_gold_ore", false)
+        GRAVEL_GOLD_ORE = register(GravelBlock(copySettings(Blocks.GRAVEL)), "gravel_gold_ore", false)
 
         if (Config.getBool("blocks.poles")) {
-            register(OAK_POLE, "oak_pole", false)
-            register(SPRUCE_POLE, "spruce_pole", false)
-            register(BIRCH_POLE, "birch_pole", false)
-            register(JUNGLE_POLE, "jungle_pole", false)
-            register(ACACIA_POLE, "acacia_pole", false)
-            register(DARK_OAK_POLE, "dark_oak_pole", false)
+            OAK_POLE = register(PoleBlock(copySettings(Blocks.OAK_WOOD)), "oak_pole", false)
+            SPRUCE_POLE =register(PoleBlock(copySettings(Blocks.SPRUCE_WOOD)), "spruce_pole", false)
+            BIRCH_POLE = register(PoleBlock(copySettings(Blocks.BIRCH_WOOD)), "birch_pole", false)
+            JUNGLE_POLE = register(PoleBlock(copySettings(Blocks.JUNGLE_WOOD)), "jungle_pole", false)
+            ACACIA_POLE = register(PoleBlock(copySettings(Blocks.ACACIA_WOOD)), "acacia_pole", false)
+            DARK_OAK_POLE = register(PoleBlock(copySettings(Blocks.DARK_OAK_WOOD)), "dark_oak_pole", false)
+
         }
 
         registerFlammables()
     }
 
-    fun register(block : Block, id : String, respectConfig : Boolean = true) {
+    fun register(block : Block, id : String, respectConfig : Boolean = true): Block? {
         if (!respectConfig || Config.getBool("blocks.$id")) {
             Registry.register(Registry.BLOCK, "nicetohave:${id}", block)
         }
+        return null
     }
 
     private fun registerFlammables() {
@@ -68,5 +69,9 @@ object Blocks {
 
     private fun registerFlammableBlock(block: Block, entry : FlammableBlockRegistry.Entry) {
         FlammableBlockRegistry.getDefaultInstance().add(block, entry)
+    }
+
+    private fun copySettings(block: Block): Block.Settings {
+        return FabricBlockSettings.copy(block).build()
     }
 }

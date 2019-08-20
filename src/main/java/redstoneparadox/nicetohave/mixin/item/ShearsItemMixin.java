@@ -29,7 +29,7 @@ public abstract class ShearsItemMixin extends Item {
             boolean east = state.get(VineBlock.EAST);
             boolean west = state.get(VineBlock.WEST);
 
-            world.setBlockState(pos, redstoneparadox.nicetohave.block.Blocks.INSTANCE.getTRIMMED_VINE_BLOCK()
+            world.setBlockState(pos, redstoneparadox.nicetohave.block.Blocks.INSTANCE.getTRIMMED_VINE()
                     .getDefaultState()
                     .with(VineBlock.UP, up)
                     .with(VineBlock.NORTH, north)
