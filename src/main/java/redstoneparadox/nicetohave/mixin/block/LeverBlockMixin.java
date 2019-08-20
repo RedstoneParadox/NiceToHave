@@ -26,7 +26,6 @@ public abstract class LeverBlockMixin extends WallMountedBlock {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void ctor(Settings block$Settings_1, CallbackInfo ci) {
-        System.out.println(canPlaceUnderwater);
         setDefaultState(getDefaultState().with(Properties.WATERLOGGED, false));
     }
 

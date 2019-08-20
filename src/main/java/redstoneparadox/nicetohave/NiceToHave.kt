@@ -19,7 +19,9 @@ import redstoneparadox.nicetohave.world.gen.feature.Features
 /**
  * Created by RedstoneParadox on 5/23/2019.
  */
-class NiceToHave : ModInitializer {
+object NiceToHave : ModInitializer {
+
+    private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
     override fun onInitialize() {
         out("It's Nice To Have you!")
@@ -42,23 +44,20 @@ class NiceToHave : ModInitializer {
         Biomes.registerBiomes()
     }
 
-    companion object {
-        private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
-
-        fun out(msg : Any) {
-            logger.info("[Nice to Have] $msg")
-        }
-
-        fun warn(msg: Any) {
-            logger.warn("[Nice to Have] $msg")
-        }
-
-        fun error(msg: Any) {
-            logger.error("[Nice to Have] $msg")
-        }
-
-        fun clientOut(msg : Any) {
-            logger.info("[Nice to Have (client)] $msg")
-        }
+    fun out(msg : Any) {
+        logger.info("[Nice to Have] $msg")
     }
+
+    fun warn(msg: Any) {
+        logger.warn("[Nice to Have] $msg")
+    }
+
+    fun error(msg: Any) {
+        logger.error("[Nice to Have] $msg")
+    }
+
+    fun clientOut(msg : Any) {
+        logger.info("[Nice to Have (client)] $msg")
+    }
+
 }

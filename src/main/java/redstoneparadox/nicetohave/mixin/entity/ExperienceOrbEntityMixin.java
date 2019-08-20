@@ -23,7 +23,7 @@ public abstract class ExperienceOrbEntityMixin {
                 int multiplier = (int) ((playerEntity_1.getStatusEffect(StatusEffects.INSTANCE.getINSIGHT()).getAmplifier() + 1) * 1.2);
                 playerEntity_1.addExperience(amount * multiplier);
             } catch (NullPointerException e) {
-                NiceToHave.Companion.error("Caught NullPointerException while trying to apply effects of Potion of Insight!");
+                NiceToHave.INSTANCE.error("Caught NullPointerException while trying to apply effects of Potion of Insight!");
             }
         }
     }
