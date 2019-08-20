@@ -44,7 +44,6 @@ object Blocks {
             JUNGLE_POLE = register(PoleBlock(copySettings(Blocks.JUNGLE_WOOD)), "jungle_pole", false)
             ACACIA_POLE = register(PoleBlock(copySettings(Blocks.ACACIA_WOOD)), "acacia_pole", false)
             DARK_OAK_POLE = register(PoleBlock(copySettings(Blocks.DARK_OAK_WOOD)), "dark_oak_pole", false)
-
         }
 
         registerFlammables()
@@ -58,7 +57,9 @@ object Blocks {
     }
 
     private fun registerFlammables() {
-        registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
+        if (Config.getBool("blocks.poles")) {
+            registerFlammableBlocks(arrayOf(OAK_POLE!!, SPRUCE_POLE!!, BIRCH_POLE!!, JUNGLE_POLE!!, ACACIA_POLE!!, DARK_OAK_POLE!!), FlammableBlockRegistry.Entry(5, 20))
+        }
     }
 
     private fun registerFlammableBlocks(blocks : Array<Block>, entry : FlammableBlockRegistry.Entry) {
