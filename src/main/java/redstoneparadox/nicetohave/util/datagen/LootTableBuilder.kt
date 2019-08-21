@@ -9,20 +9,24 @@ import java.io.File
 
 class LootTableBuilder {
 
-    private var id = ""
-
+    private var id: String = ""
+    private var namespace: String = "nicetohave"
     private var condition : DataConditionBuilder? = null
-
     private var type : LootType = LootType.GENERIC
+    private val pools : ArrayList<PoolBuilder> = arrayListOf()
 
     // Directory
-    private var currentDirectory: File? = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-        File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\nicetohave\\loot_tables\\${type.directory}")
+    private val currentDirectory: File?
+    get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
+        File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
     } else {
         null
     }
 
-    private val pools : ArrayList<PoolBuilder> = arrayListOf()
+    fun setID(id: String): LootTableBuilder {
+        this.id = id
+        return this
+    }
 
     fun setCondition(conditionBuilder: DataConditionBuilder): LootTableBuilder {
         condition = conditionBuilder
@@ -31,6 +35,11 @@ class LootTableBuilder {
 
     fun setType(t : LootType): LootTableBuilder {
         type = t
+        return this
+    }
+
+    fun setNamespace(namespace: String): LootTableBuilder {
+        this.namespace = namespace
         return this
     }
 
@@ -93,11 +102,13 @@ class LootTableBuilder {
             }
             poolJson["entries"] = entriesJson
 
-            val conditionsJson = JsonArray()
-            for (condition in conditions) {
-                conditionsJson.add(condition.build())
+            if (conditions.isNotEmpty()) {
+                val conditionsJson = JsonArray()
+                for (condition in conditions) {
+                    conditionsJson.add(condition.build())
+                }
+                poolJson["conditions"] = conditionsJson
             }
-            poolJson["conditions"] = conditionsJson
 
             return poolJson
         }
@@ -120,14 +131,16 @@ class LootTableBuilder {
 
         fun build(): JsonObject {
             val entryJson = JsonObject()
-            entryJson["type"] = JsonPrimitive(type)
+            entryJson["type"] = JsonPrimitive(type.id)
             entryJson["name"] = JsonPrimitive(name)
 
-            val conditionsJson = JsonArray()
-            for (condition in conditions) {
-                conditionsJson.add(condition.build())
+            if (conditions.isNotEmpty()) {
+                val conditionsJson = JsonArray()
+                for (condition in conditions) {
+                    conditionsJson.add(condition.build())
+                }
+                entryJson["conditions"] = conditionsJson
             }
-            entryJson["conditions"] = conditionsJson
 
             return entryJson
         }
@@ -156,5 +169,27 @@ class LootTableBuilder {
 
     enum class EntryType(val id: String) {
         ITEM("minecraft:item")
+    }
+
+    companion object {
+
+        fun generateSingleBlockDrop(blockID: String) {
+            LootTableBuilder()
+                    .setID(blockID)
+                    .setType(LootType.BLOCK)
+                    .addPool(PoolBuilder()
+                            .setRoles(1)
+                            .addEntry(EntryBuilder()
+                                    .setName("nicetohave:$blockID"))
+                            .addCondition(ConditionBuilder()
+                                    .setCondition("minecraft:survives_explosion")
+                            )
+                    )
+                    .setCondition(DataConditionBuilder()
+                            .addCondition("nicetohave:config_true", "blocks.$blockID")
+                    )
+                    .save()
+
+        }
     }
 }

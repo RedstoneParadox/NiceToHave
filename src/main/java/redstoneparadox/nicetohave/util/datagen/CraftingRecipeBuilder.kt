@@ -139,7 +139,7 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 3)
                 .setOutput("", 12)
                 .setCondition(DataConditionBuilder()
-                        .addCondtion("nicetohave:config_true", "blocks.poles"))
+                        .addCondition("nicetohave:config_true", "blocks.poles"))
 
         fun generatePoleRecipe(woodPrefix : String, logModId : String = "minecraft") {
             POLE_RECIPE

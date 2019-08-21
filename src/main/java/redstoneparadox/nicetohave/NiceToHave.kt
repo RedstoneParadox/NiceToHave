@@ -13,6 +13,7 @@ import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
+import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -46,6 +47,7 @@ object NiceToHave : ModInitializer {
 
         CraftingRecipeBuilder.generatePoleRecipe("acacia")
         CraftingRecipeBuilder.generatePoleRecipe("birch")
+        LootTableBuilder.generateSingleBlockDrop("gold_button")
     }
 
     fun out(msg : Any) {
