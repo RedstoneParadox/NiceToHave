@@ -9,14 +9,14 @@ import redstoneparadox.nicetohave.util.config.Config
 
 abstract class BlocksInitializer {
 
-    protected fun register(block : Block, id : String, respectConfig : Boolean = true): Block? {
+    protected fun <T : Block> register(block : Block, id : String, respectConfig : Boolean = true): T? {
         if (!respectConfig || Config.getBool("blocks.$id")) {
             Registry.register(Registry.BLOCK, "nicetohave:$id", block)
         }
         return null
     }
 
-    protected fun register(block: Block, id: String, configOption: String? = null): Block? {
+    protected fun <T : Block> register(block: Block, id: String, configOption: String? = null): T? {
         if (Config.getBool(configOption ?: "blocks.$id")) {
             Registry.register(Registry.BLOCK, "nicetohave:$id", block)
         }

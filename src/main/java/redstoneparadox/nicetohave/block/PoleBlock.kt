@@ -8,6 +8,9 @@ import net.minecraft.block.Waterloggable
 import net.minecraft.entity.EntityContext
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
+import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.state.StateFactory
 import net.minecraft.state.property.BooleanProperty
@@ -73,9 +76,11 @@ class PoleBlock(val block : Block) : PillarBlock(FabricBlockSettings.copy(block)
         return normalState!!.with(WATERLOGGED, fluidState_1.fluid === Fluids.WATER)
     }
 
+    public fun createBlockItem(): BlockItem {
+        return BlockItem(block, Item.Settings().group(ItemGroup.DECORATIONS))
+    }
+
     companion object {
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
-
-
     }
 }
