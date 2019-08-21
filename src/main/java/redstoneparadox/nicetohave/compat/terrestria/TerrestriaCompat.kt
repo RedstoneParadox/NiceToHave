@@ -8,6 +8,7 @@ object TerrestriaCompat : ModInitializer {
     override fun onInitialize() {
         if (FabricLoader.INSTANCE.isModLoaded("terrestria")) {
             TerrestriaCompatBlocks.initBlocks()
+            TerrestriaCompatItems.initItems()
         }
     }
 
