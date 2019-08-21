@@ -109,7 +109,7 @@ class CraftingRecipeBuilder {
         rootObject["pattern"] = patternArray
 
         val keyObject = JsonObject()
-        for (i in 0..min(8, ingredients.size)) {
+        for (i in 0 until min(9, ingredients.size)) {
             val keyCharacter = keyCharacters[i]
             val ingredientID = ingredients[i]
             val ingredientObject = JsonObject()
