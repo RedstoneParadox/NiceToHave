@@ -10,10 +10,10 @@ import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 
 object Blocks : BlocksInitializer() {
 
-    val GOLD_BUTTON : Block? = register(CustomButtonBlock(1), "gold_button", null)
-    val ANALOG_REDSTONE_EMITTER : Block? = register(AnalogRedstoneEmitterBlock(), "analog_redstone_emitter", null)
-    val CHAIN_LINK_FENCE : Block? = register(ChainLinkFenceBlock(), "chain_link_fence", null)
-    val TRIMMED_VINE : Block? = register(TrimmedVineBlock(), "trimmed_vine", null)
+    val GOLD_BUTTON : Block? = register<Block>(CustomButtonBlock(1), "gold_button", null)
+    val ANALOG_REDSTONE_EMITTER : Block? = register<Block>(AnalogRedstoneEmitterBlock(), "analog_redstone_emitter", null)
+    val CHAIN_LINK_FENCE : Block? = register<Block>(ChainLinkFenceBlock(), "chain_link_fence", null)
+    val TRIMMED_VINE : Block? = register<Block>(TrimmedVineBlock(), "trimmed_vine", null)
 
     //Ore Blocks
     val DIRT_GOLD_ORE : Block? = register(Block(copySettings(Blocks.DIRT)), "dirt_gold_ore", false)
@@ -30,7 +30,7 @@ object Blocks : BlocksInitializer() {
 
     fun initBlocks() {
         if (Config.getBool("blocks.poles")) {
-            registerFlammableBlocks(arrayOf(OAK_POLE!!, SPRUCE_POLE!!, BIRCH_POLE!!, JUNGLE_POLE!!, ACACIA_POLE!!, DARK_OAK_POLE!!), FlammableBlockRegistry.Entry(5, 20))
+            registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
     }
 

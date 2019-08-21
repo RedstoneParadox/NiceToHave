@@ -22,7 +22,7 @@ class ThrownDynamiteEntity : ThrownItemEntity {
 
     constructor(world: World, x : Double, y : Double, z : Double) : super(EntityTypes.THROWN_DYNAMITE, x, y, z, world)
 
-    override fun getDefaultItem(): Item {
+    override fun getDefaultItem(): Item? {
         return Items.DYNAMITE
     }
 

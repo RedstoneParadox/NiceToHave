@@ -31,7 +31,7 @@ object DispenserBehaviors {
     val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
 
     fun registerBehaviors() {
-        if (Config.getBool("items.dynamite")) {
+        if (Config.getBool("items.dynamite") && Items.DYNAMITE != null) {
             register(Items.DYNAMITE, object : ProjectileDispenserBehavior() {
                 var entity: ThrownDynamiteEntity? = null
 
@@ -55,7 +55,7 @@ object DispenserBehaviors {
         if (Config.getBool("misc.dispenser_crop_planting")) {
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
         }
-        if (Config.getBool("items.fertilizer")) {
+        if (Config.getBool("items.fertilizer") && Items.FERTILIZER != null) {
             register(Items.FERTILIZER, object : FallibleItemDispenserBehavior() {
                 override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                     this.success = true
