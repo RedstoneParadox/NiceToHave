@@ -1,12 +1,9 @@
 package redstoneparadox.nicetohave.item
 
-import com.mojang.datafixers.kinds.App
-import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.BlockItem
 import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
-import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.util.config.Config
@@ -34,12 +31,12 @@ object Items : ItemsInitializer() {
     val GRAVEL_GOLD_ORE: BlockItem? = registerBlockItem(BlockItem(Blocks.GRAVEL_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS)), "gravel_gold_ore", false)
     val CHAIN_LINK_FENCE: BlockItem? = registerBlockItem(BlockItem(Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS)), "chain_link_fence", null)
 
-    val OAK_POLE : BlockItem? = registerBlockItem(Blocks.OAK_POLE?.createBlockItem(), "oak_pole", "blocks.poles")
-    val SPRUCE_POLE : BlockItem? = registerBlockItem(Blocks.SPRUCE_POLE?.createBlockItem(), "spruce_pole", "blocks.poles")
-    val BIRCH_POLE : BlockItem? = registerBlockItem(Blocks.BIRCH_POLE?.createBlockItem(), "birch_pole", "blocks.poles")
-    val JUNGLE_POLE : BlockItem? = registerBlockItem(Blocks.JUNGLE_POLE?.createBlockItem(), "jungle_pole", "blocks.poles")
-    val ACACIA_POLE : BlockItem? = registerBlockItem(Blocks.ACACIA_POLE?.createBlockItem(), "acacia_pole", "blocks.poles")
-    val DARK_OAK_POLE : BlockItem? = registerBlockItem(Blocks.DARK_OAK_POLE?.createBlockItem(), "dark_oak_pole", "blocks.poles")
+    val OAK_POLE : BlockItem? = registerPoleItem(Blocks.OAK_POLE, "oak")
+    val SPRUCE_POLE : BlockItem? = registerPoleItem(Blocks.SPRUCE_POLE, "spruce")
+    val BIRCH_POLE : BlockItem? = registerPoleItem(Blocks.BIRCH_POLE, "birch")
+    val JUNGLE_POLE : BlockItem? = registerPoleItem(Blocks.JUNGLE_POLE, "jungle")
+    val ACACIA_POLE : BlockItem? = registerPoleItem(Blocks.ACACIA_POLE, "acacia")
+    val DARK_OAK_POLE : BlockItem? = registerPoleItem(Blocks.DARK_OAK_POLE, "dark_oak")
 
     fun initItems() {
         if (Config.getBool("blocks.poles")) {

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.util.registry.Registry
+import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.item.Items
 import redstoneparadox.nicetohave.util.config.Config
 import redstoneparadox.nicetohave.util.config.ConfigOption
@@ -34,6 +35,13 @@ abstract class ItemsInitializer {
     protected fun registerBlockItem(item: BlockItem?, id: String, configOption: String? = null): BlockItem? {
         if (Config.getBool(configOption ?: "blocks.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:$id", item)
+        }
+        return null
+    }
+
+    protected fun registerPoleItem(pole : PoleBlock?, prefix : String): BlockItem? {
+        if (pole != null) {
+            return registerBlockItem(pole.createBlockItem(), "${prefix}_pole", "blocks.pole")
         }
         return null
     }
