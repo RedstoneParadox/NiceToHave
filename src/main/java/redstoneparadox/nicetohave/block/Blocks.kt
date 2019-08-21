@@ -5,8 +5,8 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.Registry
-import redstoneparadox.nicetohave.util.BlocksInitializer
 import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 
 object Blocks : BlocksInitializer() {
 
