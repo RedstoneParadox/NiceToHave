@@ -14,6 +14,7 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
     val CYPRESS_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.CYPRESS.wood), "cypress_pole", "blocks.poles")
     val WILLOW_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.WILLOW.wood), "willow_pole", "blocks.poles")
     val JAPANESE_MAPLE_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.JAPANESE_MAPLE.wood), "japanese_maple_pole", "blocks.pole")
+    val RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RAINBOW_EUCALYPTUS.wood, "rainbow_eucalyptus")
     val SAKURA_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.SAKURA.wood), "sakura_pole", "blocks.pole")
 
     fun initBlocks() {

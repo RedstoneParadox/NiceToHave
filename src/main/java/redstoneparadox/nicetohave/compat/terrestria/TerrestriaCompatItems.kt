@@ -12,7 +12,7 @@ object TerrestriaCompatItems : ItemsInitializer() {
     val CYPRESS_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.CYPRESS_POLE, "cypress")
     val WILLOW_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.WILLOW_POLE, "cypress")
     val JAPANESE_MAPLE_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.JAPANESE_MAPLE_POLE, "japanese_maple")
-
+    val RAINBOW_EUCALYPTUS_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.RAINBOW_EUCALYPTUS_POLE, "rainbow_eucalyptus")
     val SAKURA_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.SAKURA_POLE, "sakura")
 
     fun initItems() {
