@@ -13,7 +13,7 @@ class LootTableBuilder {
 
     private var condition : DataConditionBuilder? = null
 
-    private var type : Type = Type.BLOCK
+    private var type : LootType = LootType.GENERIC
 
     // Directory
     private var currentDirectory: File? = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
@@ -29,7 +29,7 @@ class LootTableBuilder {
         return this
     }
 
-    fun setType(t : Type): LootTableBuilder {
+    fun setType(t : LootType): LootTableBuilder {
         type = t
         return this
     }
@@ -63,13 +63,10 @@ class LootTableBuilder {
         }
     }
 
-    enum class Type(val id : String, val directory : String) {
-        BLOCK("minecraft:block", "blocks");
-    }
-
     class PoolBuilder {
         private var roles: Int = 1
         private val entries: ArrayList<EntryBuilder> = arrayListOf()
+        private val conditions: ArrayList<ConditionBuilder> = arrayListOf()
 
         fun setRoles(count: Int): PoolBuilder {
             roles = count
@@ -78,6 +75,11 @@ class LootTableBuilder {
 
         fun addEntry(builder: EntryBuilder): PoolBuilder {
             entries.add(builder)
+            return this
+        }
+
+        fun addCondition(builder: ConditionBuilder): PoolBuilder {
+            conditions.add(builder)
             return this
         }
 
@@ -92,7 +94,9 @@ class LootTableBuilder {
             poolJson["entries"] = entriesJson
 
             val conditionsJson = JsonArray()
-            //Code for conditions
+            for (condition in conditions) {
+                conditionsJson.add(condition.build())
+            }
             poolJson["conditions"] = conditionsJson
 
             return poolJson
@@ -102,6 +106,7 @@ class LootTableBuilder {
     class EntryBuilder {
         private var type : EntryType = EntryType.ITEM
         private var name : String = ""
+        private val conditions: ArrayList<ConditionBuilder> = arrayListOf()
 
         fun setType(type: EntryType): EntryBuilder {
             this.type = type
@@ -114,11 +119,39 @@ class LootTableBuilder {
         }
 
         fun build(): JsonObject {
-            val entry = JsonObject()
-            entry["type"] = JsonPrimitive(type)
-            entry["name"] = JsonPrimitive(name)
-            return entry
+            val entryJson = JsonObject()
+            entryJson["type"] = JsonPrimitive(type)
+            entryJson["name"] = JsonPrimitive(name)
+
+            val conditionsJson = JsonArray()
+            for (condition in conditions) {
+                conditionsJson.add(condition.build())
+            }
+            entryJson["conditions"] = conditionsJson
+
+            return entryJson
         }
+    }
+
+    class ConditionBuilder {
+        var conditions : String = ""
+
+        fun setCondition(id: String): ConditionBuilder {
+            this.conditions = id
+            return this
+        }
+
+        fun build(): JsonObject {
+            val conditionJson = JsonObject()
+            conditionJson["condition"] = JsonPrimitive(conditions)
+            // Other code here
+            return conditionJson
+        }
+    }
+
+    enum class LootType(val id : String, val directory : String) {
+        BLOCK("minecraft:block", "blocks"),
+        GENERIC("minecraft:generic", "generic");
     }
 
     enum class EntryType(val id: String) {
