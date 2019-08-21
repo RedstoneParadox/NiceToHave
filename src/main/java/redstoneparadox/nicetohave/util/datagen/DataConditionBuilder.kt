@@ -7,8 +7,8 @@ import blue.endless.jankson.JsonPrimitive
 class DataConditionBuilder {
     val conditions : HashMap<String, Array<out Any>> = HashMap()
 
-    fun addCondtion(conditon : String, vararg values : Any): DataConditionBuilder {
-        conditions.put(conditon, values)
+    fun addCondition(condition : String, vararg values : Any): DataConditionBuilder {
+        conditions[condition] = values
         return this
     }
 
