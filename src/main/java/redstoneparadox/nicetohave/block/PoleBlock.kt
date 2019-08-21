@@ -19,9 +19,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.IWorld
 import java.lang.NullPointerException
 
-class PoleBlock(settings: Settings?) : PillarBlock(settings), Waterloggable {
-
-    constructor(block : Block): this(FabricBlockSettings.copy(block).build())
+class PoleBlock(val block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
 
     private val shapes : Array<VoxelShape>
 
@@ -77,5 +75,7 @@ class PoleBlock(settings: Settings?) : PillarBlock(settings), Waterloggable {
 
     companion object {
         val WATERLOGGED: BooleanProperty = Properties.WATERLOGGED
+
+
     }
 }

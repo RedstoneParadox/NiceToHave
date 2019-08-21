@@ -21,12 +21,12 @@ object Blocks : BlocksInitializer() {
     val GRAVEL_GOLD_ORE : Block? = register(GravelBlock(copySettings(Blocks.GRAVEL)), "gravel_gold_ore", false)
 
     //Poles
-    val OAK_POLE : Block? = register(PoleBlock(copySettings(Blocks.OAK_WOOD)), "oak_pole", "blocks.poles")
-    val SPRUCE_POLE : Block? = register(PoleBlock(copySettings(Blocks.SPRUCE_WOOD)), "spruce_pole", "blocks.poles")
-    val BIRCH_POLE : Block? = register(PoleBlock(copySettings(Blocks.BIRCH_WOOD)), "birch_pole", "blocks.poles")
-    val JUNGLE_POLE : Block? = register(PoleBlock(copySettings(Blocks.JUNGLE_WOOD)), "jungle_pole", "blocks.poles")
-    val ACACIA_POLE : Block? = register(PoleBlock(copySettings(Blocks.ACACIA_WOOD)), "acacia_pole", "blocks.poles")
-    val DARK_OAK_POLE : Block? = register(PoleBlock(copySettings(Blocks.DARK_OAK_WOOD)), "dark_oak_pole", "blocks.poles")
+    val OAK_POLE : Block? = register(PoleBlock(Blocks.OAK_WOOD), "oak_pole", "blocks.poles")
+    val SPRUCE_POLE : Block? = register(PoleBlock(Blocks.SPRUCE_WOOD), "spruce_pole", "blocks.poles")
+    val BIRCH_POLE : Block? = register(PoleBlock(Blocks.JUNGLE_WOOD), "birch_pole", "blocks.poles")
+    val JUNGLE_POLE : Block? = register(PoleBlock(Blocks.JUNGLE_WOOD), "jungle_pole", "blocks.poles")
+    val ACACIA_POLE : Block? = register(PoleBlock(Blocks.ACACIA_WOOD), "acacia_pole", "blocks.poles")
+    val DARK_OAK_POLE : Block? = register(PoleBlock(Blocks.DARK_OAK_WOOD), "dark_oak_pole", "blocks.poles")
 
     fun init() {
         if (Config.getBool("blocks.poles")) {
