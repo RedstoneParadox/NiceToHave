@@ -19,7 +19,7 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
 
     fun initBlocks() {
         if (Config.getBool("blocks.pole")) {
-            registerFlammableBlocks(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
+            registerFlammableBlocks(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
     }
 }
