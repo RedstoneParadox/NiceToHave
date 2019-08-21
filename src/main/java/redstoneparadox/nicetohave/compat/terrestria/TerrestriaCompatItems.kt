@@ -17,7 +17,7 @@ object TerrestriaCompatItems : ItemsInitializer() {
 
     fun initItems() {
         if (Config.getBool("blocks.poles")) {
-            registerFuelForEach(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, null, SAKURA_POLE), 300)
+            registerFuelForEach(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), 300)
         }
     }
 }
