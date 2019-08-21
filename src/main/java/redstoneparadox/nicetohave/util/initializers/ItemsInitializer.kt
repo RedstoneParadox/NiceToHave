@@ -41,7 +41,7 @@ abstract class ItemsInitializer {
 
     protected fun registerPoleItem(pole : PoleBlock?, prefix : String): BlockItem? {
         if (pole != null) {
-            return registerBlockItem(pole.createBlockItem(), "${prefix}_pole", "blocks.pole")
+            return registerBlockItem(pole.createBlockItem(), "${prefix}_pole", "blocks.poles")
         }
         return null
     }

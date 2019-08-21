@@ -22,7 +22,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.IWorld
 import java.lang.NullPointerException
 
-class PoleBlock(val block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
+class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
 
     private val shapes : Array<VoxelShape>
 
@@ -77,7 +77,7 @@ class PoleBlock(val block : Block) : PillarBlock(FabricBlockSettings.copy(block)
     }
 
     public fun createBlockItem(): BlockItem {
-        return BlockItem(block, Item.Settings().group(ItemGroup.DECORATIONS))
+        return BlockItem(this, Item.Settings().group(ItemGroup.DECORATIONS))
     }
 
     companion object {
