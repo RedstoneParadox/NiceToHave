@@ -1,6 +1,7 @@
 package redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.loader.FabricLoader
 import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -12,6 +13,7 @@ import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
+import redstoneparadox.nicetohave.util.datagen.RecipeBuilder
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
