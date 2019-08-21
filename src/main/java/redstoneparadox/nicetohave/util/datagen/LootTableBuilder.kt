@@ -17,11 +17,11 @@ class LootTableBuilder {
 
     // Directory
     private val currentDirectory: File?
-    get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-        File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
-    } else {
-        null
-    }
+        get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
+            File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
+        } else {
+            null
+        }
 
     fun setID(id: String): LootTableBuilder {
         this.id = id
