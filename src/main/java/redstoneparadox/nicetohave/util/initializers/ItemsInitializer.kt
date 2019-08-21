@@ -10,28 +10,28 @@ import redstoneparadox.nicetohave.util.config.ConfigOption
 
 abstract class ItemsInitializer {
 
-    protected fun register(item : Item, id : String, respectsConfig: Boolean = true): Item? {
+    protected fun register(item : Item?, id : String, respectsConfig: Boolean = true): Item? {
         if (!respectsConfig || Config.getBool("items.$id")) {
             return Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
         return null
     }
 
-    protected fun register(item: Item, id: String, configOption: String? = null): Item? {
+    protected fun register(item: Item?, id: String, configOption: String? = null): Item? {
         if (Config.getBool(configOption ?: "items.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
         return null
     }
 
-    protected fun registerBlockItem(item: BlockItem, id: String, respectsConfig : Boolean = true): BlockItem? {
+    protected fun registerBlockItem(item: BlockItem?, id: String, respectsConfig : Boolean = true): BlockItem? {
         if (!respectsConfig || Config.getBool("blocks.$id")) {
             return Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
         return null
     }
 
-    protected fun registerBlockItem(item: Item, id: String, configOption: String? = null): BlockItem? {
+    protected fun registerBlockItem(item: BlockItem?, id: String, configOption: String? = null): BlockItem? {
         if (Config.getBool(configOption ?: "blocks.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
