@@ -61,6 +61,33 @@ class LootTableBuilder {
     }
 
     class PoolBuilder {
+        val roles : Int = 1
 
+    }
+
+    class EntryBuilder {
+        private var type : EntryType = EntryType.ITEM
+        private var name : String = ""
+
+        fun setType(type: EntryType): EntryBuilder {
+            this.type = type
+            return this
+        }
+
+        fun setName(name: String): EntryBuilder {
+            this.name = name
+            return this
+        }
+
+        fun build(): JsonObject {
+            val entry = JsonObject()
+            entry["type"] = JsonPrimitive(type)
+            entry["name"] = JsonPrimitive(name)
+            return entry
+        }
+    }
+
+    enum class EntryType(val id: String) {
+        ITEM("minecraft:item")
     }
 }
