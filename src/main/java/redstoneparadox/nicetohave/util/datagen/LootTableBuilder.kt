@@ -34,6 +34,11 @@ class LootTableBuilder {
         return this
     }
 
+    fun addPool(pool: PoolBuilder): LootTableBuilder {
+        pools.add(pool)
+        return this
+    }
+
     fun save() {
         if (currentDirectory == null) {
             NiceToHave.warn("Attempted to generate data outside of the dev environment.")
@@ -44,7 +49,9 @@ class LootTableBuilder {
         root["type"] = JsonPrimitive(type.id)
 
         val poolsArray = JsonArray()
-        //Code to put pools into JsonArray
+        for (pool in pools) {
+            poolsArray.add(pool.build())
+        }
         root["pools"] = poolsArray
 
         val lootTableString = root.toJson(false, true)
@@ -61,8 +68,35 @@ class LootTableBuilder {
     }
 
     class PoolBuilder {
-        val roles : Int = 1
+        private var roles: Int = 1
+        private val entries: ArrayList<EntryBuilder> = arrayListOf()
 
+        fun setRoles(count: Int): PoolBuilder {
+            roles = count
+            return this
+        }
+
+        fun addEntry(builder: EntryBuilder): PoolBuilder {
+            entries.add(builder)
+            return this
+        }
+
+        fun build(): JsonObject {
+            val poolJson = JsonObject()
+            poolJson["rolls"] = JsonPrimitive(roles)
+
+            val entriesJson = JsonArray()
+            for (entry in entries) {
+                entriesJson.add(entry.build())
+            }
+            poolJson["entries"] = entriesJson
+
+            val conditionsJson = JsonArray()
+            //Code for conditions
+            poolJson["conditions"] = conditionsJson
+
+            return poolJson
+        }
     }
 
     class EntryBuilder {
