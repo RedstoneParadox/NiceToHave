@@ -33,6 +33,9 @@ class CraftingRecipeBuilder {
     private var output : String = ""
     private var count : Int = 0
 
+    //Condition
+    private var condition : DataConditionBuilder? = null
+
     fun setNamespace(namespace : String): CraftingRecipeBuilder {
         currentDirectory = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
             File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\recipes")
@@ -79,6 +82,11 @@ class CraftingRecipeBuilder {
         return this
     }
 
+    fun setCondition(condition : DataConditionBuilder): CraftingRecipeBuilder {
+        this.condition = condition
+        return this
+    }
+
     fun save() {
         if (currentDirectory == null) {
             NiceToHave.warn("Attempted to generate data outside of the dev environment.")
@@ -117,6 +125,11 @@ class CraftingRecipeBuilder {
 
         val recipeString = rootObject.toJson(false, true)
         File(currentDirectory, "$recipeID.json").bufferedWriter().use { it.write(recipeString) }
+
+        if (condition != null) {
+            val conditionString = condition!!.build().toJson(false, true)
+            File(currentDirectory, "$recipeID.json.mcmeta").bufferedWriter().use { it.write(conditionString) }
+        }
     }
 
     companion object {
@@ -125,6 +138,8 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 2)
                 .setPatternLine("a", 3)
                 .setOutput("", 12)
+                .setCondition(DataConditionBuilder()
+                        .addCondtion("nicetohave:config_true", "blocks.poles"))
 
         fun generatePoleRecipe(woodPrefix : String, logModId : String = "minecraft") {
             POLE_RECIPE
