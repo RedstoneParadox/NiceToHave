@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
-import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.config.Config
 
@@ -24,8 +23,8 @@ abstract class BlocksInitializer {
         return null
     }
 
-    protected fun registerPole(block: Block, suffix: String): PoleBlock? {
-        return register(PoleBlock(block), suffix, "blocks.poles")
+    protected fun registerPole(block: Block, prefix: String): PoleBlock? {
+        return register(PoleBlock(block), "${prefix}_pole", "blocks.poles")
     }
 
     protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {
