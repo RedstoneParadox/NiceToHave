@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.Blocks
+import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.config.Config
 
 abstract class BlocksInitializer {
@@ -21,6 +22,10 @@ abstract class BlocksInitializer {
             return Registry.register(Registry.BLOCK, "nicetohave:$id", block) as T?
         }
         return null
+    }
+
+    protected fun registerPole(block: Block, suffix: String): PoleBlock? {
+        return register(PoleBlock(block), suffix, "blocks.poles")
     }
 
     protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {
