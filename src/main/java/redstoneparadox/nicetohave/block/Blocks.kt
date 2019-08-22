@@ -28,9 +28,17 @@ object Blocks : BlocksInitializer() {
     val ACACIA_POLE : PoleBlock? = registerPole(Blocks.ACACIA_WOOD, "acacia")
     val DARK_OAK_POLE : PoleBlock? = registerPole(Blocks.DARK_OAK_WOOD, "dark_oak")
 
+    val STRIPPED_OAK_POLE : PoleBlock? = registerPole(Blocks.OAK_WOOD, "stripped_oak")
+    val STRIPPED_SPRUCE_POLE : PoleBlock? = registerPole(Blocks.SPRUCE_WOOD, "stripped_spruce")
+    val STRIPPED_BIRCH_POLE : PoleBlock? = registerPole(Blocks.BIRCH_WOOD, "stripped_birch")
+    val STRIPPED_JUNGLE_POLE : PoleBlock? = registerPole(Blocks.JUNGLE_WOOD, "stripped_jungle")
+    val STRIPPED_ACACIA_POLE : PoleBlock? = registerPole(Blocks.ACACIA_WOOD, "stripped_acacia")
+    val STRIPPED_DARK_OAK_POLE : PoleBlock? = registerPole(Blocks.DARK_OAK_WOOD, "stripped_dark_oak")
+
     fun initBlocks() {
         if (Config.getBool("blocks.poles")) {
             registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
+            registerFlammableBlocks(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
     }
 

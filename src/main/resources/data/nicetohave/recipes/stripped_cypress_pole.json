@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:stripped_cypress_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:stripped_cypress_pole",
+		"count": 12
+	}
+}

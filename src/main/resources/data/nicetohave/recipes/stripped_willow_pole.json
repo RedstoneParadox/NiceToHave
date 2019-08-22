@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:stripped_willow_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:stripped_willow_pole",
+		"count": 12
+	}
+}

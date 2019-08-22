@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "minecraft:stripped_jungle_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:stripped_jungle_pole",
+		"count": 12
+	}
+}

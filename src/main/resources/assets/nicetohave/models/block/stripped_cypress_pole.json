@@ -1,0 +1,6 @@
+{ 
+	"parent": "nicetohave:block/pole",
+	"textures": { 
+		"texture": "terrestria:block/stripped_cypress_log"
+	}
+}

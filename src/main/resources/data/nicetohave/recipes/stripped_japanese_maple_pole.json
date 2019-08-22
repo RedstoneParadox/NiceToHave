@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:stripped_japanese_maple_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:stripped_japanese_maple_pole",
+		"count": 12
+	}
+}

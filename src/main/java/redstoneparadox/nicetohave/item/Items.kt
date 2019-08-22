@@ -38,9 +38,17 @@ object Items : ItemsInitializer() {
     val ACACIA_POLE : BlockItem? = registerPoleItem(Blocks.ACACIA_POLE, "acacia")
     val DARK_OAK_POLE : BlockItem? = registerPoleItem(Blocks.DARK_OAK_POLE, "dark_oak")
 
+    val STRIPPED_OAK_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_OAK_POLE, "stripped_oak")
+    val STRIPPED_SPRUCE_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_SPRUCE_POLE, "stripped_spruce")
+    val STRIPPED_BIRCH_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_BIRCH_POLE, "stripped_birch")
+    val STRIPPED_JUNGLE_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_JUNGLE_POLE, "stripped_jungle")
+    val STRIPPED_ACACIA_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_ACACIA_POLE, "stripped_acacia")
+    val STRIPPED_DARK_OAK_POLE : BlockItem? = registerPoleItem(Blocks.STRIPPED_DARK_OAK_POLE, "stripped_dark_oak")
+
     fun initItems() {
         if (Config.getBool("blocks.poles")) {
-            registerFuelForEach(arrayOf(Items.OAK_POLE, Items.SPRUCE_POLE, Items.BIRCH_POLE, Items.JUNGLE_POLE, Items.ACACIA_POLE, Items.DARK_OAK_POLE), 300)
+            registerFuelForEach(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), 300)
+            registerFuelForEach(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), 300)
         }
     }
 
