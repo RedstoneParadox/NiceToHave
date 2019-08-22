@@ -1,0 +1,6 @@
+{ 
+	"parent": "nicetohave:block/pole",
+	"textures": { 
+		"texture": "traverse:block/stripped_fir_log"
+	}
+}
