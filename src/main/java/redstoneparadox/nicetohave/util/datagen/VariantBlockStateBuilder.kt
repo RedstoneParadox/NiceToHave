@@ -10,7 +10,7 @@ class VariantBlockStateBuilder {
 
     private var id: String = ""
     private var namespace: String = "nicetohave"
-    private val variants: HashMap<String, VariantModelBuilder> = HashMap()
+    private val variants: HashMap<String, VariantModel> = HashMap()
 
     // Directory
     private val currentDirectory: File?
@@ -30,7 +30,7 @@ class VariantBlockStateBuilder {
         return this
     }
 
-    fun addVariant(variantString: String, model: VariantModelBuilder): VariantBlockStateBuilder {
+    fun addVariant(variantString: String, model: VariantModel): VariantBlockStateBuilder {
         variants[variantString] = model
         return this
     }
@@ -52,7 +52,7 @@ class VariantBlockStateBuilder {
         File(currentDirectory, "$id.json").bufferedWriter().use { it.write(blockStateString) }
     }
 
-    class VariantModelBuilder(val model: String, val x: Int = 0, val y: Int = 0, val z : Int = 0) {
+    class VariantModel(val model: String, val x: Int = 0, val y: Int = 0, val z : Int = 0) {
 
         fun toJson(): JsonObject {
             val variantJson = JsonObject()
@@ -74,5 +74,18 @@ class VariantBlockStateBuilder {
         }
     }
 
+    companion object {
 
+        fun generatePoleBlockState(woodSuffix: String) {
+            val fullID = "${woodSuffix}_pole"
+            val modelString = "nicetohave:block/$fullID"
+
+            VariantBlockStateBuilder()
+                    .setID(fullID)
+                    .addVariant("axis=y", VariantModel(modelString))
+                    .addVariant("axis=z", VariantModel(modelString, 90))
+                    .addVariant("axis=x", VariantModel(modelString, 90, 90))
+                    .save()
+        }
+    }
 }
