@@ -9,7 +9,7 @@ import java.io.File
 class BasicModelBuilder {
 
     private var id: String = ""
-    private var namespace: String = ""
+    private var namespace: String = "nicetohave"
     private var type: ModelType = ModelType.BLOCK
     private var parent: String = ""
     private val textures: HashMap<String, String> = HashMap()
@@ -70,5 +70,17 @@ class BasicModelBuilder {
 
     enum class ModelType(val directory : String) {
         BLOCK("block")
+    }
+
+    companion object {
+        private val POLE_MODEL = BasicModelBuilder()
+                .setParent("nicetohave:block/pole")
+
+        fun createPoleModel(woodPrefix: String, woodNamespace: String = "minecraft") {
+            POLE_MODEL
+                    .setID("${woodPrefix}_pole")
+                    .addTexture("texture", "$woodNamespace:block/${woodPrefix}_log")
+                    .save()
+        }
     }
 }

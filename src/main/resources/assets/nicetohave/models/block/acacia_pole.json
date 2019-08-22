@@ -1,6 +1,5 @@
-{
-  "parent": "nicetohave:block/pole",
-  "textures": {
-    "texture": "block/acacia_log"
-  }
+{ 
+	"textures": { 
+		"texture": "minecraft:block/acacia_log"
+	}
 }
