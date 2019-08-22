@@ -1,0 +1,16 @@
+{ 
+	"variants": { 
+		"axis=z": { 
+			"model": "nicetohave:block/rainbow_eucalyptus_pole",
+			"x": 90
+		},
+		"axis=x": { 
+			"model": "nicetohave:block/rainbow_eucalyptus_pole",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": { 
+			"model": "nicetohave:block/rainbow_eucalyptus_pole"
+		}
+	}
+}

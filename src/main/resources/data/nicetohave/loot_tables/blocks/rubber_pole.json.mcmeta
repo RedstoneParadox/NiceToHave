@@ -1,0 +1,7 @@
+{ 
+	"when": [ 
+		{ 
+			"nicetohave:config_true": "blocks.rubber_pole"
+		}
+	]
+}

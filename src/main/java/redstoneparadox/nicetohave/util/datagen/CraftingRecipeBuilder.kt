@@ -138,13 +138,19 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 2)
                 .setPatternLine("a", 3)
                 .setOutput("", 12)
-                .setCondition(DataConditionBuilder()
-                        .addCondition("nicetohave:config_true", "blocks.poles"))
 
         fun generatePoleRecipe(woodPrefix : String, logModId : String = "minecraft") {
+            val condition = DataConditionBuilder()
+                    .addCondition("nicetohave:config_true", "blocks.poles")
+
+            if (logModId != "minecraft") {
+                condition.addCondition("libcd:mod_loaded", logModId)
+            }
+
             POLE_RECIPE
                     .setIngredients("$logModId:${woodPrefix}_log")
                     .setOutput("nicetohave:${woodPrefix}_pole", true)
+                    .setCondition(condition)
                     .save()
         }
     }

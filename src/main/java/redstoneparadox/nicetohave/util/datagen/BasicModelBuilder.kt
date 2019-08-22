@@ -71,13 +71,15 @@ class BasicModelBuilder {
     }
 
     enum class ModelType(val directory : String) {
-        BLOCK("block")
+        BLOCK("block"),
+        ITEM("item");
     }
 
     companion object {
         private val POLE_BLOCK_MODEL = BasicModelBuilder()
                 .setParent("nicetohave:block/pole")
         private val POLE_ITEM_MODEL = BasicModelBuilder()
+                .setType(ModelType.ITEM)
 
         fun createPoleBlockModel(woodPrefix: String, woodNamespace: String = "minecraft") {
             POLE_BLOCK_MODEL

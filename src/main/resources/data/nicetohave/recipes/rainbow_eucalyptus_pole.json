@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:rainbow_eucalyptus_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:rainbow_eucalyptus_pole",
+		"count": 12
+	}
+}

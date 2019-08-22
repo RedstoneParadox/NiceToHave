@@ -22,6 +22,10 @@
       {
         "adapter": "kotlin",
         "value": "redstoneparadox.nicetohave.NiceToHave"
+      },
+      {
+        "adapter": "kotlin",
+        "value": "redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompat"
       }
     ],
     "client": [

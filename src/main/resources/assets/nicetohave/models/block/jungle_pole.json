@@ -1,6 +1,6 @@
-{
-  "parent": "nicetohave:block/pole",
-  "textures": {
-    "texture": "block/jungle_log"
-  }
+{ 
+	"parent": "nicetohave:block/pole",
+	"textures": { 
+		"texture": "minecraft:block/jungle_log"
+	}
 }

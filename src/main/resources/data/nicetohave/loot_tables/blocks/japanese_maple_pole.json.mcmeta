@@ -1,0 +1,7 @@
+{ 
+	"when": [ 
+		{ 
+			"nicetohave:config_true": "blocks.japanese_maple_pole"
+		}
+	]
+}

@@ -1,17 +1,17 @@
-{
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:oak_log"
-    }
-  },
-  "result": {
-    "item": "nicetohave:oak_pole",
-    "count": 12
-  }
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "minecraft:oak_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:oak_pole",
+		"count": 12
+	}
 }

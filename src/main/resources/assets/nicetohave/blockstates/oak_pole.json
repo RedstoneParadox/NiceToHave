@@ -1,7 +1,16 @@
-{
-  "variants": {
-    "axis=y": { "model": "nicetohave:block/oak_pole" },
-    "axis=z": { "model": "nicetohave:block/oak_pole", "x": 90 },
-    "axis=x": { "model": "nicetohave:block/oak_pole", "x": 90, "y": 90 }
-  }
+{ 
+	"variants": { 
+		"axis=z": { 
+			"model": "nicetohave:block/oak_pole",
+			"x": 90
+		},
+		"axis=x": { 
+			"model": "nicetohave:block/oak_pole",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": { 
+			"model": "nicetohave:block/oak_pole"
+		}
+	}
 }

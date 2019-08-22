@@ -1,7 +1,7 @@
-{
-  "when": [
-    {
-      "nicetohave:config_true" : "blocks.poles"
-    }
-  ]
+{ 
+	"when": [ 
+		{ 
+			"nicetohave:config_true": "blocks.birch_pole"
+		}
+	]
 }

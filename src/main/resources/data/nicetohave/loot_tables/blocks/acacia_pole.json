@@ -1,19 +1,19 @@
-{
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "nicetohave:acacia_pole"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    }
-  ]
+{ 
+	"type": "minecraft:block",
+	"pools": [ 
+		{ 
+			"rolls": 1,
+			"entries": [ 
+				{ 
+					"type": "minecraft:item",
+					"name": "nicetohave:acacia_pole"
+				}
+			],
+			"conditions": [ 
+				{ 
+					"condition": "minecraft:survives_explosion"
+				}
+			]
+		}
+	]
 }

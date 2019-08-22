@@ -8,14 +8,16 @@ import redstoneparadox.nicetohave.util.config.Config
 
 object TerrestriaCompatBlocks : BlocksInitializer() {
 
-    val REDWOOD_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.REDWOOD.wood), "redwood_pole", "blocks.poles")
-    val HEMLOCK_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.HEMLOCK.wood), "hemlock_pole", "blocks.poles")
-    val RUBBER_WOOD_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.RUBBER.wood), "rubber_wood_pole", "blocks.poles")
-    val CYPRESS_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.CYPRESS.wood), "cypress_pole", "blocks.poles")
-    val WILLOW_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.WILLOW.wood), "willow_pole", "blocks.poles")
-    val JAPANESE_MAPLE_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.JAPANESE_MAPLE.wood), "japanese_maple_pole", "blocks.pole")
-    val RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RAINBOW_EUCALYPTUS.wood, "rainbow_eucalyptus")
-    val SAKURA_POLE : PoleBlock? = register(PoleBlock(TerrestriaBlocks.SAKURA.wood), "sakura_pole", "blocks.pole")
+    private const val TERRESTRIA : String = "terrestria"
+
+    val REDWOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.REDWOOD.wood, "redwood", TERRESTRIA)
+    val HEMLOCK_POLE : PoleBlock? = registerPole(TerrestriaBlocks.HEMLOCK.wood, "hemlock", TERRESTRIA)
+    val RUBBER_WOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RUBBER.wood, "rubber", TERRESTRIA)
+    val CYPRESS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.CYPRESS.wood, "cypress", TERRESTRIA)
+    val WILLOW_POLE : PoleBlock? = registerPole(TerrestriaBlocks.WILLOW.wood, "willow", TERRESTRIA)
+    val JAPANESE_MAPLE_POLE : PoleBlock? = registerPole(TerrestriaBlocks.JAPANESE_MAPLE.wood, "japanese_maple", TERRESTRIA)
+    val RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RAINBOW_EUCALYPTUS.wood, "rainbow_eucalyptus", TERRESTRIA)
+    val SAKURA_POLE : PoleBlock? = registerPole(TerrestriaBlocks.SAKURA.wood, "sakura", TERRESTRIA)
 
     fun initBlocks() {
         if (Config.getBool("blocks.pole")) {

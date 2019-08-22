@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:rubber_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:rubber_pole",
+		"count": 12
+	}
+}

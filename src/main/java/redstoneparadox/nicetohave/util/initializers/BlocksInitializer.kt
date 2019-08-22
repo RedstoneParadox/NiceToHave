@@ -6,6 +6,10 @@ import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
+import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
+import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
+import redstoneparadox.nicetohave.util.datagen.VariantBlockStateBuilder
 
 abstract class BlocksInitializer {
 
@@ -23,7 +27,12 @@ abstract class BlocksInitializer {
         return null
     }
 
-    protected fun registerPole(block: Block, prefix: String): PoleBlock? {
+    protected fun registerPole(block: Block, prefix: String, logModID: String = "minecraft"): PoleBlock? {
+        CraftingRecipeBuilder.generatePoleRecipe(prefix, logModID)
+        LootTableBuilder.generateSingleBlockDrop("${prefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(prefix, logModID)
+        BasicModelBuilder.createPoleItemModel(prefix)
+        VariantBlockStateBuilder.generatePoleBlockState(prefix)
         return register(PoleBlock(block), "${prefix}_pole", "blocks.poles")
     }
 

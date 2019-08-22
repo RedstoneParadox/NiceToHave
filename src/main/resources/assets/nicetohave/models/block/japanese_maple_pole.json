@@ -1,0 +1,6 @@
+{ 
+	"parent": "nicetohave:block/pole",
+	"textures": { 
+		"texture": "terrestria:block/japanese_maple_log"
+	}
+}
