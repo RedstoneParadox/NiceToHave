@@ -20,7 +20,7 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
     val SAKURA_POLE : PoleBlock? = registerPole(TerrestriaBlocks.SAKURA.wood, "sakura", TERRESTRIA)
 
     fun initBlocks() {
-        if (Config.getBool("blocks.pole")) {
+        if (Config.getBool("blocks.poles")) {
             registerFlammableBlocks(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
     }
