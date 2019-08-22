@@ -1,7 +1,7 @@
 { 
 	"when": [ 
 		{ 
-			"nicetohave:config_true": "blocks.spruce_pole"
+			"nicetohave:config_true": "blocks.poles"
 		}
 	]
 }

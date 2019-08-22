@@ -29,7 +29,7 @@ abstract class BlocksInitializer {
 
     protected fun registerPole(block: Block, prefix: String, logModID: String = "minecraft"): PoleBlock? {
         CraftingRecipeBuilder.generatePoleRecipe(prefix, logModID)
-        LootTableBuilder.generateSingleBlockDrop("${prefix}_pole")
+        LootTableBuilder.generatePoleDrop("${prefix}_pole", logModID)
         BasicModelBuilder.createPoleBlockModel(prefix, logModID)
         BasicModelBuilder.createPoleItemModel(prefix)
         VariantBlockStateBuilder.generatePoleBlockState(prefix)

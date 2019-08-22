@@ -191,5 +191,26 @@ class LootTableBuilder {
                     .save()
 
         }
+
+        fun generatePoleDrop(poleId: String, woodNamespace: String = "minecraft") {
+            val loadCondition = DataConditionBuilder()
+                    .addCondition("nicetohave:config_true", "blocks.poles")
+
+            if (woodNamespace != "minecraft") loadCondition.addCondition("libcd:mod_loaded", "terrestria")
+
+            LootTableBuilder()
+                    .setID(poleId)
+                    .setType(LootType.BLOCK)
+                    .addPool(PoolBuilder()
+                            .setRoles(1)
+                            .addEntry(EntryBuilder()
+                                    .setName("nicetohave:$poleId"))
+                            .addCondition(ConditionBuilder()
+                                    .setCondition("minecraft:survives_explosion")
+                            )
+                    )
+                    .setCondition(loadCondition)
+                    .save()
+        }
     }
 }

@@ -1,7 +1,10 @@
 { 
 	"when": [ 
 		{ 
-			"nicetohave:config_true": "blocks.sakura_pole"
+			"libcd:mod_loaded": "terrestria"
+		},
+		{ 
+			"nicetohave:config_true": "blocks.poles"
 		}
 	]
 }

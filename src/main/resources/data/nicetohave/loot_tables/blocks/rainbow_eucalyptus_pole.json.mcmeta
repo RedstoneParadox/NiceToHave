@@ -1,7 +1,10 @@
 { 
 	"when": [ 
 		{ 
-			"nicetohave:config_true": "blocks.rainbow_eucalyptus_pole"
+			"libcd:mod_loaded": "terrestria"
+		},
+		{ 
+			"nicetohave:config_true": "blocks.poles"
 		}
 	]
 }
