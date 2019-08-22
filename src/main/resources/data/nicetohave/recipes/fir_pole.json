@@ -1,0 +1,17 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"a",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "traverse:fir_log"
+		}
+	},
+	"result": { 
+		"item": "nicetohave:fir_pole",
+		"count": 12
+	}
+}
