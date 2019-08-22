@@ -58,11 +58,13 @@ class BasicModelBuilder {
             modelJson["parent"] = JsonPrimitive(parent)
         }
 
-        val texturesJson = JsonObject()
-        for (textureEntry in textures) {
-            texturesJson[textureEntry.key] = JsonPrimitive(textureEntry.value)
+        if (textures.isNotEmpty()) {
+            val texturesJson = JsonObject()
+            for (textureEntry in textures) {
+                texturesJson[textureEntry.key] = JsonPrimitive(textureEntry.value)
+            }
+            modelJson["textures"] = texturesJson
         }
-        modelJson["textures"] = texturesJson
 
         val modelString = modelJson.toJson(false, true)
         File(currentDirectory, "$id.json").bufferedWriter().use { it.write(modelString) }
@@ -73,13 +75,21 @@ class BasicModelBuilder {
     }
 
     companion object {
-        private val POLE_MODEL = BasicModelBuilder()
+        private val POLE_BLOCK_MODEL = BasicModelBuilder()
                 .setParent("nicetohave:block/pole")
+        private val POLE_ITEM_MODEL = BasicModelBuilder()
 
-        fun createPoleModel(woodPrefix: String, woodNamespace: String = "minecraft") {
-            POLE_MODEL
+        fun createPoleBlockModel(woodPrefix: String, woodNamespace: String = "minecraft") {
+            POLE_BLOCK_MODEL
                     .setID("${woodPrefix}_pole")
                     .addTexture("texture", "$woodNamespace:block/${woodPrefix}_log")
+                    .save()
+        }
+
+        fun createPoleItemModel(woodPrefix: String) {
+            POLE_ITEM_MODEL
+                    .setID("${woodPrefix}_pole")
+                    .setParent("nicetohave:block/${woodPrefix}_pole")
                     .save()
         }
     }

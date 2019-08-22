@@ -49,7 +49,7 @@ object NiceToHave : ModInitializer {
         CraftingRecipeBuilder.generatePoleRecipe("acacia")
         CraftingRecipeBuilder.generatePoleRecipe("birch")
         LootTableBuilder.generateSingleBlockDrop("gold_button")
-        BasicModelBuilder.createPoleModel("acacia")
+        BasicModelBuilder.createPoleBlockModel("acacia")
     }
 
     fun out(msg : Any) {
