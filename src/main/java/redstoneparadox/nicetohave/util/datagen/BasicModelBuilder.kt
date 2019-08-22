@@ -55,7 +55,7 @@ class BasicModelBuilder {
 
         val modelJson = JsonObject()
         if (parent.isNotEmpty()) {
-            modelJson["parent"] == JsonPrimitive(parent)
+            modelJson["parent"] = JsonPrimitive(parent)
         }
 
         val texturesJson = JsonObject()
