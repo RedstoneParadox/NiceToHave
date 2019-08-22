@@ -9,7 +9,7 @@ object TerrestriaCompatItems : ItemsInitializer() {
 
     val REDWOOD_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.REDWOOD_POLE, "redwood")
     val HEMLOCK_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.HEMLOCK_POLE, "hemlock")
-    val RUBBER_WOOD_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.RUBBER_WOOD_POLE, "rubber_wood")
+    val RUBBER_WOOD_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.RUBBER_WOOD_POLE, "rubber")
     val CYPRESS_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.CYPRESS_POLE, "cypress")
     val WILLOW_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.WILLOW_POLE, "willow")
     val JAPANESE_MAPLE_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.JAPANESE_MAPLE_POLE, "japanese_maple")
