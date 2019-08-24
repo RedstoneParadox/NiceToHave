@@ -12,10 +12,7 @@ import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
-import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
-import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
-import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
-import redstoneparadox.nicetohave.util.datagen.VariantBlockStateBuilder
+import redstoneparadox.nicetohave.util.datagen.*
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -46,13 +43,7 @@ object NiceToHave : ModInitializer {
         Decorators.registerDecorators()
         Features.registerFeatures()
         Biomes.registerBiomes()
-
-        CraftingRecipeBuilder.generatePoleRecipe("acacia")
-        CraftingRecipeBuilder.generatePoleRecipe("birch")
-        LootTableBuilder.generateSingleBlockDrop("gold_button")
-        BasicModelBuilder.createPoleBlockModel("acacia")
-        VariantBlockStateBuilder.generatePoleBlockState("acacia")
-
+        NiceToHaveDatagen.generateData()
     }
 
     fun out(msg : Any) {

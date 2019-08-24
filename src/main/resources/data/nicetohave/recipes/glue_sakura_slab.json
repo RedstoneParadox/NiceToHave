@@ -1,0 +1,20 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"b",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:sakura_slab"
+		},
+		"b": { 
+			"item": "minecraft:slime_ball"
+		}
+	},
+	"result": { 
+		"item": "terrestria:sakura_planks",
+		"count": 1
+	}
+}

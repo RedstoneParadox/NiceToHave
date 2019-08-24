@@ -1,0 +1,10 @@
+{ 
+	"when": [ 
+		{ 
+			"libcd:mod_loaded": "traverse"
+		},
+		{ 
+			"nicetohave:config_true": "recipes.glue_slabs"
+		}
+	]
+}

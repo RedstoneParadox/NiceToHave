@@ -139,6 +139,12 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 3)
                 .setOutput("", 12)
 
+        private val SLAB_GLUE_RECIPE = CraftingRecipeBuilder()
+                .setPatternLine("a", 1)
+                .setPatternLine("b", 2)
+                .setPatternLine("a", 3)
+                .setOutput("", 1)
+
         fun generatePoleRecipe(woodPrefix : String, logModId : String = "minecraft") {
             val condition = DataConditionBuilder()
                     .addCondition("nicetohave:config_true", "blocks.poles")
@@ -151,6 +157,23 @@ class CraftingRecipeBuilder {
                     .setIngredients("$logModId:${woodPrefix}_log")
                     .setOutput("nicetohave:${woodPrefix}_pole", true)
                     .setCondition(condition)
+                    .save()
+        }
+
+        // Generates recipe for gluing slabs back into planks.
+        fun woodSlabGlueRecipe(prefix: String, mod: String = "minecraft") {
+            val condition = DataConditionBuilder()
+                    .addCondition("nicetohave:config_true", "recipes.glue_slabs")
+
+            if (mod != "minecraft" && mod != "nicetohave") {
+                condition.addCondition("libcd:mod_loaded", mod)
+            }
+
+            SLAB_GLUE_RECIPE
+                    .setCondition(condition)
+                    .setIngredients("$mod:${prefix}_slab", "minecraft:slime_ball")
+                    .setOutput("$mod:${prefix}_planks")
+                    .setID("glue_${prefix}_slab")
                     .save()
         }
     }

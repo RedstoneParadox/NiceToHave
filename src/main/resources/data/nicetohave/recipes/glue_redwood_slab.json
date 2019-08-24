@@ -1,0 +1,20 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"b",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "terrestria:redwood_slab"
+		},
+		"b": { 
+			"item": "minecraft:slime_ball"
+		}
+	},
+	"result": { 
+		"item": "terrestria:redwood_planks",
+		"count": 1
+	}
+}

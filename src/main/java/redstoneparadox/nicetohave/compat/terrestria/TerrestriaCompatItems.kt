@@ -1,6 +1,5 @@
 package redstoneparadox.nicetohave.compat.terrestria
 
-import net.fabricmc.loader.FabricLoader
 import net.minecraft.item.BlockItem
 import redstoneparadox.nicetohave.util.config.Config
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
