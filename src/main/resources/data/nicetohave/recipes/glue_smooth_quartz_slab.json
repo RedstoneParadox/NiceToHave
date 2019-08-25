@@ -1,0 +1,20 @@
+{ 
+	"type": "minecraft:crafting_shaped",
+	"pattern": [ 
+		"a",
+		"b",
+		"a"
+	],
+	"key": { 
+		"a": { 
+			"item": "minecraft:smooth_quartz_slab"
+		},
+		"b": { 
+			"item": "minecraft:slime_ball"
+		}
+	},
+	"result": { 
+		"item": "minecraft:smooth_quartz",
+		"count": 1
+	}
+}

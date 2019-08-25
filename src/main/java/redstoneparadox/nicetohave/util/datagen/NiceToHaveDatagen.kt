@@ -18,6 +18,21 @@ object NiceToHaveDatagen {
             }
 
             CraftingRecipeBuilder.woodSlabGlueRecipe("fir", "traverse")
+
+            for (block in arrayOf("bricks", "stone_bricks", "prismarine_bricks", "nether_bricks", "end_stone_bricks", "mossy_stone_bricks")) {
+                CraftingRecipeBuilder.regularSlabGlueRecipe(block, true)
+            }
+
+            for (block in arrayOf("cobblestone", "mossy_cobblestone", "stone", "smooth_stone", "sandstone", "smooth_sandstone", "cut_sandstone", "red_sandstone", "smooth_red_sandstone", "smooth_quartz", "granite", "smooth_granite", "andesite", "smooth_andesite", "diorite", "smooth_diorite")) {
+                CraftingRecipeBuilder.regularSlabGlueRecipe(block)
+            }
+
+            CraftingRecipeBuilder.regularSlabGlueRecipe("basalt_bricks", true, "terrestria")
+            CraftingRecipeBuilder.regularSlabGlueRecipe("mossy_basalt_bricks", true, "terrestria")
+
+            for (basalt in arrayOf("basalt", "smooth_basalt", "basalt_cobblestone", "mossy_basalt_cobblestone")) {
+                CraftingRecipeBuilder.regularSlabGlueRecipe(basalt, mod = "terrestria")
+            }
         }
     }
 }

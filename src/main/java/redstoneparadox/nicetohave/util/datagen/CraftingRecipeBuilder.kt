@@ -162,6 +162,16 @@ class CraftingRecipeBuilder {
 
         // Generates recipe for gluing slabs back into planks.
         fun woodSlabGlueRecipe(prefix: String, mod: String = "minecraft") {
+            slabGlueRecipe("${prefix}_slab", "${prefix}_planks", mod)
+        }
+
+        fun regularSlabGlueRecipe(block: String, plural : Boolean = false, mod: String = "minecraft") {
+            val prefix = if (plural) block.removeSuffix("s") else block
+
+            slabGlueRecipe("${prefix}_slab", block, mod)
+        }
+
+        fun slabGlueRecipe(slabID: String, blockID: String, mod: String) {
             val condition = DataConditionBuilder()
                     .addCondition("nicetohave:config_true", "recipes.glue_slabs")
 
@@ -171,9 +181,9 @@ class CraftingRecipeBuilder {
 
             SLAB_GLUE_RECIPE
                     .setCondition(condition)
-                    .setIngredients("$mod:${prefix}_slab", "minecraft:slime_ball")
-                    .setOutput("$mod:${prefix}_planks")
-                    .setID("glue_${prefix}_slab")
+                    .setIngredients("$mod:$slabID", "minecraft:slime_ball")
+                    .setOutput("$mod:$blockID")
+                    .setID("glue_$slabID")
                     .save()
         }
     }
