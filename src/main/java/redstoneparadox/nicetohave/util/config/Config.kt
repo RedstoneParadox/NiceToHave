@@ -68,6 +68,7 @@ object Config {
                 .addBool("increased_rail_output", "Activator, detector, and powered rail recipes give 16 rails instead of 6.")
                 .addBool("uncraft_netherwart_block", "Recipe for crafting Netherwart Blocks back into 9 Netherwart.")
                 .addBool("melon_to_slices", "Allows watermelons to be crafted into 9 watermelon slices.")
+                .addBool("glue_slabs", "Allows for slabs to be glued back together with slimeballs.")
                 .endCategory()
                 .newCategory("potions", "Enable/Disable potions.")
                 .addBool("insight", "Set to false to disable the Potion of Insight.")
