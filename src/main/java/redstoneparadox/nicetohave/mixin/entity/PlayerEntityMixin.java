@@ -5,6 +5,10 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import redstoneparadox.nicetohave.enchantment.Enchantments;
@@ -13,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import redstoneparadox.nicetohave.util.TimeUtilKt;
 
 import java.util.Map;
 import java.util.Random;
@@ -22,6 +27,8 @@ import java.util.Random;
  */
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
+
+    private static final EntityAttributeModifier FLURRY_MODIFIER = new EntityAttributeModifier("b677d79b-3629-4d99-9ab1-b133347ed3c6", 10.0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType_1, World world_1) {
         super(entityType_1, world_1);
@@ -33,22 +40,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
         Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(self.getMainHandStack());
 
-        //Flurry enchant.
-        if (!self.getItemCooldownManager().isCoolingDown(self.getMainHandStack().getItem()) && enchantments.containsKey(Enchantments.INSTANCE.getFLURRY())) {
+        if (enchantments.containsKey(Enchantments.INSTANCE.getFLURRY())) {
             int level = enchantments.get(Enchantments.INSTANCE.getFLURRY());
             int doubleStrikeChance = Flurry.Companion.getChance(level);
             Random rand = new Random();
 
             if (rand.nextInt(100) + 1 <= doubleStrikeChance) {
-                self.getAttributeContainer();
-
+                addPotionEffect(new StatusEffectInstance(StatusEffects.HASTE, 40, 1));
             }
         }
-    }
-
-    @Inject(method = "tick", at = @At(value = "HEAD"))
-    private void tickMixin(CallbackInfo ci) {
-        PlayerEntity self = (PlayerEntity) (Object) this;
 
     }
+
 }

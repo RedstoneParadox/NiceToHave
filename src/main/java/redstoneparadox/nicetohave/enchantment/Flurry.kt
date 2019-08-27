@@ -12,7 +12,7 @@ import java.util.*
 class Flurry(weight: Weight, target: EnchantmentTarget, slots: Array<out EquipmentSlot>) : Enchantment(weight, target, slots) {
 
     override fun getMaximumLevel(): Int {
-        return 4
+        return 3
     }
 
     companion object {
@@ -20,7 +20,7 @@ class Flurry(weight: Weight, target: EnchantmentTarget, slots: Array<out Equipme
         val MODIFIER : EntityAttributeModifier = EntityAttributeModifier(UUID.fromString("007249f5-1300-4893-b9c5-9a607bf66c15"), "", 10.0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
         fun getChance(level : Int): Int {
-            return level * 15
+            return level * 10
         }
     }
 }

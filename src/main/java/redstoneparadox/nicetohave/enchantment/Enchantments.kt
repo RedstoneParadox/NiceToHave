@@ -3,6 +3,7 @@ package redstoneparadox.nicetohave.enchantment
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
+import net.minecraft.util.registry.Registry
 
 
 /**
@@ -13,6 +14,6 @@ object Enchantments {
     var FLURRY : Flurry = Flurry(Enchantment.Weight.UNCOMMON, EnchantmentTarget.field_9074, arrayOf(EquipmentSlot.MAINHAND))
 
     fun registerEnchantments() {
-        //Registry.register(Registry.ENCHANTMENT, "nicetohave:flurry", FLURRY)
+        Registry.register(Registry.ENCHANTMENT, "nicetohave:flurry", FLURRY)
     }
 }
