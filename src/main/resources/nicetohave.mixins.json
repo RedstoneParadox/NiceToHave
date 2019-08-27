@@ -7,6 +7,8 @@
     "block.CactusBlockMixin",
     "block.ComposterBlockMixin",
     "block.DispenserBlockMixin",
+    "block.KelpBlockMixin",
+    "block.KelpPlantBlockMixin",
     "block.LeverBlockMixin",
     "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
