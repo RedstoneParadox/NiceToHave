@@ -33,7 +33,6 @@ object NiceToHave : ModInitializer {
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
 
-        Listeners.initListeners()
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()
@@ -45,6 +44,7 @@ object NiceToHave : ModInitializer {
         Features.registerFeatures()
         Biomes.registerBiomes()
         NiceToHaveDatagen.generateData()
+        Listeners.initListeners()
     }
 
     fun out(msg : Any) {
