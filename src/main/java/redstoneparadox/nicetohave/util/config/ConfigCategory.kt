@@ -3,15 +3,20 @@ package redstoneparadox.nicetohave.util.config
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
-import java.lang.Exception
+import redstoneparadox.nicetohave.util.config.Config.boolType
+import redstoneparadox.nicetohave.util.config.Config.doubleType
 
-class ConfigCategory(val key : String? = null, val comment : String? = null, val isMain : Boolean = false) {
+open class ConfigCategory(val key : String = "", val comment : String = "", val parentCategory: ConfigCategory? = null) {
 
     private val optionsMap : HashMap<String, ConfigOption<*>> = HashMap()
     private val subCategoriesMap : HashMap<String, ConfigCategory> = HashMap()
 
-    fun serialize(json: JsonObject): JsonObject {
-        val selfObject = if (isMain) json else JsonObject()
+    init {
+        parentCategory?.addChildCategory(getSelf(), key)
+    }
+
+    fun serialize(parentObject: JsonObject? = null): JsonObject {
+        val selfObject = JsonObject()
 
         for (optionEntry in optionsMap) {
             optionEntry.value.serialize(selfObject)
@@ -21,24 +26,19 @@ class ConfigCategory(val key : String? = null, val comment : String? = null, val
             subCategoryEntry.value.serialize(selfObject)
         }
 
-        if (!isMain) {
-            if (key != null) {
-                json.put(key, selfObject, comment)
-            }
-            else {
-                NiceToHave.error("Error!")
-            }
+        if (parentObject != null) {
+            parentObject.put(key, selfObject, comment)
+            return parentObject
         }
 
-        return json
+        return selfObject
     }
 
-    fun deserialize(json : JsonObject) {
-        for (entry in json) {
+    fun deserialize(parentObject: JsonObject) {
+        for (entry in parentObject) {
             if (entry.value is JsonPrimitive) {
-                if (optionsMap[entry.key] is ConfigOption) {
-                    val option= optionsMap[entry.key]!!
-                    option.deserialize(entry.value as JsonPrimitive)
+                if (optionsMap.containsKey(entry.key)) {
+                    optionsMap[entry.key]!!.deserialize(entry.value as JsonPrimitive)
                 }
                 else {
                     NiceToHave.error("Attempted to load non-option `${entry.key}`")
@@ -46,8 +46,7 @@ class ConfigCategory(val key : String? = null, val comment : String? = null, val
             }
             else if (entry.value is JsonObject) {
                 if (subCategoriesMap.containsKey(entry.key)) {
-                    val subCategory = subCategoriesMap[entry.key]!!
-                    subCategory.deserialize(entry.value as JsonObject)
+                    subCategoriesMap[entry.key]!!.deserialize(entry.value as JsonObject)
                 }
                 else {
                     NiceToHave.error("Attempted to load non-category `${entry.key}`.")
@@ -56,35 +55,36 @@ class ConfigCategory(val key : String? = null, val comment : String? = null, val
         }
     }
 
-    fun addOption(optionKey : String, option: ConfigOption<*>) {
-        optionsMap[optionKey] = option
+    protected fun addChildCategory(child : ConfigCategory, key: String) {
+        subCategoriesMap[key] = child;
     }
 
-    fun addSubCategory(categoryKey : String, category: ConfigCategory) {
-        subCategoriesMap[categoryKey] = category
+    protected fun boolOption(default: Boolean, key: String, comment: String): ConfigOption<Boolean> {
+        val option = ConfigOption(boolType, default, key, comment, this)
+        optionsMap[key] = option
+        return option
     }
 
-    fun <T : Any> getOption(keySequence: Sequence<String>, default : T, originalKey : String, optionType : Class<T>): T {
-        val firstKey = keySequence.first()
-        try {
-            if (keySequence.last() == firstKey) {
-                val option = optionsMap[firstKey]
-                if (option != null) {
-                    if (option.type == optionType) {
-                        return option.value as T
-                    }
-                }
-            }
-            else {
-                val subCategory = subCategoriesMap[firstKey]
-                if (subCategory != null) {
-                    return subCategory.getOption(keySequence.drop(1), default, originalKey, optionType)
-                }
-            }
-        } catch (e : Exception) {
-            e.printStackTrace()
+    protected fun doubleOption(default: Double, key: String, comment: String): ConfigOption<Double> {
+        val option = ConfigOption(doubleType, default, key, comment, this)
+        optionsMap[key] = option
+        return option
+    }
+
+    protected fun rangeOption(default: Double, min : Double, max : Double, key: String, comment: String): RangeConfigOption {
+        val option = RangeConfigOption(default, min, max, key, comment, this)
+        optionsMap[key] = option
+        return option
+    }
+
+    fun getFullKey(): String {
+        if (parentCategory != null) {
+            return "${parentCategory.getFullKey()}.$key"
         }
-        NiceToHave.error("Error while reading config option $originalKey. Will use default value of $default.")
-        return default
+        return key
+    }
+
+    fun getSelf(): ConfigCategory {
+        return this
     }
 }

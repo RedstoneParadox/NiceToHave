@@ -18,7 +18,7 @@ import redstoneparadox.nicetohave.util.config.Config;
 @Mixin(LeverBlock.class)
 public abstract class LeverBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = Config.INSTANCE.getBool("misc.underwater_levers_buttons", true);
+    private boolean canPlaceUnderwater = Config.Misc.INSTANCE.getUnderwaterSwitches();
 
     public LeverBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

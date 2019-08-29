@@ -3,27 +3,40 @@ package redstoneparadox.nicetohave.util.config
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
+import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.ConfigCategory
+import kotlin.reflect.KProperty
 
-open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, val comment : String) {
+open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, val comment : String, val parentCategory: ConfigCategory) {
 
-    fun serialize(json : JsonObject): JsonObject {
-        json.put(trueKey(), JsonPrimitive(value), comment)
-        return json
+    operator fun getValue(thisRef : Any?, property: KProperty<*>): T {
+        return value
     }
 
-    open fun deserialize(jsonPrimitive: JsonPrimitive) {
-        value = primitiveToValue(jsonPrimitive.value)
+    open operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
+        this.value = value
     }
 
-    protected fun primitiveToValue(any : Any): T {
-        if (any::class.java != type) {
-            NiceToHave.error("Expected type of `${Config.classToType(type)}` for config option `$key` but instead found type of `${Config.classToType(any::class.java)}`. Will use default value of `$value`.")
-            return value
+    fun serialize(parentObject : JsonObject): JsonObject {
+        parentObject.put(key, JsonPrimitive(value), comment)
+        return parentObject
+    }
+
+    open fun deserialize(primitive : JsonPrimitive) {
+        value = unwrapPrimitive(primitive)
+    }
+
+    fun unwrapPrimitive(primitive: JsonPrimitive): T {
+        val any = primitive.value
+        val anyClass = any::class.java
+        if (anyClass == type) {
+            return any as T
         }
-        return any as T
+        NiceToHave.error("Expected type of ${Config.stringifyType(type)} for config option ${getFullKey()} but instead found type of ${Config.stringifyType(anyClass)}. Will use value of `$value` instead.")
+        return this.value;
     }
 
-    private fun trueKey(): String {
-        return key.split(".").last()
+    fun getFullKey(): String {
+        return "${parentCategory.getFullKey()}.$key"
     }
 }

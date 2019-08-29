@@ -16,6 +16,6 @@ public abstract class BambooJungleBiomeMixin extends Biome {
 
     @Override
     protected void addSpawn(EntityCategory category, SpawnEntry spawnEntry) {
-        if (!Config.INSTANCE.getBool("misc.peaceful_bamboo_jungle", true) || (spawnEntry.type == EntityType.OCELOT || category != EntityCategory.MONSTER)) super.addSpawn(category, spawnEntry);
+        if (Config.Misc.INSTANCE.getPeacefulBambooJungle() || (spawnEntry.type == EntityType.OCELOT || category != EntityCategory.MONSTER)) super.addSpawn(category, spawnEntry);
     }
 }

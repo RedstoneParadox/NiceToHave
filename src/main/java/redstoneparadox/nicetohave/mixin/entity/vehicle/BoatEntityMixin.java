@@ -21,7 +21,7 @@ public abstract class BoatEntityMixin {
 
     @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
     private void interact(PlayerEntity playerEntity_1, Hand hand_1, CallbackInfoReturnable<Boolean> cir) {
-        if (Config.INSTANCE.getBool("misc.vehicle_pickup", true) && playerEntity_1.isSneaking()) {
+        if (Config.Misc.INSTANCE.getVehiclePickup() && playerEntity_1.isSneaking()) {
             Item boatItem = Items.AIR;
 
             switch (getBoatType()) {

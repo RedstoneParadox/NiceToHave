@@ -40,7 +40,7 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
 
     @Override
     public boolean interact(PlayerEntity playerEntity_1, Hand hand_1) {
-        if (Config.INSTANCE.getBool("misc.vehicle_pickup", true) && playerEntity_1.isSneaking()) {
+        if (Config.Misc.INSTANCE.getVehiclePickup() && playerEntity_1.isSneaking()) {
             AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
             Item minecartItem = net.minecraft.item.Items.AIR;
 

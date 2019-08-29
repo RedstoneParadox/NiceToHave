@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BambooJungleHillsBiome;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
-import redstoneparadox.nicetohave.util.config.Config;
+import redstoneparadox.nicetohave.util.config.OldConfig;
 
 @Mixin(BambooJungleHillsBiome.class)
 public class BambooJungleHillsBiomeMixin extends Biome {
@@ -16,6 +16,6 @@ public class BambooJungleHillsBiomeMixin extends Biome {
 
     @Override
     protected void addSpawn(EntityCategory category, SpawnEntry spawnEntry) {
-        if (!Config.INSTANCE.getBool("misc.peaceful_bamboo_jungle", true) || (spawnEntry.type == EntityType.OCELOT || category != EntityCategory.MONSTER)) super.addSpawn(category, spawnEntry);
+        if (!OldConfig.INSTANCE.getBool("misc.peaceful_bamboo_jungle", true) || (spawnEntry.type == EntityType.OCELOT || category != EntityCategory.MONSTER)) super.addSpawn(category, spawnEntry);
     }
 }

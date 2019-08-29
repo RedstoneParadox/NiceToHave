@@ -14,7 +14,7 @@ import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.util.datagen.*
-import redstoneparadox.nicetohave.util.newconfig.NewConfig
+import redstoneparadox.nicetohave.util.config.NewConfig
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -37,6 +37,8 @@ object NiceToHave : ModInitializer {
             WrenchItem.blockToInteraction(block)
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
+
+        println("Is apple juice enabled? ${NewConfig.Items.appleJuice}.")
 
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()

@@ -12,7 +12,7 @@ object TraverseCompatBlocks : BlocksInitializer() {
     val STRIPPED_FIR_POLE : PoleBlock? = registerPole(TraverseBlocks.FIR_WOOD, "stripped_fir", "traverse")
 
     fun initBlocks() {
-        if (Config.getBool("blocks.poles")) {
+        if (Config.Blocks.poles) {
             registerFlammableBlocks(arrayOf(FIR_POLE, STRIPPED_FIR_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
     }

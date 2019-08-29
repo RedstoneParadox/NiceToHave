@@ -7,11 +7,11 @@ import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.oldconfig.OldConfig
 import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
 import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
 import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
 import redstoneparadox.nicetohave.util.datagen.VariantBlockStateBuilder
-import redstoneparadox.nicetohave.util.newconfig.NewConfig
 
 abstract class BlocksInitializer {
 
@@ -35,18 +35,18 @@ abstract class BlocksInitializer {
             VariantBlockStateBuilder.generatePoleBlockState(prefix)
         }
 
-        return register("${prefix}_pole", PoleBlock(blockOf), NewConfig.Blocks.poles)
+        return register("${prefix}_pole", PoleBlock(blockOf), Config.Blocks.poles)
     }
 
     protected fun <T : Block> register(block : T, id : String, respectConfig : Boolean = true): T? {
-        if (!respectConfig || Config.getBool("blocks.$id")) {
+        if (!respectConfig || OldConfig.getBool("blocks.$id")) {
             return Registry.register(Registry.BLOCK, "nicetohave:$id", block) as T?
         }
         return null
     }
 
     protected fun <T : Block> register(block: T, id: String, configOption: String? = null): T? {
-        if (Config.getBool(configOption ?: "blocks.$id")) {
+        if (OldConfig.getBool(configOption ?: "blocks.$id")) {
             return Registry.register(Registry.BLOCK, "nicetohave:$id", block) as T?
         }
         return null

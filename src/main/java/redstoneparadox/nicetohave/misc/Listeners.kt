@@ -18,7 +18,7 @@ object Listeners {
 
     fun initListeners() {
         LootTableLoadingCallback.EVENT.register(LootTableLoadingCallback { resourceManager, manager, id, supplier, setter ->
-            if (Items.DYNAMITE != null && "minecraft:chests/abandoned_mineshaft" == id.toString()) {
+            if (Config.Items.dynamite && "minecraft:chests/abandoned_mineshaft" == id.toString()) {
                 val poolBuider = FabricLootPoolBuilder.builder()
                         .withFunction(SetCountLootFunction.builder(UniformLootTableRange.between(1.0f, 5.0f)))
                         .withEntry(ItemEntry.builder(Items.DYNAMITE).setWeight(8))

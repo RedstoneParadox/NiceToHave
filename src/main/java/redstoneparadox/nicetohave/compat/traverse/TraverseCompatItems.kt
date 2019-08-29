@@ -10,7 +10,7 @@ object TraverseCompatItems : ItemsInitializer() {
     val STRIPPED_FIR_POLE : BlockItem? = registerPoleItem(TraverseCompatBlocks.STRIPPED_FIR_POLE, "stripped_fir")
 
     fun initItems() {
-        if (Config.getBool("blocks.poles")) {
+        if (Config.Blocks.poles) {
             registerFuelForEach(arrayOf(STRIPPED_FIR_POLE, FIR_POLE), 300)
         }
     }

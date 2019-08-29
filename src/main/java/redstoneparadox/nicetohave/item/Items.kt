@@ -6,7 +6,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.oldconfig.OldConfig
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
 
 /**
@@ -51,7 +51,7 @@ object Items : ItemsInitializer() {
         }
 
         println("Initializing Items")
-        if (Config.getBool("blocks.poles")) {
+        if (OldConfig.getBool("blocks.poles")) {
             registerFuelForEach(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), 300)
             registerFuelForEach(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), 300)
         }

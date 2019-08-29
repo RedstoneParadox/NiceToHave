@@ -8,7 +8,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateFactory;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -22,7 +21,7 @@ import redstoneparadox.nicetohave.util.config.Config;
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = Config.INSTANCE.getBool("misc.underwater_levers_buttons", true);
+    private boolean canPlaceUnderwater = Config.Misc.INSTANCE.getUnderwaterSwitches();
 
     protected AbstractButtonBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

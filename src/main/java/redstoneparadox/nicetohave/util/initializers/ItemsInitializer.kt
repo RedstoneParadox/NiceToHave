@@ -7,9 +7,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
-import redstoneparadox.nicetohave.item.Items
-import redstoneparadox.nicetohave.util.config.Config
-import redstoneparadox.nicetohave.util.config.ConfigOption
+import redstoneparadox.nicetohave.util.oldconfig.OldConfig
 
 abstract class ItemsInitializer {
 
@@ -36,28 +34,28 @@ abstract class ItemsInitializer {
     }
 
     protected fun register(item : Item?, id : String, respectsConfig: Boolean = true): Item? {
-        if (!respectsConfig || Config.getBool("items.$id")) {
+        if (!respectsConfig || OldConfig.getBool("items.$id")) {
             return Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
         return null
     }
 
     protected fun register(item: Item?, id: String, configOption: String? = null): Item? {
-        if (Config.getBool(configOption ?: "items.$id")) {
+        if (OldConfig.getBool(configOption ?: "items.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
         return null
     }
 
     protected fun registerBlockItem(item: BlockItem?, id: String, respectsConfig : Boolean = true): BlockItem? {
-        if (!respectsConfig || Config.getBool("blocks.$id")) {
+        if (!respectsConfig || OldConfig.getBool("blocks.$id")) {
             return Registry.register(Registry.ITEM, "nicetohave:${id}", item)
         }
         return null
     }
 
     protected fun registerBlockItem(item: BlockItem?, id: String, configOption: String? = null): BlockItem? {
-        if (Config.getBool(configOption ?: "blocks.$id")) {
+        if (OldConfig.getBool(configOption ?: "blocks.$id")) {
             Registry.register(Registry.ITEM, "nicetohave:$id", item)
         }
         return null

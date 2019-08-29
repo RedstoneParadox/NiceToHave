@@ -25,7 +25,7 @@ object TerrestriaCompatItems : ItemsInitializer() {
     val STRIPPED_SAKURA_POLE : BlockItem? = registerPoleItem(TerrestriaCompatBlocks.STRIPPED_SAKURA_POLE, "stripped_sakura")
 
     fun initItems() {
-        if (Config.getBool("blocks.poles")) {
+        if (Config.Blocks.poles) {
             registerFuelForEach(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), 300)
             registerFuelForEach(arrayOf(STRIPPED_REDWOOD_POLE, STRIPPED_HEMLOCK_POLE, STRIPPED_RUBBER_WOOD_POLE, STRIPPED_CYPRESS_POLE, STRIPPED_WILLOW_POLE, STRIPPED_JAPANESE_MAPLE_POLE, STRIPPED_RAINBOW_EUCALYPTUS_POLE, STRIPPED_SAKURA_POLE), 300)
         }

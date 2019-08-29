@@ -11,13 +11,15 @@ import redstoneparadox.nicetohave.util.config.Config;
 @Mixin(DefaultBiomeFeatures.class)
 public abstract class DefaultBiomeFeaturesMixin {
 
+    private static boolean disablePonds = Config.World.INSTANCE.getDisablePonds();
+
     @Inject(method = "addDefaultLakes", at = @At("HEAD"), cancellable = true)
     private static void addDefaultLakes(Biome biome_1, CallbackInfo ci) {
-        if (Config.INSTANCE.getBool("world.disable_ponds", true)) ci.cancel();
+        if (disablePonds) ci.cancel();
     }
 
     @Inject(method = "addDesertLakes", at = @At("HEAD"), cancellable = true)
     private static void addDesertLakes(Biome biome_1, CallbackInfo ci) {
-        if (Config.INSTANCE.getBool("world.disable_ponds", true)) ci.cancel();
+        if (disablePonds) ci.cancel();
     }
 }

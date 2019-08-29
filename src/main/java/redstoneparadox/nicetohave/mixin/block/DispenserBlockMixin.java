@@ -22,7 +22,7 @@ public abstract class DispenserBlockMixin {
 
     @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/DispenserBlockEntity;chooseNonEmptySlot()I"), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
     void dispense(World world_1, BlockPos blockPos_1, CallbackInfo ci, BlockPointerImpl blockPointer, DispenserBlockEntity dispenserBlockEntity_1) {
-        if (!Config.INSTANCE.getBool("misc.dispenser_ladder_placement", true)) {
+        if (Config.Misc.INSTANCE.getDispenserLadderPlacement()) {
             return;
         }
 

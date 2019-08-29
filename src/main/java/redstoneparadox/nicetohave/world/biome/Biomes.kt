@@ -18,7 +18,7 @@ object Biomes {
     val BAD_LANDS_RIVER = RiverBiome()
     
     fun registerBiomes() {
-        if (Config.getBool("world.gold_in_rivers")) {
+        if (Config.World.goldInRivers) {
             BAD_LANDS_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
             register("badlands_river", BAD_LANDS_RIVER)
             OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS_PLATEAU, BAD_LANDS_RIVER)
