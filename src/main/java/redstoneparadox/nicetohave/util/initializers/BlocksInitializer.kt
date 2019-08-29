@@ -33,6 +33,7 @@ abstract class BlocksInitializer {
         BasicModelBuilder.createPoleBlockModel(prefix, logModID)
         BasicModelBuilder.createPoleItemModel(prefix)
         VariantBlockStateBuilder.generatePoleBlockState(prefix)
+
         return register(PoleBlock(block), "${prefix}_pole", "blocks.poles")
     }
 
