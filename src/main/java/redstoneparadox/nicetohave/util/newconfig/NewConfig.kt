@@ -60,6 +60,13 @@ object NewConfig : NewConfigCategory() {
     }
 
     init {
+        Items
+        Blocks
+        Recipes
+        Potions
+        World
+        Misc
+
         val hjsonFile = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson")
         val json5File = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5")
 
@@ -82,14 +89,6 @@ object NewConfig : NewConfigCategory() {
         if (hjsonFile.exists()) {
             NiceToHave.out("Nice to Have now uses JSON5 as the config format for better editor support. Please delete the hjson file as all files will now be written to the json5 file.")
         }
-
-
-        Items
-        Blocks
-        Recipes
-        Potions
-        World
-        Misc
 
         deserialize(configObject)
 

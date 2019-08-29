@@ -26,6 +26,10 @@ object NiceToHave : ModInitializer {
 
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
+    init {
+        NewConfig
+    }
+
     override fun onInitialize() {
         out("It's Nice To Have you!")
 
