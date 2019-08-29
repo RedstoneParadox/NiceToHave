@@ -38,8 +38,6 @@ object NiceToHave : ModInitializer {
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
 
-        println("Is apple juice enabled? ${NewConfig.Items.appleJuice}")
-
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()

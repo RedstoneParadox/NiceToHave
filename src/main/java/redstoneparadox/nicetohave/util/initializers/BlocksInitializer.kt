@@ -2,6 +2,7 @@ package redstoneparadox.nicetohave.util.initializers
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
@@ -10,8 +11,32 @@ import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
 import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
 import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
 import redstoneparadox.nicetohave.util.datagen.VariantBlockStateBuilder
+import redstoneparadox.nicetohave.util.newconfig.NewConfig
 
 abstract class BlocksInitializer {
+
+    protected fun <T : Block> register(id: String, block: T): T {
+        return Registry.register(Registry.BLOCK, "nicetohave:$id", block)
+    }
+
+    protected fun <T : Block> register(id: String, block: T, vararg conditions : Boolean): T? {
+        for (condition in conditions) {
+            if (!condition) return null
+        }
+        return register(id, block)
+    }
+
+    protected fun registerWoodPole(prefix: String, woodModID: String, blockOf : Block): PoleBlock? {
+        if (FabricLoader.getInstance().isDevelopmentEnvironment) {
+            CraftingRecipeBuilder.generatePoleRecipe(prefix, woodModID)
+            LootTableBuilder.generatePoleDrop("${prefix}_pole", woodModID)
+            BasicModelBuilder.createPoleBlockModel(prefix, woodModID)
+            BasicModelBuilder.createPoleItemModel(prefix)
+            VariantBlockStateBuilder.generatePoleBlockState(prefix)
+        }
+
+        return register("${prefix}_pole", PoleBlock(blockOf), NewConfig.Blocks.poles)
+    }
 
     protected fun <T : Block> register(block : T, id : String, respectConfig : Boolean = true): T? {
         if (!respectConfig || Config.getBool("blocks.$id")) {
