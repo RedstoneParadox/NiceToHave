@@ -15,10 +15,7 @@ import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
 object Items : ItemsInitializer() {
 
     var CHAIN_LINK : Item? = register(Item(Item.Settings().group(ItemGroup.MATERIALS)), "chain_link", null)
-    var DYNAMITE : Item? = run {
-        println("Initializing dynamite!");
-        register(DynamiteItem(Item.Settings().group(ItemGroup.TOOLS)), "dynamite", null)
-    }
+    var DYNAMITE : Item? = register(DynamiteItem(Item.Settings().group(ItemGroup.TOOLS)), "dynamite", null)
     var WRENCH : Item? = register(WrenchItem(Item.Settings().group(ItemGroup.TOOLS).maxCount(1)), "wrench", null)
     var FERTILIZER : Item? = register(BoneMealItem(Item.Settings().group(ItemGroup.MATERIALS)), "fertilizer", null)
 
