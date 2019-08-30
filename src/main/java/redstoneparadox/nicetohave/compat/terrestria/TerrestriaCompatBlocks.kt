@@ -10,23 +10,23 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
 
     private const val TERRESTRIA : String = "terrestria"
 
-    val REDWOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.REDWOOD.wood, "redwood", TERRESTRIA)
-    val HEMLOCK_POLE : PoleBlock? = registerPole(TerrestriaBlocks.HEMLOCK.wood, "hemlock", TERRESTRIA)
-    val RUBBER_WOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RUBBER.wood, "rubber", TERRESTRIA)
-    val CYPRESS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.CYPRESS.wood, "cypress", TERRESTRIA)
-    val WILLOW_POLE : PoleBlock? = registerPole(TerrestriaBlocks.WILLOW.wood, "willow", TERRESTRIA)
-    val JAPANESE_MAPLE_POLE : PoleBlock? = registerPole(TerrestriaBlocks.JAPANESE_MAPLE.wood, "japanese_maple", TERRESTRIA)
-    val RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RAINBOW_EUCALYPTUS.wood, "rainbow_eucalyptus", TERRESTRIA)
-    val SAKURA_POLE : PoleBlock? = registerPole(TerrestriaBlocks.SAKURA.wood, "sakura", TERRESTRIA)
+    val REDWOOD_POLE : PoleBlock? = registerWoodPole("redwood", TerrestriaBlocks.REDWOOD.wood, TERRESTRIA)
+    val HEMLOCK_POLE : PoleBlock? = registerWoodPole("hemlock", TerrestriaBlocks.HEMLOCK.wood, TERRESTRIA)
+    val RUBBER_WOOD_POLE : PoleBlock? = registerWoodPole("rubber", TerrestriaBlocks.RUBBER.wood, TERRESTRIA)
+    val CYPRESS_POLE : PoleBlock? = registerWoodPole("cypress", TerrestriaBlocks.CYPRESS.wood, TERRESTRIA)
+    val WILLOW_POLE : PoleBlock? = registerWoodPole("willow", TerrestriaBlocks.WILLOW.wood, TERRESTRIA)
+    val JAPANESE_MAPLE_POLE : PoleBlock? = registerWoodPole("japanese_maple", TerrestriaBlocks.JAPANESE_MAPLE.wood, TERRESTRIA)
+    val RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerWoodPole("rainbow_eucalyptus", TerrestriaBlocks.RAINBOW_EUCALYPTUS.wood, TERRESTRIA)
+    val SAKURA_POLE : PoleBlock? = registerWoodPole("sakura", TerrestriaBlocks.SAKURA.wood, TERRESTRIA)
 
-    val STRIPPED_REDWOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.REDWOOD.strippedWood, "stripped_redwood", TERRESTRIA)
-    val STRIPPED_HEMLOCK_POLE : PoleBlock? = registerPole(TerrestriaBlocks.HEMLOCK.strippedWood, "stripped_hemlock", TERRESTRIA)
-    val STRIPPED_RUBBER_WOOD_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RUBBER.strippedWood, "stripped_rubber", TERRESTRIA)
-    val STRIPPED_CYPRESS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.CYPRESS.strippedWood, "stripped_cypress", TERRESTRIA)
-    val STRIPPED_WILLOW_POLE : PoleBlock? = registerPole(TerrestriaBlocks.WILLOW.strippedWood, "stripped_willow", TERRESTRIA)
-    val STRIPPED_JAPANESE_MAPLE_POLE : PoleBlock? = registerPole(TerrestriaBlocks.JAPANESE_MAPLE.strippedWood, "stripped_japanese_maple", TERRESTRIA)
-    val STRIPPED_RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerPole(TerrestriaBlocks.RAINBOW_EUCALYPTUS.strippedWood, "stripped_rainbow_eucalyptus", TERRESTRIA)
-    val STRIPPED_SAKURA_POLE : PoleBlock? = registerPole(TerrestriaBlocks.SAKURA.strippedWood, "stripped_sakura", TERRESTRIA)
+    val STRIPPED_REDWOOD_POLE : PoleBlock? = registerWoodPole("stripped_redwood", TerrestriaBlocks.REDWOOD.strippedWood, TERRESTRIA)
+    val STRIPPED_HEMLOCK_POLE : PoleBlock? = registerWoodPole("stripped_hemlock", TerrestriaBlocks.HEMLOCK.strippedWood, TERRESTRIA)
+    val STRIPPED_RUBBER_WOOD_POLE : PoleBlock? = registerWoodPole("stripped_rubber", TerrestriaBlocks.RUBBER.strippedWood, TERRESTRIA)
+    val STRIPPED_CYPRESS_POLE : PoleBlock? = registerWoodPole("stripped_cypress", TerrestriaBlocks.CYPRESS.strippedWood, TERRESTRIA)
+    val STRIPPED_WILLOW_POLE : PoleBlock? = registerWoodPole("stripped_willow", TerrestriaBlocks.WILLOW.strippedWood, TERRESTRIA)
+    val STRIPPED_JAPANESE_MAPLE_POLE : PoleBlock? = registerWoodPole("stripped_japanese_maple", TerrestriaBlocks.JAPANESE_MAPLE.strippedWood, TERRESTRIA)
+    val STRIPPED_RAINBOW_EUCALYPTUS_POLE : PoleBlock? = registerWoodPole("stripped_rainbow_eucalyptus", TerrestriaBlocks.RAINBOW_EUCALYPTUS.strippedWood, TERRESTRIA)
+    val STRIPPED_SAKURA_POLE : PoleBlock? = registerWoodPole("stripped_sakura", TerrestriaBlocks.SAKURA.strippedWood, TERRESTRIA)
 
     fun initBlocks() {
         if (Config.Blocks.poles) {

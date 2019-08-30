@@ -26,7 +26,7 @@ abstract class BlocksInitializer {
         return register(id, block)
     }
 
-    protected fun registerWoodPole(prefix: String, woodModID: String, blockOf : Block): PoleBlock? {
+    protected fun registerWoodPole(prefix: String, blockOf : Block, woodModID: String = "minecraft"): PoleBlock? {
         if (FabricLoader.getInstance().isDevelopmentEnvironment) {
             CraftingRecipeBuilder.generatePoleRecipe(prefix, woodModID)
             LootTableBuilder.generatePoleDrop("${prefix}_pole", woodModID)
@@ -36,30 +36,6 @@ abstract class BlocksInitializer {
         }
 
         return register("${prefix}_pole", PoleBlock(blockOf), Config.Blocks.poles)
-    }
-
-    protected fun <T : Block> register(block : T, id : String, respectConfig : Boolean = true): T? {
-        if (!respectConfig || OldConfig.getBool("blocks.$id")) {
-            return Registry.register(Registry.BLOCK, "nicetohave:$id", block) as T?
-        }
-        return null
-    }
-
-    protected fun <T : Block> register(block: T, id: String, configOption: String? = null): T? {
-        if (OldConfig.getBool(configOption ?: "blocks.$id")) {
-            return Registry.register(Registry.BLOCK, "nicetohave:$id", block) as T?
-        }
-        return null
-    }
-
-    protected fun registerPole(block: Block, prefix: String, logModID: String = "minecraft"): PoleBlock? {
-        CraftingRecipeBuilder.generatePoleRecipe(prefix, logModID)
-        LootTableBuilder.generatePoleDrop("${prefix}_pole", logModID)
-        BasicModelBuilder.createPoleBlockModel(prefix, logModID)
-        BasicModelBuilder.createPoleItemModel(prefix)
-        VariantBlockStateBuilder.generatePoleBlockState(prefix)
-
-        return register(PoleBlock(block), "${prefix}_pole", "blocks.poles")
     }
 
     protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {

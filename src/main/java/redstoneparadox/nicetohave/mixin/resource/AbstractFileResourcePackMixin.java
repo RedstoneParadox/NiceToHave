@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import redstoneparadox.nicetohave.util.config.OldConfig;
+import redstoneparadox.nicetohave.util.config.Config;
 
 @Mixin(AbstractFileResourcePack.class)
 public abstract class AbstractFileResourcePackMixin implements ResourcePack {
@@ -24,7 +24,7 @@ public abstract class AbstractFileResourcePackMixin implements ResourcePack {
     private void contains(ResourceType resourceType, Identifier identifier, CallbackInfoReturnable<Boolean> cir) {
         if (resourceType == ResourceType.SERVER_DATA && getName().equals("Nice to Have")) {
             if (identifier.equals(POWERED_RAIL) || identifier.equals(DETECTOR_RAIL) || identifier.equals(ACTIVATOR_RAIL)) {
-                cir.setReturnValue(OldConfig.INSTANCE.getBool("recipes.increased_rail_output", true));
+                cir.setReturnValue(Config.Recipes.INSTANCE.getIncreasedRailOutput());
                 cir.cancel();
             }
         }

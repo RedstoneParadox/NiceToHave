@@ -18,7 +18,7 @@ object Config : ConfigCategory() {
 
     private var isInitialized = false
 
-    object Items : ConfigCategory("items", "Various Items", getSelf()) {
+    object Items : ConfigCategory("items", "Various Items") {
         var chainLink: Boolean by boolOption(true, "chain_link", "Chain links can be used to craft chain mail.")
         var dynamite: Boolean by boolOption(true, "dynamite","Dynamite is a throwable explosive.")
         var wrench: Boolean by boolOption(true, "wrench", "Can be used to rotate blocks.")
@@ -27,7 +27,7 @@ object Config : ConfigCategory() {
         var appleJuice: Boolean by boolOption(true, "apple_juice", "A beverage made from apples.")
     }
 
-    object Blocks : ConfigCategory("blocks", "Various blocks.", getSelf()) {
+    object Blocks : ConfigCategory("blocks", "Various blocks.") {
         var goldButton: Boolean by boolOption(true, "gold_button", "A button that emits a 1-tick Redstone signal when pressed.")
         var analogRedstoneEmitter: Boolean by boolOption(true, "analog_redstone_emitter", "A special redstone block that can be set to output any level of Redstone signal.")
         //var chainLinkFence: Boolean by boolOption(true, "chain_link_fence", )
@@ -35,25 +35,25 @@ object Config : ConfigCategory() {
         var poles: Boolean by boolOption(true, "poles", "Adds poles made out of logs and stripped logs.")
     }
 
-    object Recipes : ConfigCategory("recipes", "New recipes and tweaks to existing ones.", getSelf()) {
+    object Recipes : ConfigCategory("recipes", "New recipes and tweaks to existing ones.") {
         var increasedRailOutput: Boolean by boolOption(true, "increased_rail_output", "Powered, Detector, and Activator Rail recipes now give 16 instead of 6.")
         var uncraftNetherwartBlock: Boolean by boolOption(true, "uncraft_netherwart_block", "Netherwart Blocks can now be crafted back into netherwarts.")
         var melonToSlices: Boolean by boolOption(true, "melon_to_slices", "Melon blocks can be crafted into 9 melon slices.")
         var glueSlabs: Boolean by boolOption(true, "glue_slabs", "Combining two slabs with a slimeball allows you to convert them back into a full block.")
     }
 
-    object Potions : ConfigCategory("potions", "Potions", getSelf()) {
+    object Potions : ConfigCategory("potions", "Potions") {
         var insight: Boolean by boolOption(true, "insight", "Potions of Insight allow you to gain bonus experience.")
         //var nectar: Boolean by boolOption(true, "nectar", )
     }
 
-    object World : ConfigCategory("world", "Various world features", getSelf()) {
+    object World : ConfigCategory("world", "Various world features") {
         var goldInRivers: Boolean by boolOption(true, "gold_in_rivers", "Randomly adds patches of gold in the rivers of frozen and badlands biomes.")
         var riverGoldPercent: Double by rangeOption(10.0, 0.0, 100.0, "river_gold_percent", "How much of a river gold ore patch is gold.")
         var disablePonds: Boolean by boolOption(true, "disable_ponds", "Removes small water and lava ponds from the world.")
     }
 
-    object Misc : ConfigCategory("misc", "Enable/Disable items.", getSelf()) {
+    object Misc : ConfigCategory("misc", "Enable/Disable items.") {
         var dispenserCropPlanting: Boolean by boolOption(true, "dispenser_crop_planting", "Dispensers can plant crops, saplings, and a few other plants.")
         var dispenserLadderPlacement: Boolean by boolOption(true, "dispenser_ladder_placement", "Dispensers can place and pickup ladders and scaffolding.")
         var peacefulBambooJungle: Boolean by boolOption(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
@@ -61,13 +61,18 @@ object Config : ConfigCategory() {
         var underwaterSwitches: Boolean by boolOption(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
     }
 
-    init {
+    fun initialize() {
+        if (isInitialized) {
+            return;
+        }
+
         Items
-        Blocks
-        Recipes
-        Potions
-        World
-        Misc
+        Items.setParent(this)
+        Blocks.setParent(this)
+        Recipes.setParent(this)
+        Potions.setParent(this)
+        World.setParent(this)
+        Misc.setParent(this)
 
         val hjsonFile = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson")
         val json5File = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5")
@@ -95,6 +100,10 @@ object Config : ConfigCategory() {
         deserialize(configObject)
 
         save()
+    }
+
+    init {
+
     }
 
     private fun save() {

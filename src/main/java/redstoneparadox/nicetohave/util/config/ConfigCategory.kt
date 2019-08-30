@@ -6,14 +6,12 @@ import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.nicetohave.util.config.Config.boolType
 import redstoneparadox.nicetohave.util.config.Config.doubleType
 
-open class ConfigCategory(val key : String = "", val comment : String = "", val parentCategory: ConfigCategory? = null) {
+open class ConfigCategory(val key : String = "", val comment : String = "") {
+    var wasInitialized = false;
+    private var parentCategory: ConfigCategory? = null
 
     private val optionsMap : HashMap<String, ConfigOption<*>> = HashMap()
     private val subCategoriesMap : HashMap<String, ConfigCategory> = HashMap()
-
-    init {
-        parentCategory?.addChildCategory(getSelf(), key)
-    }
 
     fun serialize(parentObject: JsonObject? = null): JsonObject {
         val selfObject = JsonObject()
@@ -79,9 +77,14 @@ open class ConfigCategory(val key : String = "", val comment : String = "", val 
 
     fun getFullKey(): String {
         if (parentCategory != null) {
-            return "${parentCategory.getFullKey()}.$key"
+            return "${parentCategory!!.getFullKey()}.$key"
         }
         return key
+    }
+
+    internal fun setParent(parentCategory: ConfigCategory) {
+        this.parentCategory = parentCategory;
+        parentCategory.addChildCategory(getSelf(), key)
     }
 
     fun getSelf(): ConfigCategory {
