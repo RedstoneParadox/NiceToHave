@@ -5,6 +5,7 @@ import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.nicetohave.util.config.Config.boolType
 import redstoneparadox.nicetohave.util.config.Config.doubleType
+import redstoneparadox.nicetohave.util.config.Config.intType
 
 open class ConfigCategory(val key : String = "", val comment : String = "") {
     protected var wasInitialized = false;
@@ -58,20 +59,26 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
     }
 
     protected fun boolOption(default: Boolean, key: String, comment: String): ConfigOption<Boolean> {
-        val option = ConfigOption(boolType, default, key, comment, this)
+        val option = ConfigOption(boolType, default, key, "$comment [Values: true/false]", getSelf())
         optionsMap[key] = option
         return option
     }
 
     protected fun doubleOption(default: Double, key: String, comment: String): ConfigOption<Double> {
-        val option = ConfigOption(doubleType, default, key, comment, this)
+        val option = ConfigOption(doubleType, default, key, "$comment [Values: any number]", getSelf())
         optionsMap[key] = option
         return option
     }
 
     protected fun rangeOption(default: Double, min : Double, max : Double, key: String, comment: String): RangeConfigOption {
-        val option = RangeConfigOption(default, min, max, key, comment, this)
+        val option = RangeConfigOption(default, min, max, key, "$comment [Values: $min to $max]", getSelf())
         optionsMap[key] = option
+        return option
+    }
+
+    protected fun metaIntOption(value : Int, key: String, comment: String): ConfigMetaData<Int> {
+        val option = ConfigMetaData(intType, value, key, "$comment [Meta Data]", getSelf())
+        optionsMap["key"] = option
         return option
     }
 
@@ -89,5 +96,29 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
 
     fun getSelf(): ConfigCategory {
         return this
+    }
+
+    fun <T : Any> getOption(keySequence: Sequence<String>, default : T, originalKey : String, optionType : Class<T>): T {
+        val firstKey = keySequence.first()
+        try {
+            if (keySequence.last() == firstKey) {
+                val option = optionsMap[firstKey]
+                if (option != null) {
+                    if (option.type == optionType) {
+                        return option.value as T
+                    }
+                }
+            }
+            else {
+                val subCategory = subCategoriesMap[firstKey]
+                if (subCategory != null) {
+                    return subCategory.getOption(keySequence.drop(1), default, originalKey, optionType)
+                }
+            }
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
+        NiceToHave.error("Error while reading config option $originalKey. Will use default value of $default.")
+        return default
     }
 }

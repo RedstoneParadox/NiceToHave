@@ -1,9 +1,13 @@
 package redstoneparadox.nicetohave.util.config
 
 import blue.endless.jankson.Jankson
+import blue.endless.jankson.JsonElement
 import blue.endless.jankson.JsonObject
+import blue.endless.jankson.JsonPrimitive
 import blue.endless.jankson.impl.SyntaxError
+import io.github.cottonmc.libcd.condition.ConditionalData
 import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 import java.io.IOException
@@ -17,6 +21,8 @@ object Config : ConfigCategory() {
     private var hadError = false
 
     private var isInitialized = false
+
+    val version : Int by metaIntOption(1, "config_version", "Config version.")
 
     object Items : ConfigCategory("items", "Various Items") {
         var chainLink: Boolean by boolOption(true, "chain_link", "Chain links can be used to craft chain mail.")
@@ -66,7 +72,6 @@ object Config : ConfigCategory() {
             return;
         }
 
-        Items
         Items.setParent(this)
         Blocks.setParent(this)
         Recipes.setParent(this)
@@ -102,12 +107,27 @@ object Config : ConfigCategory() {
         save()
 
         wasInitialized = true;
+
+        ConditionalData.registerCondition(Identifier("nicetohave", "config_true")) {
+            if (it is String) {
+                return@registerCondition getBool(it)
+            }
+            else if (it is List<*>) {
+                for (element in (it as List<JsonElement>)) {
+                    if (element !is JsonPrimitive) return@registerCondition false
+                    val key : String = element.value as? String ?: return@registerCondition false
+                    if (!getBool(key)) return@registerCondition false
+                }
+                return@registerCondition true
+            }
+            return@registerCondition false
+        }
     }
 
     private fun save() {
         if (!hadError) {
             val configString = serialize().toJson(true, true)
-            //File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5").bufferedWriter().use { it.write(configString) }
+            File(FabricLoader.getInstance().configDirectory, "nicetohave.json5").bufferedWriter().use { it.write(configString) }
         }
     }
 
@@ -118,4 +138,24 @@ object Config : ConfigCategory() {
         else -> "unknown"
     }
 
+    fun getBool(key : String, default : Boolean = true): Boolean {
+        return getOption(key, default, boolType)
+    }
+
+    fun getDouble(key: String, default : Double): Double {
+        return getOption(key, default, doubleType)
+    }
+
+    fun getRange(key: String, default : Double): Double {
+        return getOption(key, default, doubleType)
+    }
+
+    fun getMetaInt(key: String, default : Int): Int {
+        return getOption(key, default, intType)
+    }
+
+    fun <T : Any> getOption(key: String, default: T, type: Class<T>): T {
+        val keySequence = key.splitToSequence(".")
+        return getOption(keySequence, default, key, type)
+    }
 }
