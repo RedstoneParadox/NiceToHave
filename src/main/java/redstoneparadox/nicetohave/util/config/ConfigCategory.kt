@@ -7,7 +7,7 @@ import redstoneparadox.nicetohave.util.config.Config.boolType
 import redstoneparadox.nicetohave.util.config.Config.doubleType
 
 open class ConfigCategory(val key : String = "", val comment : String = "") {
-    var wasInitialized = false;
+    protected var wasInitialized = false;
     private var parentCategory: ConfigCategory? = null
 
     private val optionsMap : HashMap<String, ConfigOption<*>> = HashMap()

@@ -4,12 +4,13 @@ import net.minecraft.block.*
 import net.minecraft.block.enums.BlockHalf
 import net.minecraft.block.enums.SlabType
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.util.ActionResult
 import net.minecraft.util.BlockRotation
 import net.minecraft.util.math.Direction
 
-class WrenchItem(settings: Settings?) : Item(settings) {
+class WrenchItem() : Item(Item.Settings().group(ItemGroup.TOOLS).maxCount(1)) {
 
     override fun useOnBlock(context: ItemUsageContext): ActionResult {
         val blockState = context.world.getBlockState(context.blockPos)

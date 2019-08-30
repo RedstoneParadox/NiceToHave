@@ -3,6 +3,7 @@ package redstoneparadox.nicetohave.item
 import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
@@ -17,7 +18,7 @@ import java.util.*
 /**
  * Created by RedstoneParadox on 5/23/2019.
  */
-class DynamiteItem(itemSettings: Settings?) : Item(itemSettings) {
+class DynamiteItem() : Item(Item.Settings().group(ItemGroup.TOOLS)) {
 
     override fun use(world: World, playerEntity: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         val stack : ItemStack = playerEntity.getStackInHand(hand)

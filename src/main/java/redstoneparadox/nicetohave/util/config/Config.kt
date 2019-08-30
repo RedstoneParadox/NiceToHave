@@ -3,7 +3,7 @@ package redstoneparadox.nicetohave.util.config
 import blue.endless.jankson.Jankson
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.impl.SyntaxError
-import net.fabricmc.loader.FabricLoader
+import net.fabricmc.loader.api.FabricLoader
 import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 import java.io.IOException
@@ -74,8 +74,8 @@ object Config : ConfigCategory() {
         World.setParent(this)
         Misc.setParent(this)
 
-        val hjsonFile = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.hjson")
-        val json5File = File(FabricLoader.INSTANCE.configDirectory, "nicetohave.json5")
+        val hjsonFile = File(FabricLoader.getInstance().configDirectory, "nicetohave.hjson")
+        val json5File = File(FabricLoader.getInstance().configDirectory, "nicetohave.json5")
 
         var configObject = JsonObject()
 
@@ -100,10 +100,8 @@ object Config : ConfigCategory() {
         deserialize(configObject)
 
         save()
-    }
 
-    init {
-
+        wasInitialized = true;
     }
 
     private fun save() {
