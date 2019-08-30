@@ -78,7 +78,7 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
 
     protected fun metaIntOption(value : Int, key: String, comment: String): ConfigMetaData<Int> {
         val option = ConfigMetaData(intType, value, key, "$comment [Meta Data]", getSelf())
-        optionsMap["key"] = option
+        optionsMap[key] = option
         return option
     }
 
