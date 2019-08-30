@@ -4,7 +4,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import redstoneparadox.nicetohave.mixin.recipe.BrewingRecipeRegistryAccessor;
-import redstoneparadox.nicetohave.util.oldconfig.OldConfig;
 
 public class PotionRecipes {
 
@@ -19,8 +18,6 @@ public class PotionRecipes {
     }
 
     private static void register(String configKey, Potion base, Item ingredient, Potion result) {
-        if (OldConfig.INSTANCE.getBool("potions." + configKey, true)) {
-            BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(base, ingredient, result);
-        }
+        BrewingRecipeRegistryAccessor.invokeRegisterPotionRecipe(base, ingredient, result);
     }
 }

@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import net.minecraft.block.*
 import net.minecraft.block.Blocks
 import redstoneparadox.nicetohave.util.config.Config
-import redstoneparadox.nicetohave.util.oldconfig.OldConfig
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 
 object Blocks : BlocksInitializer() {
@@ -35,7 +34,7 @@ object Blocks : BlocksInitializer() {
     val STRIPPED_DARK_OAK_POLE : PoleBlock? = registerWoodPole("stripped_dark_oak", Blocks.DARK_OAK_WOOD)
 
     fun initBlocks() {
-        if (OldConfig.getBool("blocks.poles")) {
+        if (Config.Blocks.poles) {
             registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
             registerFlammableBlocks(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
         }

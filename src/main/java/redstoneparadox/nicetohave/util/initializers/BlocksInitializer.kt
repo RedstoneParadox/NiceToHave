@@ -7,7 +7,6 @@ import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.config.Config
-import redstoneparadox.nicetohave.util.oldconfig.OldConfig
 import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
 import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
 import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
