@@ -5,7 +5,7 @@ import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.nicetohave.util.config.Config.boolType
 import redstoneparadox.nicetohave.util.config.Config.doubleType
-import redstoneparadox.nicetohave.util.config.Config.intType
+import redstoneparadox.nicetohave.util.config.Config.longType
 
 open class ConfigCategory(val key : String = "", val comment : String = "") {
     protected var wasInitialized = false;
@@ -70,8 +70,8 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         return option
     }
 
-    protected fun intOption(default: Int, key: String, comment: String): ConfigOption<Int> {
-        val option = ConfigOption(intType, default, key, "$comment [Values: any whole number]", getSelf())
+    protected fun longOption(default: Long, key: String, comment: String): ConfigOption<Long> {
+        val option = ConfigOption(longType, default, key, "$comment [Values: any whole number]", getSelf())
         optionsMap[key] = option
         return option
     }
@@ -82,8 +82,8 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         return option
     }
 
-    protected fun metaIntOption(value : Int, key: String, comment: String): ConfigMetaData<Int> {
-        val option = ConfigMetaData(intType, value, key, "$comment [Meta Data]", getSelf())
+    protected fun metaLongOption(value : Long, key: String, comment: String): ConfigMetaData<Long> {
+        val option = ConfigMetaData(longType, value, key, "$comment [Meta Data]", getSelf())
         optionsMap[key] = option
         return option
     }

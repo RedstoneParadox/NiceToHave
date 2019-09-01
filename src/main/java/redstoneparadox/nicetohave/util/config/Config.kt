@@ -16,11 +16,11 @@ object Config : ConfigCategory() {
 
     val boolType = Boolean::class.javaObjectType
     val doubleType = Double::class.javaObjectType
-    val intType = Int::class.javaObjectType
+    val longType = Long::class.javaObjectType
 
     private var hadError = false
 
-    val version : Int by metaIntOption(1, "config_version", "Config version.")
+    val version : Long by metaLongOption(1, "config_version", "Config version.")
 
     object Items : ConfigCategory("items", "Various Items") {
         var chainLink: Boolean by boolOption(true, "chain_link", "Chain links can be used to craft chain mail.")
@@ -51,6 +51,12 @@ object Config : ConfigCategory() {
         //var nectar: Boolean by boolOption(true, "nectar", )
     }
 
+    object Enchantments : ConfigCategory("enchantments", "Enchantments") {
+        var flurry: Boolean by boolOption(true, "flurry", "Flurry is an enchantment that randomly gives you haste when attacking.")
+        var flurryMaxLevels: Long by longOption(3, "flurry_max_levels", "Sets the maximum levels of the Flurry enchant.")
+        var flurryHasteChance: Double by doubleOption(10.0, "flurry_haste_chance", "Sets the chance per level that Flurry will give you haste.")
+    }
+
     object World : ConfigCategory("world", "Various world features") {
         var goldInRivers: Boolean by boolOption(true, "gold_in_rivers", "Randomly adds patches of gold in the rivers of frozen and badlands biomes.")
         var riverGoldPercent: Double by rangeOption(10.0, 0.0, 100.0, "river_gold_percent", "Determines what percentage of the river bed in a river gold patch has gold.")
@@ -75,6 +81,7 @@ object Config : ConfigCategory() {
         Blocks.setParent(this)
         Recipes.setParent(this)
         Potions.setParent(this)
+        Enchantments.setParent(this)
         World.setParent(this)
         Misc.setParent(this)
 
@@ -132,8 +139,8 @@ object Config : ConfigCategory() {
     fun stringifyType(type : Class<*>): String = when (type) {
         boolType -> "boolean"
         doubleType -> "double"
-        intType -> "integer"
-        else -> "unknown"
+        longType -> "integer"
+        else -> type.toString()
     }
 
     fun getBool(key : String, default : Boolean = true): Boolean {
@@ -144,12 +151,16 @@ object Config : ConfigCategory() {
         return getOption(key, default, doubleType)
     }
 
+    fun getLong(key: String, default: Long): Long {
+        return getOption(key, default, longType)
+    }
+
     fun getRange(key: String, default : Double): Double {
         return getOption(key, default, doubleType)
     }
 
-    fun getMetaInt(key: String, default : Int): Int {
-        return getOption(key, default, intType)
+    fun getMetaLong(key: String, default : Long): Long {
+        return getOption(key, default, longType)
     }
 
     fun <T : Any> getOption(key: String, default: T, type: Class<T>): T {

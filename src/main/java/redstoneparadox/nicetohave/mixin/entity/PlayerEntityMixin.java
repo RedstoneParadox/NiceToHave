@@ -42,7 +42,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
         if (enchantments.containsKey(Enchantments.INSTANCE.getFLURRY())) {
             int level = enchantments.get(Enchantments.INSTANCE.getFLURRY());
-            int doubleStrikeChance = Flurry.Companion.getChance(level);
+            double doubleStrikeChance = Flurry.Companion.getChance(level);
             Random rand = new Random();
 
             if (rand.nextInt(100) + 1 <= doubleStrikeChance) {
