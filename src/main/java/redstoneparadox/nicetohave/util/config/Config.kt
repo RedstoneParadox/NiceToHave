@@ -20,8 +20,6 @@ object Config : ConfigCategory() {
 
     private var hadError = false
 
-    private var isInitialized = false
-
     val version : Int by metaIntOption(1, "config_version", "Config version.")
 
     object Items : ConfigCategory("items", "Various Items") {
@@ -55,7 +53,7 @@ object Config : ConfigCategory() {
 
     object World : ConfigCategory("world", "Various world features") {
         var goldInRivers: Boolean by boolOption(true, "gold_in_rivers", "Randomly adds patches of gold in the rivers of frozen and badlands biomes.")
-        var riverGoldPercent: Double by rangeOption(10.0, 0.0, 100.0, "river_gold_percent", "How much of a river gold ore patch is gold.")
+        var riverGoldPercent: Double by rangeOption(10.0, 0.0, 100.0, "river_gold_percent", "Determines what percentage of the river bed in a river gold patch has gold.")
         var disablePonds: Boolean by boolOption(true, "disable_ponds", "Removes small water and lava ponds from the world.")
     }
 
@@ -68,7 +66,7 @@ object Config : ConfigCategory() {
     }
 
     fun initialize() {
-        if (isInitialized) {
+        if (wasInitialized) {
             return;
         }
 
@@ -84,6 +82,10 @@ object Config : ConfigCategory() {
 
         var configObject = JsonObject()
 
+        if (hjsonFile.exists()) {
+            NiceToHave.out("Nice to Have now uses JSON5 as the config format for better editor support. Please delete the hjson file as all files will now be written to the json5 file.")
+        }
+
         try {
             configObject = Jankson
                     .builder()
@@ -98,15 +100,8 @@ object Config : ConfigCategory() {
             hadError = true
         }
 
-        if (hjsonFile.exists()) {
-            NiceToHave.out("Nice to Have now uses JSON5 as the config format for better editor support. Please delete the hjson file as all files will now be written to the json5 file.")
-        }
-
         deserialize(configObject)
-
         save()
-
-        wasInitialized = true;
 
         ConditionalData.registerCondition(Identifier("nicetohave", "config_true")) {
             if (it is String) {
@@ -122,6 +117,8 @@ object Config : ConfigCategory() {
             }
             return@registerCondition false
         }
+
+        wasInitialized = true;
     }
 
     private fun save() {
