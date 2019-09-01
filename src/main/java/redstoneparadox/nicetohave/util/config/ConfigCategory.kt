@@ -70,6 +70,12 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         return option
     }
 
+    protected fun intOption(default: Int, key: String, comment: String): ConfigOption<Int> {
+        val option = ConfigOption(intType, default, key, "$comment [Values: any whole number]", getSelf())
+        optionsMap[key] = option
+        return option
+    }
+
     protected fun rangeOption(default: Double, min : Double, max : Double, key: String, comment: String): RangeConfigOption {
         val option = RangeConfigOption(default, min, max, key, "$comment [Values: $min to $max]", getSelf())
         optionsMap[key] = option
