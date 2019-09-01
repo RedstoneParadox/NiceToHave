@@ -10,7 +10,7 @@ object Blocks : BlocksInitializer() {
 
     val GOLD_BUTTON : Block? = register("gold_button", CustomButtonBlock(1), Config.Blocks.goldButton)
     val ANALOG_REDSTONE_EMITTER : Block? = register("analog_redstone_emitter", AnalogRedstoneEmitterBlock(), Config.Blocks.analogRedstoneEmitter)
-    val CHAIN_LINK_FENCE : Block = register("chain_link_fence", ChainLinkFenceBlock())
+    val CHAIN_LINK_FENCE : ChainLinkFenceBlock? = register("chain_link_fence", ChainLinkFenceBlock(), false)
     val TRIMMED_VINE : Block? = register("trimmed_vine", TrimmedVineBlock(), Config.Blocks.trimmedVines)
 
     //Ore Blocks

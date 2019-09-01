@@ -36,7 +36,7 @@ object Config : ConfigCategory() {
     object Blocks : ConfigCategory("blocks", "Various blocks.") {
         var goldButton: Boolean by boolOption(true, "gold_button", "A button that emits a 1-tick Redstone signal when pressed.")
         var analogRedstoneEmitter: Boolean by boolOption(true, "analog_redstone_emitter", "A special redstone block that can be set to output any level of Redstone signal.")
-        //var chainLinkFence: Boolean by boolOption(true, "chain_link_fence", )
+        //var chainLinkFence: Boolean by boolOption(true, "chain_link_fence", "Adds chain-link fences" )
         var trimmedVines: Boolean by boolOption(true, "trimmed_vine", "Vines can be trimmed by right-clicking with shears, turning them into Trimmed Vines that don't grow.")
         var poles: Boolean by boolOption(true, "poles", "Adds poles made out of logs and stripped logs.")
     }
