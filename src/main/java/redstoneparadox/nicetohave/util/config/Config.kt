@@ -63,6 +63,7 @@ object Config : ConfigCategory() {
         var peacefulBambooJungle: Boolean by boolOption(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
         var vehiclePickup: Boolean by boolOption(true, "vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
         var underwaterSwitches: Boolean by boolOption(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
+        var fertilizeMorePlants: Boolean by boolOption(true, "fertilizer_more_plants", "Allows for Cacti, Sugar Cane, Kelp, and Netherwart to be fertilized by bonemeal or fertilizer.")
     }
 
     fun initialize() {

@@ -10,6 +10,7 @@
     "block.KelpBlockMixin",
     "block.KelpPlantBlockMixin",
     "block.LeverBlockMixin",
+    "block.NetherWartBlockMixin",
     "block.SugarCaneBlockMixin",
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",

@@ -8,6 +8,7 @@ import net.minecraft.world.ViewableWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import redstoneparadox.nicetohave.util.config.Config;
 
 import java.util.Random;
 
@@ -19,6 +20,8 @@ public abstract class SugarCaneBlockMixin implements Fertilizable {
 
     @Override
     public boolean isFertilizable(BlockView view, BlockPos pos, BlockState state, boolean isClient) {
+        if (!Config.Misc.INSTANCE.getFertilizeMorePlants()) return false;
+
         World world = (World)view;
         if (!state.canPlaceAt(world, pos)) {
             world.breakBlock(pos, true);
