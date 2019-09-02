@@ -32,11 +32,11 @@ open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : S
         if (anyClass == type) {
             return any as T
         }
-        NiceToHave.error("Expected type of ${Config.stringifyType(type)} for config option ${getFullKey()} but instead found type of ${Config.stringifyType(anyClass)}. Will use value of `$value` instead.")
+        NiceToHave.error("Expected type of `${typeString()}` for config option ${getFullKey()} but instead found type of `${Config.stringifyType(anyClass)}`. Will use `${typeString()} value of `$value` instead.")
         return this.value;
     }
 
-    fun getFullKey(): String {
-        return "${parentCategory.getFullKey()}.$key"
-    }
+    fun getFullKey(): String = "${parentCategory.getKeyPrefix()}$key"
+
+    fun typeString(): String = Config.stringifyType(type)
 }

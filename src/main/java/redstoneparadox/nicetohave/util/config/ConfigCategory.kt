@@ -1,5 +1,6 @@
 package redstoneparadox.nicetohave.util.config
 
+import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
@@ -40,7 +41,7 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
                     optionsMap[entry.key]!!.deserialize(entry.value as JsonPrimitive)
                 }
                 else {
-                    NiceToHave.error("Attempted to load non-option `${entry.key}`")
+                    NiceToHave.error("Attempted to load non-existent option `${getKeyPrefix()}${entry.key}`")
                 }
             }
             else if (entry.value is JsonObject) {
@@ -48,7 +49,7 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
                     subCategoriesMap[entry.key]!!.deserialize(entry.value as JsonObject)
                 }
                 else {
-                    NiceToHave.error("Attempted to load non-category `${entry.key}`.")
+                    NiceToHave.error("Attempted to load non-existent category `${getKeyPrefix()}${entry.key}`.")
                 }
             }
         }
@@ -93,6 +94,17 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
             return "${parentCategory!!.getFullKey()}.$key"
         }
         return key
+    }
+
+    fun getKeyPrefix(): String {
+        if (key.isEmpty()) {
+            return ""
+        }
+        if (parentCategory != null) {
+            return "${parentCategory!!.getKeyPrefix()}$key."
+        }
+
+        return "$key."
     }
 
     internal fun setParent(parentCategory: ConfigCategory) {
