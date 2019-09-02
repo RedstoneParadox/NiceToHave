@@ -23,7 +23,7 @@ object NiceToHaveDatagen {
                 CraftingRecipeBuilder.regularSlabGlueRecipe(block, true)
             }
 
-            for (block in arrayOf("cobblestone", "mossy_cobblestone", "stone", "smooth_stone", "sandstone", "smooth_sandstone", "cut_sandstone", "red_sandstone", "smooth_red_sandstone", "smooth_quartz", "granite", "smooth_granite", "andesite", "smooth_andesite", "diorite", "smooth_diorite")) {
+            for (block in arrayOf("cobblestone", "mossy_cobblestone", "stone", "smooth_stone", "sandstone", "smooth_sandstone", "cut_sandstone", "red_sandstone", "smooth_red_sandstone", "smooth_quartz", "granite", "polished_granite", "andesite", "polished_andesite", "polished_diorite", "diorite")) {
                 CraftingRecipeBuilder.regularSlabGlueRecipe(block)
             }
 

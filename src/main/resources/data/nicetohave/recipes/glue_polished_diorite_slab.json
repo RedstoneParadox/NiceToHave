@@ -7,14 +7,14 @@
 	],
 	"key": { 
 		"a": { 
-			"item": "minecraft:smooth_diorite_slab"
+			"item": "minecraft:polished_diorite_slab"
 		},
 		"b": { 
 			"item": "minecraft:slime_ball"
 		}
 	},
 	"result": { 
-		"item": "minecraft:smooth_diorite",
+		"item": "minecraft:polished_diorite",
 		"count": 1
 	}
 }

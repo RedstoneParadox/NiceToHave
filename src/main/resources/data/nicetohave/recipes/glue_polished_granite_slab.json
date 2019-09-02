@@ -7,14 +7,14 @@
 	],
 	"key": { 
 		"a": { 
-			"item": "minecraft:smooth_granite_slab"
+			"item": "minecraft:polished_granite_slab"
 		},
 		"b": { 
 			"item": "minecraft:slime_ball"
 		}
 	},
 	"result": { 
-		"item": "minecraft:smooth_granite",
+		"item": "minecraft:polished_granite",
 		"count": 1
 	}
 }
