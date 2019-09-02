@@ -89,7 +89,7 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
     }
 
     fun getFullKey(): String {
-        if (parentCategory != null) {
+        if (parentCategory != null && parentCategory!!.key.isNotEmpty()) {
             return "${parentCategory!!.getFullKey()}.$key"
         }
         return key
