@@ -61,9 +61,9 @@ class WrenchItem() : Item(Item.Settings().group(ItemGroup.TOOLS).maxCount(1)) {
         }
         private val PILLAR_INTERACTION : WrenchInteraction = { world, blockState, blockPos ->
             when(blockState.get(PillarBlock.AXIS)) {
-                Direction.Axis.field_11048 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11052)
-                Direction.Axis.field_11052 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11051)
-                Direction.Axis.field_11051 -> blockState.with(PillarBlock.AXIS, Direction.Axis.field_11048)
+                Direction.Axis.X -> blockState.with(PillarBlock.AXIS, Direction.Axis.Y)
+                Direction.Axis.Y -> blockState.with(PillarBlock.AXIS, Direction.Axis.Z)
+                Direction.Axis.Z -> blockState.with(PillarBlock.AXIS, Direction.Axis.X)
                 else -> throw Exception("Invalid BlockState $blockState")
             }
         }

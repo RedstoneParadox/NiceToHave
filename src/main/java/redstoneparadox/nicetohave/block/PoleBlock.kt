@@ -51,9 +51,9 @@ class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).bui
 
     private fun getShapeIndex(state : BlockState): Int {
         return when(state.get(AXIS)) {
-            Direction.Axis.field_11048 -> 2
-            Direction.Axis.field_11051 -> 1
-            Direction.Axis.field_11052 -> 0
+            Direction.Axis.X -> 2
+            Direction.Axis.Z-> 1
+            Direction.Axis.Y -> 0
             else -> throw NullPointerException()
         }
     }
