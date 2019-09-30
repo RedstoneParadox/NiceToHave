@@ -9,6 +9,7 @@ import io.github.cottonmc.libcd.condition.ConditionalData
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
+import redstoneparadox.nicetohave.util.tryAs
 import java.io.File
 import java.io.IOException
 
@@ -115,8 +116,9 @@ object Config : ConfigCategory() {
             if (it is String) {
                 return@registerCondition getBool(it)
             }
-            else if (it is List<*>) {
-                for (element in (it as List<JsonElement>)) {
+            val list = it.tryAs<List<JsonElement>>()
+            if (list != null) {
+                for (element in list) {
                     if (element !is JsonPrimitive) return@registerCondition false
                     val key : String = element.value as? String ?: return@registerCondition false
                     if (!getBool(key)) return@registerCondition false
