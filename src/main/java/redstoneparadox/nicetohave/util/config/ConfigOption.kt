@@ -7,7 +7,7 @@ import redstoneparadox.nicetohave.util.config.Config
 import redstoneparadox.nicetohave.util.config.ConfigCategory
 import kotlin.reflect.KProperty
 
-open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, val comment : String, val parentCategory: ConfigCategory) {
+open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, private val comment : String, private val parentCategory: ConfigCategory) {
 
     operator fun getValue(thisRef : Any?, property: KProperty<*>): T {
         return value

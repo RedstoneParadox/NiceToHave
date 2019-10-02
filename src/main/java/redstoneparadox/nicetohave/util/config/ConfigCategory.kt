@@ -55,6 +55,8 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         }
     }
 
+    fun getConfigRoot(): ConfigCategory = parentCategory?.getConfigRoot() ?: this
+
     protected fun addChildCategory(child : ConfigCategory, key: String) {
         subCategoriesMap[key] = child;
     }
