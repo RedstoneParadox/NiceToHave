@@ -9,9 +9,9 @@ import redstoneparadox.nicetohave.util.config.Config
 object Commands {
 
     fun initCommands() = CommandRegistry.INSTANCE.register(false) { dispatcher: CommandDispatcher<ServerCommandSource>? ->
-        if (Config.Misc.stuckCommand) {
+        if (Config.Misc.respawnCommand) {
             val stuckNode = CommandManager
-                    .literal("stuck")
+                    .literal("respawn")
                     .executes(StuckCommand())
                     .build()
             dispatcher?.root?.addChild(stuckNode)

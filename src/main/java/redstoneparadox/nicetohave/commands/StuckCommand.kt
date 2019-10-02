@@ -7,7 +7,7 @@ import redstoneparadox.nicetohave.util.config.Config
 
 class StuckCommand: Command<ServerCommandSource> {
     override fun run(context: CommandContext<ServerCommandSource>?): Int {
-        if (Config.Misc.stuckCommand) {
+        if (Config.Misc.respawnCommand) {
             val player = context?.source?.player
             if (player != null) {
                 player.kill()

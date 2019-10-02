@@ -71,7 +71,7 @@ object Config : ConfigCategory() {
         var vehiclePickup: Boolean by boolOption(true, "vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
         var underwaterSwitches: Boolean by boolOption(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
         var fertilizeMorePlants: Boolean by boolOption(true, "fertilizer_more_plants", "Allows for Cacti, Sugar Cane, Kelp, and Netherwart to be fertilized by bonemeal or fertilizer.")
-        var stuckCommand: Boolean by boolOption(true, "stuck_command", "If you're stuck somewhere, use this command to die and respawn at your spawn point.")
+        var respawnCommand: Boolean by boolOption(true, "respawn_command", "If you're stuck somewhere, use this command to die and respawn at your spawn point.")
     }
 
     fun initialize() {
