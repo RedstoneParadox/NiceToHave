@@ -91,6 +91,12 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         return option
     }
 
+    protected fun deprecatedOption(key: String, movedKey: String): DeprecatedConfigOption {
+        val option = DeprecatedConfigOption(key, getSelf(), movedKey)
+        optionsMap[key] = option
+        return option
+    }
+
     fun getFullKey(): String {
         if (parentCategory != null && parentCategory!!.key.isNotEmpty()) {
             return "${parentCategory!!.getFullKey()}.$key"
@@ -140,5 +146,26 @@ open class ConfigCategory(val key : String = "", val comment : String = "") {
         }
         NiceToHave.error("Error while reading config option $originalKey. Will use default value of $default.")
         return default
+    }
+
+    fun getOptionObject(keySequence: Sequence<String>, originalKey: String): ConfigOption<*>? {
+        val firstKey = keySequence.first()
+        try {
+            if (keySequence.last() == firstKey) {
+                val option = optionsMap[firstKey]
+                if (option != null) {
+                    return option
+                }
+            }
+            else {
+                val subCategory = subCategoriesMap[firstKey]
+                if (subCategory != null) {
+                    return subCategory.getOptionObject(keySequence.drop(1), originalKey)
+                }
+            }
+        } catch (e: Exception) {
+            NiceToHave.error("Config option $originalKey could not be found")
+        }
+        return null
     }
 }
