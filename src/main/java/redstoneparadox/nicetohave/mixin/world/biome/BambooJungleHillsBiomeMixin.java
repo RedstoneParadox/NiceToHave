@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import redstoneparadox.nicetohave.util.config.Config;
 
 @Mixin(BambooJungleHillsBiome.class)
-public class BambooJungleHillsBiomeMixin extends Biome {
+public abstract class BambooJungleHillsBiomeMixin extends Biome {
 
     protected BambooJungleHillsBiomeMixin(Settings biome$Settings_1) {
         super(biome$Settings_1);
