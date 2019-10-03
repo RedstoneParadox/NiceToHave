@@ -1,6 +1,7 @@
 package redstoneparadox.nicetohave.mixin.block;
 
 import net.minecraft.block.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -26,7 +27,7 @@ public abstract class KelpPlantBlockMixin extends Block implements Fertilizable 
     }
 
     @Override
-    public void grow(World world, Random random, BlockPos pos, BlockState var4) {
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState var4) {
         BlockPos top = findTop(world, pos);
         if (world.getBlockState(top).getBlock() == Blocks.KELP) {
             ((Fertilizable) world.getBlockState(top).getBlock()).grow(world, random, top, world.getBlockState(top));

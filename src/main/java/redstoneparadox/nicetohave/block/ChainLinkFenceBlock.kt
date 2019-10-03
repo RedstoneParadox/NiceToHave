@@ -19,9 +19,11 @@ class ChainLinkFenceBlock() : FenceBlock(FabricBlockSettings.of(Material.METAL).
     }
      */
 
+    /*
     override fun getRenderLayer(): BlockRenderLayer {
         return BlockRenderLayer.CUTOUT
     }
+     */
 
     companion object {
         //val IS_POST : BooleanProperty = BooleanProperty.of("is_post")

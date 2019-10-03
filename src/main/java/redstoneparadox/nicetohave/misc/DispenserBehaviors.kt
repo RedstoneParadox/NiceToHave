@@ -105,11 +105,11 @@ object DispenserBehaviors {
             success = false
             val world = pointer.world
             val direction = pointer.blockState.get(DispenserBlock.FACING)
-            val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down()).block
+            val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down(1)).block
 
             if (farmlandBlocks == null) {
                 if (checkWaterReq(world, pointer.blockPos.offset(direction))) {
-                    if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down()), world, pointer.blockPos.offset(direction))) {
+                    if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down(1)), world, pointer.blockPos.offset(direction))) {
                         world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
                         itemStack.decrement(1)
                         success = true

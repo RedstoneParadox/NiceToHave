@@ -3,6 +3,7 @@ package redstoneparadox.nicetohave.mixin.block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
 import net.minecraft.block.NetherWartBlock;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -30,7 +31,7 @@ public abstract class NetherWartBlockMixin implements Fertilizable {
     }
 
     @Override
-    public void grow(World world, Random random, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         if (random.nextFloat() <= 0.75f) world.setBlockState(pos, state.with(AGE, state.get(AGE) + 1));
     }
 }

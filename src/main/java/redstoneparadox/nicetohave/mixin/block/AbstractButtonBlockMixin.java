@@ -7,7 +7,7 @@ import net.minecraft.block.WallMountedBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateFactory;
+import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -33,7 +33,7 @@ public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
     }
 
     @Inject(method = "appendProperties", at = @At("HEAD"))
-    private void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory$Builder_1, CallbackInfo ci) {
+    private void appendProperties(StateManager.Builder<Block, BlockState> stateFactory$Builder_1, CallbackInfo ci) {
         stateFactory$Builder_1.add(Properties.WATERLOGGED);
     }
 

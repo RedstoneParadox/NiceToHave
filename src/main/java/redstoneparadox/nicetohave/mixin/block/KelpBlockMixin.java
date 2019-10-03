@@ -1,6 +1,7 @@
 package redstoneparadox.nicetohave.mixin.block;
 
 import net.minecraft.block.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -35,7 +36,7 @@ public abstract class KelpBlockMixin extends Block implements Fertilizable {
     }
 
     @Override
-    public void grow(World world, Random random, BlockPos pos, BlockState var4) {
+    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState var4) {
         int age = world.getBlockState(pos).get(AGE);
         world.setBlockState(pos.up(), getDefaultState().with(AGE, age + 1));
     }

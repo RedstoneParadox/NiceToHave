@@ -50,7 +50,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CommandC
             Random rand = new Random();
 
             if (rand.nextInt(100) + 1 <= doubleStrikeChance) {
-                addPotionEffect(new StatusEffectInstance(StatusEffects.HASTE, 40, 1));
+                addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 40, 1));
             }
         }
 

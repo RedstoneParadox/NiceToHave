@@ -1,7 +1,8 @@
 package redstoneparadox.nicetohave.client.render.entity
 
-import net.fabricmc.fabric.api.client.render.EntityRendererRegistry
+import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer
+import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 
 /**
@@ -12,6 +13,6 @@ object EntityRenderers {
 
     fun registerRenderers() {
         val factory = EntityRendererRegistry.Factory { manager, context ->  FlyingItemEntityRenderer<ThrownDynamiteEntity>(manager, context.itemRenderer)}
-        EntityRendererRegistry.INSTANCE.register(ThrownDynamiteEntity::class.javaObjectType, factory)
+        EntityRendererRegistry.INSTANCE.register(EntityTypes.THROWN_DYNAMITE, factory)
     }
 }

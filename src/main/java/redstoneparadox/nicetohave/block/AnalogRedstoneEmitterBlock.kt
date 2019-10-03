@@ -6,7 +6,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.RedstoneBlock
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.state.StateFactory
+import net.minecraft.state.StateManager
 import net.minecraft.state.property.IntProperty
 import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
@@ -24,11 +24,11 @@ class AnalogRedstoneEmitterBlock() : RedstoneBlock(FabricBlockSettings.copy(Bloc
         defaultState = getStateFactory().defaultState.with(POWER_LEVEL, 0)
     }
 
-    override fun appendProperties(factory: StateFactory.Builder<Block, BlockState>) {
+    override fun appendProperties(factory: StateManager.Builder<Block, BlockState>) {
         factory.add(POWER_LEVEL)
     }
 
-    override fun activate(blockState: BlockState, world: World, blockPos: BlockPos, playerEntity: PlayerEntity, hand: Hand, blockHitResult: BlockHitResult): Boolean {
+    override fun onUse(blockState: BlockState, world: World, blockPos: BlockPos, playerEntity: PlayerEntity, hand: Hand, blockHitResult: BlockHitResult): Boolean {
         world.setBlockState(blockPos, blockState.cycle(POWER_LEVEL))
         return true
     }
