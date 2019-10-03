@@ -15,6 +15,7 @@ object Commands {
                 .executes { context ->
                     val player = context.source.player
                     (player as CommandConfirmationHolder).confirmation.accept(context)
+                    player.clearCommandConfirmation()
                     1
                 }
                 .build()
