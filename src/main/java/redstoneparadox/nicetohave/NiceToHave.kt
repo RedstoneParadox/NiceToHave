@@ -5,7 +5,7 @@ import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import redstoneparadox.nicetohave.block.Blocks
-import redstoneparadox.nicetohave.commands.Commands
+import redstoneparadox.nicetohave.command.Commands
 import redstoneparadox.nicetohave.enchantment.Enchantments
 import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.effect.StatusEffects

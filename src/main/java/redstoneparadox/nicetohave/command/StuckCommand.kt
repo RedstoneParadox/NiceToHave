@@ -1,4 +1,4 @@
-package redstoneparadox.nicetohave.commands
+package redstoneparadox.nicetohave.command
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.context.CommandContext
@@ -7,7 +7,7 @@ import redstoneparadox.nicetohave.util.config.Config
 
 class StuckCommand: Command<ServerCommandSource> {
     override fun run(context: CommandContext<ServerCommandSource>?): Int {
-        if (Config.Misc.respawnCommand) {
+        if (Config.Misc.stuckCommand) {
             val player = context?.source?.player
             if (player != null) {
                 player.kill()
