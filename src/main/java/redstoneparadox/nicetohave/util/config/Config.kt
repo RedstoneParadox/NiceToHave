@@ -33,11 +33,21 @@ object Config : ConfigCategory() {
     }
 
     object Blocks : ConfigCategory("blocks", "Various blocks.") {
-        var goldButton: Boolean by boolOption(true, "gold_button", "A button that emits a 1-tick Redstone signal when pressed.")
-        var analogRedstoneEmitter: Boolean by boolOption(true, "analog_redstone_emitter", "A special redstone block that can be set to output any level of Redstone signal.")
+        @Deprecated("Moved to the redstone category")
+        var goldButton:Any by deprecatedOption("gold_button", "redstone.gold_button")
+        @Deprecated("Moved to the redstone category")
+        var analogRedstoneEmitter: Any by deprecatedOption("analog_redstone_emitter", "redstone.analog_redstone_emitter")
         //var chainLinkFence: Boolean by boolOption(true, "chain_link_fence", "Adds chain-link fences" )
         var trimmedVines: Boolean by boolOption(true, "trimmed_vine", "Vines can be trimmed by right-clicking with shears, turning them into Trimmed Vines that don't grow.")
         var poles: Boolean by boolOption(true, "poles", "Adds poles made out of logs and stripped logs.")
+    }
+
+    object Redstone: ConfigCategory("redstone", "Redstone tweaks and additions") {
+        var goldButton: Boolean by boolOption(true, "gold_button", "A button that emits a 1-tick Redstone signal when pressed.")
+        var analogRedstoneEmitter: Boolean by boolOption(true, "analog_redstone_emitter", "A special redstone block that can be set to output any level of Redstone signal.")
+        var dispenserCropPlanting: Boolean by boolOption(true, "dispenser_crop_planting", "Dispensers can plant crops, saplings, and a few other plants.")
+        var dispenserLadderPlacement: Boolean by boolOption(true, "dispenser_ladder_placement", "Dispensers can place and pickup ladders and scaffolding.")
+        var underwaterSwitches: Boolean by boolOption(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
     }
 
     object Recipes : ConfigCategory("recipes", "New recipes and tweaks to existing ones.") {
@@ -61,15 +71,20 @@ object Config : ConfigCategory() {
     object World : ConfigCategory("world", "Various world features") {
         var goldInRivers: Boolean by boolOption(true, "gold_in_rivers", "Randomly adds patches of gold in the rivers of frozen and badlands biomes.")
         var riverGoldPercent: Double by rangeOption(10.0, 0.0, 100.0, "river_gold_percent", "Determines what percentage of the river bed in a river gold patch has gold.")
+        var peacefulBambooJungle: Boolean by boolOption(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
         var disablePonds: Boolean by boolOption(true, "disable_ponds", "Removes small water and lava ponds from the world.")
     }
 
     object Misc : ConfigCategory("misc", "Enable/Disable items.") {
-        var dispenserCropPlanting: Boolean by boolOption(true, "dispenser_crop_planting", "Dispensers can plant crops, saplings, and a few other plants.")
-        var dispenserLadderPlacement: Boolean by boolOption(true, "dispenser_ladder_placement", "Dispensers can place and pickup ladders and scaffolding.")
-        var peacefulBambooJungle: Boolean by boolOption(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
+        @Deprecated("Moved to the redstone category")
+        var dispenserCropPlanting: Any by deprecatedOption("dispenser_crop_planting", "redstone.dispenser_crop_planting")
+        @Deprecated("Moved to the redstone category")
+        var dispenserLadderPlacement: Any by deprecatedOption("dispenser_ladder_placement", "redstone.dispenser_ladder_placement")
+        @Deprecated("Moved to the world category")
+        var peacefulBambooJungle: Any by deprecatedOption("peaceful_bamboo_jungle", "world.peaceful_bamboo_jungle")
         var vehiclePickup: Boolean by boolOption(true, "vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
-        var underwaterSwitches: Boolean by boolOption(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
+        @Deprecated("Moved to the redstone category")
+        var underwaterSwitches: Any by deprecatedOption("underwater_switches", "redstone.underwater_switches")
         var fertilizeMorePlants: Boolean by boolOption(true, "fertilizer_more_plants", "Allows for Cacti, Sugar Cane, Kelp, and Netherwart to be fertilized by bonemeal or fertilizer.")
         var stuckCommand: Boolean by boolOption(true, "stuck_command", "If you're stuck somewhere, use this command to die and respawn at your spawn point.")
     }
@@ -81,6 +96,7 @@ object Config : ConfigCategory() {
 
         Items.setParent(this)
         Blocks.setParent(this)
+        Redstone.setParent(this)
         Recipes.setParent(this)
         Potions.setParent(this)
         Enchantments.setParent(this)
@@ -88,7 +104,7 @@ object Config : ConfigCategory() {
         Misc.setParent(this)
 
         val hjsonFile = File(FabricLoader.getInstance().configDirectory, "nicetohave.hjson")
-        val json5File = File(FabricLoader.getInstance().configDirectory, "nicetohave.json5")
+        val json5File = File(FabricLoader.getInstance().configDirectory, "nicetohavejson5")
 
         var configObject = JsonObject()
 
@@ -101,7 +117,7 @@ object Config : ConfigCategory() {
                     .builder()
                     .build()
                     .load(if (json5File.exists()) json5File else hjsonFile)
-        } catch (e : IOException) {
+        } catch (e: IOException) {
             NiceToHave.out("Couldn't find config file; all config values will be set to default and a new file will be created.")
         } catch (e : SyntaxError) {
             NiceToHave.error("Couldn't read the config file due to an hjson syntax error. Please fix the file or delete it to generate a new one. (Default config values will be used in the meantime).")

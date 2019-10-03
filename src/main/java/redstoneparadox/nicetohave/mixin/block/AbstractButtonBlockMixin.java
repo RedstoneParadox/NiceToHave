@@ -21,7 +21,7 @@ import redstoneparadox.nicetohave.util.config.Config;
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = Config.Misc.INSTANCE.getUnderwaterSwitches();
+    private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
 
     protected AbstractButtonBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

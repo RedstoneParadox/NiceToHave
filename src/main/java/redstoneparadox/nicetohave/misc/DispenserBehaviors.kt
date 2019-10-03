@@ -51,7 +51,7 @@ object DispenserBehaviors {
                 }
             })
         }
-        if (Config.Misc.dispenserCropPlanting) {
+        if (Config.Redstone.dispenserCropPlanting) {
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
@@ -80,7 +80,7 @@ object DispenserBehaviors {
     }
 
     fun blockToDispenserBehavior(block : Block, id : Identifier) {
-        if (Config.Misc.dispenserCropPlanting) {
+        if (Config.Redstone.dispenserCropPlanting) {
             when (block) {
                 is SaplingBlock -> register(Item.fromBlock(block), PlantingDispenserBehavior(saplingFarmBlocks, block))
                 is CropBlock, is StemBlock -> {
@@ -91,7 +91,7 @@ object DispenserBehaviors {
                 }
             }
         }
-        if (Config.Misc.dispenserLadderPlacement) {
+        if (Config.Redstone.dispenserLadderPlacement) {
             when (block) {
                 is LadderBlock -> register(Registry.ITEM.get(id), LadderBehavior(block))
                 is ScaffoldingBlock -> register(Registry.ITEM.get(id), LadderBehavior(block, true))
