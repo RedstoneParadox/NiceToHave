@@ -19,7 +19,7 @@ public abstract class NamespaceResourceManagerMixin {
     private ResourcePack capturedPack = null;
     private boolean hasVanillaGone = false;
 
-    @Inject(method = "addPack", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "addPack", at = @At("HEAD"))
     private void captureResourcePack(ResourcePack resourcePack_1, CallbackInfo ci) {
         if (resourcePack_1.getName().equals("Default")) {
             hasVanillaGone = true;
