@@ -19,7 +19,7 @@ class SurfaceDecorator(function_1: Function<Dynamic<*>, out NopeDecoratorConfig>
         val positions = ArrayList<BlockPos>()
         for (x in 0..15) {
             for (z in 0..15) {
-                positions.add(world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos.add(x, 0, z)).down())
+                positions.add(world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos.add(x, 0, z)).down(1))
             }
         }
         return positions.stream()
