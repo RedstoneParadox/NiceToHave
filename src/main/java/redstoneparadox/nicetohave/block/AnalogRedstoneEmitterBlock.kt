@@ -29,7 +29,14 @@ class AnalogRedstoneEmitterBlock() : RedstoneBlock(FabricBlockSettings.copy(Bloc
     }
 
     override fun activate(blockState: BlockState, world: World, blockPos: BlockPos, playerEntity: PlayerEntity, hand: Hand, blockHitResult: BlockHitResult): Boolean {
-        world.setBlockState(blockPos, blockState.cycle(POWER_LEVEL))
+        if (playerEntity.isSneaking) {
+            val power = blockState[POWER_LEVEL]
+            val newPower = if (power == 0) 15 else power - 1
+            world.setBlockState(blockPos, blockState.with(POWER_LEVEL, newPower))
+        }
+        else {
+            world.setBlockState(blockPos, blockState.cycle(POWER_LEVEL))
+        }
         return true
     }
 
