@@ -29,7 +29,7 @@ class ThrownDynamiteEntity : ThrownItemEntity {
     override fun onCollision(hitResult: HitResult) {
         if (!this.world.isClient) {
             this.world.sendEntityStatus(this, 3.toByte())
-            world.createExplosion(this, x, y + (this.height / 16.0f).toDouble(), z, 2.0f, Explosion.DestructionType.BREAK)
+            world.createExplosion(this, x, y + (this.height / 16.0f).toDouble(), z, 1.85f, Explosion.DestructionType.BREAK)
             this.remove()
         }
     }
