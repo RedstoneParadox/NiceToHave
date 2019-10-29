@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(NamespaceResourceManager.class)
+@Mixin(targets = "net.minecraft.resource.NamespaceResourceManager")
 public abstract class NamespaceResourceManagerMixin {
 
     @Shadow @Final protected List<ResourcePack> packList;
