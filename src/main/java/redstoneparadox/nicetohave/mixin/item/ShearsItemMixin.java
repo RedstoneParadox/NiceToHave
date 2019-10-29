@@ -30,14 +30,16 @@ public abstract class ShearsItemMixin extends Item {
             boolean east = state.get(VineBlock.EAST);
             boolean west = state.get(VineBlock.WEST);
 
-            world.setBlockState(pos,  NiceToHaveBlocks.INSTANCE.getTRIMMED_VINE()
-                    .getDefaultState()
-                    .with(VineBlock.UP, up)
-                    .with(VineBlock.NORTH, north)
-                    .with(VineBlock.SOUTH, south)
-                    .with(VineBlock.EAST, east)
-                    .with(VineBlock.WEST, west)
-            );
+            if (NiceToHaveBlocks.INSTANCE.getTRIMMED_VINE() != null) {
+                world.setBlockState(pos,  NiceToHaveBlocks.INSTANCE.getTRIMMED_VINE()
+                        .getDefaultState()
+                        .with(VineBlock.UP, up)
+                        .with(VineBlock.NORTH, north)
+                        .with(VineBlock.SOUTH, south)
+                        .with(VineBlock.EAST, east)
+                        .with(VineBlock.WEST, west)
+                );
+            }
             return ActionResult.SUCCESS;
         }
 
