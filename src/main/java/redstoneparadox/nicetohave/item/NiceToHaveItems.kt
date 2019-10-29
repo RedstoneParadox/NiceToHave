@@ -12,7 +12,7 @@ import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
 /**
  * Created by RedstoneParadox on 5/23/2019.
  */
-object Items : ItemsInitializer() {
+object NiceToHaveItems : ItemsInitializer() {
 
     var CHAIN_LINK : Item? = register("chain_link", Item(Item.Settings().group(ItemGroup.MATERIALS)), Config.Items.chainLink)
     var DYNAMITE : Item? = register("dynamite", DynamiteItem(), Config.Items.dynamite)

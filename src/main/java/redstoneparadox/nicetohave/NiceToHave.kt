@@ -8,7 +8,7 @@ import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.enchantment.Enchantments
 import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.effect.StatusEffects
-import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
@@ -42,7 +42,7 @@ object NiceToHave : ModInitializer {
         StatusEffects.registerEffects()
         Potions.registerPotions()
         NiceToHaveBlocks.initBlocks()
-        Items.initItems()
+        NiceToHaveItems.initItems()
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
         Decorators.registerDecorators()

@@ -18,7 +18,7 @@ import net.minecraft.util.math.Position
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
-import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.networking.Packets
 import redstoneparadox.nicetohave.util.config.Config
 import redstoneparadox.nicetohave.util.getBlock
@@ -30,8 +30,8 @@ object DispenserBehaviors {
     val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
 
     fun registerBehaviors() {
-        if (Config.Items.dynamite && Items.DYNAMITE != null) {
-            register(Items.DYNAMITE!!, object : ProjectileDispenserBehavior() {
+        if (Config.Items.dynamite && NiceToHaveItems.DYNAMITE != null) {
+            register(NiceToHaveItems.DYNAMITE!!, object : ProjectileDispenserBehavior() {
                 var entity: ThrownDynamiteEntity? = null
 
                 override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
@@ -57,8 +57,8 @@ object DispenserBehaviors {
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
             register(VanillaItems.KELP, PlantingDispenserBehavior(null, Blocks.KELP_PLANT, true))
         }
-        if (Config.Items.fertilizer && Items.FERTILIZER != null) {
-            register(Items.FERTILIZER!!, object : FallibleItemDispenserBehavior() {
+        if (Config.Items.fertilizer && NiceToHaveItems.FERTILIZER != null) {
+            register(NiceToHaveItems.FERTILIZER!!, object : FallibleItemDispenserBehavior() {
                 override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                     this.success = true
                     val world = blockPointer_1.world

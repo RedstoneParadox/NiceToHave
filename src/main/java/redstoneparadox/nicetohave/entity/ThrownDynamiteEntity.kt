@@ -8,7 +8,7 @@ import net.minecraft.network.Packet
 import net.minecraft.util.hit.HitResult
 import net.minecraft.world.World
 import net.minecraft.world.explosion.Explosion
-import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.networking.Packets
 
 /**
@@ -23,7 +23,7 @@ class ThrownDynamiteEntity : ThrownItemEntity {
     constructor(world: World, x : Double, y : Double, z : Double) : super(EntityTypes.THROWN_DYNAMITE, x, y, z, world)
 
     override fun getDefaultItem(): Item? {
-        return Items.DYNAMITE
+        return NiceToHaveItems.DYNAMITE
     }
 
     override fun onCollision(hitResult: HitResult) {
