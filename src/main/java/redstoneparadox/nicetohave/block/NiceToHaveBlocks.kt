@@ -6,7 +6,7 @@ import net.minecraft.block.Blocks
 import redstoneparadox.nicetohave.util.config.Config
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 
-object Blocks : BlocksInitializer() {
+object NiceToHaveBlocks : BlocksInitializer() {
 
     val GOLD_BUTTON : Block? = register("gold_button", CustomButtonBlock(1), Config.Blocks.goldButton)
     val ANALOG_REDSTONE_EMITTER : Block? = register("analog_redstone_emitter", AnalogRedstoneEmitterBlock(), Config.Blocks.analogRedstoneEmitter)

@@ -10,6 +10,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import redstoneparadox.nicetohave.block.NiceToHaveBlocks;
 
 @Mixin(ShearsItem.class)
 public abstract class ShearsItemMixin extends Item {
@@ -29,7 +30,7 @@ public abstract class ShearsItemMixin extends Item {
             boolean east = state.get(VineBlock.EAST);
             boolean west = state.get(VineBlock.WEST);
 
-            world.setBlockState(pos, redstoneparadox.nicetohave.block.Blocks.INSTANCE.getTRIMMED_VINE()
+            world.setBlockState(pos,  NiceToHaveBlocks.INSTANCE.getTRIMMED_VINE()
                     .getDefaultState()
                     .with(VineBlock.UP, up)
                     .with(VineBlock.NORTH, north)
