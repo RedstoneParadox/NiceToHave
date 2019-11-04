@@ -59,7 +59,7 @@ dependencies {
 
 	modApi("com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}") {transitive = false}
 	include "com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}"
-	modApi ("io.github.prospector:modmenu:1.7.9"){
+	modApi ("io.github.prospector:modmenu:1.7.15-unstable.19w42a+build.11"){
 		transitive = false
 	}
 }

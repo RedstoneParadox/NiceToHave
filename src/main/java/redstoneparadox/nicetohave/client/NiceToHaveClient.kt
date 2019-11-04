@@ -22,9 +22,9 @@ class NiceToHaveClient : ClientModInitializer {
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
             val provider = ColorProviderRegistry.BLOCK.get(net.minecraft.block.Blocks.VINE)
             return@BlockColorProvider provider.getColor(block, pos, world, layer)
-        }, Blocks.TRIMMED_VINE)
+        }, NiceToHaveBlocks.TRIMMED_VINE)
 
-        if (Blocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(Blocks.CHAIN_LINK_FENCE, BlockRenderLayer.CUTOUT)
+        if (NiceToHaveBlocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.CHAIN_LINK_FENCE, BlockRenderLayer.CUTOUT)
     }
 
 }
