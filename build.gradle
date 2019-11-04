@@ -56,6 +56,9 @@ dependencies {
 
 	modApi ("io.github.cottonmc:LibCD:${project.libcd_version}") { transitive = false }
 	include "io.github.cottonmc:LibCD:${project.libcd_version}"
+
+	modApi("com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}") {transitive = false}
+	include "com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}"
 }
 
 processResources {
