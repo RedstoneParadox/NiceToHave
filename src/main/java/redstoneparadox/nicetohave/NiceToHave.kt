@@ -4,12 +4,12 @@ import net.fabricmc.api.ModInitializer
 import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import redstoneparadox.nicetohave.block.Blocks
 import redstoneparadox.nicetohave.command.Commands
+import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.enchantment.Enchantments
 import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.effect.StatusEffects
-import redstoneparadox.nicetohave.item.Items
+import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
@@ -42,8 +42,8 @@ object NiceToHave : ModInitializer {
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()
-        Blocks.initBlocks()
-        Items.initItems()
+        NiceToHaveBlocks.initBlocks()
+        NiceToHaveItems.initItems()
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
         Decorators.registerDecorators()

@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.render.ColorProviderRegistry
 import net.minecraft.block.BlockRenderLayer
 import net.minecraft.client.color.block.BlockColorProvider
 import redstoneparadox.nicetohave.NiceToHave
-import redstoneparadox.nicetohave.block.Blocks
+import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.client.networking.ClientPackets
 import redstoneparadox.nicetohave.client.render.entity.EntityRenderers
 

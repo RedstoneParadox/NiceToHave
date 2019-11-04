@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Nice to Have",
-  "description": "This is a mod containing some small things that I though would be nice to have.",
+  "description": "Nice To Have is a mod about adding small features that are...well...nice to have, without disrupting the vanilla experience.",
   "authors": [
     "RedstoneParadox"
   ],
@@ -14,7 +14,7 @@
   },
 
   "license": "LGPL v3.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/nicetohave/logo.png",
 
   "environment": "*",
   "entrypoints": {
