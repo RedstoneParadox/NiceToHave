@@ -105,7 +105,7 @@ object OldConfig : ConfigCategory() {
         Misc.setParent(this)
 
         val hjsonFile = File(FabricLoader.getInstance().configDirectory, "nicetohave.hjson")
-        val json5File = File(FabricLoader.getInstance().configDirectory, "nicetohavejson5")
+        val json5File = File(FabricLoader.getInstance().configDirectory, "nicetohave.json5")
 
         var configObject = JsonObject()
 

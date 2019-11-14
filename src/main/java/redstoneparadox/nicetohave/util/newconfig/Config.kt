@@ -2,6 +2,7 @@ package redstoneparadox.nicetohave.util.newconfig
 
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.Identifier
+import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.paradoxconfig.config.RootConfigCategory
 import redstoneparadox.paradoxconfig.forceReloadConfig
 import redstoneparadox.paradoxconfig.serialization.ConfigDeserializer
@@ -27,6 +28,7 @@ object Config: RootConfigCategory("config.json5") {
             val newFile = File(FabricLoader.getInstance().configDirectory, "nicetohave/config.json5")
             if (newFile.exists()) {
                 newFile.writeText(data)
+                NiceToHave.out("The config file for Nice to Have has been moved into it's own directory.")
                 forceReloadConfig(Identifier("nicetohave", "config.json5"))
             }
         }
