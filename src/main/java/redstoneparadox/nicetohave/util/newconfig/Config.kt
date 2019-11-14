@@ -20,7 +20,7 @@ object Config: RootConfigCategory("config.json5") {
         if (initialized) return
         initialized = true
 
-        val file = File(FabricLoader.getInstance().configDirectory, "nicetohavejson5")
+        val file = File(FabricLoader.getInstance().configDirectory, "nicetohave.json5")
 
         if (file.exists()) {
             val data = file.readText()
