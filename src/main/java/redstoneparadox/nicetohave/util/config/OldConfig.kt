@@ -13,7 +13,8 @@ import redstoneparadox.nicetohave.util.tryAs
 import java.io.File
 import java.io.IOException
 
-object Config : ConfigCategory() {
+@Deprecated("Moving to a new system.")
+object OldConfig : ConfigCategory() {
 
     val boolType = Boolean::class.javaObjectType
     val doubleType = Double::class.javaObjectType

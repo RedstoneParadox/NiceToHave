@@ -6,12 +6,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.config.Config;
+import redstoneparadox.nicetohave.util.config.OldConfig;
 
 @Mixin(DefaultBiomeFeatures.class)
 public abstract class DefaultBiomeFeaturesMixin {
 
-    private static boolean disablePonds = Config.World.INSTANCE.getDisablePonds();
+    private static boolean disablePonds = OldConfig.World.INSTANCE.getDisablePonds();
 
     @Inject(method = "addDefaultLakes", at = @At("HEAD"), cancellable = true)
     private static void addDefaultLakes(Biome biome_1, CallbackInfo ci) {

@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.config.Config;
+import redstoneparadox.nicetohave.util.config.OldConfig;
 
 @Mixin(LeverBlock.class)
 public abstract class LeverBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
+    private boolean canPlaceUnderwater = OldConfig.Redstone.INSTANCE.getUnderwaterSwitches();
 
     public LeverBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

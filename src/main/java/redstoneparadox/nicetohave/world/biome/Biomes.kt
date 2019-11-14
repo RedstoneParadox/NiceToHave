@@ -7,7 +7,7 @@ import net.minecraft.world.biome.RiverBiome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.decorator.DecoratorConfig
 import net.minecraft.world.gen.feature.FeatureConfig
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
 import net.minecraft.world.biome.Biomes as VanillaBiomes
@@ -18,7 +18,7 @@ object Biomes {
     val BAD_LANDS_RIVER = RiverBiome()
     
     fun registerBiomes() {
-        if (Config.World.goldInRivers) {
+        if (OldConfig.World.goldInRivers) {
             BAD_LANDS_RIVER.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, Biome.configureFeature(Features.GOLD_RIVER_ORE, FeatureConfig.DEFAULT, Decorators.SURFACE, DecoratorConfig.DEFAULT))
             register("badlands_river", BAD_LANDS_RIVER)
             OverworldBiomes.setRiverBiome(VanillaBiomes.BADLANDS_PLATEAU, BAD_LANDS_RIVER)

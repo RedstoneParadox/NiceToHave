@@ -20,7 +20,7 @@ import net.minecraft.world.World
 import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.networking.Packets
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.getBlock
 import net.minecraft.item.Items as VanillaItems
 
@@ -30,7 +30,7 @@ object DispenserBehaviors {
     val bambooFarmBlocks = arrayOf(Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.RED_SAND)
 
     fun registerBehaviors() {
-        if (Config.Items.dynamite && NiceToHaveItems.DYNAMITE != null) {
+        if (OldConfig.Items.dynamite && NiceToHaveItems.DYNAMITE != null) {
             register(NiceToHaveItems.DYNAMITE!!, object : ProjectileDispenserBehavior() {
                 var entity: ThrownDynamiteEntity? = null
 
@@ -51,13 +51,13 @@ object DispenserBehaviors {
                 }
             })
         }
-        if (Config.Redstone.dispenserCropPlanting) {
+        if (OldConfig.Redstone.dispenserCropPlanting) {
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
             register(VanillaItems.NETHER_WART, PlantingDispenserBehavior(arrayOf(Blocks.SOUL_SAND), Blocks.NETHER_WART))
             register(VanillaItems.BAMBOO, PlantingDispenserBehavior(bambooFarmBlocks, Blocks.BAMBOO_SAPLING))
             register(VanillaItems.KELP, PlantingDispenserBehavior(null, Blocks.KELP_PLANT, true))
         }
-        if (Config.Items.fertilizer && NiceToHaveItems.FERTILIZER != null) {
+        if (OldConfig.Items.fertilizer && NiceToHaveItems.FERTILIZER != null) {
             register(NiceToHaveItems.FERTILIZER!!, object : FallibleItemDispenserBehavior() {
                 override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                     this.success = true
@@ -80,7 +80,7 @@ object DispenserBehaviors {
     }
 
     fun blockToDispenserBehavior(block : Block, id : Identifier) {
-        if (Config.Redstone.dispenserCropPlanting) {
+        if (OldConfig.Redstone.dispenserCropPlanting) {
             when (block) {
                 is SaplingBlock -> register(Item.fromBlock(block), PlantingDispenserBehavior(saplingFarmBlocks, block))
                 is CropBlock, is StemBlock -> {
@@ -91,7 +91,7 @@ object DispenserBehaviors {
                 }
             }
         }
-        if (Config.Redstone.dispenserLadderPlacement) {
+        if (OldConfig.Redstone.dispenserLadderPlacement) {
             when (block) {
                 is LadderBlock -> register(Registry.ITEM.get(id), LadderBehavior(block))
                 is ScaffoldingBlock -> register(Registry.ITEM.get(id), LadderBehavior(block, true))

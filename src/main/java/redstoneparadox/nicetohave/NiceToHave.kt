@@ -14,7 +14,7 @@ import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.datagen.*
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
@@ -28,7 +28,7 @@ object NiceToHave : ModInitializer {
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
     init {
-        Config
+        OldConfig
     }
 
     override fun onInitialize() {

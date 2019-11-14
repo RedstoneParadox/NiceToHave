@@ -15,14 +15,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import redstoneparadox.nicetohave.util.config.Config;
+import redstoneparadox.nicetohave.util.config.OldConfig;
 
 @Mixin(DispenserBlock.class)
 public abstract class DispenserBlockMixin {
 
     @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/DispenserBlockEntity;chooseNonEmptySlot()I"), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
     void dispense(World world_1, BlockPos blockPos_1, CallbackInfo ci, BlockPointerImpl blockPointer, DispenserBlockEntity dispenserBlockEntity_1) {
-        if (Config.Redstone.INSTANCE.getDispenserLadderPlacement()) {
+        if (OldConfig.Redstone.INSTANCE.getDispenserLadderPlacement()) {
             return;
         }
 

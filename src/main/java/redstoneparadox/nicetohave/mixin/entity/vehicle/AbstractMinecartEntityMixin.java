@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.config.Config;
+import redstoneparadox.nicetohave.util.config.OldConfig;
 
 import static net.minecraft.entity.vehicle.AbstractMinecartEntity.Type.*;
 
@@ -40,7 +40,7 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
 
     @Override
     public boolean interact(PlayerEntity playerEntity_1, Hand hand_1) {
-        if (Config.Misc.INSTANCE.getVehiclePickup() && playerEntity_1.isSneaking()) {
+        if (OldConfig.Misc.INSTANCE.getVehiclePickup() && playerEntity_1.isSneaking()) {
             AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
             Item minecartItem = net.minecraft.item.Items.AIR;
 

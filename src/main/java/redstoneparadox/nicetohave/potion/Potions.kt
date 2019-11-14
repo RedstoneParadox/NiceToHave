@@ -4,7 +4,7 @@ import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.potion.Potion
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.entity.effect.StatusEffects
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.minutesToTicks
 
 object Potions {
@@ -15,9 +15,9 @@ object Potions {
     //val NECTAR : Potion = Potion(StatusEffectInstance(VanillaStatusEffects.HEALTH_BOOST, minutesToTicks(6), 4), StatusEffectInstance(VanillaStatusEffects.RESISTANCE, minutesToTicks(6), 3), StatusEffectInstance(VanillaStatusEffects.FIRE_RESISTANCE, minutesToTicks(6)), StatusEffectInstance(VanillaStatusEffects.REGENERATION, secondsToTicks(30), 3))
 
     fun registerPotions() {
-        register("insight", INSIGHT, Config.Potions.insight)
-        register("long_insight", LONG_INSIGHT, Config.Potions.insight)
-        register("strong_insight", STRONG_INSIGHT, Config.Potions.insight)
+        register("insight", INSIGHT, OldConfig.Potions.insight)
+        register("long_insight", LONG_INSIGHT, OldConfig.Potions.insight)
+        register("strong_insight", STRONG_INSIGHT, OldConfig.Potions.insight)
         //register("nectar", NECTAR)
 
         PotionRecipes.registerRecipes()

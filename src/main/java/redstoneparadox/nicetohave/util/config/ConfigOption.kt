@@ -3,8 +3,6 @@ package redstoneparadox.nicetohave.util.config
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
-import redstoneparadox.nicetohave.util.config.Config
-import redstoneparadox.nicetohave.util.config.ConfigCategory
 import kotlin.reflect.KProperty
 
 open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, private val comment : String, protected val parentCategory: ConfigCategory) {
@@ -32,11 +30,11 @@ open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : S
         if (anyClass == type) {
             return any as T
         }
-        NiceToHave.error("Expected type of `${typeString()}` for config option ${getFullKey()} but instead found type of `${Config.stringifyType(anyClass)}`. Will use `${typeString()} value of `$value` instead.")
+        NiceToHave.error("Expected type of `${typeString()}` for config option ${getFullKey()} but instead found type of `${OldConfig.stringifyType(anyClass)}`. Will use `${typeString()} value of `$value` instead.")
         return this.value;
     }
 
     fun getFullKey(): String = "${parentCategory.getKeyPrefix()}$key"
 
-    fun typeString(): String = Config.stringifyType(type)
+    fun typeString(): String = OldConfig.stringifyType(type)
 }

@@ -1,12 +1,11 @@
 package redstoneparadox.nicetohave.util.config
 
-import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
-import redstoneparadox.nicetohave.util.config.Config.boolType
-import redstoneparadox.nicetohave.util.config.Config.doubleType
-import redstoneparadox.nicetohave.util.config.Config.longType
+import redstoneparadox.nicetohave.util.config.OldConfig.boolType
+import redstoneparadox.nicetohave.util.config.OldConfig.doubleType
+import redstoneparadox.nicetohave.util.config.OldConfig.longType
 
 open class ConfigCategory(val key : String = "", val comment : String = "") {
     protected var wasInitialized = false;

@@ -3,7 +3,7 @@ package redstoneparadox.nicetohave.compat.terrestria
 import com.terraformersmc.terrestria.init.TerrestriaBlocks
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
 import redstoneparadox.nicetohave.block.PoleBlock
-import redstoneparadox.nicetohave.util.config.Config
+import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 
 object TerrestriaCompatBlocks : BlocksInitializer() {
@@ -29,7 +29,7 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
     val STRIPPED_SAKURA_POLE : PoleBlock? = registerWoodPole("stripped_sakura", TerrestriaBlocks.SAKURA.strippedWood, TERRESTRIA)
 
     fun initBlocks() {
-        if (Config.Blocks.poles) {
+        if (OldConfig.Blocks.poles) {
             registerFlammableBlocks(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
             registerFlammableBlocks(arrayOf(STRIPPED_REDWOOD_POLE, STRIPPED_HEMLOCK_POLE, STRIPPED_RUBBER_WOOD_POLE, STRIPPED_CYPRESS_POLE, STRIPPED_WILLOW_POLE, STRIPPED_JAPANESE_MAPLE_POLE, STRIPPED_RAINBOW_EUCALYPTUS_POLE, STRIPPED_SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
