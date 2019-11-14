@@ -51,5 +51,9 @@
   "suggests": {
     "terrestria": "*",
     "traverse": "*"
+  },
+
+  "custom": {
+    "pconfig": [ "redstoneparadox.nicetohave.util.newconfig.Config" ]
   }
 }
