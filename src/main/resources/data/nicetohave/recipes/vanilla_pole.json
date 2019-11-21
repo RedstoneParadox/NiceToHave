@@ -1,0 +1,37 @@
+{
+  "type": "nicetohave:crafting_template",
+  "pattern": [
+    "a",
+    "a",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:${wood}_log"
+    }
+  },
+  "result": {
+    "item": "nicetohave:${wood}_pole",
+    "count": 12
+  },
+  "template": [
+    {
+      "wood": "oak"
+    },
+    {
+      "wood": "spruce"
+    },
+    {
+      "wood": "birch"
+    },
+    {
+      "wood": "jungle"
+    },
+    {
+      "wood": "acacia"
+    },
+    {
+      "wood": "dark_oak"
+    }
+  ]
+}
