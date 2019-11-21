@@ -5,7 +5,7 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:${wood}_log"
+      "item": "${mod}:${wood}_log"
     }
   },
   "result": {
@@ -14,22 +14,32 @@
   },
   "template": [
     {
-      "wood": "oak"
+      "wood": "oak",
+      "mod": "minecraft"
     },
     {
-      "wood": "spruce"
+      "wood": "spruce",
+      "mod": "minecraft"
     },
     {
-      "wood": "birch"
+      "wood": "birch",
+      "mod": "minecraft"
     },
     {
-      "wood": "jungle"
+      "wood": "jungle",
+      "mod": "minecraft"
     },
     {
-      "wood": "acacia"
+      "wood": "acacia",
+      "mod": "minecraft"
     },
     {
-      "wood": "dark_oak"
+      "wood": "dark_oak",
+      "mod": "minecraft"
+    },
+    {
+      "wood": "hemlock",
+      "mod": "terrestria"
     }
   ]
 }

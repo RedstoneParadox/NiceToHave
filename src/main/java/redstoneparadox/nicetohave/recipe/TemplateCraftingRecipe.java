@@ -8,13 +8,11 @@ import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.JsonOps;
 import net.minecraft.datafixers.NbtOps;
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.recipe.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -79,14 +77,14 @@ public class TemplateCraftingRecipe implements CraftingRecipe {
             for (JsonElement element: templateArray) {
                 if (element.isJsonObject()) {
                     JsonObject obj = element.getAsJsonObject();
+                    List<Pair<String, String>> pairs = new ArrayList<>();
                     for (Map.Entry<String, JsonElement> entry: obj.entrySet()) {
-                        List<Pair<String, String>> pairs = new ArrayList<>();
                         if (entry.getValue().isJsonPrimitive()) {
                             Pair<String, String> pair = new Pair<>(entry.getKey(), entry.getValue().getAsString());
                             pairs.add(pair);
                         }
-                        templates.add(new Template(pairs));
                     }
+                    templates.add(new Template(pairs));
                 }
             }
 
@@ -97,8 +95,12 @@ public class TemplateCraftingRecipe implements CraftingRecipe {
                 copy.add("key", fillKeyTemplate(object.getAsJsonObject("key"), template));
                 copy.add("result", fillResultTemplate(object.getAsJsonObject("result"), template));
                 System.out.println("Here's the copy!: " + copy);
-                ShapedRecipe recipe = SHAPED.read(id, copy);
-                recipes.add(recipe);
+                try {
+                    ShapedRecipe recipe = SHAPED.read(id, copy);
+                    recipes.add(recipe);
+                } catch (Exception ignored) {
+
+                }
             }
 
             return new TemplateCraftingRecipe(recipes, object);
