@@ -14,6 +14,7 @@ import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
+import redstoneparadox.nicetohave.recipe.TemplateCraftingRecipe
 import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.datagen.*
 import redstoneparadox.nicetohave.world.biome.Biomes
@@ -29,6 +30,7 @@ object NiceToHave : ModInitializer {
 
     init {
         OldConfig
+        TemplateCraftingRecipe.Serializer.CRAFTING_TEMPLATE
     }
 
     override fun onInitialize() {

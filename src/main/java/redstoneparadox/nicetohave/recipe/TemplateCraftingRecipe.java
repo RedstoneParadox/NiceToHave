@@ -1,67 +1,59 @@
 package redstoneparadox.nicetohave.recipe;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+import com.mojang.datafixers.Dynamic;
+import com.mojang.datafixers.types.JsonOps;
+import net.minecraft.datafixers.NbtOps;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.DefaultedList;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.PacketByteBuf;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class TemplateCraftingRecipe implements Recipe<CraftingInventory> {
-    private final int width;
-    private final int height;
-    private final DefaultedList<Predicate<ItemStack>> ingredients;
+public class TemplateCraftingRecipe implements CraftingRecipe {
+    private final List<ShapedRecipe> recipes;
+    private final JsonObject original;
 
-    public TemplateCraftingRecipe(int width, int height, DefaultedList<Predicate<ItemStack>> ingredients) {
-        this.width = width;
-        this.height = height;
-        this.ingredients = ingredients;
+    private TemplateCraftingRecipe(List<ShapedRecipe> recipes, JsonObject original) {
+        this.recipes = recipes;
+        this.original = original;
     }
 
     @Override
     public boolean matches(CraftingInventory inventory, World world) {
-        if (inventory.getWidth() == 2 && inventory.getHeight() == 2) return matchesSmall(inventory);
-        return matchesNormal(inventory);
-    }
-
-    private boolean matchesSmall(CraftingInventory inventory) {
-        if (width > 2 || height > 2) return false;
-
-        int xShifts = 2 - width;
-        int yShifts = 2 - height;
-
-        return false;
-    }
-
-    private boolean matchesNormal(CraftingInventory inventory) {
-        if (width > 3 || height > 3) return false;
-
-        int xShifts = 3 - width;
-        int yShifts = 3 - height;
-
+        for (ShapedRecipe recipe: recipes) {
+            if (recipe.matches(inventory, world)) return true;
+        }
         return false;
     }
 
     @Override
     public ItemStack craft(CraftingInventory inventory) {
+        for (ShapedRecipe recipe: recipes) {
+            if (recipe.matches(inventory, null)) return recipe.craft(inventory);
+        }
         return null;
     }
 
     @Override
     public boolean fits(int var1, int var2) {
-        return false;
+        return recipes.get(0).fits(var1, var2);
     }
 
     @Override
     public ItemStack getOutput() {
-        return null;
+        return recipes.get(0).getOutput();
     }
 
     @Override
@@ -71,33 +63,105 @@ public class TemplateCraftingRecipe implements Recipe<CraftingInventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return Serializer.CRAFTING_TEMPLATE;
     }
 
-    @Override
-    public RecipeType<?> getType() {
-        return null;
-    }
+    public static class Serializer implements RecipeSerializer<TemplateCraftingRecipe> {
 
-    class Serializer implements RecipeSerializer<TemplateCraftingRecipe> {
+        public static final Serializer CRAFTING_TEMPLATE = RecipeSerializer.register("nicetohave:crafting_template_shaped", new Serializer());
 
         @Override
         public TemplateCraftingRecipe read(Identifier id, JsonObject object) {
-            String name = JsonHelper.getString(object, "group", "");
+            JsonArray templateArray = object.getAsJsonArray("template");
+            List<Template> templates = new ArrayList<>();
+            List<ShapedRecipe> recipes = new ArrayList<>();
 
+            for (JsonElement element: templateArray) {
+                if (element.isJsonObject()) {
+                    JsonObject obj = element.getAsJsonObject();
+                    for (Map.Entry<String, JsonElement> entry: obj.entrySet()) {
+                        List<Pair<String, String>> pairs = new ArrayList<>();
+                        if (entry.getValue().isJsonPrimitive()) {
+                            Pair<String, String> pair = new Pair<>(entry.getKey(), entry.getValue().getAsString());
+                            pairs.add(pair);
+                        }
+                        templates.add(new Template(pairs));
+                    }
+                }
+            }
 
+            for (Template template: templates) {
+                JsonObject copy = new JsonObject();
+                copy.add("type", new JsonPrimitive("minecraft:crafting_shaped"));
+                copy.add("pattern", object.get("pattern"));
+                copy.add("key", fillKeyTemplate(object.getAsJsonObject("key"), template));
+                copy.add("result", fillResultTemplate(object.getAsJsonObject("result"), template));
+                System.out.println("Here's the copy!: " + copy);
+                ShapedRecipe recipe = SHAPED.read(id, copy);
+                recipes.add(recipe);
+            }
 
-            return null;
+            return new TemplateCraftingRecipe(recipes, object);
+        }
+
+        private JsonObject fillKeyTemplate(JsonObject object, Template template) {
+            JsonObject key = new JsonObject();
+
+            for (Map.Entry<String, JsonElement> entry: object.entrySet()) {
+                if (entry.getValue() instanceof JsonObject) {
+                    JsonObject keyObject = new JsonObject();
+                    String filledString = replace(((JsonObject) entry.getValue()).get("item").getAsString(), template);
+                    keyObject.add("item", new JsonPrimitive(filledString));
+                    key.add(entry.getKey(), keyObject);
+                }
+            }
+            return key;
+        }
+
+        private JsonObject fillResultTemplate(JsonObject object, Template template) {
+            JsonObject result = new JsonObject();
+            result.add("count", object.get("count"));
+
+            String item = replace(object.get("item").getAsString(), template);
+            result.add("item", new JsonPrimitive(item));
+
+            return result;
+        }
+
+        private String replace(String string, Template template) {
+            String out = string;
+            for (Pair<String, String> pair: template.fills) {
+                out = out.replace("${" + pair.getLeft() +"}", pair.getRight());
+            }
+            return out;
         }
 
         @Override
         public TemplateCraftingRecipe read(Identifier id, PacketByteBuf buf) {
+            Tag nbt = buf.readCompoundTag();
+            if (nbt != null) {
+                JsonElement json = Dynamic.convert(NbtOps.INSTANCE, JsonOps.INSTANCE, nbt);
+                if (json instanceof JsonObject) {
+                    return read(id, (JsonObject) json);
+                }
+            }
             return null;
         }
 
         @Override
         public void write(PacketByteBuf buf, TemplateCraftingRecipe recipe) {
+            Tag nbt = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, recipe.original);
+            if (nbt instanceof CompoundTag) {
+                buf.writeCompoundTag((CompoundTag) nbt);
+            }
+        }
 
+        private static class Template {
+            final List<Pair<String, String>> fills;
+
+            Template(List<Pair<String, String>> fills) {
+                this.fills = fills;
+            }
         }
     }
 }

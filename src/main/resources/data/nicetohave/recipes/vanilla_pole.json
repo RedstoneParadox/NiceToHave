@@ -1,9 +1,7 @@
 {
-  "type": "nicetohave:crafting_template",
+  "type": "nicetohave:crafting_template_shaped",
   "pattern": [
-    "a",
-    "a",
-    "a"
+    "aaa"
   ],
   "key": {
     "a": {
