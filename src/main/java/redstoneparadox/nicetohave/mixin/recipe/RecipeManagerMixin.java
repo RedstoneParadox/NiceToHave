@@ -40,15 +40,9 @@ public abstract class RecipeManagerMixin {
         for (Map.Entry<Identifier, Recipe<?>> entry: filledTemplates.entrySet()) {
             RecipeType<?> type = entry.getValue().getType();
             Map<Identifier, Recipe<?>> subMap;
-            if (!mapped.containsKey(type)) {
-                subMap = mapped.put(type, new HashMap<>());
-            }
-            else {
-                subMap = mapped.get(type);
-            }
-            if (subMap != null) {
-                subMap.put(entry.getKey(), entry.getValue());
-            }
+            if (!mapped.containsKey(type)) mapped.put(type, new HashMap<>());
+            subMap = mapped.get(type);
+            subMap.put(entry.getKey(), entry.getValue());
         }
 
         for (RecipeType<?> type: recipes.keySet()) {
