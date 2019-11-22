@@ -1,5 +1,5 @@
 {
-  "type": "nicetohave:crafting_template_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "aaa"
   ],
@@ -12,6 +12,7 @@
     "item": "nicetohave:${wood}_pole",
     "count": 12
   },
+  "id": "new_${wood}_pole",
   "template": [
     {
       "wood": "oak",

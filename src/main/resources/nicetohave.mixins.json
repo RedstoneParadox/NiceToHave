@@ -20,6 +20,7 @@
     "entity.vehicle.BoatEntityMixin",
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
+    "recipe.RecipeManagerMixin",
     "resource.AbstractFileResourcePackMixin",
     "resource.NamespaceResourceManagerMixin",
     "world.biome.BambooJungleBiomeMixin",
