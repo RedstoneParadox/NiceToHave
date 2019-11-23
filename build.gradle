@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.5-SNAPSHOT'
+	id 'fabric-loom' version '0.2.6-SNAPSHOT'
 	id 'maven-publish'
 	id "org.jetbrains.kotlin.jvm" version "1.3.41"
 	id "com.wynprice.cursemaven" version "2.1.0"
@@ -43,23 +43,36 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modCompile(group: "net.fabricmc", name: "fabric-language-kotlin", version: "1.3.40+build.1")
-	compileOnly(group: "net.fabricmc", name: "fabric-language-kotlin", version: "1.3.40+build.1")
+	modCompile(group: "net.fabricmc", name: "fabric-language-kotlin", version: "1.3.60+build.1")
+	compileOnly(group: "net.fabricmc", name: "fabric-language-kotlin", version: "1.3.60+build.1")
 
-	modCompileOnly 'com.github.TerraformersMC:Terrestria:v1.0.11'
-	modCompileOnly 'com.github.TerraformersMC:Traverse:v2.0.8'
+	/*
+	compileOnly ('com.github.TerraformersMC:Terrestria:v1.0.11') {
+		exclude group: 'net.fabricmc.fabric-api'
+	}
+	modCompileOnly ('com.github.TerraformersMC:Traverse:v2.0.8') {
+		exclude group: 'net.fabricmc.fabric-api'
+	}
+	*/
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modApi "io.github.cottonmc:Jankson:${project.jankson_version}"
+	modApi ("io.github.cottonmc:Jankson:${project.jankson_version}") {
+		exclude group: 'net.fabricmc.fabric-api'
+	}
 	include "io.github.cottonmc:Jankson:${project.jankson_version}"
 
-	modApi ("io.github.cottonmc:LibCD:${project.libcd_version}") { transitive = false }
+	modApi ("io.github.cottonmc:LibCD:${project.libcd_version}") {
+		exclude group: 'net.fabricmc.fabric-api'
+	}
 	include "io.github.cottonmc:LibCD:${project.libcd_version}"
 
-	modApi("com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}") {transitive = false}
+	modApi("com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}") {
+		exclude group: 'net.fabricmc.fabric-api'
+		exclude group: 'net.fabricmc.fabric-language-kotlin'
+	}
 	include "com.github.RedstoneParadox:paradox-config:v${project.pconfig_version}"
-	modApi ("io.github.prospector:modmenu:1.7.15-unstable.19w42a+build.11"){
+	modApi ("io.github.prospector:modmenu:1.7.15-unstable.1.15-pre1+build.13") {
 		transitive = false
 	}
 }

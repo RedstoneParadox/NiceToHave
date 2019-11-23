@@ -10,7 +10,7 @@ import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.util.Identifier
-import net.minecraft.util.SystemUtil
+import net.minecraft.util.Util
 import net.minecraft.util.math.BlockPointer
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -35,7 +35,7 @@ object DispenserBehaviors {
                 var entity: ThrownDynamiteEntity? = null
 
                 override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
-                    entity = SystemUtil.consume(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
+                    entity = Util.create(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
                     return entity as Projectile
                 }
 

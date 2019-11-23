@@ -3,8 +3,8 @@ package redstoneparadox.nicetohave.client
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.client.render.ColorProviderRegistry
-import net.minecraft.block.BlockRenderLayer
 import net.minecraft.client.color.block.BlockColorProvider
+import net.minecraft.client.render.RenderLayer
 import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.client.networking.ClientPackets
@@ -24,7 +24,7 @@ class NiceToHaveClient : ClientModInitializer {
             return@BlockColorProvider provider.getColor(block, pos, world, layer)
         }, NiceToHaveBlocks.TRIMMED_VINE)
 
-        if (NiceToHaveBlocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.CHAIN_LINK_FENCE, BlockRenderLayer.CUTOUT)
+        if (NiceToHaveBlocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.CHAIN_LINK_FENCE, RenderLayer.getCutout())
     }
 
 }

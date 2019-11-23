@@ -3,10 +3,10 @@ package redstoneparadox.nicetohave.misc
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback
+import net.minecraft.loot.UniformLootTableRange
+import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.util.registry.Registry
-import net.minecraft.world.loot.UniformLootTableRange
-import net.minecraft.world.loot.entry.ItemEntry
-import net.minecraft.world.loot.function.SetCountLootFunction
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.util.config.OldConfig

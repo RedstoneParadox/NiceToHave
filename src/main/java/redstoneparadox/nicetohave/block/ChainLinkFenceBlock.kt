@@ -1,7 +1,6 @@
 package redstoneparadox.nicetohave.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.minecraft.block.BlockRenderLayer
 import net.minecraft.block.FenceBlock
 import net.minecraft.block.Material
 import net.minecraft.util.Identifier

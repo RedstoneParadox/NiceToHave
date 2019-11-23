@@ -36,7 +36,7 @@ class DynamiteItem() : Item(Item.Settings().group(ItemGroup.TOOLS)) {
             Packets.dispatchToAllWatching(dynamite, ::EntityPositionS2CPacket)
         }
 
-        return TypedActionResult(ActionResult.SUCCESS, stack, true)
+        return TypedActionResult(ActionResult.SUCCESS, stack)
     }
 
 }

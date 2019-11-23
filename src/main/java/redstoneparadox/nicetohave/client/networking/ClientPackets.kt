@@ -1,7 +1,7 @@
 package redstoneparadox.nicetohave.client.networking
 
 import net.fabricmc.fabric.api.network.PacketContext
-import net.fabricmc.fabric.impl.network.ClientSidePacketRegistryImpl
+import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.packet.EntitySpawnS2CPacket
 import net.minecraft.network.Packet
