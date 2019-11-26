@@ -33,7 +33,7 @@ public abstract class RecipeManagerMixin {
 
     private static HashMap<Identifier, Recipe<?>> filledTemplates = new HashMap<>();
 
-    @Inject(method = "method_20705", at = @At(value = "INVOKE", target = "Lorg/apache/logging/log4j/Logger;info(Ljava/lang/String;Ljava/lang/Object;)V", shift = At.Shift.BEFORE))
+    @Inject(method = "apply", at = @At(value = "INVOKE", target = "Lorg/apache/logging/log4j/Logger;info(Ljava/lang/String;Ljava/lang/Object;)V", shift = At.Shift.BEFORE))
     private void insertFilledTemplates(Map<Identifier, JsonObject> map_1, ResourceManager resourceManager_1, Profiler profiler_1, CallbackInfo ci) {
         Map<RecipeType<?>, Map<Identifier, Recipe<?>>> mapped = new HashMap<>();
 
