@@ -4,10 +4,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import redstoneparadox.nicetohave.item.NiceToHaveItems;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import redstoneparadox.nicetohave.misc.Inventories;
 import redstoneparadox.nicetohave.util.config.OldConfig;
 
 import java.util.Random;
@@ -29,6 +32,13 @@ public abstract class ComposterBlockMixin {
             fertilizerStack.setCount(new Random().nextInt(4) + 1);
             itemEntity_1.setStack(fertilizerStack);
         }
+    }
+
+    @Inject(method = "getInventory", at = @At(value = "RETURN", ordinal = 0, shift = At.Shift.BEFORE), cancellable = true)
+    private void getInventory(BlockState state, IWorld world, BlockPos pos, CallbackInfoReturnable<SidedInventory> cir) {
+        ItemStack stack = new ItemStack(NiceToHaveItems.INSTANCE.getFERTILIZER());
+        stack.setCount(new Random().nextInt(4) + 1);
+        cir.setReturnValue(new Inventories.FullComposterInventory(state, world, pos, stack));
     }
 
 }
