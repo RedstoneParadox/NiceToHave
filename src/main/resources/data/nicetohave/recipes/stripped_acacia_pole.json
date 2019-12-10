@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "minecraft:stripped_acacia_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:stripped_acacia_pole",
 		"count": 12
 	}

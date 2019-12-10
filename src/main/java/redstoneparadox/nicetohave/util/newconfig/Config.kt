@@ -1,5 +1,6 @@
 package redstoneparadox.nicetohave.util.newconfig
 
+import blue.endless.jankson.JsonElement
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
@@ -14,8 +15,8 @@ import redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigSerializ
 import java.io.File
 
 object Config: RootConfigCategory("config.json5") {
-    override val deserializer: ConfigDeserializer = JanksonConfigDeserializer()
-    override val serializer: ConfigSerializer = JanksonConfigSerializer()
+    override val deserializer: ConfigDeserializer<JsonElement> = JanksonConfigDeserializer()
+    override val serializer: ConfigSerializer<JsonElement> = JanksonConfigSerializer()
 
     var initialized = false
 

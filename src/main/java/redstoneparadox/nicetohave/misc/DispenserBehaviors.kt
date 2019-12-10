@@ -35,7 +35,8 @@ object DispenserBehaviors {
                 var entity: ThrownDynamiteEntity? = null
 
                 override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
-                    entity = Util.create(ThrownDynamiteEntity(world, position.x, position.y, position.z), { it.setItem(itemStack) })
+                    entity = ThrownDynamiteEntity(world, position.x, position.y, position.z)
+                    entity!!.setItem(itemStack)
                     return entity as Projectile
                 }
 
