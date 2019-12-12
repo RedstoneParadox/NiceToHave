@@ -16,12 +16,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.config.OldConfig;
+import redstoneparadox.nicetohave.util.newconfig.Config;
 
 @Mixin(AbstractButtonBlock.class)
 public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = OldConfig.Redstone.INSTANCE.getUnderwaterSwitches();
+    private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
 
     protected AbstractButtonBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

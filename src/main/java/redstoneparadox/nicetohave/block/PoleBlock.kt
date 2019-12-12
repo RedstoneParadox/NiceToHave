@@ -20,7 +20,6 @@ import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.IWorld
-import java.lang.NullPointerException
 
 class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
 

@@ -4,6 +4,7 @@ import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
 import kotlin.reflect.KProperty
 
+@Deprecated("use new config system.")
 class RangeConfigOption(value : Double, val min : Double, val max : Double, key: String, comment: String, parentCategory: ConfigCategory) : ConfigOption<Double>(Double::class.javaObjectType, value, key, comment, parentCategory) {
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Double) {

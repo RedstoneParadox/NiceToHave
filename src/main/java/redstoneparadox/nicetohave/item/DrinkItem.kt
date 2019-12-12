@@ -3,7 +3,6 @@ package redstoneparadox.nicetohave.item
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
-import net.minecraft.item.Items
 import net.minecraft.world.World
 
 class DrinkItem(component: FoodComponent) : Item(Item.Settings().group(ItemGroup.FOOD).food(component)) {

@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import redstoneparadox.nicetohave.util.config.OldConfig;
+import redstoneparadox.nicetohave.util.newconfig.Config;
 
 import java.util.Random;
 
@@ -22,7 +22,7 @@ public abstract class NetherWartBlockMixin implements Fertilizable {
 
     @Override
     public boolean isFertilizable(BlockView view, BlockPos pos, BlockState state, boolean var4) {
-        return OldConfig.Misc.INSTANCE.getFertilizeMorePlants() &&  state.get(AGE) < 3;
+        return Config.Misc.INSTANCE.getFertilizeMorePlants() &&  state.get(AGE) < 3;
     }
 
     @Override

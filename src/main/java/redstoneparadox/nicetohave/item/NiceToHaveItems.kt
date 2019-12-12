@@ -6,22 +6,22 @@ import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
-import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
+import redstoneparadox.nicetohave.util.newconfig.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
  */
 object NiceToHaveItems : ItemsInitializer() {
 
-    var CHAIN_LINK : Item? = register("chain_link", Item(Item.Settings().group(ItemGroup.MATERIALS)), OldConfig.Items.chainLink)
-    var DYNAMITE : Item? = register("dynamite", DynamiteItem(), OldConfig.Items.dynamite)
-    var WRENCH : Item? = register("wrench", WrenchItem(), OldConfig.Items.wrench)
-    var FERTILIZER : Item? = register("fertilizer", BoneMealItem(Item.Settings().group(ItemGroup.MATERIALS)), OldConfig.Items.fertilizer)
+    var CHAIN_LINK : Item? = register("chain_link", Item(Item.Settings().group(ItemGroup.MATERIALS)), Config.Items.chainLink)
+    var DYNAMITE : Item? = register("dynamite", DynamiteItem(), Config.Items.dynamite)
+    var WRENCH : Item? = register("wrench", WrenchItem(), Config.Items.wrench)
+    var FERTILIZER : Item? = register("fertilizer", BoneMealItem(Item.Settings().group(ItemGroup.MATERIALS)), Config.Items.fertilizer)
 
     //Food
-    var SWEET_BERRY_JUICE : Item? = register("sweet_berry_juice", DrinkItem(FoodComponents.JUICE), OldConfig.Items.sweetBerryJuice)
-    var APPLE_JUICE : Item? = register("apple_juice", DrinkItem(FoodComponents.JUICE), OldConfig.Items.appleJuice)
+    var SWEET_BERRY_JUICE : Item? = register("sweet_berry_juice", DrinkItem(FoodComponents.JUICE), Config.Items.sweetBerryJuice)
+    var APPLE_JUICE : Item? = register("apple_juice", DrinkItem(FoodComponents.JUICE), Config.Items.appleJuice)
 
     //BlockItems.
     var GOLD_BUTTON : BlockItem? = registerBlockItem("gold_button", NiceToHaveBlocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
@@ -51,7 +51,7 @@ object NiceToHaveItems : ItemsInitializer() {
         }
 
         println("Initializing Items")
-        if (OldConfig.Blocks.poles) {
+        if (Config.Blocks.poles) {
             registerFuelForEach(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), 300)
             registerFuelForEach(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), 300)
         }

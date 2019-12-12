@@ -1,13 +1,16 @@
 package redstoneparadox.nicetohave.mixin.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CactusBlock;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import redstoneparadox.nicetohave.util.config.OldConfig;
+import redstoneparadox.nicetohave.util.newconfig.Config;
 
 import java.util.Random;
 
@@ -16,7 +19,7 @@ public abstract class CactusBlockMixin implements Fertilizable {
 
     @Override
     public boolean isFertilizable(BlockView view, BlockPos pos, BlockState state, boolean isClient) {
-        if (!OldConfig.Misc.INSTANCE.getFertilizeMorePlants()) return false;
+        if (!Config.Misc.INSTANCE.getFertilizeMorePlants()) return false;
 
         World world = (World)view;
         if (!state.canPlaceAt(world, pos)) {

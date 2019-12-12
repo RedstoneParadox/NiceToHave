@@ -5,6 +5,7 @@ import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
 import kotlin.reflect.KProperty
 
+@Deprecated("use new config system.")
 open class ConfigOption<T : Any>(val type : Class<T>, var value : T, val key : String, private val comment : String, protected val parentCategory: ConfigCategory) {
 
     open operator fun getValue(thisRef : Any?, property: KProperty<*>): T {

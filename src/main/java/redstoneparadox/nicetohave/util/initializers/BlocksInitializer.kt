@@ -6,11 +6,11 @@ import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
-import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.datagen.BasicModelBuilder
 import redstoneparadox.nicetohave.util.datagen.CraftingRecipeBuilder
 import redstoneparadox.nicetohave.util.datagen.LootTableBuilder
 import redstoneparadox.nicetohave.util.datagen.VariantBlockStateBuilder
+import redstoneparadox.nicetohave.util.newconfig.Config
 
 abstract class BlocksInitializer {
 
@@ -34,7 +34,7 @@ abstract class BlocksInitializer {
             VariantBlockStateBuilder.generatePoleBlockState(prefix)
         }
 
-        return register("${prefix}_pole", PoleBlock(blockOf), OldConfig.Blocks.poles)
+        return register("${prefix}_pole", PoleBlock(blockOf), Config.Blocks.poles)
     }
 
     protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {

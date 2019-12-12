@@ -4,8 +4,8 @@ import net.fabricmc.api.ModInitializer
 import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import redstoneparadox.nicetohave.command.Commands
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
+import redstoneparadox.nicetohave.command.Commands
 import redstoneparadox.nicetohave.enchantment.Enchantments
 import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.effect.StatusEffects
@@ -15,8 +15,7 @@ import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.recipe.DummyRecipe
-import redstoneparadox.nicetohave.util.config.OldConfig
-import redstoneparadox.nicetohave.util.datagen.*
+import redstoneparadox.nicetohave.util.datagen.NiceToHaveDatagen
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -29,7 +28,6 @@ object NiceToHave : ModInitializer {
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
     init {
-        OldConfig
         DummyRecipe.SERIALIZER
         DummyRecipe.TYPE
     }

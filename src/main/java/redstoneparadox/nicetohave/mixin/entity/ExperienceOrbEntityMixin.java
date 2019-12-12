@@ -2,13 +2,13 @@ package redstoneparadox.nicetohave.mixin.entity;
 
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import redstoneparadox.nicetohave.NiceToHave;
-import redstoneparadox.nicetohave.entity.effect.StatusEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import redstoneparadox.nicetohave.NiceToHave;
+import redstoneparadox.nicetohave.entity.effect.StatusEffects;
 
 @Mixin(ExperienceOrbEntity.class)
 public abstract class ExperienceOrbEntityMixin {

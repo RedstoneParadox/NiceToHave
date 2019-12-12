@@ -1,8 +1,8 @@
 package redstoneparadox.nicetohave.compat.terrestria
 
 import net.minecraft.item.BlockItem
-import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
+import redstoneparadox.nicetohave.util.newconfig.Config
 
 object TerrestriaCompatItems : ItemsInitializer() {
 
@@ -25,7 +25,7 @@ object TerrestriaCompatItems : ItemsInitializer() {
     val STRIPPED_SAKURA_POLE : BlockItem? = registerWoodPoleItem("stripped_sakura", TerrestriaCompatBlocks.STRIPPED_SAKURA_POLE)
 
     fun initItems() {
-        if (OldConfig.Blocks.poles) {
+        if (Config.Blocks.poles) {
             registerFuelForEach(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), 300)
             registerFuelForEach(arrayOf(STRIPPED_REDWOOD_POLE, STRIPPED_HEMLOCK_POLE, STRIPPED_RUBBER_WOOD_POLE, STRIPPED_CYPRESS_POLE, STRIPPED_WILLOW_POLE, STRIPPED_JAPANESE_MAPLE_POLE, STRIPPED_RAINBOW_EUCALYPTUS_POLE, STRIPPED_SAKURA_POLE), 300)
         }

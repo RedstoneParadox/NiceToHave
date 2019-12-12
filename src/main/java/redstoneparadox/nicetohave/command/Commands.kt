@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.registry.CommandRegistry
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import redstoneparadox.nicetohave.hooks.CommandConfirmationHolder
-import redstoneparadox.nicetohave.util.config.OldConfig
+import redstoneparadox.nicetohave.util.newconfig.Config
 
 object Commands {
 
@@ -32,7 +32,7 @@ object Commands {
         dispatcher?.root?.addChild(acceptNode)
         dispatcher?.root?.addChild(declineNode)
 
-        if (OldConfig.Misc.stuckCommand) {
+        if (Config.Misc.stuckCommand) {
             val stuckNode = CommandManager
                     .literal("stuck")
                     .executes(ConfirmableCommand(StuckCommand(), "(You will die and respawn.)"))

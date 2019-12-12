@@ -4,7 +4,6 @@ import blue.endless.jankson.JsonElement
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
-import redstoneparadox.nicetohave.util.config.OldConfig
 import redstoneparadox.paradoxconfig.config.ConfigCategory
 import redstoneparadox.paradoxconfig.config.RootConfigCategory
 import redstoneparadox.paradoxconfig.forceReloadConfig

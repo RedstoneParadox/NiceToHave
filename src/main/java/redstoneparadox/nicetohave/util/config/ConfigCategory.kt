@@ -7,6 +7,7 @@ import redstoneparadox.nicetohave.util.config.OldConfig.boolType
 import redstoneparadox.nicetohave.util.config.OldConfig.doubleType
 import redstoneparadox.nicetohave.util.config.OldConfig.longType
 
+@Deprecated("use new config system.")
 open class ConfigCategory(val key : String = "", val comment : String = "") {
     protected var wasInitialized = false;
     private var parentCategory: ConfigCategory? = null

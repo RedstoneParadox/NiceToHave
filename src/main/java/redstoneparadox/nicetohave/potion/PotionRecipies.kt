@@ -4,12 +4,12 @@ import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.potion.Potion
 import redstoneparadox.nicetohave.mixin.recipe.BrewingRecipeRegistryAccessor
-import redstoneparadox.nicetohave.util.config.OldConfig
+import redstoneparadox.nicetohave.util.newconfig.Config
 
 object PotionRecipes {
 
     fun registerRecipes() {
-        if (OldConfig.Potions.insight) register(net.minecraft.potion.Potions.THICK, Items.EXPERIENCE_BOTTLE, Potions.INSIGHT, Potions.LONG_INSIGHT, Potions.STRONG_INSIGHT)
+        if (Config.Potions.insight) register(net.minecraft.potion.Potions.THICK, Items.EXPERIENCE_BOTTLE, Potions.INSIGHT, Potions.LONG_INSIGHT, Potions.STRONG_INSIGHT)
 
         //register("nectar", net.minecraft.potion.Potions.STRONG_HEALING, Items.ENCHANTED_GOLDEN_APPLE, Potions.INSTANCE.getNECTAR());
     }

@@ -5,6 +5,7 @@ import blue.endless.jankson.JsonPrimitive
 import redstoneparadox.nicetohave.NiceToHave
 import kotlin.reflect.KProperty
 
+@Deprecated("use new config system.")
 class DeprecatedConfigOption(key: String, parentCategory: ConfigCategory, private val movedOption: String) : ConfigOption<Any>(Any::class.java, Any(), key, "", parentCategory) {
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): Any {

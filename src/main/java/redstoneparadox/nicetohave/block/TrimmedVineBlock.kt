@@ -6,7 +6,6 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.VineBlock
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.World
 import java.util.*
 
 class TrimmedVineBlock : VineBlock(FabricBlockSettings.copy(Blocks.VINE).build()) {

@@ -3,11 +3,11 @@ package redstoneparadox.nicetohave.mixin.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
-import redstoneparadox.nicetohave.item.NiceToHaveItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import redstoneparadox.nicetohave.item.NiceToHaveItems;
 
 /**
  * Created by RedstoneParadox on 5/25/2019.

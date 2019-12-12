@@ -1,6 +1,9 @@
 package redstoneparadox.nicetohave.mixin.block;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.LeverBlock;
+import net.minecraft.block.WallMountedBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -13,12 +16,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.config.OldConfig;
+import redstoneparadox.nicetohave.util.newconfig.Config;
 
 @Mixin(LeverBlock.class)
 public abstract class LeverBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = OldConfig.Redstone.INSTANCE.getUnderwaterSwitches();
+    private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
 
     public LeverBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);

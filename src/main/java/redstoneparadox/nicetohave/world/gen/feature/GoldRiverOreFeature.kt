@@ -11,13 +11,13 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorConfig
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
-import redstoneparadox.nicetohave.util.config.OldConfig
+import redstoneparadox.nicetohave.util.newconfig.Config
 import java.util.*
 import java.util.function.Function
 
 class GoldRiverOreFeature(function_1: Function<Dynamic<*>, DefaultFeatureConfig>) : Feature<DefaultFeatureConfig>(function_1) {
 
-    val riverGoldPercent = OldConfig.World.riverGoldPercent
+    val riverGoldPercent = Config.World.riverGoldPercent
 
     override fun generate(world: IWorld, chunkGenerator: ChunkGenerator<out ChunkGeneratorConfig>, rand: Random, pos: BlockPos, config: DefaultFeatureConfig): Boolean {
         val chance = rand.nextInt(100) + 1
