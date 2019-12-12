@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.IWorld;
 import org.jetbrains.annotations.Nullable;
+import redstoneparadox.nicetohave.block.Properties;
 import redstoneparadox.nicetohave.item.NiceToHaveItems;
 
 import static net.minecraft.block.ComposterBlock.LEVEL;
@@ -18,13 +19,15 @@ public class Inventories {
         private final BlockState state;
         private final IWorld world;
         private final BlockPos pos;
+        private final boolean last;
         private boolean dirty;
 
-        public FullComposterInventory(BlockState state, IWorld world, BlockPos pos, ItemStack outputItem) {
+        public FullComposterInventory(BlockState state, IWorld world, BlockPos pos, ItemStack outputItem, boolean last) {
             super(outputItem);
             this.state = state;
             this.world = world;
             this.pos = pos;
+            this.last = last;
         }
 
         public int getInvMaxStackAmount() {
@@ -44,7 +47,13 @@ public class Inventories {
         }
 
         public void markDirty() {
-            world.setBlockState(pos, state.with(LEVEL, 0), 3);
+            if (last) {
+                world.setBlockState(pos, state.with(LEVEL, 0).with(Properties.FERTILIZER_COUNT, 0), 3);
+            }
+            else {
+                world.setBlockState(pos, state.with(Properties.FERTILIZER_COUNT, state.get(Properties.FERTILIZER_COUNT) - 1), 3);
+            }
+
             this.dirty = true;
         }
     }
