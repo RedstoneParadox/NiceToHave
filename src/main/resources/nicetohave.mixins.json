@@ -28,10 +28,8 @@
     "world.biome.DefaultBiomeFeaturesMixin"
   ],
   "client": [
-    "client.main.MainMixin"
   ],
   "server": [
-    "server.MinecraftServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

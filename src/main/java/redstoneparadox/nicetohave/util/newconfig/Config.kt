@@ -17,9 +17,6 @@ object Config: RootConfigCategory("config.json5") {
     override val deserializer: ConfigDeserializer<JsonElement> = JanksonConfigDeserializer()
     override val serializer: ConfigSerializer<JsonElement> = JanksonConfigSerializer()
 
-    var initialized = false
-
-
     object Items: ConfigCategory("items", "Various items") {
         var chainLink: Boolean by option(true, "chain_link", "Chain links can be used to craft chain mail.")
         var dynamite: Boolean by option(true, "dynamite", "Dynamite is a throwable explosive.")
@@ -30,11 +27,6 @@ object Config: RootConfigCategory("config.json5") {
     }
 
     object Blocks: ConfigCategory("blocks", "Various blocks") {
-        //@Deprecated("Moved to the redstone category")
-        //var goldButton:Any by option("gold_button", "redstone.gold_button")
-        //@Deprecated("Moved to the redstone category")
-        //var analogRedstoneEmitter: Any by option("analog_redstone_emitter", "redstone.analog_redstone_emitter")
-        //var chainLinkFence: Boolean by boolOption(true, "chain_link_fence", "Adds chain-link fences" )
         var trimmedVines: Boolean by option(true, "trimmed_vine", "Vines can be trimmed by right-clicking with shears, turning them into Trimmed Vines that don't grow.")
         var poles: Boolean by option(true, "poles", "Adds poles made out of logs and stripped logs.")
     }
@@ -72,33 +64,8 @@ object Config: RootConfigCategory("config.json5") {
     }
 
     object Misc: ConfigCategory("misc", "Stuff that doesn't belong anywhere else.") {
-        //@Deprecated("Moved to the redstone category")
-        //var dispenserCropPlanting: Any by option("dispenser_crop_planting", "redstone.dispenser_crop_planting")
-        //@Deprecated("Moved to the redstone category")
-        //var dispenserLadderPlacement: Any by option("dispenser_ladder_placement", "redstone.dispenser_ladder_placement")
-        //@Deprecated("Moved to the world category")
-        //var peacefulBambooJungle: Any by option("peaceful_bamboo_jungle", "world.peaceful_bamboo_jungle")
         var vehiclePickup: Boolean by option(true, "vehicle_pickup", "Allows you to pickup boats and minecarts by shift-clicking.")
-        //@Deprecated("Moved to the redstone category")
-        //var underwaterSwitches: Any by option("underwater_switches", "redstone.underwater_switches")
         var fertilizeMorePlants: Boolean by option(true, "fertilizer_more_plants", "Allows for Cacti, Sugar Cane, Kelp, and Netherwart to be fertilized by bonemeal or fertilizer.")
         var stuckCommand: Boolean by option(true, "stuck_command", "If you're stuck somewhere, use this command to die and respawn at your spawn point.")
-    }
-
-    fun transferFile() {
-        if (initialized) return
-        initialized = true
-
-        val file = File(FabricLoader.getInstance().configDirectory, "nicetohave.json5")
-
-        if (file.exists()) {
-            val data = file.readText()
-            val newFile = File(FabricLoader.getInstance().configDirectory, "nicetohave/config.json5")
-            if (newFile.exists()) {
-                newFile.writeText(data)
-                NiceToHave.out("The config file for Nice to Have has been moved into it's own directory.")
-                forceReloadConfig(Identifier("nicetohave", "config.json5"))
-            }
-        }
     }
 }
