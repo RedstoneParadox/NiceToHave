@@ -3,8 +3,12 @@
 		{ 
 			"libcd:mod_loaded": "traverse"
 		},
-		{ 
-			"nicetohave:config_true": "blocks.poles"
+		{
+			"pconfig:option": {
+				"config": "nicetohave:config.json5",
+				"option": "blocks.poles",
+				"value": true
+			}
 		}
 	]
 }

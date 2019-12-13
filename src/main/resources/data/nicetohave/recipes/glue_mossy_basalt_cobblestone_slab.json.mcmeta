@@ -4,7 +4,11 @@
 			"libcd:mod_loaded": "terrestria"
 		},
 		{ 
-			"nicetohave:config_true": "recipes.glue_slabs"
+			"pconfig:option": { 
+				"config": "nicetohave:config.json",
+				"option": "blocks.poles",
+				"value": true
+			}
 		}
 	]
 }
