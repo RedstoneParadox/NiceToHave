@@ -6,7 +6,7 @@ import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.NiceToHave
 import redstoneparadox.paradoxconfig.config.ConfigCategory
 import redstoneparadox.paradoxconfig.config.RootConfigCategory
-import redstoneparadox.paradoxconfig.forceReloadConfig
+import redstoneparadox.paradoxconfig.ParadoxConfig.forceReloadConfig
 import redstoneparadox.paradoxconfig.serialization.ConfigDeserializer
 import redstoneparadox.paradoxconfig.serialization.ConfigSerializer
 import redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigDeserializer
