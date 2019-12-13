@@ -6,7 +6,7 @@
 		{ 
 			"pconfig:option": { 
 				"config": "nicetohave:config.json",
-				"option": "blocks.poles",
+				"option": "recipes.glue_slabs",
 				"value": true
 			}
 		}

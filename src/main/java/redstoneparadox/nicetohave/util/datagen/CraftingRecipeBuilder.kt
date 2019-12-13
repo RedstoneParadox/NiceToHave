@@ -163,7 +163,7 @@ class CraftingRecipeBuilder {
 
         fun slabGlueRecipe(slabID: String, blockID: String, mod: String) {
             val condition = DataConditionBuilder()
-                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
+                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "recipes.glue_slabs", "value" to true)
 
             if (mod != "minecraft" && mod != "nicetohave") {
                 condition.addCondition("libcd:mod_loaded", mod)
