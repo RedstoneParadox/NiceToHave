@@ -15,7 +15,7 @@ class CraftingRecipeBuilder {
         get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\data\\$namespace\\recipes")
 
     // Recipe ID
-    private var recipeID : String = ""
+    private var id : String = ""
 
     // Pattern
     private var firstLine : String = ""
@@ -39,7 +39,7 @@ class CraftingRecipeBuilder {
     }
 
     fun setID(string: String): CraftingRecipeBuilder {
-        recipeID = string
+        id = string
         return this
     }
 
@@ -47,7 +47,7 @@ class CraftingRecipeBuilder {
         output = id
         this.count = count
         if (isAlsoName) {
-            recipeID = id.split(":").last()
+            this.id = id.split(":").last()
         }
         return this
     }
@@ -113,12 +113,12 @@ class CraftingRecipeBuilder {
 
         val recipeString = rootObject.toJson(false, true)
 
-        val newFile = File(currentDirectory, "$recipeID.json")
-        newFile.writeText(recipeString)
+        val file = File(currentDirectory, "$id.json")
+        file.writeText(recipeString)
 
         if (condition != null) {
             val conditionString = condition!!.build().toJson(false, true)
-            File(currentDirectory, "$recipeID.json.mcmeta").bufferedWriter().use { it.write(conditionString) }
+            File(currentDirectory, "$id.json.mcmeta").bufferedWriter().use { it.write(conditionString) }
         }
     }
 

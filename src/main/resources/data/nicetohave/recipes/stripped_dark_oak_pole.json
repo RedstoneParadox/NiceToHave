@@ -1,16 +1,16 @@
-{
+{ 
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"pattern": [ 
 		"a",
 		"a",
 		"a"
 	],
-	"key": {
-		"a": {
+	"key": { 
+		"a": { 
 			"item": "minecraft:stripped_dark_oak_log"
 		}
 	},
-	"result": {
+	"result": { 
 		"item": "nicetohave:stripped_dark_oak_pole",
 		"count": 12
 	}

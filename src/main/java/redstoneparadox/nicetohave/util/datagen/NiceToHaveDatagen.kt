@@ -8,6 +8,13 @@ fun main() {
         BasicModelBuilder.createPoleBlockModel(prefix)
         BasicModelBuilder.createPoleItemModel(prefix)
         VariantBlockStateBuilder.generatePoleBlockState(prefix)
+
+        val strippedPrefix = "stripped_$prefix"
+        CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix)
+        LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(strippedPrefix)
+        BasicModelBuilder.createPoleItemModel(strippedPrefix)
+        VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
 
     for (prefix in arrayOf("redwood", "hemlock", "rubber", "cypress", "willow", "japanese_maple", "rainbow_eucalyptus", "sakura")) {
@@ -17,6 +24,13 @@ fun main() {
         BasicModelBuilder.createPoleBlockModel(prefix, "terrestria")
         BasicModelBuilder.createPoleItemModel(prefix)
         VariantBlockStateBuilder.generatePoleBlockState(prefix)
+
+        val strippedPrefix = "stripped_$prefix"
+        CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix)
+        LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(strippedPrefix)
+        BasicModelBuilder.createPoleItemModel(strippedPrefix)
+        VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
 
     CraftingRecipeBuilder.woodSlabGlueRecipe("fir", "traverse")
@@ -25,6 +39,13 @@ fun main() {
     BasicModelBuilder.createPoleBlockModel("fir")
     BasicModelBuilder.createPoleItemModel("fir")
     VariantBlockStateBuilder.generatePoleBlockState("fir")
+
+    val strippedFir = "stripped_fir"
+    CraftingRecipeBuilder.generatePoleRecipe(strippedFir)
+    LootTableBuilder.generatePoleDrop("${strippedFir}_pole")
+    BasicModelBuilder.createPoleBlockModel(strippedFir)
+    BasicModelBuilder.createPoleItemModel(strippedFir)
+    VariantBlockStateBuilder.generatePoleBlockState(strippedFir)
 
     for (block in arrayOf("bricks", "stone_bricks", "prismarine_bricks", "nether_bricks", "end_stone_bricks", "mossy_stone_bricks")) {
         CraftingRecipeBuilder.regularSlabGlueRecipe(block, true)

@@ -58,7 +58,8 @@ class LootTableBuilder {
 
         if (condition != null) {
             val conditionString = condition!!.build().toJson(false, true)
-            File(currentDirectory, "$id.json.mcmeta").bufferedWriter().use { it.write(conditionString) }
+            val metaFile = File(currentDirectory, "$id.json.mcmeta")
+            metaFile.writeText(conditionString)
         }
     }
 
@@ -162,25 +163,6 @@ class LootTableBuilder {
     }
 
     companion object {
-
-        fun generateSingleBlockDrop(blockID: String) {
-            LootTableBuilder()
-                    .setID(blockID)
-                    .setType(LootType.BLOCK)
-                    .addPool(PoolBuilder()
-                            .setRoles(1)
-                            .addEntry(EntryBuilder()
-                                    .setName("nicetohave:$blockID"))
-                            .addCondition(ConditionBuilder()
-                                    .setCondition("minecraft:survives_explosion")
-                            )
-                    )
-                    .setCondition(DataConditionBuilder()
-                            .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
-                    )
-                    .save()
-
-        }
 
         fun generatePoleDrop(poleId: String, woodNamespace: String = "minecraft") {
             val loadCondition = DataConditionBuilder()

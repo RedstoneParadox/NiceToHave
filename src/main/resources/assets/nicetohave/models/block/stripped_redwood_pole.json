@@ -1,6 +1,6 @@
 { 
 	"parent": "nicetohave:block/pole",
 	"textures": { 
-		"texture": "terrestria:block/stripped_redwood_log"
+		"texture": "minecraft:block/stripped_redwood_log"
 	}
 }
