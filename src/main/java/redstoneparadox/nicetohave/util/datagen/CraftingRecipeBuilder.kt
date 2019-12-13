@@ -3,19 +3,16 @@ package redstoneparadox.nicetohave.util.datagen
 import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
-import net.fabricmc.loader.api.FabricLoader
-import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 import kotlin.math.min
 
 class CraftingRecipeBuilder {
 
+    var namespace: String = "nicetohave"
+
     // Directory
-    private var currentDirectory: File? = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-        File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\nicetohave\\recipes")
-    } else {
-        null
-    }
+    private val currentDirectory: File?
+        get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\data\\$namespace\\recipes")
 
     // Recipe ID
     private var recipeID : String = ""
@@ -36,12 +33,8 @@ class CraftingRecipeBuilder {
     //Condition
     private var condition : DataConditionBuilder? = null
 
-    fun setNamespace(namespace : String): CraftingRecipeBuilder {
-        currentDirectory = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-            File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\recipes")
-        } else {
-            null
-        }
+    fun setNamespace(namespace: String): CraftingRecipeBuilder {
+        this.namespace = namespace
         return this
     }
 
@@ -68,14 +61,14 @@ class CraftingRecipeBuilder {
             1 -> firstLine = pattern
             2 -> secondLine = pattern
             3 -> thirdLine = pattern
-            else -> NiceToHave.error("Recipes only have 3 lines!")
+            else -> println("Recipes only have 3 lines!")
         }
         return this
     }
 
     fun setIngredients(vararg ids: String): CraftingRecipeBuilder {
         if (ids.size > 9) {
-            NiceToHave.warn("Crafting recipes can't have more than 9 ingredients. Any ingredients past the first 9 will be ignored.")
+            println("Crafting recipes can't have more than 9 ingredients. Any ingredients past the first 9 will be ignored.")
         }
         ingredients.clear()
         ingredients.addAll(ids)
@@ -88,11 +81,6 @@ class CraftingRecipeBuilder {
     }
 
     fun save() {
-        if (currentDirectory == null) {
-            NiceToHave.warn("Attempted to generate data outside of the dev environment.")
-            return
-        }
-
         val rootObject = JsonObject()
 
         rootObject["type"] = JsonPrimitive("minecraft:crafting_shaped")
@@ -124,7 +112,9 @@ class CraftingRecipeBuilder {
         rootObject["result"] = resultObject
 
         val recipeString = rootObject.toJson(false, true)
-        File(currentDirectory, "$recipeID.json").bufferedWriter().use { it.write(recipeString) }
+
+        val newFile = File(currentDirectory, "$recipeID.json")
+        newFile.writeText(recipeString)
 
         if (condition != null) {
             val conditionString = condition!!.build().toJson(false, true)

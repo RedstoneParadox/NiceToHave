@@ -2,8 +2,6 @@ package redstoneparadox.nicetohave.util.datagen
 
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
-import net.fabricmc.loader.api.FabricLoader
-import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 
 class BasicModelBuilder {
@@ -16,11 +14,7 @@ class BasicModelBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-            File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\assets\\$namespace\\models\\${type.directory}")
-        } else {
-            null
-        }
+        get() = File("", "src\\main\\resources\\assets\\$namespace\\models\\${type.directory}")
 
     fun setID(id: String): BasicModelBuilder {
         this.id = id
@@ -48,11 +42,6 @@ class BasicModelBuilder {
     }
 
     fun save() {
-        if (currentDirectory == null) {
-            NiceToHave.warn("Attempted to generate data outside of dev environment.")
-            return
-        }
-
         val modelJson = JsonObject()
         if (parent.isNotEmpty()) {
             modelJson["parent"] = JsonPrimitive(parent)

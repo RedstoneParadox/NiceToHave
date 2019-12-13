@@ -16,7 +16,6 @@ import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.recipe.DummyRecipe
-import redstoneparadox.nicetohave.util.datagen.NiceToHaveDatagen
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -52,7 +51,6 @@ object NiceToHave : ModInitializer {
         Decorators.registerDecorators()
         Features.registerFeatures()
         Biomes.registerBiomes()
-        NiceToHaveDatagen.generateData()
         Listeners.initListeners()
         Commands.initCommands()
     }

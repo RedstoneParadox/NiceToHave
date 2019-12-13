@@ -2,8 +2,6 @@ package redstoneparadox.nicetohave.util.datagen
 
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
-import net.fabricmc.loader.api.FabricLoader
-import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 
 class VariantBlockStateBuilder {
@@ -14,11 +12,7 @@ class VariantBlockStateBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-            File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\assets\\$namespace\\blockstates")
-        } else {
-            null
-        }
+        get() = File("", "..\\src\\main\\resources\\assets\\$namespace\\blockstates")
 
     fun setID(id: String): VariantBlockStateBuilder {
         this.id = id
@@ -36,11 +30,6 @@ class VariantBlockStateBuilder {
     }
 
     fun save() {
-        if (currentDirectory == null) {
-            NiceToHave.warn("Attempted to generate data outside of dev environment.")
-            return
-        }
-
         val blockStateJson = JsonObject()
         val variantsJson = JsonObject()
         for (variantsEntry in variants) {

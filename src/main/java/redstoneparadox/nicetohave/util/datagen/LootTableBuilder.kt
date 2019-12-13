@@ -3,8 +3,6 @@ package redstoneparadox.nicetohave.util.datagen
 import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
-import net.fabricmc.loader.api.FabricLoader
-import redstoneparadox.nicetohave.NiceToHave
 import java.io.File
 
 class LootTableBuilder {
@@ -17,11 +15,7 @@ class LootTableBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = if (FabricLoader.getInstance().isDevelopmentEnvironment) {
-            File(FabricLoader.getInstance().gameDirectory.parentFile, "..\\src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
-        } else {
-            null
-        }
+        get() = File("", "src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
 
     fun setID(id: String): LootTableBuilder {
         this.id = id
@@ -49,11 +43,6 @@ class LootTableBuilder {
     }
 
     fun save() {
-        if (currentDirectory == null) {
-            NiceToHave.warn("Attempted to generate data outside of the dev environment.")
-            return
-        }
-
         val root = JsonObject()
         root["type"] = JsonPrimitive(type.id)
 

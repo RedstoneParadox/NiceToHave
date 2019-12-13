@@ -1,19 +1,19 @@
-{
+{ 
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
+	"pattern": [ 
 		"a",
 		"b",
 		"a"
 	],
-	"key": {
-		"a": {
+	"key": { 
+		"a": { 
 			"item": "minecraft:stone_brick_slab"
 		},
-		"b": {
+		"b": { 
 			"item": "minecraft:slime_ball"
 		}
 	},
-	"result": {
+	"result": { 
 		"item": "minecraft:stone_bricks",
 		"count": 1
 	}
