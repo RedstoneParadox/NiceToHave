@@ -1,6 +1,7 @@
 package redstoneparadox.nicetohave.compat.terrestria
 
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
+import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
@@ -33,5 +34,18 @@ object TerrestriaCompatBlocks : BlocksInitializer() {
             registerFlammableBlocks(arrayOf(REDWOOD_POLE, HEMLOCK_POLE, RUBBER_WOOD_POLE, CYPRESS_POLE, WILLOW_POLE, JAPANESE_MAPLE_POLE, RAINBOW_EUCALYPTUS_POLE, SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
             registerFlammableBlocks(arrayOf(STRIPPED_REDWOOD_POLE, STRIPPED_HEMLOCK_POLE, STRIPPED_RUBBER_WOOD_POLE, STRIPPED_CYPRESS_POLE, STRIPPED_WILLOW_POLE, STRIPPED_JAPANESE_MAPLE_POLE, STRIPPED_RAINBOW_EUCALYPTUS_POLE, STRIPPED_SAKURA_POLE), FlammableBlockRegistry.Entry(5, 20))
         }
+    }
+
+    fun mapPolesToStrippedPoles(): Map<Block?, Block?> {
+        return mapOf<Block?, Block?>(
+                REDWOOD_POLE to STRIPPED_REDWOOD_POLE,
+                HEMLOCK_POLE to STRIPPED_HEMLOCK_POLE,
+                RUBBER_WOOD_POLE to STRIPPED_RUBBER_WOOD_POLE,
+                CYPRESS_POLE to STRIPPED_CYPRESS_POLE,
+                WILLOW_POLE to STRIPPED_WILLOW_POLE,
+                JAPANESE_MAPLE_POLE to STRIPPED_JAPANESE_MAPLE_POLE,
+                RAINBOW_EUCALYPTUS_POLE to STRIPPED_RAINBOW_EUCALYPTUS_POLE,
+                SAKURA_POLE to STRIPPED_SAKURA_POLE
+        )
     }
 }

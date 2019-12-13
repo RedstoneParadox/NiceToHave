@@ -42,4 +42,14 @@ object NiceToHaveBlocks : BlocksInitializer() {
         }
     }
 
+    fun mapPolesToStrippedPoles(): Map<Block?, Block?> {
+        return mapOf<Block?, Block?>(
+                OAK_POLE to STRIPPED_OAK_POLE,
+                SPRUCE_POLE to STRIPPED_SPRUCE_POLE,
+                BIRCH_POLE to STRIPPED_BIRCH_POLE,
+                JUNGLE_POLE to STRIPPED_JUNGLE_POLE,
+                ACACIA_POLE to STRIPPED_ACACIA_POLE,
+                DARK_OAK_POLE to STRIPPED_DARK_OAK_POLE
+        )
+    }
 }
