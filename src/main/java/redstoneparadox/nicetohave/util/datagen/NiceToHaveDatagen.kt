@@ -1,18 +1,30 @@
 package redstoneparadox.nicetohave.util.datagen
 
 fun main() {
-    CraftingRecipeBuilder.woodSlabGlueRecipe("oak")
-    CraftingRecipeBuilder.woodSlabGlueRecipe("spruce")
-    CraftingRecipeBuilder.woodSlabGlueRecipe("birch")
-    CraftingRecipeBuilder.woodSlabGlueRecipe("jungle")
-    CraftingRecipeBuilder.woodSlabGlueRecipe("acacia")
-    CraftingRecipeBuilder.woodSlabGlueRecipe("dark_oak")
+    for (prefix in arrayOf("oak", "spruce", "birch", "jungle", "acacia", "dark_oak")) {
+        CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
+        CraftingRecipeBuilder.generatePoleRecipe(prefix)
+        LootTableBuilder.generatePoleDrop("${prefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(prefix)
+        BasicModelBuilder.createPoleItemModel(prefix)
+        VariantBlockStateBuilder.generatePoleBlockState(prefix)
+    }
 
     for (prefix in arrayOf("redwood", "hemlock", "rubber", "cypress", "willow", "japanese_maple", "rainbow_eucalyptus", "sakura")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix, "terrestria")
+        CraftingRecipeBuilder.generatePoleRecipe(prefix, "terrestria")
+        LootTableBuilder.generatePoleDrop("${prefix}_pole", "terrestria")
+        BasicModelBuilder.createPoleBlockModel(prefix, "terrestria")
+        BasicModelBuilder.createPoleItemModel(prefix)
+        VariantBlockStateBuilder.generatePoleBlockState(prefix)
     }
 
     CraftingRecipeBuilder.woodSlabGlueRecipe("fir", "traverse")
+    CraftingRecipeBuilder.generatePoleRecipe("fir", "traverse")
+    LootTableBuilder.generatePoleDrop("fir_pole", "traverse")
+    BasicModelBuilder.createPoleBlockModel("fir")
+    BasicModelBuilder.createPoleItemModel("fir")
+    VariantBlockStateBuilder.generatePoleBlockState("fir")
 
     for (block in arrayOf("bricks", "stone_bricks", "prismarine_bricks", "nether_bricks", "end_stone_bricks", "mossy_stone_bricks")) {
         CraftingRecipeBuilder.regularSlabGlueRecipe(block, true)

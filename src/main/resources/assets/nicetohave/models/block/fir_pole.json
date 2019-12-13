@@ -1,6 +1,6 @@
 { 
 	"parent": "nicetohave:block/pole",
 	"textures": { 
-		"texture": "traverse:block/fir_log"
+		"texture": "minecraft:block/fir_log"
 	}
 }

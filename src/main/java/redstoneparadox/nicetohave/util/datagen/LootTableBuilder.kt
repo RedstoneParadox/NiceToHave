@@ -15,7 +15,7 @@ class LootTableBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = File("", "src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
+        get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\data\\$namespace\\loot_tables\\${type.directory}")
 
     fun setID(id: String): LootTableBuilder {
         this.id = id
@@ -53,7 +53,8 @@ class LootTableBuilder {
         root["pools"] = poolsArray
 
         val lootTableString = root.toJson(false, true)
-        File(currentDirectory, "$id.json").bufferedWriter().use { it.write(lootTableString) }
+        val file = File(currentDirectory, "$id.json")
+        file.writeText(lootTableString)
 
         if (condition != null) {
             val conditionString = condition!!.build().toJson(false, true)
@@ -175,7 +176,7 @@ class LootTableBuilder {
                             )
                     )
                     .setCondition(DataConditionBuilder()
-                            .addCondition("nicetohave:config_true", "blocks.$blockID")
+                            .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
                     )
                     .save()
 
@@ -183,9 +184,9 @@ class LootTableBuilder {
 
         fun generatePoleDrop(poleId: String, woodNamespace: String = "minecraft") {
             val loadCondition = DataConditionBuilder()
-                    .addCondition("nicetohave:config_true", "blocks.poles")
+                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
 
-            if (woodNamespace != "minecraft") loadCondition.addCondition("libcd:mod_loaded", "terrestria")
+            if (woodNamespace != "minecraft" && woodNamespace != "nicetohave") loadCondition.addCondition("libcd:mod_loaded", woodNamespace)
 
             LootTableBuilder()
                     .setID(poleId)

@@ -3,9 +3,9 @@
 		{ 
 			"libcd:mod_loaded": "traverse"
 		},
-		{
-			"pconfig:option": {
-				"config": "nicetohave:config.json5",
+		{ 
+			"pconfig:option": { 
+				"config": "nicetohave:config.json",
 				"option": "blocks.poles",
 				"value": true
 			}

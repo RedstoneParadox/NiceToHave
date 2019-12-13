@@ -14,7 +14,7 @@ class BasicModelBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = File("", "src\\main\\resources\\assets\\$namespace\\models\\${type.directory}")
+        get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\assets\\$namespace\\models\\${type.directory}")
 
     fun setID(id: String): BasicModelBuilder {
         this.id = id
@@ -56,7 +56,7 @@ class BasicModelBuilder {
         }
 
         val modelString = modelJson.toJson(false, true)
-        File(currentDirectory, "$id.json").bufferedWriter().use { it.write(modelString) }
+        File(currentDirectory, "$id.json").writeText(modelString)
     }
 
     enum class ModelType(val directory : String) {

@@ -12,7 +12,7 @@ class VariantBlockStateBuilder {
 
     // Directory
     private val currentDirectory: File?
-        get() = File("", "..\\src\\main\\resources\\assets\\$namespace\\blockstates")
+        get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\assets\\$namespace\\blockstates")
 
     fun setID(id: String): VariantBlockStateBuilder {
         this.id = id
@@ -38,7 +38,8 @@ class VariantBlockStateBuilder {
         blockStateJson["variants"] = variantsJson
 
         val blockStateString = blockStateJson.toJson(false, true)
-        File(currentDirectory, "$id.json").bufferedWriter().use { it.write(blockStateString) }
+        val file = File(currentDirectory, "$id.json")
+        file.writeText(blockStateString)
     }
 
     class VariantModel(val model: String, val x: Int = 0, val y: Int = 0, val z : Int = 0) {
@@ -65,8 +66,8 @@ class VariantBlockStateBuilder {
 
     companion object {
 
-        fun generatePoleBlockState(woodSuffix: String) {
-            val fullID = "${woodSuffix}_pole"
+        fun generatePoleBlockState(woodPrefix: String) {
+            val fullID = "${woodPrefix}_pole"
             val modelString = "nicetohave:block/$fullID"
 
             VariantBlockStateBuilder()

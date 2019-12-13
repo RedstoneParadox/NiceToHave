@@ -1,7 +1,11 @@
-{
-	"when": [
-		{
-			"nicetohave:config_true": "blocks.poles"
+{ 
+	"when": [ 
+		{ 
+			"pconfig:option": { 
+				"config": "nicetohave:config.json",
+				"option": "blocks.poles",
+				"value": true
+			}
 		}
 	]
 }

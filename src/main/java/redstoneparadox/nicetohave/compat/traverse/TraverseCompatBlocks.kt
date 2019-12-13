@@ -9,8 +9,8 @@ import redstoneparadox.nicetohave.util.newconfig.Config
 
 object TraverseCompatBlocks : BlocksInitializer() {
 
-    val FIR_POLE : PoleBlock? = registerWoodPole("fir", Blocks.OAK_WOOD, "traverse")
-    val STRIPPED_FIR_POLE : PoleBlock? = registerWoodPole("stripped_fir", Blocks.STRIPPED_OAK_WOOD, "traverse")
+    val FIR_POLE : PoleBlock? = registerWoodPole("fir", Blocks.OAK_WOOD)
+    val STRIPPED_FIR_POLE : PoleBlock? = registerWoodPole("stripped_fir", Blocks.STRIPPED_OAK_WOOD)
 
     fun initBlocks() {
         if (Config.Blocks.poles) {
