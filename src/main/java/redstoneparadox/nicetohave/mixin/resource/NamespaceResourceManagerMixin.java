@@ -11,14 +11,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(targets = "net.minecraft.resource.NamespaceResourceManager")
+@Mixin(NamespaceResourceManager.class)
 public abstract class NamespaceResourceManagerMixin {
 
     @Shadow @Final protected List<ResourcePack> packList;
     private ResourcePack capturedPack = null;
     private boolean hasVanillaGone = false;
 
-    @Inject(method = "Lnet/minecraft/resource/NamespaceResourceManager;addPack", at = @At("HEAD"))
+    @Inject(method = "addPack", at = @At("HEAD"))
     private void captureResourcePack(ResourcePack resourcePack_1, CallbackInfo ci) {
         if (resourcePack_1.getName().equals("Default")) {
             hasVanillaGone = true;
@@ -28,7 +28,7 @@ public abstract class NamespaceResourceManagerMixin {
         }
     }
 
-    @Inject(method = "Lnet/minecraft/resource/NamespaceResourceManager;addPack", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", shift = At.Shift.AFTER))
+    @Inject(method = "addPack", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", shift = At.Shift.AFTER))
     private void addCapturedPack(ResourcePack resourcePack_1, CallbackInfo ci) {
         if (hasVanillaGone && capturedPack != null) {
             NamespaceResourceManager self = ((NamespaceResourceManager)(Object)this);
