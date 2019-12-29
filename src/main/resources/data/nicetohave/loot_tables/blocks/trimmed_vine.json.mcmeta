@@ -3,7 +3,7 @@
 		{
 			"pconfig:option": {
 				"config": "nicetohave:config.json",
-				"option": "blocks.gold_button",
+				"option": "blocks.trimmed_vine",
 				"value": true
 			}
 		}

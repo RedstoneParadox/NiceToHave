@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "blocks.gold_button"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "redstone.gold_button",
+        "value": true
+      }
     }
   ]
 }

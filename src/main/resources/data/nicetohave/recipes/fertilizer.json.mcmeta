@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "items.fertilizer"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.fertilizer",
+        "value": true
+      }
     }
   ]
 }

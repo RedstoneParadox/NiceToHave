@@ -1,5 +1,11 @@
 {
   "when": [
-    { "nicetohave:config_true": "items.chain_link" }
+    {
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.chain_link",
+        "value": true
+      }
+    }
   ]
 }

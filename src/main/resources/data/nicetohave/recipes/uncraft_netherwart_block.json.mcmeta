@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "recipes.uncraft_netherwart_block"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.uncraft_netherwart_block",
+        "value": true
+      }
     }
   ]
 }

@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "recipes.melon_to_slices"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "recipes.melon_to_slices",
+        "value": true
+      }
     }
   ]
 }

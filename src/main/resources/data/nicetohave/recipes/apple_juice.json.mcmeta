@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "items.apple_juice"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.apple_juice",
+        "value": true
+      }
     }
   ]
 }

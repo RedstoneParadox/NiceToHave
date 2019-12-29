@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "items.dynamite"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.dynamite",
+        "value": true
+      }
     }
   ]
 }

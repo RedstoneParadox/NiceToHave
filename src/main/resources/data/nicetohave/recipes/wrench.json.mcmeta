@@ -1,7 +1,11 @@
 {
   "when": [
     {
-      "nicetohave:config_true": "items.wrench"
+      "pconfig:option": {
+        "config": "nicetohave:config.json",
+        "option": "items.wrench",
+        "value": true
+      }
     }
   ]
 }
