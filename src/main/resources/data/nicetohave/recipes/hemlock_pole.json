@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "terrestria:hemlock_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:hemlock_pole",
 		"count": 12
 	}

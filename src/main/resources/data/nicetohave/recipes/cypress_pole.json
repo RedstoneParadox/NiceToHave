@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "terrestria:cypress_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:cypress_pole",
 		"count": 12
 	}

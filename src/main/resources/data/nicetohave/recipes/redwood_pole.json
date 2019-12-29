@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "terrestria:redwood_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:redwood_pole",
 		"count": 12
 	}

@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:block",
-	"pools": [ 
-		{ 
+	"pools": [
+		{
 			"rolls": 1,
-			"entries": [ 
-				{ 
+			"entries": [
+				{
 					"type": "minecraft:item",
 					"name": "nicetohave:redwood_pole"
 				}
 			],
-			"conditions": [ 
-				{ 
+			"conditions": [
+				{
 					"condition": "minecraft:survives_explosion"
 				}
 			]

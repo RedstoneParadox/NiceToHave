@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "minecraft:stripped_redwood_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:stripped_redwood_pole",
 		"count": 12
 	}

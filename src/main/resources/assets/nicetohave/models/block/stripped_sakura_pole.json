@@ -1,6 +1,6 @@
-{ 
+{
 	"parent": "nicetohave:block/pole",
-	"textures": { 
-		"texture": "minecraft:block/stripped_sakura_log"
+	"textures": {
+		"texture": "terrestria:block/stripped_sakura_log"
 	}
 }

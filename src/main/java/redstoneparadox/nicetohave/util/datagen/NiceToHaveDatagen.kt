@@ -28,7 +28,7 @@ fun main() {
         val strippedPrefix = "stripped_$prefix"
         CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix)
         LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole")
-        BasicModelBuilder.createPoleBlockModel(strippedPrefix)
+        BasicModelBuilder.createPoleBlockModel(strippedPrefix, "terrestria")
         BasicModelBuilder.createPoleItemModel(strippedPrefix)
         VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
@@ -36,14 +36,14 @@ fun main() {
     CraftingRecipeBuilder.woodSlabGlueRecipe("fir", "traverse")
     CraftingRecipeBuilder.generatePoleRecipe("fir", "traverse")
     LootTableBuilder.generatePoleDrop("fir_pole", "traverse")
-    BasicModelBuilder.createPoleBlockModel("fir")
+    BasicModelBuilder.createPoleBlockModel("fir", "traverse")
     BasicModelBuilder.createPoleItemModel("fir")
     VariantBlockStateBuilder.generatePoleBlockState("fir")
 
     val strippedFir = "stripped_fir"
     CraftingRecipeBuilder.generatePoleRecipe(strippedFir)
     LootTableBuilder.generatePoleDrop("${strippedFir}_pole")
-    BasicModelBuilder.createPoleBlockModel(strippedFir)
+    BasicModelBuilder.createPoleBlockModel(strippedFir, "traverse")
     BasicModelBuilder.createPoleItemModel(strippedFir)
     VariantBlockStateBuilder.generatePoleBlockState(strippedFir)
 

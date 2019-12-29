@@ -1,15 +1,15 @@
-{ 
-	"variants": { 
-		"axis=z": { 
+{
+	"variants": {
+		"axis=z": {
 			"model": "nicetohave:block/stripped_spruce_pole",
 			"x": 90
 		},
-		"axis=x": { 
+		"axis=x": {
 			"model": "nicetohave:block/stripped_spruce_pole",
 			"x": 90,
 			"y": 90
 		},
-		"axis=y": { 
+		"axis=y": {
 			"model": "nicetohave:block/stripped_spruce_pole"
 		}
 	}

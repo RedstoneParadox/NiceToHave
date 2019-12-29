@@ -1,10 +1,10 @@
-{ 
-	"when": [ 
-		{ 
+{
+	"when": [
+		{
 			"libcd:mod_loaded": "traverse"
 		},
-		{ 
-			"pconfig:option": { 
+		{
+			"pconfig:option": {
 				"config": "nicetohave:config.json",
 				"option": "recipes.glue_slabs",
 				"value": true

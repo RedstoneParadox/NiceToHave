@@ -1,6 +1,6 @@
-{ 
+{
 	"parent": "nicetohave:block/pole",
-	"textures": { 
-		"texture": "minecraft:block/stripped_hemlock_log"
+	"textures": {
+		"texture": "terrestria:block/stripped_hemlock_log"
 	}
 }

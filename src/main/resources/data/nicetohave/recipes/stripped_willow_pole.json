@@ -1,16 +1,16 @@
-{ 
+{
 	"type": "minecraft:crafting_shaped",
-	"pattern": [ 
+	"pattern": [
 		"a",
 		"a",
 		"a"
 	],
-	"key": { 
-		"a": { 
+	"key": {
+		"a": {
 			"item": "minecraft:stripped_willow_log"
 		}
 	},
-	"result": { 
+	"result": {
 		"item": "nicetohave:stripped_willow_pole",
 		"count": 12
 	}
