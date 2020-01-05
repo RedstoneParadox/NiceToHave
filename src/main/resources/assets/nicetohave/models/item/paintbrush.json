@@ -1,0 +1,104 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "nicetohave:item/paintbrush"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "color": 0.01
+      },
+      "model": "nicetohave:item/white_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.02
+      },
+      "model": "nicetohave:item/orange_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.03
+      },
+      "model": "nicetohave:item/magenta_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.04
+      },
+      "model": "nicetohave:item/light_blue_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.05
+      },
+      "model": "nicetohave:item/yellow_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.06
+      },
+      "model": "nicetohave:item/lime_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.07
+      },
+      "model": "nicetohave:item/pink_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.08
+      },
+      "model": "nicetohave:item/gray_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.9
+      },
+      "model": "nicetohave:item/light_gray_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.1
+      },
+      "model": "nicetohave:item/cyan_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.11
+      },
+      "model": "nicetohave:item/purple_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.12
+      },
+      "model": "nicetohave:item/blue_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.13
+      },
+      "model": "nicetohave:item/brown_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.14
+      },
+      "model": "nicetohave:item/green_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.15
+      },
+      "model": "nicetohave:item/red_paintbrush"
+    },
+    {
+      "predicate": {
+        "color": 0.16
+      },
+      "model": "nicetohave:item/black_paintbrush"
+    }
+  ]
+}

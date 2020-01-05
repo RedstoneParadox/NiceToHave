@@ -1,6 +1,9 @@
 package redstoneparadox.nicetohave.util.datagen
 
+import net.minecraft.util.DyeColor
+
 fun main() {
+    /*
     for (prefix in arrayOf("oak", "spruce", "birch", "jungle", "acacia", "dark_oak")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
         CraftingRecipeBuilder.generatePoleRecipe(prefix)
@@ -60,5 +63,15 @@ fun main() {
 
     for (basalt in arrayOf("basalt", "smooth_basalt", "basalt_cobblestone", "mossy_basalt_cobblestone")) {
         CraftingRecipeBuilder.regularSlabGlueRecipe(basalt, mod = "terrestria")
+    }
+     */
+
+    val builder = BasicModelBuilder().setParent("item/generated")
+    for (dye in DyeColor.values()) {
+        builder
+                .setType(BasicModelBuilder.ModelType.ITEM)
+                .setID("${dye.asString()}_paintbrush")
+                .addTexture("layer0", "nicetohave:item/${dye.asString()}_paintbrush")
+                .save()
     }
 }

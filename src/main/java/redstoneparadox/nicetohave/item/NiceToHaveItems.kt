@@ -31,6 +31,8 @@ object NiceToHaveItems : ItemsInitializer() {
     var GRAVEL_GOLD_ORE: BlockItem? = registerBlockItem("gravel_gold_ore", NiceToHaveBlocks.GRAVEL_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     //var CHAIN_LINK_FENCE: BlockItem? = registerBlockItem("chain_link_fence", Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS))
 
+    var PAINT_BRUSH: PaintbrushItem = register("paintbrush", PaintbrushItem(Item.Settings().group(ItemGroup.TOOLS)))
+
     var OAK_POLE : BlockItem? = registerWoodPoleItem("oak", NiceToHaveBlocks.OAK_POLE)
     var SPRUCE_POLE : BlockItem? = registerWoodPoleItem("spruce", NiceToHaveBlocks.SPRUCE_POLE)
     var BIRCH_POLE : BlockItem? = registerWoodPoleItem("birch", NiceToHaveBlocks.BIRCH_POLE)
