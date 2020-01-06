@@ -60,7 +60,7 @@ class PaintbrushItem(settings: Settings) : Item(settings) {
             if (mainItem is DyeItem) {
                 val state = stateFromColor(mainItem.color)
                 if (state.block != block) {
-                    player.mainHandStack.decrement(1)
+                    if (!player.isCreative) player.mainHandStack.decrement(1)
                     world.setBlockState(pos, state)
                     return ActionResult.SUCCESS
                 }
@@ -69,7 +69,7 @@ class PaintbrushItem(settings: Settings) : Item(settings) {
                 val state = stateFromColor(offhandItem.color)
                 world.setBlockState(pos, state)
                 if (state.block != block) {
-                    player.offHandStack.decrement(1)
+                    if (!player.isCreative) player.offHandStack.decrement(1)
                     world.setBlockState(pos, state)
                     return ActionResult.SUCCESS
                 }
