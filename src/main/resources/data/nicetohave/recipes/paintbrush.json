@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  #",
+    " i ",
+    "/  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:white_wool"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "nicetohave:paintbrush",
+    "count": 1
+  }
+}
