@@ -1,0 +1,171 @@
+package redstoneparadox.nicetohave.recipe
+
+import com.google.gson.JsonObject
+import com.google.gson.JsonSyntaxException
+import com.mojang.datafixers.Dynamic
+import net.minecraft.block.Block
+import net.minecraft.datafixers.NbtOps
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemStack
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.StringTag
+import net.minecraft.recipe.Recipe
+import net.minecraft.recipe.RecipeSerializer
+import net.minecraft.recipe.RecipeType
+import net.minecraft.tag.BlockTags
+import net.minecraft.tag.Tag
+import net.minecraft.util.DyeColor
+import net.minecraft.util.Identifier
+import net.minecraft.util.PacketByteBuf
+import net.minecraft.util.registry.Registry
+import net.minecraft.world.World
+import redstoneparadox.nicetohave.item.PaintbrushItem
+import redstoneparadox.nicetohave.util.FixedJsonOps
+import java.util.*
+
+class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorMap: Map<DyeColor, Block>): Recipe<PaintbrushItem.PaintbrushInventory> {
+    override fun craft(inv: PaintbrushItem.PaintbrushInventory): ItemStack {
+        return ItemStack.EMPTY
+    }
+
+    override fun getId(): Identifier {
+        return identifier
+    }
+
+    override fun getType(): RecipeType<*> {
+        return TYPE
+    }
+
+    override fun fits(width: Int, height: Int): Boolean {
+        return false
+    }
+
+    override fun getSerializer(): RecipeSerializer<*> {
+        return SERIALIZER
+    }
+
+    override fun getOutput(): ItemStack {
+        return ItemStack.EMPTY
+    }
+
+    override fun matches(inv: PaintbrushItem.PaintbrushInventory, world: World): Boolean {
+        return false
+    }
+
+    fun matches(block: Block): Boolean {
+        return predicate.test(block)
+    }
+
+    fun craft(color: DyeColor): Block? {
+        return colorMap[color]
+    }
+
+    companion object {
+        private val identifier: Identifier = Identifier("nicetohave", "paint")
+        val TYPE: RecipeType<PaintbrushRecipe> = Registry.register(Registry.RECIPE_TYPE, identifier, Type())
+        val SERIALIZER: RecipeSerializer<PaintbrushRecipe> = RecipeSerializer.register(identifier.toString(), Serializer())
+    }
+
+    class Type: RecipeType<PaintbrushRecipe> {
+        override fun <C: Inventory> get(recipe: Recipe<C>, world: World, inventory: C): Optional<PaintbrushRecipe> {
+            if (inventory is PaintbrushItem.PaintbrushInventory && recipe is PaintbrushRecipe) {
+                val block = inventory.block
+                val matches = recipe.matches(block)
+                if (matches) return Optional.of(recipe)
+            }
+            return Optional.empty()
+        }
+    }
+
+    class Serializer: RecipeSerializer<PaintbrushRecipe> {
+        override fun write(buf: PacketByteBuf, recipe: PaintbrushRecipe) {
+            val nbt = CompoundTag()
+            nbt.put("input", recipe.predicate.serialize())
+            for (entry in recipe.colorMap) {
+                nbt.putString(entry.key.getName(), Registry.BLOCK.getId(entry.value).toString())
+            }
+            buf.writeCompoundTag(nbt)
+        }
+
+        override fun read(id: Identifier, json: JsonObject): PaintbrushRecipe {
+            val nbt = Dynamic.convert(FixedJsonOps.INSTANCE, NbtOps.INSTANCE, json)
+            if (nbt !is CompoundTag) throw JsonSyntaxException("")
+            return read(nbt)
+        }
+
+        override fun read(id: Identifier, buf: PacketByteBuf): PaintbrushRecipe {
+            val nbt = buf.readCompoundTag()
+            if (nbt !is CompoundTag) throw JsonSyntaxException("")
+            return read(nbt)
+        }
+
+        private fun read(nbt: CompoundTag): PaintbrushRecipe {
+            if (nbt["input"] is CompoundTag && nbt["result"] is CompoundTag) {
+                val predicate = readInput(nbt["input"] as CompoundTag)
+                val colorMap = readResult(nbt["result"] as CompoundTag)
+
+                return PaintbrushRecipe(predicate, colorMap)
+            }
+
+            throw JsonSyntaxException("")
+        }
+
+        private fun readInput(nbt: CompoundTag): PaintPredicate {
+            if (nbt["block"] is StringTag) {
+                val blockID = nbt["block"]?.asString()
+                val block = Registry.BLOCK[Identifier(blockID)]
+                return BlockPredicate(block)
+            }
+            else if (nbt["tag"] is StringTag) {
+                val tagID = nbt["tag"]?.asString()
+                val tag = BlockTags.getContainer().get(Identifier(tagID))
+                if (tag != null) return TagPredicate(tag)
+            }
+
+            throw JsonSyntaxException("")
+        }
+
+        private fun readResult(nbt: CompoundTag): Map<DyeColor, Block> {
+            val map = mutableMapOf<DyeColor, Block>()
+            for (color in DyeColor.values()) {
+                val name = color.getName()
+                if (nbt[name] is StringTag) {
+                    val blockID = nbt[name]?.asString()
+                    val block = Registry.BLOCK[Identifier(blockID)]
+                    map[color] = block
+                }
+            }
+            return map
+        }
+    }
+
+    interface PaintPredicate {
+        fun test(block: Block): Boolean
+
+        fun serialize(): CompoundTag
+    }
+
+    class TagPredicate(private val tag: Tag<Block>): PaintPredicate {
+        override fun test(block: Block): Boolean {
+            return tag.contains(block)
+        }
+
+        override fun serialize(): CompoundTag {
+            val nbt = CompoundTag()
+            nbt.putString("tag", tag.id.toString())
+            return nbt
+        }
+    }
+
+    class BlockPredicate(private val block: Block): PaintPredicate {
+        override fun test(block: Block): Boolean {
+            return this.block == block
+        }
+
+        override fun serialize(): CompoundTag {
+            val nbt = CompoundTag()
+            nbt.putString("tag", Registry.BLOCK.getId(block).toString())
+            return nbt
+        }
+    }
+}

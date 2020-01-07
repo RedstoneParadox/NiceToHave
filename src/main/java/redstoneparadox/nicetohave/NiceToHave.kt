@@ -1,7 +1,6 @@
 package redstoneparadox.nicetohave
 
 import net.fabricmc.api.ModInitializer
-import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -16,10 +15,10 @@ import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.recipe.DummyRecipe
+import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
-import redstoneparadox.paradoxconfig.ParadoxConfig.forceReloadConfig
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -31,6 +30,9 @@ object NiceToHave : ModInitializer {
     init {
         DummyRecipe.SERIALIZER
         DummyRecipe.TYPE
+
+        PaintbrushRecipe.SERIALIZER
+        PaintbrushRecipe.TYPE
     }
 
     override fun onInitialize() {
