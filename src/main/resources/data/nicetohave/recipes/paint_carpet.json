@@ -1,0 +1,24 @@
+{
+  "type": "nicetohave:paint",
+  "input": {
+    "tag": "minecraft:carpets"
+  },
+  "result": {
+    "white": "minecraft:white_carpet",
+    "orange": "minecraft:orange_carpet",
+    "magenta": "minecraft:magenta_carpet",
+    "light_blue": "minecraft:light_blue_carpet",
+    "yellow": "minecraft:yellow_carpet",
+    "lime": "minecraft:lime_carpet",
+    "pink": "minecraft:pink_carpet",
+    "gray": "minecraft:gray_carpet",
+    "light_gray": "minecraft:light_gray_carpet",
+    "cyan": "minecraft:cyan_carpet",
+    "purple": "minecraft:purple_carpet",
+    "blue": "minecraft:blue_carpet",
+    "brown": "minecraft:brown_carpet",
+    "green": "minecraft:green_carpet",
+    "red": "minecraft:red_carpet",
+    "black": "minecraft:black_carpet"
+  }
+}
