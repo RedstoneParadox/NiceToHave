@@ -16,6 +16,7 @@ import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.recipe.DummyRecipe
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
+import redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
 import redstoneparadox.nicetohave.world.biome.Biomes
 import redstoneparadox.nicetohave.world.gen.decorator.Decorators
 import redstoneparadox.nicetohave.world.gen.feature.Features
@@ -33,6 +34,8 @@ object NiceToHave : ModInitializer {
 
         PaintbrushRecipe.SERIALIZER
         PaintbrushRecipe.TYPE
+
+        NiceToHaveBlockTags.GLASS
     }
 
     override fun onInitialize() {
