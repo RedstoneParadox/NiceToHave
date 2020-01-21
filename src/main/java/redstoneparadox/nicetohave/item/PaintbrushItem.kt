@@ -5,10 +5,7 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventory
-import net.minecraft.item.DyeItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.ItemUsageContext
+import net.minecraft.item.*
 import net.minecraft.util.ActionResult
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
@@ -63,7 +60,8 @@ class PaintbrushItem(settings: Settings) : Item(settings) {
             fun paint(stack: ItemStack, color: DyeColor): ActionResult {
                 val painted = recipe.get().craft(color)
                 if (painted != null && painted != block) {
-                    world.setBlockState(pos, painted.defaultState)
+                    val state = painted.getPlacementState(ItemPlacementContext(context))
+                    world.setBlockState(pos, state)
                     if (!player.isCreative) stack.decrement(1)
                     return ActionResult.SUCCESS
                 }

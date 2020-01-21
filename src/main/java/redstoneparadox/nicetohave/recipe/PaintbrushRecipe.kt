@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
 import com.mojang.datafixers.Dynamic
 import net.minecraft.block.Block
-import net.minecraft.datafixers.NbtOps
+import net.minecraft.datafixer.NbtOps
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.CompoundTag
