@@ -10,6 +10,7 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
+import redstoneparadox.nicetohave.util.PaintedPlacementContext
 import redstoneparadox.nicetohave.util.getBlock
 
 class PaintbrushItem(settings: Settings) : Item(settings) {
@@ -60,7 +61,7 @@ class PaintbrushItem(settings: Settings) : Item(settings) {
             fun paint(stack: ItemStack, color: DyeColor): ActionResult {
                 val painted = recipe.get().craft(color)
                 if (painted != null && painted != block) {
-                    val state = painted.getPlacementState(ItemPlacementContext(context))
+                    val state = painted.getPlacementState(PaintedPlacementContext(context))
                     world.setBlockState(pos, state)
                     if (!player.isCreative) stack.decrement(1)
                     return ActionResult.SUCCESS
