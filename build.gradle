@@ -42,49 +42,47 @@ dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
-	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
-	compileOnly(group: "net.fabricmc", name: "fabric-loader", version: "${project.loader_version}")
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modCompile(group: "net.fabricmc", name: "fabric-language-kotlin", version: "${project.fabric_kotlin}")
-	compileOnly(group: "net.fabricmc", name: "fabric-language-kotlin", version: "${project.fabric_kotlin}")
 
-	/*
-	compileOnly ('com.github.TerraformersMC:Terrestria:v1.0.11') {
+	modImplementation (group: "net.fabricmc", name: "fabric-language-kotlin", version: "${project.fabric_kotlin}") {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
-	modCompileOnly ('com.github.TerraformersMC:Traverse:v2.0.8') {
+
+	modCompileOnly ("com.github.TerraformersMC:Terrestria:${project.terrestria}") {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
-	*/
+	modCompileOnly ("com.github.TerraformersMC:Traverse:${project.traverse}") {
+		exclude group: 'net.fabricmc.fabric-api'
+
+	}
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	modApi ("io.github.cottonmc:Jankson-Fabric:${project.jankson_version}") {
+	modApi ("io.github.cottonmc:Jankson-Fabric:${project.jankson}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
-	}
-	include "io.github.cottonmc:Jankson-Fabric:${project.jankson_version}"
 
-	modApi ("io.github.cottonmc:LibCD:${project.libcd_version}") {
+	}
+	include "io.github.cottonmc:Jankson-Fabric:${project.jankson}"
+
+	modApi ("io.github.cottonmc:LibCD:${project.libcd}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
-	}
-	include "io.github.cottonmc:LibCD:${project.libcd_version}"
 
-	modApi("redstoneparadox:paradox-config:${project.pconfig_version}") {
+	}
+	include "io.github.cottonmc:LibCD:${project.libcd}"
+
+	modApi("io.github.redstoneparadox:paradox-config:${project.pconfig}") {
 		exclude group: 'net.fabricmc.fabric-api'
 		exclude group: 'net.fabricmc.fabric-language-kotlin'
-		exclude group: 'me.shedaniel'
 	}
-	include "redstoneparadox:paradox-config:${project.pconfig_version}"
+	include "io.github.redstoneparadox:paradox-config:${project.pconfig}"
 
-
-	modApi ("io.github.prospector:modmenu:1.7.15-unstable.1.15-pre1+build.13") {
-		exclude group: 'me.shedaniel'
+	modCompileOnly ("io.github.prospector:modmenu:${project.modmenu}") {
 		transitive = false
+		exclude group: 'net.fabricmc.fabric-api'
 	}
 }
 

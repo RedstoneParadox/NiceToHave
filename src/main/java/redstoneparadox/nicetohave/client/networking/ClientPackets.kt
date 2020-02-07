@@ -3,8 +3,8 @@ package redstoneparadox.nicetohave.client.networking
 import net.fabricmc.fabric.api.network.PacketContext
 import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.network.packet.EntitySpawnS2CPacket
 import net.minecraft.network.Packet
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket
 import net.minecraft.util.Identifier
 import net.minecraft.util.PacketByteBuf
 import net.minecraft.world.World

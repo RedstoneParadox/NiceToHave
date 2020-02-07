@@ -1,10 +1,10 @@
 package redstoneparadox.nicetohave.item
 
-import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
+import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.ActionResult

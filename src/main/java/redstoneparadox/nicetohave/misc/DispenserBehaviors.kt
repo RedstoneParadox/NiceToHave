@@ -4,11 +4,11 @@ import net.minecraft.block.*
 import net.minecraft.block.dispenser.DispenserBehavior
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior
-import net.minecraft.client.network.packet.EntityPositionS2CPacket
 import net.minecraft.entity.projectile.Projectile
 import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPointer
 import net.minecraft.util.math.BlockPos
