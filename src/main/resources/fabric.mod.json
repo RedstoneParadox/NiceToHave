@@ -50,7 +50,8 @@
   },
   "suggests": {
     "terrestria": "*",
-    "traverse": "*"
+    "traverse": "*",
+    "thehallow": "*"
   },
 
   "custom": {
