@@ -30,6 +30,10 @@
       {
         "adapter": "kotlin",
         "value": "redstoneparadox.nicetohave.compat.traverse.TraverseCompat"
+      },
+      {
+        "adapter": "kotlin",
+        "value": "redstoneparadox.nicetohave.compat.TheHallowCompat"
       }
     ],
     "client": [

@@ -1,0 +1,14 @@
+{
+	"when": [
+		{
+			"libcd:mod_loaded": "thehallow"
+		},
+		{
+			"pconfig:option": {
+				"config": "nicetohave:config.json",
+				"option": "recipes.glue_slabs",
+				"value": true
+			}
+		}
+	]
+}

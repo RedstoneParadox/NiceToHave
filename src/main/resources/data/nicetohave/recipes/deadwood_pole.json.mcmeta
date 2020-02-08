@@ -1,0 +1,14 @@
+{
+	"when": [
+		{
+			"libcd:mod_loaded": "thehallow"
+		},
+		{
+			"pconfig:option": {
+				"config": "nicetohave:config.json",
+				"option": "blocks.poles",
+				"value": true
+			}
+		}
+	]
+}

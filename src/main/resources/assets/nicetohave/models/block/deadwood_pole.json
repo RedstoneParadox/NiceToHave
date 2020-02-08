@@ -1,0 +1,6 @@
+{
+	"parent": "nicetohave:block/pole",
+	"textures": {
+		"texture": "thehallow:block/deadwood_log"
+	}
+}

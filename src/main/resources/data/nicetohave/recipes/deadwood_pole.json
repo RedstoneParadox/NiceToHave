@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"a",
+		"a",
+		"a"
+	],
+	"key": {
+		"a": {
+			"item": "thehallow:deadwood_log"
+		}
+	},
+	"result": {
+		"item": "nicetohave:deadwood_pole",
+		"count": 12
+	}
+}
