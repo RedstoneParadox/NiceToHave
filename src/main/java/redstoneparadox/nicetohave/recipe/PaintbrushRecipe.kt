@@ -23,13 +23,13 @@ import redstoneparadox.nicetohave.item.PaintbrushItem
 import redstoneparadox.nicetohave.util.FixedJsonOps
 import java.util.*
 
-class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>): Recipe<PaintbrushItem.PaintbrushInventory> {
+class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>, private val id: Identifier): Recipe<PaintbrushItem.PaintbrushInventory> {
     override fun craft(inv: PaintbrushItem.PaintbrushInventory): ItemStack {
         return ItemStack.EMPTY
     }
 
     override fun getId(): Identifier {
-        return identifier
+        return id
     }
 
     override fun getType(): RecipeType<*> {
@@ -45,7 +45,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
     }
 
     override fun getOutput(): ItemStack {
-        return ItemStack.EMPTY
+        return ItemStack(colorMap.values.random())
     }
 
     override fun matches(inv: PaintbrushItem.PaintbrushInventory, world: World): Boolean {
@@ -85,26 +85,28 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
                 nbt.putString(entry.key.getName(), Registry.BLOCK.getId(entry.value).toString())
             }
             buf.writeCompoundTag(nbt)
+            buf.writeIdentifier(recipe.id)
         }
 
         override fun read(id: Identifier, json: JsonObject): PaintbrushRecipe {
             val nbt = Dynamic.convert(FixedJsonOps.INSTANCE, NbtOps.INSTANCE, json)
             if (nbt !is CompoundTag) throw JsonSyntaxException("")
-            return read(nbt)
+            return read(id, nbt)
         }
 
         override fun read(id: Identifier, buf: PacketByteBuf): PaintbrushRecipe {
             val nbt = buf.readCompoundTag()
+            val id = buf.readIdentifier()
             if (nbt !is CompoundTag) throw JsonSyntaxException("")
-            return read(nbt)
+            return read(id, nbt)
         }
 
-        private fun read(nbt: CompoundTag): PaintbrushRecipe {
+        private fun read(id: Identifier, nbt: CompoundTag): PaintbrushRecipe {
             if (nbt["input"] is CompoundTag && nbt["result"] is CompoundTag) {
                 val predicate = readInput(nbt["input"] as CompoundTag)
                 val colorMap = readResult(nbt["result"] as CompoundTag)
 
-                return PaintbrushRecipe(predicate, colorMap)
+                return PaintbrushRecipe(predicate, colorMap, id)
             }
 
             throw JsonSyntaxException("")

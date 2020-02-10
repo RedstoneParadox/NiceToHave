@@ -105,7 +105,7 @@ object REIPlugin: REIPluginV0 {
             })
             widgets.add(EntryWidget.create(startPoint.x + 4, startPoint.y + 5).entries(display.inputEntries[0]).noBackground())
             widgets.add(EntryWidget.create(startPoint.x + 61, startPoint.y + 5).entry(display.output).noBackground())
-            
+
             return widgets
         }
 
