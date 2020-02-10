@@ -12,8 +12,11 @@ import me.shedaniel.rei.gui.widget.RecipeBaseWidget
 import me.shedaniel.rei.gui.widget.Widget
 import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
+import net.minecraft.item.DyeItem
+import net.minecraft.item.Item
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
+import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import java.util.function.Supplier
@@ -104,9 +107,14 @@ object REIPlugin: REIPluginV0 {
                 }
             })
             widgets.add(EntryWidget.create(startPoint.x + 4, startPoint.y + 5).entries(display.inputEntries[0]).noBackground())
+            widgets.add(EntryWidget.create(startPoint.x + 20, startPoint.y + 5).entries(getDyeItems(display.dye)).noBackground())
             widgets.add(EntryWidget.create(startPoint.x + 61, startPoint.y + 5).entry(display.output).noBackground())
 
             return widgets
+        }
+
+        private fun getDyeItems(dye: DyeColor): List<EntryStack> {
+            return Registry.ITEM.filter { it is DyeItem && it.color == dye }.map { EntryStack.create(it) }
         }
 
         override fun getDisplayHeight(): Int {
