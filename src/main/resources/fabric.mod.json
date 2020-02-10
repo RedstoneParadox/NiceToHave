@@ -42,7 +42,7 @@
         "value": "redstoneparadox.nicetohave.client.NiceToHaveClient"
       }
     ],
-    "rei_plugins": [
+    "rei_plugins_v0": [
       {
         "adapter": "kotlin",
         "value": "redstoneparadox.nicetohave.compat.REIPlugin"

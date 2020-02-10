@@ -23,7 +23,7 @@ import redstoneparadox.nicetohave.item.PaintbrushItem
 import redstoneparadox.nicetohave.util.FixedJsonOps
 import java.util.*
 
-class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorMap: Map<DyeColor, Block>): Recipe<PaintbrushItem.PaintbrushInventory> {
+class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>): Recipe<PaintbrushItem.PaintbrushInventory> {
     override fun craft(inv: PaintbrushItem.PaintbrushInventory): ItemStack {
         return ItemStack.EMPTY
     }
@@ -37,7 +37,7 @@ class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorM
     }
 
     override fun fits(width: Int, height: Int): Boolean {
-        return false
+        return width >= 1 && height >= 1
     }
 
     override fun getSerializer(): RecipeSerializer<*> {
@@ -49,7 +49,7 @@ class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorM
     }
 
     override fun matches(inv: PaintbrushItem.PaintbrushInventory, world: World): Boolean {
-        return false
+        return predicate.test(inv.block)
     }
 
     fun matches(block: Block): Boolean {
@@ -145,7 +145,7 @@ class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorM
         fun serialize(): CompoundTag
     }
 
-    class TagPredicate(private val tag: Tag<Block>): PaintPredicate {
+    class TagPredicate(val tag: Tag<Block>): PaintPredicate {
         override fun test(block: Block): Boolean {
             return tag.contains(block)
         }
@@ -157,7 +157,7 @@ class PaintbrushRecipe(private val predicate: PaintPredicate, private val colorM
         }
     }
 
-    class BlockPredicate(private val block: Block): PaintPredicate {
+    class BlockPredicate(val block: Block): PaintPredicate {
         override fun test(block: Block): Boolean {
             return this.block == block
         }
