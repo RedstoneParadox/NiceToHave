@@ -14,7 +14,6 @@ import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.misc.DispenserBehaviors
 import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
-import redstoneparadox.nicetohave.recipe.DummyRecipe
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
 import redstoneparadox.nicetohave.world.biome.Biomes
@@ -29,9 +28,6 @@ object NiceToHave : ModInitializer {
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
     init {
-        DummyRecipe.SERIALIZER
-        DummyRecipe.TYPE
-
         PaintbrushRecipe.SERIALIZER
         PaintbrushRecipe.TYPE
 
