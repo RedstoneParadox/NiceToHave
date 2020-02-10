@@ -54,43 +54,39 @@ dependencies {
 
 	modCompileOnly ("com.github.TerraformersMC:Terrestria:${project.terrestria}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
 	}
 	modCompileOnly ("com.github.TerraformersMC:Traverse:${project.traverse}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
 
 	}
 	modCompileOnly ("com.github.fabric-community:the-hallow:${project.hallow}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
+	}
+	modCompileOnly("me.shedaniel:RoughlyEnoughItems:${project.rei}") {
+		exclude group: 'net.fabricmc.fabric-api'
 	}
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 	modApi ("io.github.cottonmc:Jankson-Fabric:${project.jankson}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
 	}
 	include "io.github.cottonmc:Jankson-Fabric:${project.jankson}"
 
 	modApi ("io.github.cottonmc:LibCD:${project.libcd}") {
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
 	}
 	include "io.github.cottonmc:LibCD:${project.libcd}"
 
 	modApi("io.github.redstoneparadox:paradox-config:${project.pconfig}") {
 		exclude group: 'net.fabricmc.fabric-api'
 		exclude group: 'net.fabricmc.fabric-language-kotlin'
-		exclude group: 'me.shedaniel'
 	}
 	include "io.github.redstoneparadox:paradox-config:${project.pconfig}"
 
 	modCompileOnly ("io.github.prospector:modmenu:${project.modmenu}") {
 		transitive = false
 		exclude group: 'net.fabricmc.fabric-api'
-		exclude group: 'me.shedaniel'
 	}
 }
 
