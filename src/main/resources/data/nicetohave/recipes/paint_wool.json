@@ -1,7 +1,7 @@
 {
   "type": "nicetohave:paint",
   "input": {
-    "tag": "minecraft:wool"
+    "tag": "nicetohave:vanilla_wool"
   },
   "result": {
     "white": "minecraft:white_wool",
