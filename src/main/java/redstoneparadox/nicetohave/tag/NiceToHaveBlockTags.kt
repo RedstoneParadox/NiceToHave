@@ -11,4 +11,5 @@ object NiceToHaveBlockTags {
     val GLASS: Tag<Block> = TagRegistry.block(Identifier("nicetohave", "glass"))
     val GLASS_PANE: Tag<Block> = TagRegistry.block(Identifier("nicetohave", "glass"))
     val TERRACOTTA: Tag<Block> = TagRegistry.block(Identifier("nicetohave", "glass"))
+    val VANILLA_WOOL: Tag<Block> = TagRegistry.block(Identifier("nicetohave", "vanilla_wool"))
 }

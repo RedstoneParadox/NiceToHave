@@ -81,23 +81,25 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
         override fun write(buf: PacketByteBuf, recipe: PaintbrushRecipe) {
             val nbt = CompoundTag()
             nbt.put("input", recipe.predicate.serialize())
+            val result = CompoundTag()
             for (entry in recipe.colorMap) {
-                nbt.putString(entry.key.getName(), Registry.BLOCK.getId(entry.value).toString())
+                result.putString(entry.key.getName(), Registry.BLOCK.getId(entry.value).toString())
             }
+            nbt.put("result", result)
             buf.writeCompoundTag(nbt)
             buf.writeIdentifier(recipe.id)
         }
 
         override fun read(id: Identifier, json: JsonObject): PaintbrushRecipe {
             val nbt = Dynamic.convert(FixedJsonOps.INSTANCE, NbtOps.INSTANCE, json)
-            if (nbt !is CompoundTag) throw JsonSyntaxException("")
+            if (nbt !is CompoundTag) throw JsonSyntaxException("Invalid recipe file!")
             return read(id, nbt)
         }
 
         override fun read(id: Identifier, buf: PacketByteBuf): PaintbrushRecipe {
             val nbt = buf.readCompoundTag()
             val id = buf.readIdentifier()
-            if (nbt !is CompoundTag) throw JsonSyntaxException("")
+            if (nbt !is CompoundTag) throw JsonSyntaxException("Didn't find NBT on the packet from the server!")
             return read(id, nbt)
         }
 
@@ -109,7 +111,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
                 return PaintbrushRecipe(predicate, colorMap, id)
             }
 
-            throw JsonSyntaxException("")
+            throw JsonSyntaxException("Failed while reading paint recipe!")
         }
 
         private fun readInput(nbt: CompoundTag): PaintPredicate {
@@ -124,7 +126,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
                 if (tag != null) return TagPredicate(tag)
             }
 
-            throw JsonSyntaxException("")
+            throw JsonSyntaxException("Paint recipe did not have input.")
         }
 
         private fun readResult(nbt: CompoundTag): Map<DyeColor, Block> {
