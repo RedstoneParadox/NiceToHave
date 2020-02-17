@@ -105,15 +105,20 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
 
         private fun read(id: Identifier, nbt: CompoundTag): PaintbrushRecipe {
             if (nbt["input"] is CompoundTag && nbt["result"] is CompoundTag) {
-                val predicate = readInput(nbt["input"] as CompoundTag)
-                val colorMap = readResult(nbt["result"] as CompoundTag)
+                try {
+                    val predicate = readInput(nbt["input"] as CompoundTag)
+                    val colorMap = readResult(nbt["result"] as CompoundTag)
 
-                return PaintbrushRecipe(predicate, colorMap, id)
+                    return PaintbrushRecipe(predicate, colorMap, id)
+                } catch (e: JsonSyntaxException) {
+                    throw JsonSyntaxException("Failed while reading paint recipe $id!")
+                }
             }
 
-            throw JsonSyntaxException("Failed while reading paint recipe!")
+            throw JsonSyntaxException("Failed while reading paint recipe $id!")
         }
 
+        @Throws(JsonSyntaxException::class)
         private fun readInput(nbt: CompoundTag): PaintPredicate {
             if (nbt["block"] is StringTag) {
                 val blockID = nbt["block"]?.asString()
