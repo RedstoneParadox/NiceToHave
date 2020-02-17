@@ -111,7 +111,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
 
                     return PaintbrushRecipe(predicate, colorMap, id)
                 } catch (e: JsonSyntaxException) {
-                    throw JsonSyntaxException("Failed while reading paint recipe $id!")
+                    throw JsonSyntaxException("Failed while reading paint recipe $id!", e)
                 }
             }
 

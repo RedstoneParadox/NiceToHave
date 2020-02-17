@@ -31,7 +31,12 @@ object NiceToHave : ModInitializer {
         PaintbrushRecipe.SERIALIZER
         PaintbrushRecipe.TYPE
 
+        NiceToHaveBlockTags.CONCRETE
+        NiceToHaveBlockTags.CONCRETE_POWDER
         NiceToHaveBlockTags.GLASS
+        NiceToHaveBlockTags.GLASS_PANE
+        NiceToHaveBlockTags.TERRACOTTA
+        NiceToHaveBlockTags.VANILLA_WOOL
     }
 
     override fun onInitialize() {
