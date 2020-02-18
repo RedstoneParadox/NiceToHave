@@ -27,7 +27,7 @@ object REIPlugin: REIPluginV0 {
     val ID: Identifier = Identifier("nicetohave", "nicetohave")
     val PAINTING: Identifier = Identifier("nicetohave", "plugins/painting")
 
-    private val DISPLAY_TEXTURE = Identifier("roughlyenoughitems", "textures/gui/display.png")
+    private val DISPLAY_TEXTURE = Identifier("nicetohave", "textures/gui/rei_gui.png")
     private val DISPLAY_TEXTURE_DARK = Identifier("roughlyenoughitems", "textures/gui/display_dark.png")
 
     override fun getPluginIdentifier(): Identifier {
@@ -98,20 +98,20 @@ object REIPlugin: REIPluginV0 {
         }
 
         override fun setupDisplay(recipeDisplaySupplier: Supplier<PaintingDisplay>, bounds: Rectangle): MutableList<Widget> {
-            val startPoint = Point(bounds.centerX - 41, bounds.centerY - 13)
+            val startPoint = Point(bounds.centerX - 51, bounds.centerY - 13)
             val widgets = mutableListOf<Widget>()
             val display = recipeDisplaySupplier.get()
 
             widgets.add(object: RecipeBaseWidget(bounds) {
-                override fun render() {
-                    super.render()
+                override fun render(mouseX: Int, mouseY: Int, delta: Float) {
+                    super.render(mouseX, mouseY, delta)
                     MinecraftClient.getInstance().textureManager.bindTexture(DISPLAY_TEXTURE)
-                    blit(startPoint.x, startPoint.y, 0, 221, 82, 26)
+                    blit(startPoint.x, startPoint.y, 0, 0, 102, 26)
                 }
             })
             widgets.add(EntryWidget.create(startPoint.x + 4, startPoint.y + 5).entries(display.inputEntries[0]).noBackground())
-            widgets.add(EntryWidget.create(startPoint.x + 20, startPoint.y + 5).entries(getDyeItems(display.dye)).noBackground())
-            widgets.add(EntryWidget.create(startPoint.x + 61, startPoint.y + 5).entry(display.output).noBackground())
+            widgets.add(EntryWidget.create(startPoint.x + 24, startPoint.y + 5).entries(getDyeItems(display.dye)).noBackground())
+            widgets.add(EntryWidget.create(startPoint.x + 81, startPoint.y + 5).entry(display.output).noBackground())
 
             return widgets
         }
