@@ -1,0 +1,24 @@
+{
+  "type": "nicetohave:paint",
+  "input": {
+    "tag": "nicetohave:hallow_cloth"
+  },
+  "result": {
+    "white": "thehallow:white_cloth",
+    "orange": "thehallow:orange_cloth",
+    "magenta": "thehallow:magenta_cloth",
+    "light_blue": "thehallow:light_blue_cloth",
+    "yellow": "thehallow:yellow_cloth",
+    "lime": "thehallow:lime_cloth",
+    "pink": "thehallow:pink_cloth",
+    "gray": "thehallow:gray_cloth",
+    "light_gray": "thehallow:light_gray_cloth",
+    "cyan": "thehallow:cyan_cloth",
+    "purple": "thehallow:purple_cloth",
+    "blue": "thehallow:blue_cloth",
+    "brown": "thehallow:brown_cloth",
+    "green": "thehallow:green_cloth",
+    "red": "thehallow:red_cloth",
+    "black": "thehallow:black_cloth"
+  }
+}
