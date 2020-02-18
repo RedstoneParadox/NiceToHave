@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!---
-Thank you for submitting a bug report to the "Nice to Have" issue tracker. Please fill out the template below with as much information as possible or we might not be able to fix your issue. Please attach crash reports, log outputs, or screenshots if applicable.
+Thank you for submitting a bug report to the "Nice to Have" issue tracker. Please fill out the template below with as much information as possible or just attach a crash report if that contains sufficient information.
 --->
 
 <!---Please don't put "latest"--->
@@ -21,15 +21,11 @@ Thank you for submitting a bug report to the "Nice to Have" issue tracker. Pleas
 **Fabric API Version:**
 
 <!---Please don't put "latest"--->
-**Mappings version:**
-
-<!---Please don't put "latest"--->
 **Fabric Language Kotlin Version:**
 
-
 <!---If there are too many to list, just attach a log file and please don't put "latest" for any of them--->
-**Name and version of any other mods present:**
+**Name and versions of any other mods present:**
 
-**What actually happened:**
+**What happened:**
 
 **Steps to reproduce:**
