@@ -12,6 +12,7 @@ import me.shedaniel.rei.gui.widget.RecipeBaseWidget
 import me.shedaniel.rei.gui.widget.Widget
 import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.resource.language.I18n
 import net.minecraft.item.DyeItem
 import net.minecraft.item.Item
 import net.minecraft.util.DyeColor
@@ -94,7 +95,7 @@ object REIPlugin: REIPluginV0 {
         }
 
         override fun getCategoryName(): String {
-            return "category.nicetohave.painting"
+            return I18n.translate("category.nicetohave.painting")
         }
 
         override fun setupDisplay(recipeDisplaySupplier: Supplier<PaintingDisplay>, bounds: Rectangle): MutableList<Widget> {
