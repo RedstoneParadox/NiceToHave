@@ -1,0 +1,24 @@
+{
+  "type": "nicetohave:paint",
+  "input": {
+    "tag": "nicetohave:hallow_rug"
+  },
+  "result": {
+    "white": "thehallow:white_rug",
+    "orange": "thehallow:orange_rug",
+    "magenta": "thehallow:magenta_rug",
+    "light_blue": "thehallow:light_blue_rug",
+    "yellow": "thehallow:yellow_rug",
+    "lime": "thehallow:lime_rug",
+    "pink": "thehallow:pink_rug",
+    "gray": "thehallow:gray_rug",
+    "light_gray": "thehallow:light_gray_rug",
+    "cyan": "thehallow:cyan_rug",
+    "purple": "thehallow:purple_rug",
+    "blue": "thehallow:blue_rug",
+    "brown": "thehallow:brown_rug",
+    "green": "thehallow:green_rug",
+    "red": "thehallow:red_rug",
+    "black": "thehallow:black_rug"
+  }
+}

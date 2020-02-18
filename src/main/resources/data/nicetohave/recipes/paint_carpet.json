@@ -1,7 +1,7 @@
 {
   "type": "nicetohave:paint",
   "input": {
-    "tag": "minecraft:carpets"
+    "tag": "nicetohave:vanilla_carpet"
   },
   "result": {
     "white": "minecraft:white_carpet",
