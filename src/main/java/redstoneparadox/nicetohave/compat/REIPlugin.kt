@@ -17,6 +17,7 @@ import net.minecraft.item.Item
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
+import redstoneparadox.nicetohave.config.Config
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import java.util.function.Supplier
@@ -34,10 +35,12 @@ object REIPlugin: REIPluginV0 {
     }
 
     override fun registerPluginCategories(recipeHelper: RecipeHelper) {
-        recipeHelper.registerCategory(PaintingCategory())
+        if (Config.Items.paintBrush) recipeHelper.registerCategory(PaintingCategory())
     }
 
     override fun registerRecipeDisplays(recipeHelper: RecipeHelper) {
+        if (!Config.Items.paintBrush) return
+
         val recipes = recipeHelper.recipeManager.values()
 
         for (recipe in recipes.filterIsInstance<PaintbrushRecipe>()) {

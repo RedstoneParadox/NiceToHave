@@ -19,6 +19,7 @@ object Config: RootConfigCategory("config.json5") {
         var fertilizer: Boolean by option(true, "fertilizer", "A bonemeal alternative that is obtained from the composter.")
         var sweetBerryJuice: Boolean by option(true, "sweet_berry_juice", "A beverage made from sweet berries.")
         var appleJuice: Boolean by option(true, "apple_juice", "A beverage made from apples.")
+        var paintBrush: Boolean by option(true, "paint_brush", "A tool that can be used to paint certain blocks.")
     }
 
     object Blocks: ConfigCategory("blocks", "Various blocks") {
