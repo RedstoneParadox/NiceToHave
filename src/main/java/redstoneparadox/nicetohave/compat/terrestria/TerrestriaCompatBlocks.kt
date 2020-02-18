@@ -5,7 +5,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object TerrestriaCompatBlocks : BlocksInitializer() {
 

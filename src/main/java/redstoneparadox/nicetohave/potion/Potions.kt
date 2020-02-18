@@ -5,7 +5,7 @@ import net.minecraft.potion.Potion
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.entity.effect.StatusEffects
 import redstoneparadox.nicetohave.util.minutesToTicks
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object Potions {
 

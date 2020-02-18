@@ -1,4 +1,4 @@
-package redstoneparadox.nicetohave.util.newconfig
+package redstoneparadox.nicetohave.config
 
 import blue.endless.jankson.JsonElement
 import redstoneparadox.paradoxconfig.config.ConfigCategory

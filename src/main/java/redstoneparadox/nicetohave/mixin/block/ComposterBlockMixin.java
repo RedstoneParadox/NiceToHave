@@ -20,15 +20,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import redstoneparadox.nicetohave.block.Properties;
 import redstoneparadox.nicetohave.item.NiceToHaveItems;
 import redstoneparadox.nicetohave.misc.Inventories;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 import java.util.Random;
 

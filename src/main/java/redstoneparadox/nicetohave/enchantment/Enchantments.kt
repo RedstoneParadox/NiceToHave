@@ -4,7 +4,7 @@ import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentTarget
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.util.registry.Registry
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 
 /**

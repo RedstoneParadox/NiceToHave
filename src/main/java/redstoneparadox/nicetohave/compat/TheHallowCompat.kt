@@ -7,7 +7,7 @@ import net.minecraft.item.BlockItem
 import redstoneparadox.nicetohave.block.PoleBlock
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object TheHallowCompat: ModInitializer {
 

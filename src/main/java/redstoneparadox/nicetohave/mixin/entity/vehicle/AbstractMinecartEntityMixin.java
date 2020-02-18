@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import redstoneparadox.nicetohave.util.MinecartTracker;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 import static net.minecraft.entity.vehicle.AbstractMinecartEntity.Type.TNT;
 

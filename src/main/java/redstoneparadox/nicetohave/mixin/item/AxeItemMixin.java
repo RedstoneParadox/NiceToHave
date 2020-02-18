@@ -11,12 +11,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.NiceToHave;
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks;
-import redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompat;
 import redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompatBlocks;
 import redstoneparadox.nicetohave.compat.traverse.TraverseCompatBlocks;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 import java.util.Map;
 

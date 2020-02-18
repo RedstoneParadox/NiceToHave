@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer
 import redstoneparadox.nicetohave.entity.EntityTypes
 import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 /**
  * Created by RedstoneParadox on 5/24/2019.

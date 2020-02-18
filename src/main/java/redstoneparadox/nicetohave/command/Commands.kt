@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.registry.CommandRegistry
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import redstoneparadox.nicetohave.hooks.CommandConfirmationHolder
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object Commands {
 

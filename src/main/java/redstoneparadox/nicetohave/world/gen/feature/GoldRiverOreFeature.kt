@@ -11,7 +11,7 @@ import net.minecraft.world.gen.chunk.ChunkGeneratorConfig
 import net.minecraft.world.gen.feature.DefaultFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 import java.util.*
 import java.util.function.Function
 

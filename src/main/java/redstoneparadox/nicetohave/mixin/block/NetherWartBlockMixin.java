@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 import java.util.Random;
 

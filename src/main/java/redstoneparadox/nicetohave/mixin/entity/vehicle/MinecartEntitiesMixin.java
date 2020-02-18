@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 /**
  * Created by RedstoneParadox on 5/25/2019.

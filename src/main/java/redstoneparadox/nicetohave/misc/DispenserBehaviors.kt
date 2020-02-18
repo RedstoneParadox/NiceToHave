@@ -20,7 +20,7 @@ import redstoneparadox.nicetohave.entity.ThrownDynamiteEntity
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.networking.Packets
 import redstoneparadox.nicetohave.util.getBlock
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 import net.minecraft.item.Items as VanillaItems
 
 object DispenserBehaviors {

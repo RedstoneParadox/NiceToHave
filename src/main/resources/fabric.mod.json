@@ -65,6 +65,6 @@
   },
 
   "custom": {
-    "pconfig": [ "redstoneparadox.nicetohave.util.newconfig.Config" ]
+    "pconfig": [ "redstoneparadox.nicetohave.config.Config" ]
   }
 }

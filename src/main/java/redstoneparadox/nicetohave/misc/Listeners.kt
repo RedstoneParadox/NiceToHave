@@ -9,7 +9,7 @@ import net.minecraft.loot.function.SetCountLootFunction
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 /**
  * Created by RedstoneParadox on 7/30/2019.

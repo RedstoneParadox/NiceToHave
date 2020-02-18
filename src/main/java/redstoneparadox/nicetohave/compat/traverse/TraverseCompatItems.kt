@@ -2,7 +2,7 @@ package redstoneparadox.nicetohave.compat.traverse
 
 import net.minecraft.item.BlockItem
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object TraverseCompatItems : ItemsInitializer() {
 

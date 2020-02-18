@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityCategory
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
 import net.minecraft.util.registry.Registry
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.

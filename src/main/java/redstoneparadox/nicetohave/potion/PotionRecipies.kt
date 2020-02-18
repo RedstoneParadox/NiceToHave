@@ -4,7 +4,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.potion.Potion
 import redstoneparadox.nicetohave.mixin.recipe.BrewingRecipeRegistryAccessor
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object PotionRecipes {
 

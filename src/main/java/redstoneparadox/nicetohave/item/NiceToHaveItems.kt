@@ -7,7 +7,7 @@ import net.minecraft.item.ItemGroup
 import redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import redstoneparadox.nicetohave.item.wrench.WrenchItem
 import redstoneparadox.nicetohave.util.initializers.ItemsInitializer
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 /**
  * Created by RedstoneParadox on 5/23/2019.

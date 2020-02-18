@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BambooJungleBiome;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
-import redstoneparadox.nicetohave.util.newconfig.Config;
+import redstoneparadox.nicetohave.config.Config;
 
 @Mixin(BambooJungleBiome.class)
 public abstract class BambooJungleBiomeMixin extends Biome {

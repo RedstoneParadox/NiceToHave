@@ -3,7 +3,7 @@ package redstoneparadox.nicetohave.command
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.server.command.ServerCommandSource
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 class StuckCommand: Command<ServerCommandSource> {
     override fun run(context: CommandContext<ServerCommandSource>?): Int {

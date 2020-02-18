@@ -6,7 +6,7 @@ import net.minecraft.block.Blocks
 import net.minecraft.block.GravelBlock
 import net.minecraft.block.SandBlock
 import redstoneparadox.nicetohave.util.initializers.BlocksInitializer
-import redstoneparadox.nicetohave.util.newconfig.Config
+import redstoneparadox.nicetohave.config.Config
 
 object NiceToHaveBlocks : BlocksInitializer() {
 
