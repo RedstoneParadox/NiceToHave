@@ -1,6 +1,6 @@
 package redstoneparadox.nicetohave.mixin.world.biome;
 
-import net.minecraft.entity.EntityCategory;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BambooJungleBiome;
 import net.minecraft.world.biome.Biome;
@@ -15,7 +15,7 @@ public abstract class BambooJungleBiomeMixin extends Biome {
     }
 
     @Override
-    protected void addSpawn(EntityCategory category, SpawnEntry spawnEntry) {
-        if (Config.World.INSTANCE.getPeacefulBambooJungle() || (spawnEntry.type == EntityType.OCELOT || category != EntityCategory.MONSTER)) super.addSpawn(category, spawnEntry);
+    protected void addSpawn(SpawnGroup category, SpawnEntry spawnEntry) {
+        if (Config.World.INSTANCE.getPeacefulBambooJungle() || (spawnEntry.type == EntityType.OCELOT || category != SpawnGroup.MONSTER)) super.addSpawn(category, spawnEntry);
     }
 }

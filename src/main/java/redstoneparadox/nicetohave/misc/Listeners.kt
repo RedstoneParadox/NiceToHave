@@ -20,10 +20,10 @@ object Listeners {
         LootTableLoadingCallback.EVENT.register(LootTableLoadingCallback { resourceManager, manager, id, supplier, setter ->
             if (Config.Items.dynamite && "minecraft:chests/abandoned_mineshaft" == id.toString()) {
                 val poolBuider = FabricLootPoolBuilder.builder()
-                        .withFunction(SetCountLootFunction.builder(UniformLootTableRange.between(1.0f, 5.0f)))
-                        .withEntry(ItemEntry.builder(NiceToHaveItems.DYNAMITE).setWeight(8))
+                        .withFunction(SetCountLootFunction.builder(UniformLootTableRange.between(1.0f, 5.0f)).build())
+                        .withEntry(ItemEntry.builder(NiceToHaveItems.DYNAMITE).weight(8).build())
 
-                supplier.withPool(poolBuider)
+                supplier.withPool(poolBuider.build())
             }
         })
         RegistryEntryAddedCallback.event(Registry.BLOCK).register(RegistryEntryAddedCallback {rawId, id, block ->

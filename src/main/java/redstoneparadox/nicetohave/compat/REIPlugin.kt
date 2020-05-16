@@ -1,12 +1,13 @@
 package redstoneparadox.nicetohave.compat
 
-import me.shedaniel.math.api.Point
-import me.shedaniel.math.api.Rectangle
+import me.shedaniel.math.Point
+import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.EntryStack
 import me.shedaniel.rei.api.RecipeCategory
 import me.shedaniel.rei.api.RecipeDisplay
 import me.shedaniel.rei.api.RecipeHelper
 import me.shedaniel.rei.api.plugins.REIPluginV0
+import me.shedaniel.rei.api.widgets.Widgets
 import me.shedaniel.rei.gui.widget.EntryWidget
 import me.shedaniel.rei.gui.widget.RecipeBaseWidget
 import me.shedaniel.rei.gui.widget.Widget
@@ -98,23 +99,17 @@ object REIPlugin: REIPluginV0 {
             return I18n.translate("category.nicetohave.painting")
         }
 
-        override fun setupDisplay(recipeDisplaySupplier: Supplier<PaintingDisplay>, bounds: Rectangle): MutableList<Widget> {
+        override fun setupDisplay(recipeDisplay: PaintingDisplay, bounds: Rectangle): MutableList<Widget> {
             val startPoint = Point(bounds.centerX - 51, bounds.centerY - 13)
             val widgets = mutableListOf<Widget>()
-            val display = recipeDisplaySupplier.get()
 
-            widgets.add(object: RecipeBaseWidget(bounds) {
-                override fun render(mouseX: Int, mouseY: Int, delta: Float) {
-                    super.render(mouseX, mouseY, delta)
-                    MinecraftClient.getInstance().textureManager.bindTexture(DISPLAY_TEXTURE)
-                    blit(startPoint.x, startPoint.y, 0, 0, 102, 26)
-                }
-            })
-            widgets.add(EntryWidget.create(startPoint.x + 4, startPoint.y + 5).entries(display.inputEntries[0]).noBackground())
-            widgets.add(EntryWidget.create(startPoint.x + 24, startPoint.y + 5).entries(getDyeItems(display.dye)).noBackground())
-            widgets.add(EntryWidget.create(startPoint.x + 81, startPoint.y + 5).entry(display.output).noBackground())
+            Widgets.createRecipeBase(bounds)
 
-            return widgets
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 4, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 24, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 81, startPoint.y + 5)).entry(recipeDisplay.output))
+
+            return super.setupDisplay(recipeDisplay, bounds)
         }
 
         private fun getDyeItems(dye: DyeColor): List<EntryStack> {

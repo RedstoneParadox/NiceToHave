@@ -13,41 +13,7 @@ import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import redstoneparadox.nicetohave.util.PaintedPlacementContext
 import redstoneparadox.nicetohave.util.getBlock
 
-class PaintbrushItem(settings: Settings) : Item(settings) {
-
-    init {
-        addPropertyGetter(Identifier("color")) { stack, world, entity ->
-            if (entity is PlayerEntity) {
-                val mainItem = entity.mainHandStack.item
-                val offhandItem = entity.offHandStack.item
-                val dye = when {
-                    mainItem is DyeItem -> mainItem
-                    offhandItem is DyeItem -> offhandItem
-                    else -> null
-                }
-                return@addPropertyGetter when (dye?.color) {
-                    DyeColor.WHITE -> 0.01f
-                    DyeColor.ORANGE -> 0.02f
-                    DyeColor.MAGENTA -> 0.03f
-                    DyeColor.LIGHT_BLUE -> 0.04f
-                    DyeColor.YELLOW -> 0.05f
-                    DyeColor.LIME -> 0.06f
-                    DyeColor.PINK -> 0.07f
-                    DyeColor.GRAY -> 0.08f
-                    DyeColor.LIGHT_GRAY -> 0.09f
-                    DyeColor.CYAN -> 0.1f
-                    DyeColor.PURPLE -> 0.11f
-                    DyeColor.BLUE -> 0.12f
-                    DyeColor.BROWN -> 0.13f
-                    DyeColor.GREEN -> 0.14f
-                    DyeColor.RED -> 0.15f
-                    DyeColor.BLACK -> 0.16f
-                    null -> 0.0f
-                }
-            }
-            return@addPropertyGetter 0.0f
-        }
-    }
+class PaintbrushItem(settings: Settings): Item(settings) {
 
     override fun useOnBlock(context: ItemUsageContext): ActionResult {
         val world = context.world
@@ -78,15 +44,15 @@ class PaintbrushItem(settings: Settings) : Item(settings) {
     }
 
     class PaintbrushInventory(val block: Block): Inventory {
-        override fun getInvStack(slot: Int): ItemStack = ItemStack.EMPTY
+        override fun getStack(slot: Int): ItemStack = ItemStack.EMPTY
         override fun markDirty() = Unit
         override fun clear() = Unit
-        override fun setInvStack(slot: Int, stack: ItemStack?) = Unit
-        override fun removeInvStack(slot: Int): ItemStack = ItemStack.EMPTY
-        override fun canPlayerUseInv(player: PlayerEntity?): Boolean = false
-        override fun getInvSize(): Int = 0
-        override fun takeInvStack(slot: Int, amount: Int): ItemStack = ItemStack.EMPTY
-        override fun isInvEmpty(): Boolean = true
+        override fun setStack(slot: Int, stack: ItemStack?) = Unit
+        override fun removeStack(slot: Int): ItemStack = ItemStack.EMPTY
+        override fun canPlayerUse(player: PlayerEntity?): Boolean = false
+        override fun size(): Int = 0
+        override fun removeStack(slot: Int, amount: Int): ItemStack = ItemStack.EMPTY
+        override fun isEmpty(): Boolean = true
     }
 
     private fun stateFromColor(color: DyeColor): BlockState = when (color) {

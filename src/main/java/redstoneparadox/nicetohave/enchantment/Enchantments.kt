@@ -12,7 +12,7 @@ import redstoneparadox.nicetohave.config.Config
  */
 object Enchantments {
 
-    var FLURRY : Flurry = Flurry(Enchantment.Weight.UNCOMMON, EnchantmentTarget.WEAPON, arrayOf(EquipmentSlot.MAINHAND))
+    var FLURRY : Flurry = Flurry(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON, arrayOf(EquipmentSlot.MAINHAND))
 
     fun registerEnchantments() {
         if (Config.Enchantments.flurry) Registry.register(Registry.ENCHANTMENT, "nicetohave:flurry", FLURRY)

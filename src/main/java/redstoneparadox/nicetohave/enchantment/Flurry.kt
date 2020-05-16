@@ -10,7 +10,7 @@ import java.util.*
 /**
  * Created by RedstoneParadox on 5/25/2019.
  */
-class Flurry(weight: Weight, target: EnchantmentTarget, slots: Array<out EquipmentSlot>) : Enchantment(weight, target, slots) {
+class Flurry(rarity: Rarity, target: EnchantmentTarget, slots: Array<out EquipmentSlot>) : Enchantment(rarity, target, slots) {
 
     override fun getMaximumLevel(): Int {
         return Config.Enchantments.flurryMaxLevels.toInt()

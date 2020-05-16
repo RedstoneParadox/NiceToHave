@@ -7,8 +7,6 @@
     "block.CactusBlockMixin",
     "block.ComposterBlockMixin",
     "block.DispenserBlockMixin",
-    "block.KelpBlockMixin",
-    "block.KelpPlantBlockMixin",
     "block.LeverBlockMixin",
     "block.NetherWartBlockMixin",
     "block.SugarCaneBlockMixin",

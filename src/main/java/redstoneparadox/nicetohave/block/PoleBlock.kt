@@ -1,11 +1,8 @@
 package redstoneparadox.nicetohave.block
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
-import net.minecraft.block.Block
-import net.minecraft.block.BlockState
-import net.minecraft.block.PillarBlock
-import net.minecraft.block.Waterloggable
-import net.minecraft.entity.EntityContext
+import net.minecraft.block.*
+import net.minecraft.block.ShapeContext
 import net.minecraft.fluid.FluidState
 import net.minecraft.fluid.Fluids
 import net.minecraft.item.BlockItem
@@ -19,7 +16,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
-import net.minecraft.world.IWorld
+import net.minecraft.world.WorldAccess
 
 class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
 
@@ -40,11 +37,11 @@ class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).bui
         super.appendProperties(builder)
     }
 
-    override fun getOutlineShape(state: BlockState, blockView_1: BlockView?, blockPos_1: BlockPos?, entityContext_1: EntityContext?): VoxelShape {
+    override fun getOutlineShape(state: BlockState, blockView: BlockView?, blockPos: BlockPos?, shapeContext: ShapeContext): VoxelShape {
         return shapes[getShapeIndex(state)]
     }
 
-    override fun getCollisionShape(state: BlockState, blockView_1: BlockView?, blockPos_1: BlockPos?, entityContext_1: EntityContext?): VoxelShape {
+    override fun getCollisionShape(state: BlockState, blockView: BlockView?, blockPos: BlockPos?, shapeContext: ShapeContext): VoxelShape {
         return shapes[getShapeIndex(state)]
     }
 
@@ -61,7 +58,7 @@ class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).bui
         return if (blockState_1.get(WATERLOGGED) as Boolean) Fluids.WATER.getStill(false) else super.getFluidState(blockState_1)
     }
 
-    override fun getStateForNeighborUpdate(blockState_1: BlockState, direction_1: Direction?, blockState_2: BlockState?, iWorld_1: IWorld?, blockPos_1: BlockPos?, blockPos_2: BlockPos?): BlockState {
+    override fun getStateForNeighborUpdate(blockState_1: BlockState, direction_1: Direction?, blockState_2: BlockState?, iWorld_1: WorldAccess?, blockPos_1: BlockPos?, blockPos_2: BlockPos?): BlockState {
         if (blockState_1.get(WATERLOGGED) as Boolean) {
             iWorld_1!!.fluidTickScheduler.schedule(blockPos_1, Fluids.WATER, Fluids.WATER.getTickRate(iWorld_1))
         }

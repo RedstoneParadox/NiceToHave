@@ -40,7 +40,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements CommandC
     private void attack(Entity entity_1, CallbackInfo ci) {
         PlayerEntity self = ((PlayerEntity) (Object) this);
 
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(self.getMainHandStack());
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(self.getMainHandStack());
 
         if (enchantments.containsKey(Enchantments.INSTANCE.getFLURRY())) {
             int level = enchantments.get(Enchantments.INSTANCE.getFLURRY());

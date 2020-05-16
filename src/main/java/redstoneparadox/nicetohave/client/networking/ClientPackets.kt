@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.network.Packet
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket
 import net.minecraft.util.Identifier
-import net.minecraft.util.PacketByteBuf
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.world.World
 import java.io.IOException
 import java.util.*

@@ -4,7 +4,7 @@ import net.minecraft.block.*
 import net.minecraft.block.dispenser.DispenserBehavior
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior
-import net.minecraft.entity.projectile.Projectile
+import net.minecraft.entity.projectile.ProjectileEntity
 import net.minecraft.item.BoneMealItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -33,10 +33,10 @@ object DispenserBehaviors {
             register(NiceToHaveItems.DYNAMITE!!, object : ProjectileDispenserBehavior() {
                 var entity: ThrownDynamiteEntity? = null
 
-                override fun createProjectile(world: World, position: Position, itemStack: ItemStack): Projectile {
+                override fun createProjectile(world: World, position: Position, itemStack: ItemStack): ProjectileEntity {
                     entity = ThrownDynamiteEntity(world, position.x, position.y, position.z)
                     entity!!.setItem(itemStack)
-                    return entity as Projectile
+                    return entity as ProjectileEntity
                 }
 
                 override fun dispenseSilently(blockPointer_1: BlockPointer?, itemStack_1: ItemStack?): ItemStack {
@@ -60,13 +60,13 @@ object DispenserBehaviors {
         if (Config.Items.fertilizer && NiceToHaveItems.FERTILIZER != null) {
             register(NiceToHaveItems.FERTILIZER!!, object : FallibleItemDispenserBehavior() {
                 override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
-                    this.success = true
+                    isSuccess = true
                     val world = blockPointer_1.world
                     val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
                     if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
-                        this.success = false
+                        isSuccess = false
                     } else if (!world.isClient) {
-                        world.playLevelEvent(2005, blockPos, 0)
+                        world.syncGlobalEvent(2005, blockPos, 0)
                     }
 
                     return itemStack
@@ -102,7 +102,7 @@ object DispenserBehaviors {
     class PlantingDispenserBehavior(private val farmlandBlocks : Array<Block>?, private val plant : Block, private val requiresWater : Boolean = false) : FallibleItemDispenserBehavior() {
 
         override fun dispenseSilently(pointer: BlockPointer, itemStack: ItemStack): ItemStack {
-            success = false
+            isSuccess = false
             val world = pointer.world
             val direction = pointer.blockState.get(DispenserBlock.FACING)
             val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down(1)).block
@@ -112,7 +112,7 @@ object DispenserBehaviors {
                     if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down(1)), world, pointer.blockPos.offset(direction))) {
                         world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
                         itemStack.decrement(1)
-                        success = true
+                        isSuccess = true
                     }
                 }
             }
@@ -122,7 +122,7 @@ object DispenserBehaviors {
                     if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
                         world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
                         itemStack.decrement(1)
-                        success = true
+                        isSuccess = true
                     }
                 }
             }
@@ -141,7 +141,7 @@ object DispenserBehaviors {
             val direction: Direction = pointer.blockState.get(DispenserBlock.FACING)
             val world = pointer.world
 
-            success = false
+            isSuccess = false
 
             if (upwardsOnly && direction == Direction.DOWN) {
                 return super.dispenseSilently(pointer, itemStack)
@@ -162,7 +162,7 @@ object DispenserBehaviors {
 
                 if (stackCount > 0) {
                     itemStack.decrement(stackCount)
-                    success = true
+                    isSuccess = true
                 }
             }
 

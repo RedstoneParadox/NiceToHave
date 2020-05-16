@@ -2,6 +2,7 @@ package redstoneparadox.nicetohave.util.initializers
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry
+import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.block.PoleBlock
@@ -36,7 +37,7 @@ abstract class BlocksInitializer {
         }
     }
 
-    protected fun copySettings(block: Block): Block.Settings {
+    protected fun copySettings(block: Block): AbstractBlock.Settings {
         return FabricBlockSettings.copy(block).build()
     }
 }

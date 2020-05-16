@@ -7,13 +7,15 @@ import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents
 import net.minecraft.world.WorldView
 
-class CustomButtonBlock(val ticks : Int) : AbstractButtonBlock(false, FabricBlockSettings.of(Material.PART).noCollision().strength(0.5f, 0.1f).breakByHand(true).build()) {
+class CustomButtonBlock(val ticks : Int) : AbstractButtonBlock(false, FabricBlockSettings.of(Material.SUPPORTED).noCollision().strength(0.5f, 0.1f).breakByHand(true).build()) {
 
     override fun getClickSound(press: Boolean): SoundEvent {
         return if (press) SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON else SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF
     }
 
-    override fun getTickRate(worldView: WorldView?): Int {
+    /*
+    override fun getPressTicks(): Int {
         return ticks
     }
+    */
 }

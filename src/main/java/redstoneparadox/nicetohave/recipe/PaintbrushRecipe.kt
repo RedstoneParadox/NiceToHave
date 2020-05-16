@@ -16,7 +16,7 @@ import net.minecraft.tag.BlockTags
 import net.minecraft.tag.Tag
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import net.minecraft.util.PacketByteBuf
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import redstoneparadox.nicetohave.item.PaintbrushItem
@@ -161,7 +161,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
 
         override fun serialize(): CompoundTag {
             val nbt = CompoundTag()
-            nbt.putString("tag", tag.id.toString())
+            nbt.putString("tag", tag.toString())
             return nbt
         }
     }

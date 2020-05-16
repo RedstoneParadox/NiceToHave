@@ -2,7 +2,7 @@ package redstoneparadox.nicetohave.entity
 
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.thrown.ThrownItemEntity
+import net.minecraft.entity.projectile.thrown.ThrownItemEntity
 import net.minecraft.item.Item
 import net.minecraft.network.Packet
 import net.minecraft.util.hit.HitResult
@@ -14,13 +14,13 @@ import redstoneparadox.nicetohave.networking.Packets
 /**
  * Created by RedstoneParadox on 5/23/2019.
  */
-class ThrownDynamiteEntity : ThrownItemEntity {
+class ThrownDynamiteEntity: ThrownItemEntity {
 
-    constructor(type : EntityType<ThrownDynamiteEntity>, world : World) : super(type, world)
+    constructor(type: EntityType<ThrownDynamiteEntity>, world : World): super(type, world)
 
-    constructor(world: World, livingEntity: LivingEntity) : super(EntityTypes.THROWN_DYNAMITE, livingEntity, world)
+    constructor(world: World, livingEntity: LivingEntity): super(EntityTypes.THROWN_DYNAMITE, livingEntity, world)
 
-    constructor(world: World, x : Double, y : Double, z : Double) : super(EntityTypes.THROWN_DYNAMITE, x, y, z, world)
+    constructor(world: World, x : Double, y: Double, z: Double): super(EntityTypes.THROWN_DYNAMITE, x, y, z, world)
 
     override fun getDefaultItem(): Item? {
         return NiceToHaveItems.DYNAMITE

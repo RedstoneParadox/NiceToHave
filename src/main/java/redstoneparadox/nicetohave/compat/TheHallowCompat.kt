@@ -12,10 +12,13 @@ import redstoneparadox.nicetohave.config.Config
 object TheHallowCompat: ModInitializer {
 
     override fun onInitialize() {
+        return
+        /*
         if (FabricLoader.getInstance().isModLoaded("thehallow") && Config.Blocks.poles) {
             Blocks.initBlocks()
             Items.initItems()
         }
+        */
     }
     
     object Blocks: BlocksInitializer() {

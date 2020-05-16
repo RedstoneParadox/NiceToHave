@@ -6,7 +6,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import redstoneparadox.nicetohave.block.Properties;
 import redstoneparadox.nicetohave.item.NiceToHaveItems;
@@ -17,12 +17,12 @@ public class Inventories {
 
     public static class FullComposterInventory extends BasicInventory implements SidedInventory {
         private final BlockState state;
-        private final IWorld world;
+        private final WorldAccess world;
         private final BlockPos pos;
         private final boolean last;
         private boolean dirty;
 
-        public FullComposterInventory(BlockState state, IWorld world, BlockPos pos, ItemStack outputItem, boolean last) {
+        public FullComposterInventory(BlockState state, WorldAccess world, BlockPos pos, ItemStack outputItem, boolean last) {
             super(outputItem);
             this.state = state;
             this.world = world;
@@ -32,14 +32,6 @@ public class Inventories {
 
         public int getInvMaxStackAmount() {
             return 64;
-        }
-
-        public int[] getInvAvailableSlots(Direction side) {
-            return side == Direction.DOWN ? new int[]{0} : new int[0];
-        }
-
-        public boolean canInsertInvStack(int slot, ItemStack stack, @Nullable Direction dir) {
-            return false;
         }
 
         public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir) {
@@ -55,6 +47,21 @@ public class Inventories {
             }
 
             this.dirty = true;
+        }
+
+        @Override
+        public int[] getAvailableSlots(Direction side)  {
+            return side == Direction.DOWN ? new int[]{0} : new int[0];
+        }
+
+        @Override
+        public boolean canInsert(int slot, ItemStack stack, Direction dir) {
+            return false;
+        }
+
+        @Override
+        public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+            return canExtractInvStack(slot, stack, dir);
         }
     }
 }
