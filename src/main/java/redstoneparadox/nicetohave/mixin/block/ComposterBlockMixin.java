@@ -51,11 +51,12 @@ public abstract class ComposterBlockMixin {
         world.setBlockState(pos, state.with(FERTILIZER_COUNT, 0).cycle(LEVEL), 3);
     }
 
-    @Inject(method = "scheduledTick", at = @At(value = "HEAD"))
+    @Inject(method = "scheduledTick", at = @At(value = "HEAD"), cancellable = true)
     private void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         if (Config.Items.INSTANCE.getFertilizer() && state.get(LEVEL) >= 7 && state.get(FERTILIZER_COUNT) == 0) {
             world.setBlockState(pos, state.with(FERTILIZER_COUNT, new Random().nextInt(4) + 1).cycle(LEVEL));
             world.playSound(null, pos, SoundEvents.BLOCK_COMPOSTER_READY, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            ci.cancel();
         }
     }
 
