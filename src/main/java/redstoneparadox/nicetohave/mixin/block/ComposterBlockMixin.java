@@ -38,7 +38,7 @@ public abstract class ComposterBlockMixin {
     @Shadow @Final public static IntProperty LEVEL;
 
     @Inject(method = "emptyFullComposter", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ItemEntity;setToDefaultPickupDelay()V"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
-    private static void emptyFullComposter(BlockState state, World world, BlockPos pos, CallbackInfoReturnable<BlockState> cir, float f, float d, float e, float g, ItemEntity itemEntity) {
+    private static void emptyFullComposter(BlockState state, World world, BlockPos pos, CallbackInfoReturnable<BlockState> cir, float f, double d, double e, double g, ItemEntity itemEntity) {
         if (Config.Items.INSTANCE.getFertilizer()) {
             ItemStack fertilizerStack = new ItemStack(NiceToHaveItems.INSTANCE.getFERTILIZER());
             fertilizerStack.setCount(state.get(FERTILIZER_COUNT));

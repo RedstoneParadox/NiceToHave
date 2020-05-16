@@ -21,7 +21,7 @@
     "recipe.BrewingRecipeRegistryAccessor",
     "resource.AbstractFileResourcePackMixin",
     "resource.NamespaceResourceManagerMixin",
-    "server.PlayerManagerMixin",
+
     "world.biome.BambooJungleBiomeMixin",
     "world.biome.BambooJungleHillsBiomeMixin",
     "world.biome.DefaultBiomeFeaturesMixin"
