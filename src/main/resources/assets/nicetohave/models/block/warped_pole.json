@@ -1,0 +1,6 @@
+{
+	"parent": "nicetohave:block/pole",
+	"textures": {
+		"texture": "minecraft:block/warped_stem"
+	}
+}

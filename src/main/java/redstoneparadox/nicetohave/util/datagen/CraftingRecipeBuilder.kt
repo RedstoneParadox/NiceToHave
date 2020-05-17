@@ -135,7 +135,7 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 3)
                 .setOutput("", 1)
 
-        fun generatePoleRecipe(woodPrefix : String, logModId : String = "minecraft") {
+        fun generatePoleRecipe(woodPrefix: String, logModId: String = "minecraft", logSuffix: String = "log") {
             val condition = DataConditionBuilder()
                     .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
 
@@ -144,11 +144,12 @@ class CraftingRecipeBuilder {
             }
 
             POLE_RECIPE
-                    .setIngredients("$logModId:${woodPrefix}_log")
+                    .setIngredients("$logModId:${woodPrefix}_$logSuffix")
                     .setOutput("nicetohave:${woodPrefix}_pole", true)
                     .setCondition(condition)
                     .save()
         }
+
 
         // Generates recipe for gluing slabs back into planks.
         fun woodSlabGlueRecipe(prefix: String, mod: String = "minecraft") {

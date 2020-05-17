@@ -17,7 +17,25 @@ fun main() {
         BasicModelBuilder.createPoleItemModel(strippedPrefix)
         VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
+    */
+    for (prefix in arrayOf("warped", "crimson")) {
+        CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
 
+        CraftingRecipeBuilder.generatePoleRecipe(prefix, "minecraft", "stem")
+        LootTableBuilder.generatePoleDrop("${prefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(prefix, logSuffix = "stem")
+        BasicModelBuilder.createPoleItemModel(prefix)
+        VariantBlockStateBuilder.generatePoleBlockState(prefix)
+
+        val strippedPrefix = "stripped_$prefix"
+        CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix, "minecraft", "stem")
+        LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole")
+        BasicModelBuilder.createPoleBlockModel(strippedPrefix, logSuffix = "stem")
+        BasicModelBuilder.createPoleItemModel(strippedPrefix)
+        VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
+    }
+
+    /*
     for (prefix in arrayOf("redwood", "hemlock", "rubber", "cypress", "willow", "japanese_maple", "rainbow_eucalyptus", "sakura")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix, "terrestria")
         CraftingRecipeBuilder.generatePoleRecipe(prefix, "terrestria")
@@ -75,6 +93,7 @@ fun main() {
     }
     */
 
+    /*
     CraftingRecipeBuilder.woodSlabGlueRecipe("deadwood", "thehallow")
     CraftingRecipeBuilder.generatePoleRecipe("deadwood", "thehallow")
     LootTableBuilder.generatePoleDrop("deadwood_pole", "thehallow")
@@ -88,4 +107,5 @@ fun main() {
     BasicModelBuilder.createPoleBlockModel(strippedDeadWood, "thehallow")
     BasicModelBuilder.createPoleItemModel(strippedDeadWood)
     VariantBlockStateBuilder.generatePoleBlockState(strippedDeadWood)
+     */
 }

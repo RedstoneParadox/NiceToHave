@@ -70,10 +70,10 @@ class BasicModelBuilder {
         private val POLE_ITEM_MODEL = BasicModelBuilder()
                 .setType(ModelType.ITEM)
 
-        fun createPoleBlockModel(woodPrefix: String, woodNamespace: String = "minecraft") {
+        fun createPoleBlockModel(woodPrefix: String, woodNamespace: String = "minecraft", logSuffix: String = "log") {
             POLE_BLOCK_MODEL
                     .setID("${woodPrefix}_pole")
-                    .addTexture("texture", "$woodNamespace:block/${woodPrefix}_log")
+                    .addTexture("texture", "$woodNamespace:block/${woodPrefix}_${logSuffix}")
                     .save()
         }
 

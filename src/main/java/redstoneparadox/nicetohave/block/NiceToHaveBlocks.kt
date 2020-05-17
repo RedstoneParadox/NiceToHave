@@ -21,19 +21,23 @@ object NiceToHaveBlocks : BlocksInitializer() {
     val GRAVEL_GOLD_ORE : Block = register("gravel_gold_ore", GravelBlock(copySettings(Blocks.GRAVEL)))
 
     //Poles
-    val OAK_POLE : PoleBlock? = registerWoodPole("oak", Blocks.OAK_WOOD)
-    val SPRUCE_POLE : PoleBlock? = registerWoodPole("spruce", Blocks.SPRUCE_WOOD)
-    val BIRCH_POLE : PoleBlock? = registerWoodPole("birch", Blocks.BIRCH_WOOD)
-    val JUNGLE_POLE : PoleBlock? = registerWoodPole("jungle", Blocks.JUNGLE_WOOD)
-    val ACACIA_POLE : PoleBlock? = registerWoodPole("acacia", Blocks.ACACIA_WOOD)
-    val DARK_OAK_POLE : PoleBlock? = registerWoodPole("dark_oak", Blocks.DARK_OAK_WOOD)
+    val OAK_POLE: PoleBlock? = registerWoodPole("oak", Blocks.OAK_WOOD)
+    val SPRUCE_POLE: PoleBlock? = registerWoodPole("spruce", Blocks.SPRUCE_WOOD)
+    val BIRCH_POLE: PoleBlock? = registerWoodPole("birch", Blocks.BIRCH_WOOD)
+    val JUNGLE_POLE: PoleBlock? = registerWoodPole("jungle", Blocks.JUNGLE_WOOD)
+    val ACACIA_POLE: PoleBlock? = registerWoodPole("acacia", Blocks.ACACIA_WOOD)
+    val DARK_OAK_POLE: PoleBlock? = registerWoodPole("dark_oak", Blocks.DARK_OAK_WOOD)
+    val WARPED_POLE: PoleBlock? = registerWoodPole("warped", Blocks.WARPED_STEM)
+    val CRIMSON_POLE: PoleBlock? = registerWoodPole("crimson", Blocks.CRIMSON_STEM)
 
-    val STRIPPED_OAK_POLE : PoleBlock? = registerWoodPole("stripped_oak", Blocks.OAK_WOOD)
-    val STRIPPED_SPRUCE_POLE : PoleBlock? = registerWoodPole("stripped_spruce", Blocks.SPRUCE_WOOD)
-    val STRIPPED_BIRCH_POLE : PoleBlock? = registerWoodPole("stripped_birch", Blocks.BIRCH_WOOD)
-    val STRIPPED_JUNGLE_POLE : PoleBlock? = registerWoodPole("stripped_jungle", Blocks.JUNGLE_WOOD)
-    val STRIPPED_ACACIA_POLE : PoleBlock? = registerWoodPole("stripped_acacia", Blocks.ACACIA_WOOD)
-    val STRIPPED_DARK_OAK_POLE : PoleBlock? = registerWoodPole("stripped_dark_oak", Blocks.DARK_OAK_WOOD)
+    val STRIPPED_OAK_POLE: PoleBlock? = registerWoodPole("stripped_oak", Blocks.OAK_WOOD)
+    val STRIPPED_SPRUCE_POLE: PoleBlock? = registerWoodPole("stripped_spruce", Blocks.SPRUCE_WOOD)
+    val STRIPPED_BIRCH_POLE: PoleBlock? = registerWoodPole("stripped_birch", Blocks.BIRCH_WOOD)
+    val STRIPPED_JUNGLE_POLE: PoleBlock? = registerWoodPole("stripped_jungle", Blocks.JUNGLE_WOOD)
+    val STRIPPED_ACACIA_POLE: PoleBlock? = registerWoodPole("stripped_acacia", Blocks.ACACIA_WOOD)
+    val STRIPPED_DARK_OAK_POLE: PoleBlock? = registerWoodPole("stripped_dark_oak", Blocks.DARK_OAK_WOOD)
+    val STRIPPED_WARPED_POLE: PoleBlock? = registerWoodPole("stripped_warped", Blocks.WARPED_STEM)
+    val STRIPPED_CRIMSON_POLE: PoleBlock? = registerWoodPole("stripped_crimson", Blocks.CRIMSON_STEM)
 
     fun initBlocks() {
         if (Config.Blocks.poles) {
@@ -49,7 +53,9 @@ object NiceToHaveBlocks : BlocksInitializer() {
                 BIRCH_POLE to STRIPPED_BIRCH_POLE,
                 JUNGLE_POLE to STRIPPED_JUNGLE_POLE,
                 ACACIA_POLE to STRIPPED_ACACIA_POLE,
-                DARK_OAK_POLE to STRIPPED_DARK_OAK_POLE
+                DARK_OAK_POLE to STRIPPED_DARK_OAK_POLE,
+                WARPED_POLE to STRIPPED_WARPED_POLE,
+                CRIMSON_POLE to STRIPPED_CRIMSON_POLE
         )
     }
 }

@@ -33,19 +33,23 @@ object NiceToHaveItems : ItemsInitializer() {
 
     var PAINT_BRUSH: PaintbrushItem? = register("paintbrush", PaintbrushItem(Item.Settings().group(ItemGroup.TOOLS)), Config.Items.paintBrush)
 
-    var OAK_POLE : BlockItem? = registerWoodPoleItem("oak", NiceToHaveBlocks.OAK_POLE)
-    var SPRUCE_POLE : BlockItem? = registerWoodPoleItem("spruce", NiceToHaveBlocks.SPRUCE_POLE)
-    var BIRCH_POLE : BlockItem? = registerWoodPoleItem("birch", NiceToHaveBlocks.BIRCH_POLE)
-    var JUNGLE_POLE : BlockItem? = registerWoodPoleItem("jungle", NiceToHaveBlocks.JUNGLE_POLE)
-    var ACACIA_POLE : BlockItem? = registerWoodPoleItem("acacia", NiceToHaveBlocks.ACACIA_POLE)
-    var DARK_OAK_POLE : BlockItem? = registerWoodPoleItem("dark_oak", NiceToHaveBlocks.DARK_OAK_POLE)
+    var OAK_POLE: BlockItem? = registerWoodPoleItem("oak", NiceToHaveBlocks.OAK_POLE)
+    var SPRUCE_POLE: BlockItem? = registerWoodPoleItem("spruce", NiceToHaveBlocks.SPRUCE_POLE)
+    var BIRCH_POLE: BlockItem? = registerWoodPoleItem("birch", NiceToHaveBlocks.BIRCH_POLE)
+    var JUNGLE_POLE: BlockItem? = registerWoodPoleItem("jungle", NiceToHaveBlocks.JUNGLE_POLE)
+    var ACACIA_POLE: BlockItem? = registerWoodPoleItem("acacia", NiceToHaveBlocks.ACACIA_POLE)
+    var DARK_OAK_POLE: BlockItem? = registerWoodPoleItem("dark_oak", NiceToHaveBlocks.DARK_OAK_POLE)
+    var WARPED_POLE: BlockItem? = registerWoodPoleItem("warped", NiceToHaveBlocks.WARPED_POLE)
+    var CRIMSON_POLE: BlockItem? = registerWoodPoleItem("crimson", NiceToHaveBlocks.CRIMSON_POLE)
 
-    var STRIPPED_OAK_POLE : BlockItem? = registerWoodPoleItem("stripped_oak", NiceToHaveBlocks.STRIPPED_OAK_POLE)
-    var STRIPPED_SPRUCE_POLE : BlockItem? = registerWoodPoleItem("stripped_spruce", NiceToHaveBlocks.STRIPPED_SPRUCE_POLE)
-    var STRIPPED_BIRCH_POLE : BlockItem? = registerWoodPoleItem("stripped_birch", NiceToHaveBlocks.STRIPPED_BIRCH_POLE)
-    var STRIPPED_JUNGLE_POLE : BlockItem? = registerWoodPoleItem("stripped_jungle", NiceToHaveBlocks.STRIPPED_JUNGLE_POLE)
-    var STRIPPED_ACACIA_POLE : BlockItem? = registerWoodPoleItem("stripped_acacia", NiceToHaveBlocks.STRIPPED_ACACIA_POLE)
-    var STRIPPED_DARK_OAK_POLE : BlockItem? = registerWoodPoleItem("stripped_dark_oak", NiceToHaveBlocks.STRIPPED_DARK_OAK_POLE)
+    var STRIPPED_OAK_POLE: BlockItem? = registerWoodPoleItem("stripped_oak", NiceToHaveBlocks.STRIPPED_OAK_POLE)
+    var STRIPPED_SPRUCE_POLE: BlockItem? = registerWoodPoleItem("stripped_spruce", NiceToHaveBlocks.STRIPPED_SPRUCE_POLE)
+    var STRIPPED_BIRCH_POLE: BlockItem? = registerWoodPoleItem("stripped_birch", NiceToHaveBlocks.STRIPPED_BIRCH_POLE)
+    var STRIPPED_JUNGLE_POLE: BlockItem? = registerWoodPoleItem("stripped_jungle", NiceToHaveBlocks.STRIPPED_JUNGLE_POLE)
+    var STRIPPED_ACACIA_POLE: BlockItem? = registerWoodPoleItem("stripped_acacia", NiceToHaveBlocks.STRIPPED_ACACIA_POLE)
+    var STRIPPED_DARK_OAK_POLE: BlockItem? = registerWoodPoleItem("stripped_dark_oak", NiceToHaveBlocks.STRIPPED_DARK_OAK_POLE)
+    var STRIPPED_WARPED_POLE: BlockItem? = registerWoodPoleItem("stripped_warped", NiceToHaveBlocks.STRIPPED_WARPED_POLE)
+    var STRIPPED_CRIMSON_POLE: BlockItem? = registerWoodPoleItem("stripped_crimson", NiceToHaveBlocks.STRIPPED_CRIMSON_POLE)
 
     fun initItems() {
         if (DYNAMITE == null) {

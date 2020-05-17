@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"a",
+		"a",
+		"a"
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:stripped_crimson_stem"
+		}
+	},
+	"result": {
+		"item": "nicetohave:stripped_crimson_pole",
+		"count": 12
+	}
+}
