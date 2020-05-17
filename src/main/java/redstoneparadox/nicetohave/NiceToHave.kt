@@ -40,7 +40,7 @@ object NiceToHave : ModInitializer {
     }
 
     override fun onInitialize() {
-        out("It's Nice To Have you!")
+        out("Initializing Nice to Have.")
 
         for (block in Registry.BLOCK.stream()) {
             WrenchItem.blockToInteraction(block)
@@ -62,19 +62,19 @@ object NiceToHave : ModInitializer {
     }
 
     fun out(msg : Any) {
-        logger.info("[Nice to Have] $msg")
+        logger.info("$msg")
     }
 
     fun warn(msg: Any) {
-        logger.warn("[Nice to Have] $msg")
+        logger.warn("$msg")
     }
 
     fun error(msg: Any) {
-        logger.error("[Nice to Have] $msg")
+        logger.error("$msg")
     }
 
-    fun clientOut(msg : Any) {
-        logger.info("[Nice to Have (client)] $msg")
+    fun clientOut(msg: Any) {
+        logger.info("$msg")
     }
 
 }

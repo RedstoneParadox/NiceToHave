@@ -21,7 +21,7 @@ import redstoneparadox.nicetohave.client.render.entity.EntityRenderers
 class NiceToHaveClient : ClientModInitializer {
 
     override fun onInitializeClient() {
-        NiceToHave.clientOut("It's Nice To Have you on the client!")
+        NiceToHave.clientOut("Initializing Nice to Have on the Client.")
         EntityRenderers.registerRenderers()
         ClientPackets.registerPackets()
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
