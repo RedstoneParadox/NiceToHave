@@ -2,7 +2,6 @@ package redstoneparadox.nicetohave.mixin.entity.vehicle;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.entity.vehicle.TntMinecartEntity;
@@ -13,10 +12,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import redstoneparadox.nicetohave.util.MinecartTracker;
 import redstoneparadox.nicetohave.config.Config;
 
 import static net.minecraft.entity.vehicle.AbstractMinecartEntity.Type.TNT;
@@ -29,13 +24,6 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
 
     public AbstractMinecartEntityMixin(EntityType<?> entityType_1, World world_1) {
         super(entityType_1, world_1);
-    }
-
-    @Inject(method = "dropItems", at = @At("HEAD"))
-    private void dropItems(DamageSource damageSource_1, CallbackInfo ci) {
-        AbstractMinecartEntity self = ((AbstractMinecartEntity) (Object) this);
-
-        MinecartTracker.INSTANCE.removeCart(self);
     }
 
     @Override
