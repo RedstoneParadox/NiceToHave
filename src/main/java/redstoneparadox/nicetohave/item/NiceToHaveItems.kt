@@ -30,6 +30,7 @@ object NiceToHaveItems : ItemsInitializer() {
     var SAND_GOLD_ORE: BlockItem? = registerBlockItem("sand_gold_ore", NiceToHaveBlocks.SAND_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     var GRAVEL_GOLD_ORE: BlockItem? = registerBlockItem("gravel_gold_ore", NiceToHaveBlocks.GRAVEL_GOLD_ORE, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
     //var CHAIN_LINK_FENCE: BlockItem? = registerBlockItem("chain_link_fence", Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS))
+    var FUSED_WARPED_WART: BlockItem? = registerBlockItem("fused_warped_wart", NiceToHaveBlocks.FUSED_WARPED_WART, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
 
     var PAINT_BRUSH: PaintbrushItem? = register("paintbrush", PaintbrushItem(Item.Settings().group(ItemGroup.TOOLS)), Config.Items.paintBrush)
 

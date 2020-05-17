@@ -30,6 +30,7 @@ class NiceToHaveClient : ClientModInitializer {
         }, NiceToHaveBlocks.TRIMMED_VINE)
 
         if (NiceToHaveBlocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.CHAIN_LINK_FENCE, RenderLayer.getCutout())
+        if (NiceToHaveBlocks.FUSED_WARPED_WART != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.FUSED_WARPED_WART, RenderLayer.getTranslucent())
 
 
         ModelPredicateProviderRegistryAccessor.callRegister(Identifier("color")) { stack, world, entity ->
