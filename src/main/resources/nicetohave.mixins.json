@@ -14,7 +14,6 @@
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
     "entity.vehicle.AbstractMinecartEntityMixin",
-    "entity.vehicle.MinecartEntitiesMixin",
     "entity.vehicle.BoatEntityMixin",
     "item.AxeItemMixin",
     "item.ShearsItemMixin",
