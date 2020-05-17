@@ -16,6 +16,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import redstoneparadox.nicetohave.block.CustomButtonBlock;
 import redstoneparadox.nicetohave.config.Config;
 
 @Mixin(AbstractButtonBlock.class)
@@ -35,6 +37,15 @@ public abstract class AbstractButtonBlockMixin extends WallMountedBlock {
     @Inject(method = "appendProperties", at = @At("HEAD"))
     private void appendProperties(StateManager.Builder<Block, BlockState> stateFactory$Builder_1, CallbackInfo ci) {
         stateFactory$Builder_1.add(Properties.WATERLOGGED);
+    }
+
+    @Inject(method = "getPressTicks", at = @At("HEAD"), cancellable = true)
+    private void getPressTicks(CallbackInfoReturnable<Integer> cir) {
+        AbstractButtonBlock self = (AbstractButtonBlock)(Object)this;
+
+        if (self instanceof CustomButtonBlock) {
+            cir.setReturnValue(((CustomButtonBlock) self).getPressTicks());
+        }
     }
 
     @Override
