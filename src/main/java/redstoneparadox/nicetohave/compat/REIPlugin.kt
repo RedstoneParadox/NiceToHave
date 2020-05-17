@@ -99,10 +99,11 @@ object REIPlugin: REIPluginV0 {
             val widgets = mutableListOf<Widget>()
 
             widgets.add(Widgets.createRecipeBase(bounds))
+            widgets.add(Widgets.createTexturedWidget(DISPLAY_TEXTURE, startPoint.x, startPoint.y, 102, 26))
 
-            widgets.add(Widgets.createSlot(Point(startPoint.x + 4, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]))
-            widgets.add(Widgets.createSlot(Point(startPoint.x + 24, startPoint.y + 5)).entries(getDyeItems(recipeDisplay.dye)))
-            widgets.add(Widgets.createSlot(Point(startPoint.x + 81, startPoint.y + 5)).entry(recipeDisplay.output))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 4, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]).backgroundEnabled(false))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 24, startPoint.y + 5)).entries(getDyeItems(recipeDisplay.dye)).backgroundEnabled(false))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 81, startPoint.y + 5)).entry(recipeDisplay.output).backgroundEnabled(false))
 
             return widgets
         }
