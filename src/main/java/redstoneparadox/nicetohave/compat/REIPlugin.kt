@@ -8,21 +8,16 @@ import me.shedaniel.rei.api.RecipeDisplay
 import me.shedaniel.rei.api.RecipeHelper
 import me.shedaniel.rei.api.plugins.REIPluginV0
 import me.shedaniel.rei.api.widgets.Widgets
-import me.shedaniel.rei.gui.widget.EntryWidget
-import me.shedaniel.rei.gui.widget.RecipeBaseWidget
 import me.shedaniel.rei.gui.widget.Widget
 import net.minecraft.block.Block
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.resource.language.I18n
 import net.minecraft.item.DyeItem
-import net.minecraft.item.Item
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import redstoneparadox.nicetohave.config.Config
 import redstoneparadox.nicetohave.item.NiceToHaveItems
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
-import java.util.function.Supplier
 
 @Suppress("unused")
 object REIPlugin: REIPluginV0 {
@@ -55,7 +50,7 @@ object REIPlugin: REIPluginV0 {
             for (entry in recipe.colorMap) {
                 val dye = entry.key
                 val output = entry.value
-                recipeHelper.registerDisplay(PAINTING, PaintingDisplay(inputs, dye, EntryStack.create(output)))
+                recipeHelper.registerDisplay(PaintingDisplay(inputs, dye, EntryStack.create(output)))
             }
         }
     }
@@ -103,13 +98,13 @@ object REIPlugin: REIPluginV0 {
             val startPoint = Point(bounds.centerX - 51, bounds.centerY - 13)
             val widgets = mutableListOf<Widget>()
 
-            Widgets.createRecipeBase(bounds)
+            widgets.add(Widgets.createRecipeBase(bounds))
 
             widgets.add(Widgets.createSlot(Point(startPoint.x + 4, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]))
-            widgets.add(Widgets.createSlot(Point(startPoint.x + 24, startPoint.y + 5)).entries(recipeDisplay.inputEntries[0]))
+            widgets.add(Widgets.createSlot(Point(startPoint.x + 24, startPoint.y + 5)).entries(getDyeItems(recipeDisplay.dye)))
             widgets.add(Widgets.createSlot(Point(startPoint.x + 81, startPoint.y + 5)).entry(recipeDisplay.output))
 
-            return super.setupDisplay(recipeDisplay, bounds)
+            return widgets
         }
 
         private fun getDyeItems(dye: DyeColor): List<EntryStack> {
