@@ -14,7 +14,7 @@ object NiceToHaveBlocks : BlocksInitializer() {
     val ANALOG_REDSTONE_EMITTER : Block? = register("analog_redstone_emitter", AnalogRedstoneEmitterBlock(), Config.Redstone.analogRedstoneEmitter)
     val CHAIN_LINK_FENCE : ChainLinkFenceBlock? = register("chain_link_fence", ChainLinkFenceBlock(), false)
     val TRIMMED_VINE : Block? = register("trimmed_vine", TrimmedVineBlock(), Config.Blocks.trimmedVines)
-    val FUSED_WARPED_WART: Block? = register("fused_warped_wart", FusedWarpedWartBlock())
+    val FUSED_WARPED_WART: Block? = register("fused_warped_wart", FusedWarpedWartBlock(), false)
 
     //Ore Blocks
     val DIRT_GOLD_ORE : Block = register("dirt_gold_ore", Block(copySettings(Blocks.DIRT)))
