@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "nicetohave",
-  "version": "1.3.0-beta.5",
+  "version": "1.3.0-beta.6",
 
   "name": "Nice to Have",
   "description": "Nice To Have is a mod about adding small features that are...well...nice to have, without disrupting the vanilla experience.",
@@ -54,14 +54,13 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.6.1",
-    "fabric": ">=0.3.2",
-    "fabric-language-kotlin": ">=1.3.40"
+    "fabricloader": ">=0.8.3",
+    "fabric": ">=0.10.9",
+    "fabric-language-kotlin": ">=1.3.71"
   },
   "suggests": {
     "terrestria": "*",
-    "traverse": "*",
-    "thehallow": "*"
+    "traverse": "*"
   },
 
   "custom": {
