@@ -164,7 +164,12 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
 
         override fun serialize(): CompoundTag {
             val nbt = CompoundTag()
-            nbt.putString("tag", tag.toString())
+            if (tag is Tag.Identified<Block>) {
+                nbt.putString("tag", tag.id.toString())
+            }
+            else {
+                nbt.putString("tag", "empty")
+            }
             return nbt
         }
     }
