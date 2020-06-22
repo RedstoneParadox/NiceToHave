@@ -21,6 +21,8 @@ import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import io.github.redstoneparadox.nicetohave.item.PaintbrushItem
+import io.github.redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
+import net.fabricmc.fabric.api.tag.TagRegistry
 import java.util.*
 
 class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>, private val id: Identifier): Recipe<PaintbrushItem.PaintbrushInventory> {
@@ -121,13 +123,14 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
         @Throws(JsonSyntaxException::class)
         private fun readInput(nbt: CompoundTag): PaintPredicate {
             if (nbt["block"] is StringTag) {
-                val blockID = nbt["block"]?.asString()
-                val block = Registry.BLOCK[Identifier(blockID)]
+                val blockID = Identifier(nbt["block"]?.asString())
+                val block = Registry.BLOCK[blockID]
                 return BlockPredicate(block)
             }
             else if (nbt["tag"] is StringTag) {
-                val tagID = nbt["tag"]?.asString()
-                val tag = BlockTags.getContainer().get(Identifier(tagID))
+                val tagID = Identifier(nbt["tag"]?.asString())
+                var tag = BlockTags.getContainer().get(tagID)
+                if (tag == null) tag = NiceToHaveBlockTags.getBlockTag(tagID)
                 if (tag != null) return TagPredicate(tag)
             }
 

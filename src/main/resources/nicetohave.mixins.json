@@ -19,13 +19,12 @@
     "item.ShearsItemMixin",
     "recipe.BrewingRecipeRegistryAccessor",
     "resource.AbstractFileResourcePackMixin",
-
-
     "world.biome.BambooJungleBiomeMixin",
     "world.biome.BambooJungleHillsBiomeMixin",
     "world.biome.DefaultBiomeFeaturesMixin"
   ],
   "client": [
+    "client.recipebook.MixinClientRecipeBook"
   ],
   "server": [
   ],

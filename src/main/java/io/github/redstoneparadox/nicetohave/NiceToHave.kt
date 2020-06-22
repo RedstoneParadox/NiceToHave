@@ -25,15 +25,7 @@ object NiceToHave : ModInitializer {
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
 
     init {
-        PaintbrushRecipe.SERIALIZER
-        PaintbrushRecipe.TYPE
 
-        NiceToHaveBlockTags.CONCRETE
-        NiceToHaveBlockTags.CONCRETE_POWDER
-        NiceToHaveBlockTags.GLASS
-        NiceToHaveBlockTags.GLASS_PANE
-        NiceToHaveBlockTags.TERRACOTTA
-        NiceToHaveBlockTags.VANILLA_WOOL
     }
 
     override fun onInitialize() {
@@ -43,6 +35,17 @@ object NiceToHave : ModInitializer {
             WrenchItem.blockToInteraction(block)
             DispenserBehaviors.blockToDispenserBehavior(block, Registry.BLOCK.getId(block))
         }
+
+        PaintbrushRecipe.SERIALIZER
+        PaintbrushRecipe.TYPE
+
+        NiceToHaveBlockTags.CONCRETE
+        NiceToHaveBlockTags.CONCRETE_POWDER
+        NiceToHaveBlockTags.GLASS
+        NiceToHaveBlockTags.GLASS_PANE
+        NiceToHaveBlockTags.TERRACOTTA
+        NiceToHaveBlockTags.VANILLA_WOOL
+        NiceToHaveBlockTags.MAP
 
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
