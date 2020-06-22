@@ -12,7 +12,7 @@ import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilde
  */
 object EntityTypes {
 
-    val THROWN_DYNAMITE: EntityType<ThrownDynamiteEntity> = FabricEntityTypeBuilder.create<ThrownDynamiteEntity>(SpawnGroup.MISC) { entityType, world ->  ThrownDynamiteEntity(entityType, world)}.size(EntityDimensions.fixed(0.25f, 0.25f)).trackable(4, 20).build()
+    val THROWN_DYNAMITE: EntityType<ThrownDynamiteEntity> = FabricEntityTypeBuilder.create<ThrownDynamiteEntity>(SpawnGroup.MISC) { entityType, world ->  ThrownDynamiteEntity(entityType, world)}.dimensions(EntityDimensions.fixed(0.25f, 0.25f)).trackable(4, 20).build()
 
     fun registerEntityTypes() {
         if (Config.Items.dynamite) Registry.register(Registry.ENTITY_TYPE, "nicetohave:thrown_dynamite", THROWN_DYNAMITE)
