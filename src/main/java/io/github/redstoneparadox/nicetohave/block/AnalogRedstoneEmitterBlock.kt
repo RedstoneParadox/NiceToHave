@@ -1,6 +1,6 @@
 package io.github.redstoneparadox.nicetohave.block
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
@@ -19,7 +19,7 @@ import net.minecraft.world.World
 /**
  * Created by RedstoneParadox on 7/30/2019.
  */
-class AnalogRedstoneEmitterBlock() : RedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK).build()) {
+class AnalogRedstoneEmitterBlock() : RedstoneBlock(FabricBlockSettings.copy(Blocks.REDSTONE_BLOCK)) {
 
     init {
         defaultState = getStateManager().defaultState.with(POWER_LEVEL, 0)

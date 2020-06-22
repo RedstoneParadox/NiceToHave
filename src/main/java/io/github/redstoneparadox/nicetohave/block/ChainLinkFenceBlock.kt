@@ -1,10 +1,11 @@
 package io.github.redstoneparadox.nicetohave.block
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings
+
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.FenceBlock
 import net.minecraft.block.Material
 
-class ChainLinkFenceBlock() : FenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f).build()) {
+class ChainLinkFenceBlock() : FenceBlock(FabricBlockSettings.of(Material.METAL).strength(0.5f, 0.1f)) {
 
     /*
     init {

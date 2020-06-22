@@ -2,7 +2,6 @@ package io.github.redstoneparadox.nicetohave.client
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
-import net.fabricmc.fabric.api.client.render.ColorProviderRegistry
 import net.fabricmc.fabric.mixin.`object`.builder.ModelPredicateProviderRegistryAccessor
 import net.minecraft.client.color.block.BlockColorProvider
 import net.minecraft.client.render.RenderLayer
@@ -14,6 +13,7 @@ import io.github.redstoneparadox.nicetohave.NiceToHave
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import io.github.redstoneparadox.nicetohave.client.networking.ClientPackets
 import io.github.redstoneparadox.nicetohave.client.render.entity.EntityRenderers
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
 
 /**
  * Created by RedstoneParadox on 5/24/2019.

@@ -1,11 +1,11 @@
 package io.github.redstoneparadox.nicetohave.entity
 
-import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityType
 import net.minecraft.util.registry.Registry
 import io.github.redstoneparadox.nicetohave.config.Config
+import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 
 /**
  * Created by RedstoneParadox on 5/23/2019.

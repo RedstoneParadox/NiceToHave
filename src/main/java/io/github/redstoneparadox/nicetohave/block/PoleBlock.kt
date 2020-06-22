@@ -1,6 +1,6 @@
 package io.github.redstoneparadox.nicetohave.block
 
-import net.fabricmc.fabric.api.block.FabricBlockSettings
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.minecraft.block.*
 import net.minecraft.block.ShapeContext
 import net.minecraft.fluid.FluidState
@@ -18,7 +18,7 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.WorldAccess
 
-class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block).build()), Waterloggable {
+class PoleBlock(block : Block) : PillarBlock(FabricBlockSettings.copy(block)), Waterloggable {
 
     private val shapes : Array<VoxelShape>
 
