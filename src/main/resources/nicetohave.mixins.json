@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "redstoneparadox.nicetohave.mixin",
+  "package": "io.github.redstoneparadox.nicetohave.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "block.AbstractButtonBlockMixin",
