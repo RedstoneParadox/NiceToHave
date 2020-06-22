@@ -21,31 +21,31 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.NiceToHave"
+        "value": "io.github.redstoneparadox.nicetohave.NiceToHave"
       },
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompat"
+        "value": "io.github.redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompat"
       },
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.compat.traverse.TraverseCompat"
+        "value": "io.github.redstoneparadox.nicetohave.compat.traverse.TraverseCompat"
       },
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.compat.TheHallowCompat"
+        "value": "io.github.redstoneparadox.nicetohave.compat.TheHallowCompat"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.client.NiceToHaveClient"
+        "value": "io.github.redstoneparadox.nicetohave.client.NiceToHaveClient"
       }
     ],
     "rei_plugins_v0": [
       {
         "adapter": "kotlin",
-        "value": "redstoneparadox.nicetohave.compat.REIPlugin"
+        "value": "io.github.redstoneparadox.nicetohave.compat.REIPlugin"
       }
     ]
   },
