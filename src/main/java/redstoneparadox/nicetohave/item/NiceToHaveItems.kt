@@ -27,7 +27,6 @@ object NiceToHaveItems : ItemsInitializer() {
     var GOLD_BUTTON : BlockItem? = registerBlockItem("gold_button", NiceToHaveBlocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
     var ANALOG_REDSTONE_EMITTER: BlockItem? = registerBlockItem("analog_redstone_emitter", NiceToHaveBlocks.ANALOG_REDSTONE_EMITTER, Item.Settings().group(ItemGroup.REDSTONE))
     //var CHAIN_LINK_FENCE: BlockItem? = registerBlockItem("chain_link_fence", Blocks.CHAIN_LINK_FENCE, Item.Settings().group(ItemGroup.DECORATIONS))
-    var FUSED_WARPED_WART: BlockItem? = registerBlockItem("fused_warped_wart", NiceToHaveBlocks.FUSED_WARPED_WART, Item.Settings().group(ItemGroup.BUILDING_BLOCKS))
 
     var PAINT_BRUSH: PaintbrushItem? = register("paintbrush", PaintbrushItem(Item.Settings().group(ItemGroup.TOOLS)), Config.Items.paintBrush)
 
