@@ -16,9 +16,6 @@ import redstoneparadox.nicetohave.misc.Listeners
 import redstoneparadox.nicetohave.potion.Potions
 import redstoneparadox.nicetohave.recipe.PaintbrushRecipe
 import redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
-import redstoneparadox.nicetohave.world.biome.Biomes
-import redstoneparadox.nicetohave.world.gen.decorator.Decorators
-import redstoneparadox.nicetohave.world.gen.feature.Features
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -54,9 +51,6 @@ object NiceToHave : ModInitializer {
         NiceToHaveItems.initItems()
         Enchantments.registerEnchantments()
         DispenserBehaviors.registerBehaviors()
-        Decorators.registerDecorators()
-        Features.registerFeatures()
-        Biomes.registerBiomes()
         Listeners.initListeners()
         Commands.initCommands()
     }

@@ -12,7 +12,7 @@ import java.util.*
  */
 class Flurry(rarity: Rarity, target: EnchantmentTarget, slots: Array<out EquipmentSlot>) : Enchantment(rarity, target, slots) {
 
-    override fun getMaximumLevel(): Int {
+    override fun getMaxLevel(): Int {
         return Config.Enchantments.flurryMaxLevels.toInt()
     }
 

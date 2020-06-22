@@ -2,7 +2,8 @@ package redstoneparadox.nicetohave.recipe
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
-import com.mojang.datafixers.Dynamic
+import com.mojang.serialization.Dynamic
+import com.mojang.serialization.JsonOps
 import net.minecraft.block.Block
 import net.minecraft.datafixer.NbtOps
 import net.minecraft.inventory.Inventory
@@ -20,7 +21,6 @@ import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import redstoneparadox.nicetohave.item.PaintbrushItem
-import redstoneparadox.nicetohave.util.FixedJsonOps
 import java.util.*
 
 class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>, private val id: Identifier): Recipe<PaintbrushItem.PaintbrushInventory> {
@@ -91,7 +91,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
         }
 
         override fun read(id: Identifier, json: JsonObject): PaintbrushRecipe {
-            val nbt = Dynamic.convert(FixedJsonOps.INSTANCE, NbtOps.INSTANCE, json)
+            val nbt = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, json)
             if (nbt !is CompoundTag) throw JsonSyntaxException("Invalid recipe file!")
             return read(id, nbt)
         }

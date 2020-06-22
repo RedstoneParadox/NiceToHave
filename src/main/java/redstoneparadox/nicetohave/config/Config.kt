@@ -53,8 +53,6 @@ object Config: RootConfigCategory("config.json5") {
     }
 
     object World: ConfigCategory("world", "Various world features") {
-        var goldInRivers: Boolean by option(true, "gold_in_rivers", "Randomly adds patches of gold in the rivers of frozen and badlands biomes.")
-        var riverGoldPercent: Double by option(10.0, 0.0..100.0, "river_gold_percent", "Determines what percentage of the river bed in a river gold patch has gold.")
         var peacefulBambooJungle: Boolean by option(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
         var disablePonds: Boolean by option(true, "disable_ponds", "Removes small water and lava ponds from the world.")
     }

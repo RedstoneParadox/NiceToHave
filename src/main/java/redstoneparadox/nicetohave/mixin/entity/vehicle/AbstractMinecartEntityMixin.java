@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +28,7 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
     }
 
     @Override
-    public boolean interact(PlayerEntity playerEntity_1, Hand hand_1) {
+    public ActionResult interact(PlayerEntity playerEntity_1, Hand hand_1) {
         if (Config.Misc.INSTANCE.getVehiclePickup() && playerEntity_1.isSneaking()) {
             AbstractMinecartEntity self = ((AbstractMinecartEntity)(Object)this);
             Item minecartItem = net.minecraft.item.Items.AIR;
@@ -42,9 +43,9 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
             if (minecartItem != net.minecraft.item.Items.AIR && (playerEntity_1.isCreative() || playerEntity_1.giveItemStack(new ItemStack(minecartItem)))) {
                 playerEntity_1.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
                 remove();
-                return true;
+                return ActionResult.SUCCESS;
             }
         }
-        return false;
+        return ActionResult.PASS;
     }
 }

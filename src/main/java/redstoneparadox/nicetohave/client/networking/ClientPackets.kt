@@ -38,7 +38,7 @@ object ClientPackets {
                 val world = MinecraftClient.getInstance().world
                 Optional.ofNullable(pkt.entityTypeId.create(world as World)).ifPresent { entity ->
                     entity.updateTrackedPosition(pkt.x, pkt.y, pkt.z)
-                    entity.setVelocity(pkt.velocityX, pkt.velocityY, pkt.velocityz)
+                    entity.setVelocity(pkt.velocityX, pkt.velocityY, pkt.velocityZ)
                     entity.pitch = (pkt.pitch * 360).toFloat() / 256.0f
                     entity.yaw = (pkt.yaw * 360).toFloat() / 256.0f
                     entity.entityId = pkt.id

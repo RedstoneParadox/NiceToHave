@@ -1,8 +1,8 @@
 package redstoneparadox.nicetohave.misc;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.inventory.BasicInventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -15,7 +15,7 @@ import static net.minecraft.block.ComposterBlock.LEVEL;
 
 public class Inventories {
 
-    public static class FullComposterInventory extends BasicInventory implements SidedInventory {
+    public static class FullComposterInventory extends SimpleInventory implements SidedInventory {
         private final BlockState state;
         private final WorldAccess world;
         private final BlockPos pos;

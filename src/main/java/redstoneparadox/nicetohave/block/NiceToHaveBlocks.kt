@@ -16,11 +16,6 @@ object NiceToHaveBlocks : BlocksInitializer() {
     val TRIMMED_VINE : Block? = register("trimmed_vine", TrimmedVineBlock(), Config.Blocks.trimmedVines)
     val FUSED_WARPED_WART: Block? = register("fused_warped_wart", FusedWarpedWartBlock(), false)
 
-    //Ore Blocks
-    val DIRT_GOLD_ORE : Block = register("dirt_gold_ore", Block(copySettings(Blocks.DIRT)))
-    val SAND_GOLD_ORE : Block = register("sand_gold_ore", SandBlock(14406560, copySettings(Blocks.SAND)))
-    val GRAVEL_GOLD_ORE : Block = register("gravel_gold_ore", GravelBlock(copySettings(Blocks.GRAVEL)))
-
     //Poles
     val OAK_POLE: PoleBlock? = registerWoodPole("oak", Blocks.OAK_WOOD)
     val SPRUCE_POLE: PoleBlock? = registerWoodPole("spruce", Blocks.SPRUCE_WOOD)
