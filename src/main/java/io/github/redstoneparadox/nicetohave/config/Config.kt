@@ -32,7 +32,7 @@ object Config: RootConfigCategory("config.json5") {
         var analogRedstoneEmitter: Boolean by option(true, "analog_redstone_emitter", "A special redstone block that can be set to output any level of Redstone signal.")
         var dispenserCropPlanting: Boolean by option(true, "dispenser_crop_planting", "Dispensers can plant crops, saplings, and a few other plants.")
         var dispenserLadderPlacement: Boolean by option(true, "dispenser_ladder_placement", "Dispensers can place and pickup ladders and scaffolding.")
-        var underwaterSwitches: Boolean by option(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
+        // var underwaterSwitches: Boolean by option(true, "underwater_switches", "Allows for the placement of levers and buttons underwater.")
     }
 
     object Recipes: ConfigCategory("recipes", "New recipes and tweaks to existing ones") {

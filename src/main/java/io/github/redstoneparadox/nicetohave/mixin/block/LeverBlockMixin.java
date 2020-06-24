@@ -21,7 +21,7 @@ import io.github.redstoneparadox.nicetohave.config.Config;
 @Mixin(LeverBlock.class)
 public abstract class LeverBlockMixin extends WallMountedBlock {
 
-    private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
+    // private boolean canPlaceUnderwater = Config.Redstone.INSTANCE.getUnderwaterSwitches();
 
     public LeverBlockMixin(Settings block$Settings_1) {
         super(block$Settings_1);
@@ -29,14 +29,16 @@ public abstract class LeverBlockMixin extends WallMountedBlock {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void ctor(Settings block$Settings_1, CallbackInfo ci) {
-        setDefaultState(getDefaultState().with(Properties.WATERLOGGED, false));
+        //setDefaultState(getDefaultState().with(Properties.WATERLOGGED, false));
     }
 
     @Inject(method = "appendProperties", at = @At("HEAD"))
     private void appendProperties(StateManager.Builder<Block, BlockState> stateFactory$Builder_1, CallbackInfo ci) {
-        stateFactory$Builder_1.add(Properties.WATERLOGGED);
+        //stateFactory$Builder_1.add(Properties.WATERLOGGED);
     }
 
+
+    /*
     @Override
     public FluidState getFluidState(BlockState blockState_1) {
         if (canPlaceUnderwater && blockState_1.get(Properties.WATERLOGGED)) {
@@ -62,4 +64,6 @@ public abstract class LeverBlockMixin extends WallMountedBlock {
         }
         return super.getStateForNeighborUpdate(blockState_1, direction_1, blockState_2, iWorld_1, blockPos_1, blockPos_2);
     }
+
+     */
 }
