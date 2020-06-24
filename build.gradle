@@ -59,11 +59,7 @@ dependencies {
 		exclude group: 'net.fabricmc.fabric-api'
 
 	}
-	/*
-	modCompileOnly ("com.github.fabric-community:the-hallow:${project.hallow}") {
-		exclude group: 'net.fabricmc.fabric-api'
-	}
-	*/
+
 	modApi ("me.shedaniel:RoughlyEnoughItems:${project.rei}") {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
