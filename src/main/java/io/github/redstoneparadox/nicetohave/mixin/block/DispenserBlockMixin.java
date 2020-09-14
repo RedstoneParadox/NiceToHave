@@ -8,6 +8,7 @@ import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
@@ -24,17 +25,19 @@ import io.github.redstoneparadox.nicetohave.config.Config;
 public abstract class DispenserBlockMixin {
 
     @Inject(method = "dispense", at = @At(value = "INVOKE", target = "Lnet/minecraft/block/entity/DispenserBlockEntity;chooseNonEmptySlot()I"), locals = LocalCapture.CAPTURE_FAILEXCEPTION, cancellable = true)
-    void dispense(World world_1, BlockPos blockPos_1, CallbackInfo ci, BlockPointerImpl blockPointer, DispenserBlockEntity dispenserBlockEntity) {
+    void dispense(ServerWorld serverWorld, BlockPos blockPos, CallbackInfo ci) {
         if (Config.Redstone.INSTANCE.getDispenserLadderPlacement()) {
             return;
         }
 
-        Direction direction = world_1.getBlockState(blockPos_1).get(DispenserBlock.FACING);
-        Block block = world_1.getBlockState(blockPos_1.offset(direction)).getBlock();
+        Direction direction = serverWorld.getBlockState(blockPos).get(DispenserBlock.FACING);
+        Block block = serverWorld.getBlockState(blockPos.offset(direction)).getBlock();
+        BlockPointerImpl blockPointer = new BlockPointerImpl(serverWorld, blockPos);
+        DispenserBlockEntity dispenserBlockEntity = blockPointer.getBlockEntity();
 
         if (dispenserBlockEntity.isEmpty()) {
-            if (block == Blocks.LADDER && (direction == Direction.UP || direction == Direction.DOWN)) pickupBlocks(Items.LADDER, Blocks.LADDER, direction, blockPos_1, world_1, dispenserBlockEntity, blockPointer, ci);
-            else if (block == Blocks.SCAFFOLDING && direction == Direction.UP) pickupBlocks(Items.SCAFFOLDING, Blocks.SCAFFOLDING, direction, blockPos_1, world_1, dispenserBlockEntity, blockPointer, ci);
+            if (block == Blocks.LADDER && (direction == Direction.UP || direction == Direction.DOWN)) pickupBlocks(Items.LADDER, Blocks.LADDER, direction, blockPos, serverWorld, dispenserBlockEntity, blockPointer, ci);
+            else if (block == Blocks.SCAFFOLDING && direction == Direction.UP) pickupBlocks(Items.SCAFFOLDING, Blocks.SCAFFOLDING, direction, blockPos, serverWorld, dispenserBlockEntity, blockPointer, ci);
         }
     }
 
