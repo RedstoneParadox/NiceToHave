@@ -53,7 +53,6 @@ object Config: RootConfigCategory("config.json5") {
     }
 
     object World: ConfigCategory("world", "Various world features") {
-        var peacefulBambooJungle: Boolean by option(true, "peaceful_bamboo_jungle", "Makes bamboo jungles peaceful places just like Mushroom Islands.")
         var disablePonds: Boolean by option(true, "disable_ponds", "Removes small water and lava ponds from the world.")
     }
 
