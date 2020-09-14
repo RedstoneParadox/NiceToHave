@@ -52,6 +52,7 @@ dependencies {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
 
+	/*
 	modCompileOnly ("com.terraformersmc:terrestria:${project.terrestria}") {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
@@ -59,6 +60,7 @@ dependencies {
 		exclude group: 'net.fabricmc.fabric-api'
 
 	}
+	 */
 
 	modApi ("me.shedaniel:RoughlyEnoughItems:${project.rei}") {
 		exclude group: 'net.fabricmc.fabric-api'

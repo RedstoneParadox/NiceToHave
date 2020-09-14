@@ -5,7 +5,7 @@ import com.google.gson.JsonSyntaxException
 import com.mojang.serialization.Dynamic
 import com.mojang.serialization.JsonOps
 import net.minecraft.block.Block
-import net.minecraft.datafixer.NbtOps
+import net.minecraft.nbt.NbtOps
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.CompoundTag
@@ -129,7 +129,7 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
             }
             else if (nbt["tag"] is StringTag) {
                 val tagID = Identifier(nbt["tag"]?.asString())
-                var tag = BlockTags.getContainer().get(tagID)
+                var tag = BlockTags.getTagGroup().getTag(tagID)
                 if (tag == null) tag = NiceToHaveBlockTags.getBlockTag(tagID)
                 if (tag != null) return TagPredicate(tag)
             }
