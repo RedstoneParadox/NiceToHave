@@ -16,10 +16,6 @@ repositories {
 		name = 'CottonMC'
 		url = 'http://server.bbkr.space:8081/artifactory/libs-release'
 	}
-	maven {
-		name = 'JitPack'
-		url = 'https://jitpack.io'
-	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -86,11 +82,6 @@ dependencies {
 		exclude group: 'net.fabricmc.fabric-language-kotlin'
 	}
 	include "io.github.redstoneparadox:paradox-config:${project.pconfig}"
-
-	modCompileOnly ("io.github.prospector:modmenu:${project.modmenu}") {
-		transitive = false
-		exclude group: 'net.fabricmc.fabric-api'
-	}
 }
 
 processResources {
