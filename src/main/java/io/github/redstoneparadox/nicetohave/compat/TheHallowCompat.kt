@@ -20,8 +20,8 @@ object TheHallowCompat: ModInitializer {
     }
     
     object Blocks: BlocksInitializer() {
-        val DEADWOOD_POLE: PoleBlock? = registerWoodPole("deadwood", net.minecraft.block.Blocks.OAK_WOOD)
-        val STRIPPED_DEADWOOD_POLE: PoleBlock? = registerWoodPole("stripped_deadwood", net.minecraft.block.Blocks.STRIPPED_OAK_WOOD)
+        val DEADWOOD_POLE: PoleBlock = registerPole("deadwood", net.minecraft.block.Blocks.OAK_WOOD)
+        val STRIPPED_DEADWOOD_POLE: PoleBlock = registerPole("stripped_deadwood", net.minecraft.block.Blocks.STRIPPED_OAK_WOOD)
 
         fun initBlocks() {
             registerFlammableBlocks(arrayOf(DEADWOOD_POLE, STRIPPED_DEADWOOD_POLE), FlammableBlockRegistry.Entry(5, 20))
@@ -29,8 +29,8 @@ object TheHallowCompat: ModInitializer {
     }
 
     object Items: ItemsInitializer() {
-        val DEADWOOD_POOL: BlockItem? = registerWoodPoleItem("deadwood", Blocks.DEADWOOD_POLE)
-        val STRIPPED_DEADWOOD_POLE: BlockItem? = registerWoodPoleItem("stripped_deadwood", Blocks.STRIPPED_DEADWOOD_POLE)
+        val DEADWOOD_POOL: BlockItem = registerWoodPoleItem("deadwood", Blocks.DEADWOOD_POLE)
+        val STRIPPED_DEADWOOD_POLE: BlockItem = registerWoodPoleItem("stripped_deadwood", Blocks.STRIPPED_DEADWOOD_POLE)
 
         fun initItems() {
             registerFuelForEach(arrayOf(DEADWOOD_POOL, STRIPPED_DEADWOOD_POLE), 300)

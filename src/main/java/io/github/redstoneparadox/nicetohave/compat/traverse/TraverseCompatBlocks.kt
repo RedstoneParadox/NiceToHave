@@ -9,13 +9,11 @@ import io.github.redstoneparadox.nicetohave.config.Config
 
 object TraverseCompatBlocks : BlocksInitializer() {
 
-    val FIR_POLE : PoleBlock? = registerWoodPole("fir", Blocks.OAK_WOOD)
-    val STRIPPED_FIR_POLE : PoleBlock? = registerWoodPole("stripped_fir", Blocks.STRIPPED_OAK_WOOD)
+    val FIR_POLE : PoleBlock = registerPole("fir", Blocks.OAK_WOOD)
+    val STRIPPED_FIR_POLE : PoleBlock = registerPole("stripped_fir", Blocks.STRIPPED_OAK_WOOD)
 
     fun initBlocks() {
-        if (Config.Blocks.poles) {
-            registerFlammableBlocks(arrayOf(FIR_POLE, STRIPPED_FIR_POLE), FlammableBlockRegistry.Entry(5, 20))
-        }
+        registerFlammableBlocks(arrayOf(FIR_POLE, STRIPPED_FIR_POLE), FlammableBlockRegistry.Entry(5, 20))
     }
 
     fun mapPolesToStrippedPoles(): Map<Block?, Block?> {
