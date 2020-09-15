@@ -21,6 +21,7 @@ abstract class ItemsInitializer {
         return register(id, item)
     }
 
+    @JvmName("registerBlockItem1")
     protected fun registerBlockItem(id: String, block: Block?, settings: Item.Settings): BlockItem? {
         if (block != null) {
             return register(id, BlockItem(block, settings))
@@ -28,7 +29,16 @@ abstract class ItemsInitializer {
         return null
     }
 
+    protected fun registerBlockItem(id: String, block: Block, settings: Item.Settings): BlockItem {
+        return register(id, BlockItem(block, settings))
+    }
+
+    @JvmName("registerWoodPoleItem1")
     protected fun registerWoodPoleItem(prefix: String, pole: PoleBlock?): BlockItem? {
+        return registerBlockItem("${prefix}_pole", pole, Item.Settings().group(ItemGroup.DECORATIONS))
+    }
+
+    protected fun registerWoodPoleItem(prefix: String, pole: PoleBlock): BlockItem {
         return registerBlockItem("${prefix}_pole", pole, Item.Settings().group(ItemGroup.DECORATIONS))
     }
 

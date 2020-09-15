@@ -25,6 +25,10 @@ abstract class BlocksInitializer {
         return register("${prefix}_pole", PoleBlock(blockOf), Config.Blocks.poles)
     }
 
+    protected fun registerPole(prefix: String, blockOf: Block): PoleBlock {
+        return register("${prefix}_pole", PoleBlock(blockOf))
+    }
+
     protected fun registerFlammableBlocks(blocks : Array<Block?>, entry : FlammableBlockRegistry.Entry) {
         for (block in blocks) {
             registerFlammableBlock(block, entry)
