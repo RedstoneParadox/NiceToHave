@@ -9,7 +9,6 @@ import net.minecraft.util.registry.Registry
 import io.github.redstoneparadox.nicetohave.block.PoleBlock
 
 abstract class ItemsInitializer {
-
     protected fun <T : Item> register(id: String, item: T): T {
         return Registry.register(Registry.ITEM, "nicetohave:$id", item)
     }
@@ -21,25 +20,8 @@ abstract class ItemsInitializer {
         return register(id, item)
     }
 
-    @JvmName("registerBlockItem1")
-    protected fun registerBlockItem(id: String, block: Block?, settings: Item.Settings): BlockItem? {
-        if (block != null) {
-            return register(id, BlockItem(block, settings))
-        }
-        return null
-    }
-
-    protected fun registerBlockItem(id: String, block: Block, settings: Item.Settings): BlockItem {
-        return register(id, BlockItem(block, settings))
-    }
-
-    @JvmName("registerWoodPoleItem1")
-    protected fun registerWoodPoleItem(prefix: String, pole: PoleBlock?): BlockItem? {
-        return registerBlockItem("${prefix}_pole", pole, Item.Settings().group(ItemGroup.DECORATIONS))
-    }
-
-    protected fun registerWoodPoleItem(prefix: String, pole: PoleBlock): BlockItem {
-        return registerBlockItem("${prefix}_pole", pole, Item.Settings().group(ItemGroup.DECORATIONS))
+    protected fun poleItem(pole: PoleBlock): BlockItem {
+        return BlockItem(pole, Item.Settings().group(ItemGroup.DECORATIONS))
     }
 
     protected fun registerFuelForEach(fuels : Array<Item?>, time : Int) {
@@ -48,7 +30,7 @@ abstract class ItemsInitializer {
         }
     }
 
-    protected fun registerFuel(fuel : Item?, time : Int) {
+    private fun registerFuel(fuel : Item?, time : Int) {
         if (fuel != null) {
             FuelRegistry.INSTANCE.add(fuel, time)
         }

@@ -1,6 +1,8 @@
 package io.github.redstoneparadox.nicetohave.mixin.item;
 
 import com.google.common.collect.ImmutableMap;
+import io.github.redstoneparadox.nicetohave.compat.TerrestriaCompat;
+import io.github.redstoneparadox.nicetohave.compat.TraverseCompat;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.AxeItem;
@@ -12,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks;
-import io.github.redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompatBlocks;
-import io.github.redstoneparadox.nicetohave.compat.traverse.TraverseCompatBlocks;
 import io.github.redstoneparadox.nicetohave.config.Config;
 
 import java.util.Map;
@@ -33,8 +33,8 @@ public class AxeItemMixin {
             builder.putAll(STRIPPED_BLOCKS);
             builder.putAll(NiceToHaveBlocks.INSTANCE.mapPolesToStrippedPoles());
 
-            if (FabricLoader.getInstance().isModLoaded("terrestria")) TerrestriaCompatBlocks.INSTANCE.mapPolesToStrippedPoles();
-            if (FabricLoader.getInstance().isModLoaded("traverse")) TraverseCompatBlocks.INSTANCE.mapPolesToStrippedPoles();
+            if (FabricLoader.getInstance().isModLoaded("terrestria")) TerrestriaCompat.CompatBlocks.INSTANCE.mapPolesToStrippedPoles();
+            if (FabricLoader.getInstance().isModLoaded("traverse")) TraverseCompat.CompatBlocks.INSTANCE.mapPolesToStrippedPoles();
 
             STRIPPED_BLOCKS = builder.build();
         }

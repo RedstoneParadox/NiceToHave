@@ -21,12 +21,7 @@ import io.github.redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
  * Created by RedstoneParadox on 5/23/2019.
  */
 object NiceToHave : ModInitializer {
-
     private val logger : Logger = LogManager.getFormatterLogger("NiceToHave")
-
-    init {
-
-    }
 
     override fun onInitialize() {
         out("Initializing Nice to Have.")

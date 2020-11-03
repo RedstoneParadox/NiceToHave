@@ -25,15 +25,11 @@
       },
       {
         "adapter": "kotlin",
-        "value": "io.github.redstoneparadox.nicetohave.compat.terrestria.TerrestriaCompat"
+        "value": "io.github.redstoneparadox.nicetohave.compat.TerrestriaCompat"
       },
       {
         "adapter": "kotlin",
-        "value": "io.github.redstoneparadox.nicetohave.compat.traverse.TraverseCompat"
-      },
-      {
-        "adapter": "kotlin",
-        "value": "io.github.redstoneparadox.nicetohave.compat.TheHallowCompat"
+        "value": "io.github.redstoneparadox.nicetohave.compat.TraverseCompat"
       }
     ],
     "client": [

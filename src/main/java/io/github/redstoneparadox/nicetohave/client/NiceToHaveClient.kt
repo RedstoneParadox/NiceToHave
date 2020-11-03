@@ -29,8 +29,6 @@ class NiceToHaveClient : ClientModInitializer {
             return@BlockColorProvider provider?.getColor(block, pos, world, layer) ?: 0xffffff
         }, NiceToHaveBlocks.TRIMMED_VINE)
 
-        if (NiceToHaveBlocks.CHAIN_LINK_FENCE != null) BlockRenderLayerMap.INSTANCE.putBlock(NiceToHaveBlocks.CHAIN_LINK_FENCE, RenderLayer.getCutout())
-
         ModelPredicateProviderRegistryAccessor.callRegister(Identifier("color")) { stack, world, entity ->
             if (entity is PlayerEntity) {
                 val mainItem = entity.mainHandStack.item
