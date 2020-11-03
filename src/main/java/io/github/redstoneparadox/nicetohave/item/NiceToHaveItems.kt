@@ -49,7 +49,7 @@ object NiceToHaveItems : ItemsInitializer() {
         register("chain_link", CHAIN_LINK)
         register("dynamite", DYNAMITE)
         register("wrench", WRENCH)
-        register("paint_brush", PAINT_BRUSH)
+        register("paintbrush", PAINT_BRUSH)
         register("fertilizer", FERTILIZER)
 
         register("sweet_berry_juice", SWEET_BERRY_JUICE)
