@@ -1,7 +1,8 @@
 package io.github.redstoneparadox.nicetohave.util.datagen
 
+import net.minecraft.util.DyeColor
+
 fun main() {
-    /*
     for (prefix in arrayOf("oak", "spruce", "birch", "jungle", "acacia", "dark_oak")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
         CraftingRecipeBuilder.generatePoleRecipe(prefix)
@@ -17,7 +18,7 @@ fun main() {
         BasicModelBuilder.createPoleItemModel(strippedPrefix)
         VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
-    */
+
     for (prefix in arrayOf("warped", "crimson")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
 
@@ -35,7 +36,6 @@ fun main() {
         VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
     }
 
-    /*
     for (prefix in arrayOf("redwood", "hemlock", "rubber", "cypress", "willow", "japanese_maple", "rainbow_eucalyptus", "sakura")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix, "terrestria")
         CraftingRecipeBuilder.generatePoleRecipe(prefix, "terrestria")
@@ -80,9 +80,7 @@ fun main() {
     for (basalt in arrayOf("basalt", "smooth_basalt", "basalt_cobblestone", "mossy_basalt_cobblestone")) {
         CraftingRecipeBuilder.regularSlabGlueRecipe(basalt, mod = "terrestria")
     }
-     */
 
-    /*
     val builder = BasicModelBuilder().setParent("item/generated")
     for (dye in DyeColor.values()) {
         builder
@@ -91,9 +89,7 @@ fun main() {
                 .addTexture("layer0", "nicetohave:item/${dye.asString()}_paintbrush")
                 .save()
     }
-    */
 
-    /*
     CraftingRecipeBuilder.woodSlabGlueRecipe("deadwood", "thehallow")
     CraftingRecipeBuilder.generatePoleRecipe("deadwood", "thehallow")
     LootTableBuilder.generatePoleDrop("deadwood_pole", "thehallow")
@@ -107,5 +103,4 @@ fun main() {
     BasicModelBuilder.createPoleBlockModel(strippedDeadWood, "thehallow")
     BasicModelBuilder.createPoleItemModel(strippedDeadWood)
     VariantBlockStateBuilder.generatePoleBlockState(strippedDeadWood)
-     */
 }

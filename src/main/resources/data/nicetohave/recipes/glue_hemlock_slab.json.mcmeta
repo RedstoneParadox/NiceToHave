@@ -5,7 +5,7 @@
 		},
 		{
 			"pconfig:option": {
-				"config": "nicetohave:config.json",
+				"config": "nicetohave:config.json5",
 				"option": "recipes.glue_slabs",
 				"value": true
 			}

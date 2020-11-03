@@ -166,7 +166,7 @@ class LootTableBuilder {
 
         fun generatePoleDrop(poleId: String, woodNamespace: String = "minecraft") {
             val loadCondition = DataConditionBuilder()
-                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json", "option" to "blocks.poles", "value" to true)
+                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json5", "option" to "blocks.poles", "value" to true)
 
             if (woodNamespace != "minecraft" && woodNamespace != "nicetohave") loadCondition.addCondition("libcd:mod_loaded", woodNamespace)
 
