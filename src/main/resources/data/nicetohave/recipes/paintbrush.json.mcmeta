@@ -3,7 +3,7 @@
 		{
 			"pconfig:option": {
 				"config": "nicetohave:config.json5",
-				"option": "blocks.gold_button",
+				"option": "items.paintbrush",
 				"value": true
 			}
 		}

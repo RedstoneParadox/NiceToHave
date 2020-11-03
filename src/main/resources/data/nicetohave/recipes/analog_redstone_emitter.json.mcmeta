@@ -2,7 +2,7 @@
   "when": [
     {
       "pconfig:option": {
-        "config": "nicetohave:config.json",
+        "config": "nicetohave:config.json5",
         "option": "redstone.analog_redstone_emitter",
         "value": true
       }
