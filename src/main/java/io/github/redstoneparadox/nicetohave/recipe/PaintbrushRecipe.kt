@@ -22,7 +22,6 @@ import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 import io.github.redstoneparadox.nicetohave.item.PaintbrushItem
 import io.github.redstoneparadox.nicetohave.tag.NiceToHaveBlockTags
-import net.fabricmc.fabric.api.tag.TagRegistry
 import java.util.*
 
 class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor, Block>, private val id: Identifier): Recipe<PaintbrushItem.PaintbrushInventory> {
@@ -89,7 +88,6 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
             }
             nbt.put("result", result)
             buf.writeCompoundTag(nbt)
-            buf.writeIdentifier(recipe.id)
         }
 
         override fun read(id: Identifier, json: JsonObject): PaintbrushRecipe {
@@ -100,7 +98,6 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
 
         override fun read(id: Identifier, buf: PacketByteBuf): PaintbrushRecipe {
             val nbt = buf.readCompoundTag()
-            val id = buf.readIdentifier()
             if (nbt !is CompoundTag) throw JsonSyntaxException("Didn't find NBT on the packet from the server!")
             return read(id, nbt)
         }
@@ -124,14 +121,11 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
         private fun readInput(nbt: CompoundTag): PaintPredicate {
             if (nbt["block"] is StringTag) {
                 val blockID = Identifier(nbt["block"]?.asString())
-                val block = Registry.BLOCK[blockID]
-                return BlockPredicate(block)
+                return BlockPredicate(blockID)
             }
             else if (nbt["tag"] is StringTag) {
                 val tagID = Identifier(nbt["tag"]?.asString())
-                var tag = BlockTags.getTagGroup().getTag(tagID)
-                if (tag == null) tag = NiceToHaveBlockTags.getBlockTag(tagID)
-                if (tag != null) return TagPredicate(tag)
+                return TagPredicate(tagID)
             }
 
             throw JsonSyntaxException("Paint recipe did not have input.")
@@ -157,31 +151,35 @@ class PaintbrushRecipe(val predicate: PaintPredicate, val colorMap: Map<DyeColor
         fun serialize(): CompoundTag
     }
 
-    class TagPredicate(val tag: Tag<Block>): PaintPredicate {
+    class TagPredicate(private val tagId: Identifier): PaintPredicate {
+        val tag: Tag<Block> by lazy {
+            var tag = BlockTags.getTagGroup().getTag(tagId)
+            if (tag == null) tag = NiceToHaveBlockTags.getBlockTag(tagId)
+            if (tag != null) return@lazy tag
+            else throw Exception()
+        }
+
         override fun test(block: Block): Boolean {
             return tag.contains(block)
         }
 
         override fun serialize(): CompoundTag {
             val nbt = CompoundTag()
-            if (tag is Tag.Identified<Block>) {
-                nbt.putString("tag", tag.id.toString())
-            }
-            else {
-                nbt.putString("tag", "empty")
-            }
+            nbt.putString("tag", tagId.toString())
             return nbt
         }
     }
 
-    class BlockPredicate(val block: Block): PaintPredicate {
+    class BlockPredicate(private val blockId: Identifier): PaintPredicate {
+        val block: Block by lazy { Registry.BLOCK[blockId] }
+
         override fun test(block: Block): Boolean {
             return this.block == block
         }
 
         override fun serialize(): CompoundTag {
             val nbt = CompoundTag()
-            nbt.putString("tag", Registry.BLOCK.getId(block).toString())
+            nbt.putString("block", blockId.toString())
             return nbt
         }
     }
