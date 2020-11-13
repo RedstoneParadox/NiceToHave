@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import io.github.redstoneparadox.nicetohave.command.Commands
+import io.github.redstoneparadox.nicetohave.data.DataManager
 import io.github.redstoneparadox.nicetohave.enchantment.Enchantments
 import io.github.redstoneparadox.nicetohave.entity.EntityTypes
 import io.github.redstoneparadox.nicetohave.entity.effect.StatusEffects
@@ -42,6 +43,7 @@ object NiceToHave : ModInitializer {
         NiceToHaveBlockTags.VANILLA_WOOL
         NiceToHaveBlockTags.MAP
 
+        DataManager.initConditions()
         EntityTypes.registerEntityTypes()
         StatusEffects.registerEffects()
         Potions.registerPotions()
