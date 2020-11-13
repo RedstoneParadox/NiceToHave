@@ -45,8 +45,8 @@ fun main() {
         VariantBlockStateBuilder.generatePoleBlockState(prefix)
 
         val strippedPrefix = "stripped_$prefix"
-        CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix)
-        LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole")
+        CraftingRecipeBuilder.generatePoleRecipe(strippedPrefix, "terrestria")
+        LootTableBuilder.generatePoleDrop("${strippedPrefix}_pole", "terrestria")
         BasicModelBuilder.createPoleBlockModel(strippedPrefix, "terrestria")
         BasicModelBuilder.createPoleItemModel(strippedPrefix)
         VariantBlockStateBuilder.generatePoleBlockState(strippedPrefix)
@@ -60,8 +60,8 @@ fun main() {
     VariantBlockStateBuilder.generatePoleBlockState("fir")
 
     val strippedFir = "stripped_fir"
-    CraftingRecipeBuilder.generatePoleRecipe(strippedFir)
-    LootTableBuilder.generatePoleDrop("${strippedFir}_pole")
+    CraftingRecipeBuilder.generatePoleRecipe(strippedFir, "traverse")
+    LootTableBuilder.generatePoleDrop("${strippedFir}_pole", "terrestria")
     BasicModelBuilder.createPoleBlockModel(strippedFir, "traverse")
     BasicModelBuilder.createPoleItemModel(strippedFir)
     VariantBlockStateBuilder.generatePoleBlockState(strippedFir)
@@ -98,8 +98,8 @@ fun main() {
     VariantBlockStateBuilder.generatePoleBlockState("deadwood")
 
     val strippedDeadWood = "stripped_deadwood"
-    CraftingRecipeBuilder.generatePoleRecipe(strippedDeadWood)
-    LootTableBuilder.generatePoleDrop("${strippedDeadWood}_pole")
+    CraftingRecipeBuilder.generatePoleRecipe(strippedDeadWood, "thehallow")
+    LootTableBuilder.generatePoleDrop("${strippedDeadWood}_pole", "thehallow")
     BasicModelBuilder.createPoleBlockModel(strippedDeadWood, "thehallow")
     BasicModelBuilder.createPoleItemModel(strippedDeadWood)
     VariantBlockStateBuilder.generatePoleBlockState(strippedDeadWood)
