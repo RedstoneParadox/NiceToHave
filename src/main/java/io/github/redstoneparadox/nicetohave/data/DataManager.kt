@@ -27,5 +27,10 @@ object DataManager {
     public fun initConditions() {
         val railPredicate = { Config.Recipes.increasedRailOutput }
         addConditions(arrayOf(POWERED_RAIL, DETECTOR_RAIL, ACTIVATOR_RAIL), railPredicate)
+
+        for (vanillaLog in arrayOf("acacia")) {
+            val recipeId = Identifier("nicetohave:recipes/${vanillaLog}_pole.json")
+            addCondition(recipeId) { Config.Blocks.poles }
+        }
     }
 }
