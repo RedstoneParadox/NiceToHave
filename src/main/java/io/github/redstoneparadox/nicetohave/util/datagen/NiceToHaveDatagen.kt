@@ -89,18 +89,4 @@ fun main() {
                 .addTexture("layer0", "nicetohave:item/${dye.asString()}_paintbrush")
                 .save()
     }
-
-    CraftingRecipeBuilder.woodSlabGlueRecipe("deadwood", "thehallow")
-    CraftingRecipeBuilder.generatePoleRecipe("deadwood", "thehallow")
-    LootTableBuilder.generatePoleDrop("deadwood_pole")
-    BasicModelBuilder.createPoleBlockModel("deadwood", "thehallow")
-    BasicModelBuilder.createPoleItemModel("deadwood")
-    VariantBlockStateBuilder.generatePoleBlockState("deadwood")
-
-    val strippedDeadWood = "stripped_deadwood"
-    CraftingRecipeBuilder.generatePoleRecipe(strippedDeadWood, "thehallow")
-    LootTableBuilder.generatePoleDrop("${strippedDeadWood}_pole")
-    BasicModelBuilder.createPoleBlockModel(strippedDeadWood, "thehallow")
-    BasicModelBuilder.createPoleItemModel(strippedDeadWood)
-    VariantBlockStateBuilder.generatePoleBlockState(strippedDeadWood)
 }
