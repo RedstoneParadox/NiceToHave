@@ -3,6 +3,12 @@ package io.github.redstoneparadox.nicetohave.util.datagen
 import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
+import com.mojang.serialization.DynamicOps
+import com.mojang.serialization.JsonOps
+import io.github.cottonmc.jankson.JanksonOps
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtOps
+import net.minecraft.nbt.Tag
 import java.io.File
 import kotlin.math.min
 
@@ -29,6 +35,7 @@ class CraftingRecipeBuilder {
     // Output
     private var output : String = ""
     private var count : Int = 0
+    private var outputNBT: Tag? = null
 
     //Condition
     private var condition : DataConditionBuilder? = null
@@ -54,6 +61,11 @@ class CraftingRecipeBuilder {
 
     fun setOutput(id : String, isAlsoName: Boolean = false): CraftingRecipeBuilder {
         return setOutput(id, count, isAlsoName)
+    }
+
+    fun setOutputNBT(nbt: Tag): CraftingRecipeBuilder {
+        outputNBT = nbt
+        return this
     }
 
     fun setPatternLine(pattern : String, line : Int): CraftingRecipeBuilder {
@@ -109,6 +121,11 @@ class CraftingRecipeBuilder {
         val resultObject = JsonObject()
         resultObject["item"] = JsonPrimitive(output)
         resultObject["count"] = JsonPrimitive(count)
+
+        if (outputNBT != null) {
+            resultObject["data"] = NbtOps.INSTANCE.convertTo(JanksonOps.INSTANCE, outputNBT)
+        }
+
         rootObject["result"] = resultObject
 
         val recipeString = rootObject.toJson(false, true)
@@ -135,6 +152,12 @@ class CraftingRecipeBuilder {
                 .setPatternLine("a", 3)
                 .setOutput("", 1)
 
+        private val SPAWNER_RECIPE = CraftingRecipeBuilder()
+                .setPatternLine("aba", 1)
+                .setPatternLine("bcb", 2)
+                .setPatternLine("aba", 3)
+                .setOutput("nicetohave:spawner", 1)
+
         fun generatePoleRecipe(woodPrefix: String, logModId: String = "minecraft", logSuffix: String = "log") {
             val condition = DataConditionBuilder()
                     .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json5", "option" to "blocks.poles", "value" to true)
@@ -149,7 +172,6 @@ class CraftingRecipeBuilder {
                     .setCondition(condition)
                     .save()
         }
-
 
         // Generates recipe for gluing slabs back into planks.
         fun woodSlabGlueRecipe(prefix: String, mod: String = "minecraft") {
@@ -176,6 +198,18 @@ class CraftingRecipeBuilder {
                     .setOutput("$mod:$blockID")
                     .setID("glue_$slabID")
                     .save()
+        }
+
+        fun spawnerRecipe(headID: String, entityID: String) {
+            val rootTag = CompoundTag()
+            rootTag.putString("entity", entityID)
+
+            SPAWNER_RECIPE
+                    .setIngredients("minecraft:crying_obsidian", "minecraft:iron_bars", headID)
+                    .setOutputNBT(rootTag)
+                    .setID("${entityID.split(":")[1]}_spawner")
+                    .save()
+
         }
     }
 }

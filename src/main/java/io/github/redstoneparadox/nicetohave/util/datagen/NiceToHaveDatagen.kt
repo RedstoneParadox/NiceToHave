@@ -3,6 +3,12 @@ package io.github.redstoneparadox.nicetohave.util.datagen
 import net.minecraft.util.DyeColor
 
 fun main() {
+
+    for (name in arrayOf("zombie", "skeleton")) {
+        CraftingRecipeBuilder.spawnerRecipe("minecraft:${name}_head", "minecraft:$name")
+    }
+
+    /*
     for (prefix in arrayOf("oak", "spruce", "birch", "jungle", "acacia", "dark_oak")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)
         CraftingRecipeBuilder.generatePoleRecipe(prefix)
@@ -103,4 +109,6 @@ fun main() {
     BasicModelBuilder.createPoleBlockModel(strippedDeadWood, "thehallow")
     BasicModelBuilder.createPoleItemModel(strippedDeadWood)
     VariantBlockStateBuilder.generatePoleBlockState(strippedDeadWood)
+
+     */
 }

@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"aba",
+		"bcb",
+		"aba"
+	],
+	"key": {
+		"a": {
+			"item": "minecraft:crying_obsidian"
+		},
+		"b": {
+			"item": "minecraft:iron_bars"
+		},
+		"c": {
+			"item": "minecraft:zombie_head"
+		}
+	},
+	"result": {
+		"item": "nicetohave:spawner",
+		"count": 1,
+		"data": {
+			"entity": "minecraft:zombie"
+		}
+	}
+}

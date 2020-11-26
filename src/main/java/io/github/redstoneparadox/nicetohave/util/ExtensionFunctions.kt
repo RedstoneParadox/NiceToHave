@@ -1,6 +1,7 @@
 package io.github.redstoneparadox.nicetohave.util
 
 import net.minecraft.block.Block
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
@@ -11,3 +12,7 @@ import net.minecraft.world.World
 inline fun <reified T> Any.tryAs(): T? = this as? T
 
 fun World.getBlock(pos: BlockPos): Block = this.getBlockState(pos).block
+
+fun String.id(): Identifier {
+    return Identifier(this)
+}

@@ -67,5 +67,7 @@
 
   "effect.nicetohave.insight": "Insight",
 
-  "category.nicetohave.painting": "Painting"
+  "category.nicetohave.painting": "Painting",
+
+  "text.nicetohave.spawner_desc": "Entity"
 }

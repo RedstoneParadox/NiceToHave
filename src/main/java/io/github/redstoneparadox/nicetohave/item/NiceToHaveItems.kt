@@ -46,10 +46,7 @@ object NiceToHaveItems : ItemsInitializer() {
     var STRIPPED_CRIMSON_POLE: BlockItem = poleItem(NiceToHaveBlocks.STRIPPED_CRIMSON_POLE)
 
     // Spawners
-    val ZOMBIE_SPAWNER = SpawnerBlockItem(EntityType.ZOMBIE)
-    val SKELETON_SPAWNER = SpawnerBlockItem(EntityType.ZOMBIE)
-    val SPIDER_SPAWNER = SpawnerBlockItem(EntityType.ZOMBIE)
-    val CAVE_SPIDER_SPAWNER = SpawnerBlockItem(EntityType.ZOMBIE)
+    val SPAWNER = SpawnerBlockItem()
 
     fun initItems() {
         register("chain_link", CHAIN_LINK)
@@ -82,10 +79,7 @@ object NiceToHaveItems : ItemsInitializer() {
         register("stripped_warped_pole", STRIPPED_WARPED_POLE)
         register("stripped_crimson_pole", STRIPPED_CRIMSON_POLE)
 
-        register("zombie_spawner", ZOMBIE_SPAWNER)
-        register("skeleton_spawner", SKELETON_SPAWNER)
-        register("spider_spawner", SPIDER_SPAWNER)
-        register("cave_spider_spawner", CAVE_SPIDER_SPAWNER)
+        register("spawner", SPAWNER)
 
         registerFuelForEach(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), 300)
         registerFuelForEach(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), 300)
