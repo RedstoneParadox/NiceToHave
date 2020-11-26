@@ -7,7 +7,6 @@ import io.github.redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 import io.github.redstoneparadox.nicetohave.config.Config
 
 object NiceToHaveBlocks : BlocksInitializer() {
-
     val GOLD_BUTTON : Block = CustomButtonBlock(1)
     val ANALOG_REDSTONE_EMITTER : Block = AnalogRedstoneEmitterBlock()
     val TRIMMED_VINE : Block = TrimmedVineBlock()
