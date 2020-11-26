@@ -9,7 +9,6 @@ class LootTableBuilder {
 
     private var id: String = ""
     private var namespace: String = "nicetohave"
-    private var condition : DataConditionBuilder? = null
     private var type : LootType = LootType.GENERIC
     private val pools : ArrayList<PoolBuilder> = arrayListOf()
 
@@ -19,11 +18,6 @@ class LootTableBuilder {
 
     fun setID(id: String): LootTableBuilder {
         this.id = id
-        return this
-    }
-
-    fun setCondition(conditionBuilder: DataConditionBuilder): LootTableBuilder {
-        condition = conditionBuilder
         return this
     }
 
@@ -55,12 +49,6 @@ class LootTableBuilder {
         val lootTableString = root.toJson(false, true)
         val file = File(currentDirectory, "$id.json")
         file.writeText(lootTableString)
-
-        if (condition != null) {
-            val conditionString = condition!!.build().toJson(false, true)
-            val metaFile = File(currentDirectory, "$id.json.mcmeta")
-            metaFile.writeText(conditionString)
-        }
     }
 
     class PoolBuilder {
@@ -164,24 +152,18 @@ class LootTableBuilder {
 
     companion object {
 
-        fun generatePoleDrop(poleId: String, woodNamespace: String = "minecraft") {
-            val loadCondition = DataConditionBuilder()
-                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json5", "option" to "blocks.poles", "value" to true)
-
-            if (woodNamespace != "minecraft" && woodNamespace != "nicetohave") loadCondition.addCondition("libcd:mod_loaded", woodNamespace)
-
+        fun generatePoleDrop(id: String) {
             LootTableBuilder()
-                    .setID(poleId)
+                    .setID(id)
                     .setType(LootType.BLOCK)
                     .addPool(PoolBuilder()
                             .setRoles(1)
                             .addEntry(EntryBuilder()
-                                    .setName("nicetohave:$poleId"))
+                                    .setName("nicetohave:$id"))
                             .addCondition(ConditionBuilder()
                                     .setCondition("minecraft:survives_explosion")
                             )
                     )
-                    .setCondition(loadCondition)
                     .save()
         }
     }

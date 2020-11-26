@@ -30,9 +30,6 @@ class CraftingRecipeBuilder {
     private var output : String = ""
     private var count : Int = 0
 
-    //Condition
-    private var condition : DataConditionBuilder? = null
-
     fun setNamespace(namespace: String): CraftingRecipeBuilder {
         this.namespace = namespace
         return this
@@ -75,11 +72,6 @@ class CraftingRecipeBuilder {
         return this
     }
 
-    fun setCondition(condition : DataConditionBuilder): CraftingRecipeBuilder {
-        this.condition = condition
-        return this
-    }
-
     fun save() {
         val rootObject = JsonObject()
 
@@ -115,11 +107,6 @@ class CraftingRecipeBuilder {
 
         val file = File(currentDirectory, "$id.json")
         file.writeText(recipeString)
-
-        if (condition != null) {
-            val conditionString = condition!!.build().toJson(false, true)
-            File(currentDirectory, "$id.json.mcmeta").bufferedWriter().use { it.write(conditionString) }
-        }
     }
 
     companion object {
@@ -136,17 +123,9 @@ class CraftingRecipeBuilder {
                 .setOutput("", 1)
 
         fun generatePoleRecipe(woodPrefix: String, logModId: String = "minecraft", logSuffix: String = "log") {
-            val condition = DataConditionBuilder()
-                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json5", "option" to "blocks.poles", "value" to true)
-
-            if (logModId != "minecraft") {
-                condition.addCondition("libcd:mod_loaded", logModId)
-            }
-
             POLE_RECIPE
                     .setIngredients("$logModId:${woodPrefix}_$logSuffix")
                     .setOutput("nicetohave:${woodPrefix}_pole", true)
-                    .setCondition(condition)
                     .save()
         }
 
@@ -163,15 +142,7 @@ class CraftingRecipeBuilder {
         }
 
         fun slabGlueRecipe(slabID: String, blockID: String, mod: String) {
-            val condition = DataConditionBuilder()
-                    .addObjectCondition("pconfig:option", "config" to "nicetohave:config.json5", "option" to "recipes.glue_slabs", "value" to true)
-
-            if (mod != "minecraft" && mod != "nicetohave") {
-                condition.addCondition("libcd:mod_loaded", mod)
-            }
-
             SLAB_GLUE_RECIPE
-                    .setCondition(condition)
                     .setIngredients("$mod:$slabID", "minecraft:slime_ball")
                     .setOutput("$mod:$blockID")
                     .setID("glue_$slabID")
