@@ -13,6 +13,7 @@
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
+    "entity.SkeletonEntityMixin",
     "entity.vehicle.AbstractMinecartEntityMixin",
     "entity.vehicle.BoatEntityMixin",
     "item.AxeItemMixin",
