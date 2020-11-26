@@ -20,11 +20,11 @@ object DataManager {
         }
     }
 
-    public fun getCondition(id: Identifier): (() -> Boolean)? {
+    fun getCondition(id: Identifier): (() -> Boolean)? {
         return conditionsMap[id]
     }
 
-    public fun initConditions() {
+    fun initConditions() {
         val railPredicate = { Config.Recipes.increasedRailOutput }
         addConditions(arrayOf(POWERED_RAIL, DETECTOR_RAIL, ACTIVATOR_RAIL), railPredicate)
 
