@@ -30,6 +30,8 @@ class SpawnerBlockItem(): BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.M
 
     override fun appendTooltip(itemStack: ItemStack, world: World?, list: MutableList<Text>, tooltipContext: TooltipContext) {
         super.appendTooltip(itemStack, world, list, tooltipContext)
+        (list[0] as LiteralText).formatted(Formatting.AQUA)
+
         val tag = itemStack.orCreateTag
 
         val id = if (tag.contains("entity")) {
