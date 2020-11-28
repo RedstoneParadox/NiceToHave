@@ -1,25 +1,24 @@
 package io.github.redstoneparadox.nicetohave.client
 
-import net.fabricmc.api.ClientModInitializer
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
-import net.fabricmc.fabric.mixin.`object`.builder.ModelPredicateProviderRegistryAccessor
-import net.minecraft.client.color.block.BlockColorProvider
-import net.minecraft.client.render.RenderLayer
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.item.DyeItem
-import net.minecraft.util.DyeColor
-import net.minecraft.util.Identifier
 import io.github.redstoneparadox.nicetohave.NiceToHave
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import io.github.redstoneparadox.nicetohave.client.networking.ClientPackets
 import io.github.redstoneparadox.nicetohave.client.render.entity.EntityRenderers
+import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
+import net.fabricmc.fabric.api.client.model.ModelVariantProvider
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
+import net.fabricmc.fabric.mixin.`object`.builder.ModelPredicateProviderRegistryAccessor
+import net.minecraft.client.color.block.BlockColorProvider
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.DyeItem
+import net.minecraft.util.DyeColor
+import net.minecraft.util.Identifier
 
 /**
  * Created by RedstoneParadox on 5/24/2019.
  */
-class NiceToHaveClient : ClientModInitializer {
-
+class NiceToHaveClient: ClientModInitializer {
     override fun onInitializeClient() {
         NiceToHave.clientOut("Initializing Nice to Have on the Client.")
         EntityRenderers.registerRenderers()
@@ -61,5 +60,4 @@ class NiceToHaveClient : ClientModInitializer {
             return@callRegister 0.0f
         }
     }
-
 }
