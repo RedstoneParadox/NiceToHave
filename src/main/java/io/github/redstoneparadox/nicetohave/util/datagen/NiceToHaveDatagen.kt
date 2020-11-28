@@ -5,7 +5,8 @@ import net.minecraft.util.DyeColor
 fun main() {
 
     for (name in arrayOf("zombie", "skeleton")) {
-        CraftingRecipeBuilder.spawnerRecipe("minecraft:${name}_head", "minecraft:$name")
+        if (name.contains("skeleton")) CraftingRecipeBuilder.spawnerRecipe("minecraft:${name}_skull", "minecraft:$name")
+        else CraftingRecipeBuilder.spawnerRecipe("minecraft:${name}_head", "minecraft:$name")
     }
 
     /*
