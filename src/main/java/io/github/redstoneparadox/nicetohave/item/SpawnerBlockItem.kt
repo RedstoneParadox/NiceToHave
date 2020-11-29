@@ -29,6 +29,10 @@ class SpawnerBlockItem: BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.MIS
         return result
     }
 
+    override fun hasGlint(itemStack: ItemStack): Boolean {
+        return true
+    }
+
     override fun appendTooltip(itemStack: ItemStack, world: World?, list: MutableList<Text>, tooltipContext: TooltipContext) {
         super.appendTooltip(itemStack, world, list, tooltipContext)
 
