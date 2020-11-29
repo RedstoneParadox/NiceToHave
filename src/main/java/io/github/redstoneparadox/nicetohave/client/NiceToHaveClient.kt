@@ -7,6 +7,7 @@ import io.github.redstoneparadox.nicetohave.client.render.entity.EntityRenderers
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
 import net.fabricmc.fabric.api.client.model.ModelVariantProvider
+import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry
 import net.fabricmc.fabric.mixin.`object`.builder.ModelPredicateProviderRegistryAccessor
 import net.minecraft.client.color.block.BlockColorProvider

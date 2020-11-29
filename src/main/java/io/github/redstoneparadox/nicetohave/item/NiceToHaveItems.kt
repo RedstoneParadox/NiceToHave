@@ -1,13 +1,10 @@
 package io.github.redstoneparadox.nicetohave.item
 
-import net.minecraft.item.BlockItem
-import net.minecraft.item.BoneMealItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import io.github.redstoneparadox.nicetohave.item.wrench.WrenchItem
 import io.github.redstoneparadox.nicetohave.util.initializers.ItemsInitializer
-import net.minecraft.entity.EntityType
+import net.minecraft.item.*
+import net.minecraft.util.Rarity
 
 /**
  * Created by RedstoneParadox on 5/23/2019.
@@ -26,6 +23,7 @@ object NiceToHaveItems : ItemsInitializer() {
     //BlockItems.
     var GOLD_BUTTON : BlockItem = BlockItem(NiceToHaveBlocks.GOLD_BUTTON, Item.Settings().group(ItemGroup.REDSTONE))
     var ANALOG_REDSTONE_EMITTER: BlockItem = BlockItem(NiceToHaveBlocks.ANALOG_REDSTONE_EMITTER, Item.Settings().group(ItemGroup.REDSTONE))
+    val SPAWNER = SpawnerBlockItem()
 
     var OAK_POLE: BlockItem = poleItem(NiceToHaveBlocks.OAK_POLE)
     var SPRUCE_POLE: BlockItem = poleItem(NiceToHaveBlocks.SPRUCE_POLE)
@@ -45,8 +43,10 @@ object NiceToHaveItems : ItemsInitializer() {
     var STRIPPED_WARPED_POLE: BlockItem = poleItem(NiceToHaveBlocks.STRIPPED_WARPED_POLE)
     var STRIPPED_CRIMSON_POLE: BlockItem = poleItem(NiceToHaveBlocks.STRIPPED_CRIMSON_POLE)
 
-    // Spawners
-    val SPAWNER = SpawnerBlockItem()
+    // Heads
+    val SPIDER_HEAD: BlockItem = SkullItem(NiceToHaveBlocks.SPIDER_HEAD, NiceToHaveBlocks.SPIDER_WALL_HEAD, Item.Settings().group(ItemGroup.DECORATIONS).rarity(Rarity.UNCOMMON))
+    val CAVE_SPIDER_HEAD: BlockItem = SkullItem(NiceToHaveBlocks.CAVE_SPIDER_HEAD, NiceToHaveBlocks.CAVE_SPIDER_WALL_HEAD, Item.Settings().group(ItemGroup.DECORATIONS).rarity(Rarity.UNCOMMON))
+    val BLAZE_HEAD: BlockItem = SkullItem(NiceToHaveBlocks.BLAZE_HEAD, NiceToHaveBlocks.BLAZE_WALL_HEAD, Item.Settings().group(ItemGroup.DECORATIONS).rarity(Rarity.UNCOMMON))
 
     fun initItems() {
         register("chain_link", CHAIN_LINK)
@@ -60,6 +60,7 @@ object NiceToHaveItems : ItemsInitializer() {
 
         register("gold_button", GOLD_BUTTON)
         register("analog_redstone_emitter", ANALOG_REDSTONE_EMITTER)
+        register("spawner", SPAWNER)
 
         register("oak_pole", OAK_POLE)
         register("spruce_pole", SPRUCE_POLE)
@@ -79,7 +80,9 @@ object NiceToHaveItems : ItemsInitializer() {
         register("stripped_warped_pole", STRIPPED_WARPED_POLE)
         register("stripped_crimson_pole", STRIPPED_CRIMSON_POLE)
 
-        register("spawner", SPAWNER)
+        register("spider_head", SPIDER_HEAD)
+        register("cave_spider_head", CAVE_SPIDER_HEAD)
+        register("blaze_head", BLAZE_HEAD)
 
         registerFuelForEach(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), 300)
         registerFuelForEach(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), 300)

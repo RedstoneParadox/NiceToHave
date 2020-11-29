@@ -5,6 +5,7 @@ import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import io.github.redstoneparadox.nicetohave.util.initializers.BlocksInitializer
 import io.github.redstoneparadox.nicetohave.config.Config
+import net.minecraft.block.SkullBlock
 
 object NiceToHaveBlocks : BlocksInitializer() {
     val GOLD_BUTTON : Block = CustomButtonBlock(1)
@@ -30,6 +31,14 @@ object NiceToHaveBlocks : BlocksInitializer() {
     val STRIPPED_WARPED_POLE: PoleBlock = PoleBlock(Blocks.WARPED_STEM)
     val STRIPPED_CRIMSON_POLE: PoleBlock = PoleBlock(Blocks.CRIMSON_STEM)
 
+    //Skulls
+    val SPIDER_HEAD: Block = CustomSkullBlock(CustomSkullBlock.Type.SPIDER)
+    val SPIDER_WALL_HEAD: Block = CustomWallSkullBlock(CustomSkullBlock.Type.SPIDER)
+    val CAVE_SPIDER_HEAD: Block = CustomSkullBlock(CustomSkullBlock.Type.CAVE_SPIDER)
+    val CAVE_SPIDER_WALL_HEAD: Block = CustomWallSkullBlock(CustomSkullBlock.Type.CAVE_SPIDER)
+    val BLAZE_HEAD: Block = CustomSkullBlock(CustomSkullBlock.Type.BLAZE)
+    val BLAZE_WALL_HEAD: Block = CustomWallSkullBlock(CustomSkullBlock.Type.BLAZE)
+
     fun initBlocks() {
         register("gold_button", GOLD_BUTTON)
         register("analog_redstone_emitter", ANALOG_REDSTONE_EMITTER)
@@ -52,6 +61,13 @@ object NiceToHaveBlocks : BlocksInitializer() {
         register("stripped_dark_oak_pole", STRIPPED_DARK_OAK_POLE)
         register("stripped_warped_pole", STRIPPED_WARPED_POLE)
         register("stripped_crimson_pole", STRIPPED_CRIMSON_POLE)
+
+        register("spider_head", SPIDER_HEAD)
+        register("spider_wall_head", SPIDER_WALL_HEAD)
+        register("cave_spider_head", CAVE_SPIDER_HEAD)
+        register("cave_spider_wall_head", CAVE_SPIDER_WALL_HEAD)
+        register("blaze_head", BLAZE_HEAD)
+        register("blaze_wall_head", BLAZE_WALL_HEAD)
 
         registerFlammableBlocks(arrayOf(OAK_POLE, SPRUCE_POLE, BIRCH_POLE, JUNGLE_POLE, ACACIA_POLE, DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))
         registerFlammableBlocks(arrayOf(STRIPPED_OAK_POLE, STRIPPED_SPRUCE_POLE, STRIPPED_BIRCH_POLE, STRIPPED_JUNGLE_POLE, STRIPPED_ACACIA_POLE, STRIPPED_DARK_OAK_POLE), FlammableBlockRegistry.Entry(5, 20))

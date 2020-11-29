@@ -10,6 +10,8 @@
     "block.LeverBlockMixin",
     "block.NetherWartBlockMixin",
     "block.SugarCaneBlockMixin",
+    "block.entity.BlockEntityTypeMixin",
+    "client.render.block.entity.SkullBlockEntityRendererMixin",
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",
