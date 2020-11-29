@@ -9,10 +9,11 @@ import net.minecraft.text.*
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
 import net.minecraft.util.Identifier
+import net.minecraft.util.Rarity
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
-class SpawnerBlockItem(): BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.MISC)) {
+class SpawnerBlockItem: BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.MISC).rarity(Rarity.RARE)) {
     override fun place(context: ItemPlacementContext): ActionResult {
         val result = super.place(context)
         val world =context.world
@@ -30,10 +31,8 @@ class SpawnerBlockItem(): BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.M
 
     override fun appendTooltip(itemStack: ItemStack, world: World?, list: MutableList<Text>, tooltipContext: TooltipContext) {
         super.appendTooltip(itemStack, world, list, tooltipContext)
-        (list[0] as LiteralText).formatted(Formatting.AQUA)
 
         val tag = itemStack.orCreateTag
-
         val id = if (tag.contains("entity")) {
             tag.getString("entity")
         } else {
