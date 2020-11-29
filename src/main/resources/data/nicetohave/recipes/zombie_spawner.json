@@ -1,19 +1,22 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
+		"aaa",
 		"aba",
-		"bcb",
-		"aba"
+		"cdc"
 	],
 	"key": {
 		"a": {
-			"item": "minecraft:crying_obsidian"
-		},
-		"b": {
 			"item": "minecraft:iron_bars"
 		},
-		"c": {
+		"b": {
 			"item": "minecraft:zombie_head"
+		},
+		"c": {
+			"item": "minecraft:netherite_ingot"
+		},
+		"d": {
+			"item": "minecraft:respawn_anchor"
 		}
 	},
 	"result": {

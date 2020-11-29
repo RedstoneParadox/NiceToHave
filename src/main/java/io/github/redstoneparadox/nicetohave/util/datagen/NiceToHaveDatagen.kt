@@ -9,6 +9,11 @@ fun main() {
         else CraftingRecipeBuilder.spawnerRecipe("minecraft:${name}_head", "minecraft:$name")
     }
 
+    for (name in arrayOf("spider", "cave_spider", "blaze")) {
+        if (name.contains("skeleton")) CraftingRecipeBuilder.spawnerRecipe("nicetohave:${name}_skull", "minecraft:$name")
+        else CraftingRecipeBuilder.spawnerRecipe("nicetohave:${name}_head", "minecraft:$name")
+    }
+
     /*
     for (prefix in arrayOf("oak", "spruce", "birch", "jungle", "acacia", "dark_oak")) {
         CraftingRecipeBuilder.woodSlabGlueRecipe(prefix)

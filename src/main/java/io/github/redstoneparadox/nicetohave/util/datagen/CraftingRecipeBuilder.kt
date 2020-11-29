@@ -153,9 +153,9 @@ class CraftingRecipeBuilder {
                 .setOutput("", 1)
 
         private val SPAWNER_RECIPE = CraftingRecipeBuilder()
-                .setPatternLine("aba", 1)
-                .setPatternLine("bcb", 2)
-                .setPatternLine("aba", 3)
+                .setPatternLine("aaa", 1)
+                .setPatternLine("aba", 2)
+                .setPatternLine("cdc", 3)
                 .setOutput("nicetohave:spawner", 1)
 
         fun generatePoleRecipe(woodPrefix: String, logModId: String = "minecraft", logSuffix: String = "log") {
@@ -205,7 +205,7 @@ class CraftingRecipeBuilder {
             rootTag.putString("entity", entityID)
 
             SPAWNER_RECIPE
-                    .setIngredients("minecraft:crying_obsidian", "minecraft:iron_bars", headID)
+                    .setIngredients("minecraft:iron_bars", headID, "minecraft:netherite_ingot", "minecraft:respawn_anchor")
                     .setOutputNBT(rootTag)
                     .setID("${entityID.split(":")[1]}_spawner")
                     .save()

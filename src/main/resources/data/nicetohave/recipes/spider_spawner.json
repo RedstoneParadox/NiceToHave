@@ -10,7 +10,7 @@
 			"item": "minecraft:iron_bars"
 		},
 		"b": {
-			"item": "minecraft:skeleton_skull"
+			"item": "nicetohave:spider_head"
 		},
 		"c": {
 			"item": "minecraft:netherite_ingot"
@@ -23,7 +23,7 @@
 		"item": "nicetohave:spawner",
 		"count": 1,
 		"data": {
-			"entity": "minecraft:skeleton"
+			"entity": "minecraft:spider"
 		}
 	}
 }
