@@ -1,14 +1,15 @@
 pluginManagement {
     repositories {
-        jcenter()
         maven {
             name = 'Fabric'
-                url = 'https://maven.fabricmc.net/'
-        }
-        maven {
-            url = "https://kotlin.bintray.com/kotlinx"
-            name = "Kotlin X"
+            url = 'https://maven.fabricmc.net/'
         }
         gradlePluginPortal()
     }
+
+    plugins {
+        id 'fabric-loom' version loom_version
+        id "org.jetbrains.kotlin.jvm" version kotlin_version
+    }
+
 }

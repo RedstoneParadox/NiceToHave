@@ -1,17 +1,13 @@
 plugins {
 	id 'fabric-loom' version '0.5-SNAPSHOT'
-	id "com.jfrog.bintray" version "1.7.3"
 	id 'maven-publish'
-	id "org.jetbrains.kotlin.jvm" version "1.4.0"
+	id "org.jetbrains.kotlin.jvm"
 	id "com.wynprice.cursemaven" version "2.1.0"
 }
 
 repositories {
-	jcenter()
-	maven {
-		name = "RedstoneParadox"
-		url = "https://dl.bintray.com/redstoneparadox/mods"
-	}
+	mavenCentral()
+	maven { url "https://maven.shedaniel.me/" }
 	maven {
 		name = 'CottonMC'
 		url = 'http://server.bbkr.space:8081/artifactory/libs-release'
@@ -20,22 +16,17 @@ repositories {
 		name "Siphalor's Maven"
 		url "https://maven.siphalor.de"
 	}
+	maven { url 'https://jitpack.io' }
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
 minecraft {
-}
-
-compileKotlin {
-	kotlinOptions {
-		jvmTarget = "1.8"
-	}
 }
 
 dependencies {
@@ -48,9 +39,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 
-	modImplementation (group: "net.fabricmc", name: "fabric-language-kotlin", version: "${project.fabric_kotlin}") {
-		exclude group: 'net.fabricmc.fabric-api'
-	}
+	modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}+kotlin.${project.kotlin_version}"
 
 	/*
 	modCompileOnly ("com.terraformersmc:terrestria:${project.terrestria}") {
@@ -81,16 +70,18 @@ dependencies {
 	}
 	include "io.github.cottonmc:LibCD:${project.libcd}"
 
-	modApi("io.github.redstoneparadox:paradox-config:${project.pconfig}") {
+	modApi("com.github.RedstoneParadox:ParadoxConfig:${project.pconfig}") {
 		exclude group: 'net.fabricmc.fabric-api'
 		exclude group: 'net.fabricmc.fabric-language-kotlin'
 	}
-	include "io.github.redstoneparadox:paradox-config:${project.pconfig}"
+	include "com.github.RedstoneParadox:ParadoxConfig:${project.pconfig}"
 
-	modApi("io.github.redstoneparadox:OakTree:${project.oak_tree}") {
+	/*
+	modApi("com.github.RedstoneParadox:OakTree:${project.oak_tree}") {
 		exclude group: 'net.fabricmc.fabric-api'
 	}
-	include "io.github.redstoneparadox:OakTree:${project.oak_tree}"
+	include "com.github.RedstoneParadox:OakTree:${project.oak_tree}"
+	 */
 
 	modImplementation "de.siphalor:nbtcrafting-1.16:2+"
 }
@@ -98,13 +89,8 @@ dependencies {
 processResources {
 	inputs.property "version", project.version
 
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
-		expand "version": project.version
-	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
+	filesMatching("fabric.mod.json") {
+		expand version: project.version
 	}
 }
 
@@ -113,6 +99,9 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
+
+	// Minecraft 1.17 (21w19a) upwards uses Java 16.
+	it.options.release = 16
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
@@ -124,7 +113,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 
 jar {
-	from "LICENSE"
+	from ("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}"}
+	}
 }
 
 // configure the maven publication
@@ -147,3 +138,5 @@ publishing {
 		// mavenLocal()
 	}
 }
+
+compileKotlin.kotlinOptions.jvmTarget = "16"
