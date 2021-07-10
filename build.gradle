@@ -8,6 +8,7 @@ plugins {
 repositories {
 	mavenCentral()
 	maven { url "https://maven.shedaniel.me/" }
+	maven { url "https://api.modrinth.com/maven" }
 	maven {
 		name = 'CottonMC'
 		url = 'http://server.bbkr.space:8081/artifactory/libs-release'
@@ -70,11 +71,11 @@ dependencies {
 	}
 	include "io.github.cottonmc:LibCD:${project.libcd}"
 
-	modApi("com.github.RedstoneParadox:ParadoxConfig:${project.pconfig}") {
+	modApi("maven.modrinth:paradox-config:${project.pconfig}") {
 		exclude group: 'net.fabricmc.fabric-api'
 		exclude group: 'net.fabricmc.fabric-language-kotlin'
 	}
-	include "com.github.RedstoneParadox:ParadoxConfig:${project.pconfig}"
+	include "maven.modrinth:paradox-config:${project.pconfig}"
 
 	/*
 	modApi("com.github.RedstoneParadox:OakTree:${project.oak_tree}") {
