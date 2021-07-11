@@ -12,6 +12,7 @@
     "block.SugarCaneBlockMixin",
     "block.entity.BlockEntityTypeMixin",
     "client.render.block.entity.SkullBlockEntityRendererMixin",
+    "client.render.entity.EntityRenderersMixin",
     "entity.ExperienceOrbEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PlayerEntityMixin",

@@ -43,7 +43,6 @@ object DispenserBehaviors {
                     val stack = super.dispenseSilently(blockPointer_1, itemStack_1)
 
                     if (entity != null) {
-                        Packets.dispatchToAllWatching(entity!!, ::EntityPositionS2CPacket)
                         entity = null
                     }
 
@@ -62,11 +61,11 @@ object DispenserBehaviors {
                 override fun dispenseSilently(blockPointer_1: BlockPointer, itemStack: ItemStack): ItemStack {
                     isSuccess = true
                     val world = blockPointer_1.world
-                    val blockPos = blockPointer_1.blockPos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
-                    if (!BoneMealItem.useOnFertilizable(itemStack, world, blockPos) && !BoneMealItem.useOnGround(itemStack, world, blockPos, null as Direction?)) {
+                    val pos = blockPointer_1.pos.offset(blockPointer_1.blockState.get(DispenserBlock.FACING))
+                    if (!BoneMealItem.useOnFertilizable(itemStack, world, pos) && !BoneMealItem.useOnGround(itemStack, world, pos, null as Direction?)) {
                         isSuccess = false
                     } else if (!world.isClient) {
-                        world.syncGlobalEvent(2005, blockPos, 0)
+                        world.syncGlobalEvent(2005, pos, 0)
                     }
 
                     return itemStack
@@ -105,12 +104,12 @@ object DispenserBehaviors {
             isSuccess = false
             val world = pointer.world
             val direction = pointer.blockState.get(DispenserBlock.FACING)
-            val farmBlock = world.getBlockState(pointer.blockPos.offset(direction).down(1)).block
+            val farmBlock = world.getBlockState(pointer.pos.offset(direction).down(1)).block
 
             if (farmlandBlocks == null) {
-                if (checkWaterReq(world, pointer.blockPos.offset(direction))) {
-                    if (plant.canPlaceAt(world.getBlockState(pointer.blockPos.offset(direction).down(1)), world, pointer.blockPos.offset(direction))) {
-                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                if (checkWaterReq(world, pointer.pos.offset(direction))) {
+                    if (plant.canPlaceAt(world.getBlockState(pointer.pos.offset(direction).down(1)), world, pointer.pos.offset(direction))) {
+                        world.setBlockState(pointer.pos.offset(direction), plant.defaultState)
                         itemStack.decrement(1)
                         isSuccess = true
                     }
@@ -119,8 +118,8 @@ object DispenserBehaviors {
             else {
                 for (block in farmlandBlocks) {
                     val targetBlock = if (requiresWater) Blocks.WATER else Blocks.AIR
-                    if (farmBlock == block && world.getBlockState(pointer.blockPos.offset(direction)).block == targetBlock) {
-                        world.setBlockState(pointer.blockPos.offset(direction), plant.defaultState)
+                    if (farmBlock == block && world.getBlockState(pointer.pos.offset(direction)).block == targetBlock) {
+                        world.setBlockState(pointer.pos.offset(direction), plant.defaultState)
                         itemStack.decrement(1)
                         isSuccess = true
                     }
@@ -148,7 +147,7 @@ object DispenserBehaviors {
             }
 
             if (direction == Direction.DOWN || direction == Direction.UP) {
-                var nextPosition = pointer.blockPos.offset(direction)
+                var nextPosition = pointer.pos.offset(direction)
                 var stackCount = 0
                 val ladderDirection = getLadderState(nextPosition, world)
 

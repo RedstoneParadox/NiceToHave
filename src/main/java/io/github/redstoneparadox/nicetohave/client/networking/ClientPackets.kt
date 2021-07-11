@@ -14,6 +14,7 @@ import java.util.function.Supplier
 
 object ClientPackets {
 
+    /*
     fun registerPackets() {
         ClientSidePacketRegistryImpl.INSTANCE.register(Identifier("nicetohave", "spawn_dynamite")) { packetContext, packetByteBuff ->
             spawnFrom(packetContext, packetByteBuff)
@@ -48,5 +49,7 @@ object ClientPackets {
             }
         }
     }
+
+     */
 
 }

@@ -1,17 +1,8 @@
 package io.github.redstoneparadox.nicetohave.config
 
-import blue.endless.jankson.JsonElement
 import io.github.redstoneparadox.paradoxconfig.config.ConfigCategory
-import io.github.redstoneparadox.paradoxconfig.config.RootConfigCategory
-import io.github.redstoneparadox.paradoxconfig.serialization.ConfigDeserializer
-import io.github.redstoneparadox.paradoxconfig.serialization.ConfigSerializer
-import io.github.redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigDeserializer
-import io.github.redstoneparadox.paradoxconfig.serialization.jankson.JanksonConfigSerializer
 
-object Config: RootConfigCategory("config.json5") {
-    override val deserializer: ConfigDeserializer<JsonElement> = JanksonConfigDeserializer()
-    override val serializer: ConfigSerializer<JsonElement> = JanksonConfigSerializer()
-
+object Config: ConfigCategory("config.json5") {
     object Items: ConfigCategory("items", "Various items") {
         var chainLink: Boolean by option(true, "chain_link", "Chain links can be used to craft chain mail.")
         var dynamite: Boolean by option(true, "dynamite", "Dynamite is a throwable explosive.")

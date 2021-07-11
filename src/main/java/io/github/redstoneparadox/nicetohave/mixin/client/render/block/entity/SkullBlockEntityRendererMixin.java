@@ -2,10 +2,11 @@ package io.github.redstoneparadox.nicetohave.mixin.client.render.block.entity;
 
 import io.github.redstoneparadox.nicetohave.block.CustomSkullBlock;
 import net.minecraft.block.SkullBlock;
+import net.minecraft.client.model.ModelPartBuilder;
 import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.block.entity.SkullBlockEntityRenderer;
 import net.minecraft.client.render.entity.model.SkullEntityModel;
-import net.minecraft.client.render.entity.model.SkullOverlayEntityModel;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,13 +19,13 @@ import java.util.Map;
 
 @Mixin(SkullBlockEntityRenderer.class)
 public abstract class SkullBlockEntityRendererMixin {
-	@Shadow @Final private static Map<SkullBlock.SkullType, SkullEntityModel> MODELS;
+	@Shadow @Final private Map<SkullBlock.SkullType, SkullEntityModel> MODELS;
 	@Shadow @Final private static Map<SkullBlock.SkullType, Identifier> TEXTURES;
 
 	@Inject(method = "<init>", at = @At("TAIL"))
-	private void addCustomSkullTextures(BlockEntityRenderDispatcher blockEntityRenderDispatcher, CallbackInfo ci) {
+	private void addCustomSkullTextures(BlockEntityRendererFactory.Context context, CallbackInfo ci) {
 		SkullEntityModel skullEntityModel = new SkullEntityModel(0, 0, 64, 32);
-		SkullEntityModel skullEntityModel2 = new SkullOverlayEntityModel();
+		// SkullEntityModel skullEntityModel2 = new SkullOverlayEntityModel();
 		SkullEntityModel spiderSkullEntityModel = new SkullEntityModel(32, 4, 64, 32);
 
 		MODELS.put(CustomSkullBlock.Type.SPIDER, spiderSkullEntityModel);

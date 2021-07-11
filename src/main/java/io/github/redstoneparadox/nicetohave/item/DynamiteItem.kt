@@ -33,7 +33,6 @@ class DynamiteItem() : Item(Item.Settings().group(ItemGroup.TOOLS)) {
             dynamite.setItem(stack)
             dynamite.setProperties(playerEntity, playerEntity.pitch, playerEntity.yaw, -5.0f, 0.5f, 1.0f)
             world.spawnEntity(dynamite)
-            Packets.dispatchToAllWatching(dynamite, ::EntityPositionS2CPacket)
         }
 
         return TypedActionResult(ActionResult.SUCCESS, stack)

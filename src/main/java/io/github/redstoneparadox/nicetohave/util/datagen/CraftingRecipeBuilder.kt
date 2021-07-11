@@ -3,12 +3,10 @@ package io.github.redstoneparadox.nicetohave.util.datagen
 import blue.endless.jankson.JsonArray
 import blue.endless.jankson.JsonObject
 import blue.endless.jankson.JsonPrimitive
-import com.mojang.serialization.DynamicOps
-import com.mojang.serialization.JsonOps
 import io.github.cottonmc.jankson.JanksonOps
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.nbt.NbtElement
 import net.minecraft.nbt.NbtOps
-import net.minecraft.nbt.Tag
 import java.io.File
 import kotlin.math.min
 
@@ -17,7 +15,7 @@ class CraftingRecipeBuilder {
     var namespace: String = "nicetohave"
 
     // Directory
-    private val currentDirectory: File?
+    private val currentDirectory: File
         get() = File("C:\\Development\\Minecraft\\Mods\\NiceToHave\\src\\main\\resources\\data\\$namespace\\recipes")
 
     // Recipe ID
@@ -35,7 +33,7 @@ class CraftingRecipeBuilder {
     // Output
     private var output : String = ""
     private var count : Int = 0
-    private var outputNBT: Tag? = null
+    private var outputNBT: NbtElement? = null
 
     //Condition
     private var condition : DataConditionBuilder? = null
@@ -63,7 +61,7 @@ class CraftingRecipeBuilder {
         return setOutput(id, count, isAlsoName)
     }
 
-    fun setOutputNBT(nbt: Tag): CraftingRecipeBuilder {
+    fun setOutputNBT(nbt: NbtElement): CraftingRecipeBuilder {
         outputNBT = nbt
         return this
     }
@@ -201,7 +199,7 @@ class CraftingRecipeBuilder {
         }
 
         fun spawnerRecipe(headID: String, entityID: String) {
-            val rootTag = CompoundTag()
+            val rootTag = NbtCompound()
             rootTag.putString("entity", entityID)
 
             SPAWNER_RECIPE

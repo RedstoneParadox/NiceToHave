@@ -23,13 +23,13 @@ class NiceToHaveClient: ClientModInitializer {
     override fun onInitializeClient() {
         NiceToHave.clientOut("Initializing Nice to Have on the Client.")
         EntityRenderers.registerRenderers()
-        ClientPackets.registerPackets()
+        // ClientPackets.registerPackets()
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
             val provider = ColorProviderRegistry.BLOCK.get(net.minecraft.block.Blocks.VINE)
             return@BlockColorProvider provider?.getColor(block, pos, world, layer) ?: 0xffffff
         }, NiceToHaveBlocks.TRIMMED_VINE)
 
-        ModelPredicateProviderRegistryAccessor.callRegister(Identifier("color")) { stack, world, entity ->
+        ModelPredicateProviderRegistryAccessor.callRegister(Identifier("color")) { stack, world, entity, int ->
             if (entity is PlayerEntity) {
                 val mainItem = entity.mainHandStack.item
                 val offhandItem = entity.offHandStack.item

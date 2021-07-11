@@ -17,6 +17,7 @@ import net.minecraft.network.PacketByteBuf
  */
 object Packets {
 
+    /*
     fun newSpawnPacket(entity: Entity): Packet<*> {
         val bytes = PacketByteBuf(Unpooled.buffer())
         EntitySpawnS2CPacket(entity).write(bytes)
@@ -30,4 +31,6 @@ object Packets {
                 .map<ServerPlayNetworkHandler> { p -> p.networkHandler }
                 .forEach { h -> h.sendPacket(packet.invoke(entity)) }
     }
+
+     */
 }

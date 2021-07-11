@@ -18,7 +18,7 @@ class SpawnerBlockItem: BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.MIS
         val result = super.place(context)
         val world =context.world
         val blockEntity = world.getBlockEntity(context.blockPos)
-        val tag = context.stack.orCreateTag
+        val tag = context.stack.orCreateNbt
         val id = if (tag.contains("entity")) { tag.getString("entity").id() } else { DEFAULT_ID }
 
         if (blockEntity is MobSpawnerBlockEntity) {
@@ -36,7 +36,7 @@ class SpawnerBlockItem: BlockItem(Blocks.SPAWNER, Settings().group(ItemGroup.MIS
     override fun appendTooltip(itemStack: ItemStack, world: World?, list: MutableList<Text>, tooltipContext: TooltipContext) {
         super.appendTooltip(itemStack, world, list, tooltipContext)
 
-        val tag = itemStack.orCreateTag
+        val tag = itemStack.orCreateNbt
         val id = if (tag.contains("entity")) {
             tag.getString("entity")
         } else {
