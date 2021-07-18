@@ -8,11 +8,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(BrewingRecipeRegistry.class)
 public interface BrewingRecipeRegistryAccessor{
-
     @Invoker
-    @SuppressWarnings("PublicStaticMixinMember")
-    public static void invokeRegisterPotionRecipe(Potion potion, Item item, Potion potion2){
+    static void invokeRegisterPotionRecipe(Potion potion, Item item, Potion potion2){
         //NOOP
     }
-
 }

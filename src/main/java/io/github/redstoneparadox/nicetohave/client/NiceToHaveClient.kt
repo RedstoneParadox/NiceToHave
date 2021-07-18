@@ -4,6 +4,7 @@ import io.github.redstoneparadox.nicetohave.NiceToHave
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks
 import io.github.redstoneparadox.nicetohave.client.networking.ClientPackets
 import io.github.redstoneparadox.nicetohave.client.render.entity.EntityRenderers
+import io.github.redstoneparadox.nicetohave.client.render.entity.model.NTHEntityModelLayers
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
 import net.fabricmc.fabric.api.client.model.ModelVariantProvider
@@ -23,12 +24,10 @@ class NiceToHaveClient: ClientModInitializer {
     override fun onInitializeClient() {
         NiceToHave.clientOut("Initializing Nice to Have on the Client.")
         EntityRenderers.registerRenderers()
-        // ClientPackets.registerPackets()
         ColorProviderRegistry.BLOCK.register(BlockColorProvider { block, pos, world, layer ->
             val provider = ColorProviderRegistry.BLOCK.get(net.minecraft.block.Blocks.VINE)
             return@BlockColorProvider provider?.getColor(block, pos, world, layer) ?: 0xffffff
         }, NiceToHaveBlocks.TRIMMED_VINE)
-
         ModelPredicateProviderRegistryAccessor.callRegister(Identifier("color")) { stack, world, entity, int ->
             if (entity is PlayerEntity) {
                 val mainItem = entity.mainHandStack.item
@@ -60,5 +59,6 @@ class NiceToHaveClient: ClientModInitializer {
             }
             return@callRegister 0.0f
         }
+        NTHEntityModelLayers.registerLayers()
     }
 }
