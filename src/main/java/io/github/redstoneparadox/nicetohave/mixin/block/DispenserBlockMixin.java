@@ -77,10 +77,10 @@ public abstract class DispenserBlockMixin {
     }
 
     private void playSound(BlockPointer blockPointer_1) {
-        blockPointer_1.getWorld().syncGlobalEvent(1000, blockPointer_1.getBlockPos(), 0);
+        blockPointer_1.getWorld().syncGlobalEvent(1000, blockPointer_1.getPos(), 0);
     }
 
     private void spawnParticles(BlockPointer blockPointer_1, Direction direction_1) {
-        blockPointer_1.getWorld().syncGlobalEvent(2000, blockPointer_1.getBlockPos(), direction_1.getId());
+        blockPointer_1.getWorld().syncGlobalEvent(2000, blockPointer_1.getPos(), direction_1.getId());
     }
 }

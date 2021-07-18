@@ -2,6 +2,7 @@ package io.github.redstoneparadox.nicetohave.mixin.block.entity;
 
 import com.mojang.datafixers.types.Type;
 import io.github.redstoneparadox.nicetohave.block.NiceToHaveBlocks;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -25,7 +26,7 @@ public abstract class BlockEntityTypeMixin {
 	private static <T extends BlockEntity> void addCustomSkulls(String string, BlockEntityType.Builder<T> builder, CallbackInfoReturnable<BlockEntityType<T>> cir) {
 		if (string.equals("skull")) {
 			// Sorry not sorry.
-			BlockEntityType.Builder<T> newBuilder = (BlockEntityType.Builder<T>) BlockEntityType.Builder
+			FabricBlockEntityTypeBuilder<SkullBlockEntity> fabricBuilder = FabricBlockEntityTypeBuilder
 					.create(SkullBlockEntity::new,
 							Blocks.SKELETON_SKULL,
 							Blocks.SKELETON_WALL_SKULL,
@@ -49,7 +50,7 @@ public abstract class BlockEntityTypeMixin {
 					);
 
 			Type<?> type = Util.getChoiceType(TypeReferences.BLOCK_ENTITY, string);
-			BlockEntityType<T> blockEntityType = Registry.register(Registry.BLOCK_ENTITY_TYPE, string, newBuilder.build(type));
+			BlockEntityType<T> blockEntityType = (BlockEntityType<T>) Registry.register(Registry.BLOCK_ENTITY_TYPE, string, fabricBuilder.build(type));
 			cir.setReturnValue(blockEntityType);
 		}
 	}

@@ -53,9 +53,9 @@ dependencies {
 	}
 	*/
 
-	modApi ("me.shedaniel:RoughlyEnoughItems:${project.rei}") {
+	modApi ("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei}") {
 	}
-	include ("me.shedaniel:RoughlyEnoughItems:${project.rei}") {
+	include ("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei}") {
 	}
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.

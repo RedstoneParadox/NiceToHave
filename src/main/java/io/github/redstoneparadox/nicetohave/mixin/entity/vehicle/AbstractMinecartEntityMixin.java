@@ -42,7 +42,7 @@ public abstract class AbstractMinecartEntityMixin extends Entity {
 
             if (minecartItem != net.minecraft.item.Items.AIR && (playerEntity_1.isCreative() || playerEntity_1.giveItemStack(new ItemStack(minecartItem)))) {
                 playerEntity_1.playSound(SoundEvents.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
-                remove();
+                discard();
                 return ActionResult.SUCCESS;
             }
         }

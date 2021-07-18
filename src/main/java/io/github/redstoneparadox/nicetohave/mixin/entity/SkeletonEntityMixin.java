@@ -17,7 +17,7 @@ public abstract class SkeletonEntityMixin extends AbstractSkeletonEntity {
 	@Override
 	public void onDeath(DamageSource damageSource) {
 		if (hasStatusEffect(StatusEffects.WITHER)) {
-			method_29243(EntityType.WITHER_SKELETON, true);
+			convertTo(EntityType.WITHER_SKELETON, true);
 			return;
 		}
 
