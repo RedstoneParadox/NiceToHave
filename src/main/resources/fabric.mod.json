@@ -38,10 +38,10 @@
         "value": "io.github.redstoneparadox.nicetohave.client.NiceToHaveClient"
       }
     ],
-    "rei_plugins_v0": [
+    "rei_plugins": [
       {
         "adapter": "kotlin",
-        "value": "io.github.redstoneparadox.nicetohave.compat.REIPlugin"
+        "value": "io.github.redstoneparadox.nicetohave.client.compat.REIPlugin"
       }
     ]
   },
