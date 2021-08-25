@@ -68,8 +68,8 @@ dependencies {
 	}
 	include "io.github.cottonmc:LibCD:${project.libcd}"
 	
-	modApi("maven.modrinth:paradox-config:0.5.0-beta") {}
-	include "maven.modrinth:paradox-config:0.5.0-beta"
+	modApi("maven.modrinth:paradox-config:${project.pconfig}") {}
+	include "maven.modrinth:paradox-config:${project.pconfig}"
 
 	/*
 	modApi("com.github.RedstoneParadox:OakTree:${project.oak_tree}") {
