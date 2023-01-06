@@ -78,7 +78,7 @@ dependencies {
 	include "com.github.RedstoneParadox:OakTree:${project.oak_tree}"
 	 */
 
-	modImplementation "de.siphalor:nbtcrafting-1.16:2+"
+	modImplementation "de.siphalor:nbtcrafting-1.17:2.0.22+mc1.17.1"
 }
 
 processResources {
